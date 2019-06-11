@@ -7,7 +7,7 @@ import Navbar from './components/navbar/Navbar';
 import CreateMarket from './components/createmarket/CreateMarket';
 import Homepage from './components/homepage/Homepage';
 import PrivateRoute from './components/privateroute/PrivateRoute';
-
+import MarketProfilePage from './components/markets/marketProfile';
 
 import VendorForm from "./components/vendor/VendorForm";
 import ProductForm from "./components/product/ProductForm";
@@ -33,6 +33,7 @@ function App() {
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
           <Route path="/markets" component={MarketLandingPage} />
+          {/* <Route path='/markets/:firebase_id' render={props => <MarketProfilePage {...props} listOfVendors={vendors} /> } /> */}
         </Switch>
         </ContextProvider>
       </React.Fragment>

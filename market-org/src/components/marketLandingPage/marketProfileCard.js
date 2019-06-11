@@ -1,5 +1,8 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from 'styled-components'
+import { NavLink, Route } from 'react-router-dom';
+import MarketProfilePage from '../markets/marketProfile';
+import axios from '../../axios-instance';
 
 const ProfileCard = styled.div`
     border-radius: 3px;
@@ -16,8 +19,23 @@ const ProfileMiniCard = styled.div`
 `
 
 const MarketProfileCard = (props) => {
+const [vendors, setVendors] = useState([]);
+useEffect(() => {
+    console.log("Error");
+    axios.get(`/vendor/market/${props.profile.firebase_id}/vendor`)
+    .then(res => {
+        console.log(res.data)
+        let vendors = res.data.vendors;
+        setVendors(vendors)
+    })
+        .catch(err => {
+            console.log(err.message)
+    })
+}, []);
 
 return (
+
+    
     <ProfileCard>
     
     <ProfileMiniCard>
@@ -34,6 +52,9 @@ return (
     {props.profile.city}
     {props.profile.state}
     {props.profile.zipcode}
+    <NavLink to={`/markets/${props.profile.firebase_id}`}>See Market Profile</NavLink>
+    {/* <Route path='/markets/:firebase_id' render={props => <MarketProfilePage {...props} listOfVendors={vendors} /> } /> */}
+    
     </div>
 
     <div>
