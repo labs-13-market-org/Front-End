@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, NavLink, Switch } from 'react-router-dom';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withRouter } from 'react-router'
 import Navbar from './components/navbar/Navbar';

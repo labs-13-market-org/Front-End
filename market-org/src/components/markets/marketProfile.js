@@ -13,12 +13,8 @@ const MarketProfileContainer = styled.div`
 
 const MarketProfilePage = (props) => {
     console.log(props)
-    
-
-    
-
     return(
-        <div><h1>{props.MarketProfilePage}</h1></div>
+        <div><h1>{props.location.state.firebase_id}</h1></div>
     )
 }
 
