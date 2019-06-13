@@ -2,8 +2,6 @@ import React from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import axios from "../../axios-instance";
 import "./CreateMarket.css";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 
 import { Container, Paper, withStyles, Button } from "@material-ui/core";
