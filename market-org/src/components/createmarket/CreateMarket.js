@@ -158,61 +158,61 @@ const CreateMarket = (props) => {
     //     setStalls([...stalls, stalls])
     // }
 
-    // const createUi = () => {
-    //     return stalls.map((el, i) => {
-    //         console.log("el", el)
-    //         return (
-    //             <div key={i} style={{ display: 'flex', width: '100%', justifyContent: 'space-evenly' }}>
-    //                 <TextField
-    //                     style={{ width: '20%' }}
-    //                     id="outlined-number"
-    //                     label="quantity"
-    //                     value={el || ''}
-    //                     onChange={event => handleChange(i, event)}
-    //                     type="number"
-    //                     className={classes.textField}
-    //                     InputLabelProps={{
-    //                         shrink: true,
-    //                     }}
-    //                     margin="normal"
-    //                     variant="outlined"
-    //                 />
-    //                 <TextField
-    //                     style={{ width: '20%' }}
-    //                     id="outlined-bare"
-    //                     label="size(ft)"
-    //                     value={el || ''}
-    //                     defaultValue="10x10"
-    //                     className={classes.textField}
-    //                     onChange={event => handleChange(i, event)}
-    //                     margin="normal"
-    //                     variant="outlined"
-    //                     inputProps={{ 'aria-label': 'bare' }}
-    //                 />
-    //                 <TextField
-    //                     id="outlined-adornment-amount"
-    //                     style={{ width: '20%' }}
-    //                     className={classes.textField}
-    //                     variant="outlined"
-    //                     margin="normal"
-    //                     label="price"
-    //                     value={el || ''}
-    //                     onChange={event => handleChange(i, event)}
-    //                     InputProps={{
-    //                         startAdornment: <InputAdornment position="start">$</InputAdornment>,
-    //                     }}
-    //                 />
-    //             </div>
-    //         )
-    //     }
-    //     )
-    // }
+    const createUi = () => {
+        return stalls.map((el, i) => {
+            console.log("el", el)
+            return (
+                <div key={i} style={{ display: 'flex', width: '100%', justifyContent: 'space-evenly' }}>
+                    <TextField
+                        style={{ width: '20%' }}
+                        id="outlined-number"
+                        label="quantity"
+                        value={el || ''}
+                        onChange={event => handleChange(i, event)}
+                        type="number"
+                        className={classes.textField}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        style={{ width: '20%' }}
+                        id="outlined-bare"
+                        label="size(ft)"
+                        value={el || ''}
+                        defaultValue="10x10"
+                        className={classes.textField}
+                        onChange={event => handleChange(i, event)}
+                        margin="normal"
+                        variant="outlined"
+                        inputProps={{ 'aria-label': 'bare' }}
+                    />
+                    <TextField
+                        id="outlined-adornment-amount"
+                        style={{ width: '20%' }}
+                        className={classes.textField}
+                        variant="outlined"
+                        margin="normal"
+                        label="price"
+                        value={el || ''}
+                        onChange={event => handleChange(i, event)}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        }}
+                    />
+                </div>
+            )
+        }
+        )
+    }
 
-    // const handleChange = (i, event) => {
-    //     let values = [...stalls]
-    //     values[i] = event.target.value;
-    //     setStalls({ values })
-    // }
+    const handleChange = (i, event) => {
+        let values = [...stalls]
+        values[i] = event.target.value;
+        setStalls({ values })
+    }
 
 
     return (
@@ -375,9 +375,9 @@ const CreateMarket = (props) => {
                                 }}
                             />
                         </div>
-                        {/* {createUi()} */}
-                        {/* <div>
-                            <Button onClick={addStall}>Add More</Button>
+                        {/* {createUi()}
+                        <div>
+                            <Button onClick={addMore}>Add More</Button>
                         </div> */}
                     </Grid>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px' }}>
