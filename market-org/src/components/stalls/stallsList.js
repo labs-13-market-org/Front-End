@@ -5,6 +5,7 @@ import axios from "../../axios-instance";
 import Stall from "./stall.js";
 
 
+
 // {
 //     // "id": 0,
 //     // "size": {
@@ -15,7 +16,7 @@ import Stall from "./stall.js";
 // }
 
 const StallsContainer = styled.div`
-    width: 850px;
+    width: 1250px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
