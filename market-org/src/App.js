@@ -16,6 +16,8 @@ import StallsList from './components/stalls/stallsList';
 
 import VendorNav from './components/vendor-nav/VendorNav';
 import VendorForm from "./components/vendor/VendorForm";
+import MyVendorStalls from "./components/myStalls/vendorStalls";
+
 import VendorLandingPage from "./components/vendor/VendorLandingPage";
 import ProductForm from "./components/product/ProductForm";
 import UpdateProductForm from "./components/product/UpdateProductForm";
@@ -47,6 +49,7 @@ function App() {
           <Route exact exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
           <Route path="/vendor" component={VendorForm} />
+          <Route path="/vendorStall" component={MyVendorStalls} />
           <Route path="/productForm" component={ProductForm} />
           <Route path='/signup' component={SignUp}/>
           <Route path='/signin' component={SignIn}/>
