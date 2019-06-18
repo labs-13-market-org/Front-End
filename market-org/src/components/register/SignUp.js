@@ -4,7 +4,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 
 import { auth, googleProvider } from '../../firebase';
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 
 import { AuthContext } from '../authContext/authState';
 import axios from '../../axios-instance';
@@ -77,6 +77,11 @@ function Register(props) {
 							axios.post('/users/register', { ...userObj })
 								.then(res => {
 									console.log("res:", res);
+									if(res.data.user_type === "market") {
+										props.history.push("/create-market")
+									} else if(res.data.user_type === "vendor") {
+										props.history.push("/vendor")
+									}
 									// localStorage.setItem('firebaseId', res.data.firebase_id);
 
 								})
@@ -121,6 +126,11 @@ function Register(props) {
 							.then(res => {
 								console.log("res:", res);
 								localStorage.setItem('firebaseId', res.data.firebase_id);
+								if(res.data.user_type === "market") {
+									props.history.push("/create-market")
+								} else if(res.data.user_type === "vendor") {
+									props.history.push("/vendor")
+								}
 								// console.log("Create firebaseId :",  res.data.firebase_id);
 
 

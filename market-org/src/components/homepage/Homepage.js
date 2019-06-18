@@ -3,13 +3,12 @@ import { withRouter } from 'react-router-dom'
 import queryString from 'query-string';
 
 // import Navbar from '../navbar/Navbar';
-import Searchbar from '../navbar/Searchbar';
-import { AuthContext } from '../authContext/authState';
+import Searchbar from "../navbar/Searchbar";
+import { AuthContext } from "../authContext/authState";
 import { Container, Grid, Paper, makeStyles, Button } from "@material-ui/core";
 
 // import VendorForm from '../vendor/VendorForm';
 import axios from '../../axios-instance';
-
 import fruit from "../../images/fruit-stand.jpg";
 import market from "../../images/market-stand.jpg";
 
@@ -55,9 +54,7 @@ const Homepage = props => {
 
 
   useEffect(() => {
-    console.log(currentUser)
     let params = queryString.parse(props.location.search)
-    console.log('params:', params)
       axios.get(`/stripe/token/?code=${params['code']}&state=${params['state']}`)
       .then(res => {
         console.log('homepage:', res.data)
@@ -76,11 +73,15 @@ const Homepage = props => {
 
   const stripeDashboardLink = () => {
     console.log('sci',stripe_acc_id)
-    axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
-         .then(res => {
-           console.log('link:', res.data)
-           window.open(res.data.url)
-         })
+    console.log("fire", firebase_id)
+    // axios.get(`/markets/${firebase_id}`).then(res => {
+    //   console.log("getmarketbyid", res)
+    // })
+    // axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
+    //      .then(res => {
+    //        console.log('link:', res.data)
+    //        window.open(res.data.url)
+    //      })
   }
 
 
@@ -96,7 +97,7 @@ const Homepage = props => {
   
 
   const vendorFormPage = () => {
-  props.history.replace(`/vendor`);
+    props.history.replace(`/vendor`);
   };
 
   const toProductForm = () => {
@@ -122,8 +123,8 @@ const Homepage = props => {
             <Button>Create Market profile</Button>
             <Button onClick={stripeDashboardLink}>Stripe Dashboard</Button>
             <Button onClick={vendorFormPage}>Create vendor Profile</Button>
-            
-      <Button
+
+            <Button
               onClick={toProductForm}
               color="inherit"
               style={{ backgroundColor: "#30cc32", margin: "10px" }}
@@ -146,7 +147,6 @@ const Homepage = props => {
     </React.Fragment>
   );
 };
-
 
 // <div style={{ textAlign: 'center', marginTop: '200px' }}>
 // {users && users.map(user => {

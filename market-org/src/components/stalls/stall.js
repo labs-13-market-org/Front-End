@@ -123,6 +123,8 @@ const Stall = (props) => {
 
     useEffect(() => {
         setAvailableStatus(props.stall.available)
+        const { length } = props.stall.size
+        console.log({ length })
     }, []);
 
     const [state, dispatch] = useReducer(reducer);
