@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 //import styles
 import "./Homepage.css";
-// import Navbar from '../navbar/Navbar';
+import Navbar from '../navbar/Navbar';
 import Searchbar from "../navbar/Searchbar";
 import { AuthContext } from "../authContext/authState";
 import { Container, Grid, Paper, makeStyles, Button } from "@material-ui/core";
@@ -28,11 +28,7 @@ import StallsList from '../stalls/stallsList'
 import queryString from 'query-string';
 
 
-
-
-const Homepage2 = props => {
-
-  
+const Homepage2 = props => {  
   
   const [users, setUsers] = useState([]);
   const { currentUser } = useContext(AuthContext);

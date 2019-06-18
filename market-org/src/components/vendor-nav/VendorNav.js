@@ -9,6 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ShoppingCart from '@material-ui/icons/ShoppingCart'
 import { Route, withRouter } from "react-router-dom";
 import { AuthContext } from '../authContext/authState';
+import { auth } from "../../firebase";
 import axios from '../../axios-instance';
 
 const useStyles = makeStyles(theme => ({
@@ -63,6 +64,12 @@ function VendorNav (props) {
   }
   const toPrivateVendorProfile = () => {    
     props.history.push(`/oneVendorPrivate/${firebase_id}`);
+  };
+
+  const logout = () => {
+    auth.signOut();
+    localStorage.clear();
+    props.history.push("/");
   };
 
     console.log(props, 'props from vendor nav')
@@ -123,6 +130,14 @@ function VendorNav (props) {
                     >
                         <ShoppingCart onClick={getCart} />
                     </IconButton>
+                    <Button
+                        color="inherit"
+                        className={classes.navLink}
+                        onClick={logout}
+                        // style={{  margin: "10px" }}
+                     >
+                        Log Out
+                    </Button>
                     </div>
                 </Toolbar>
             </AppBar>
