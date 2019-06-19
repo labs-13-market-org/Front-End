@@ -103,8 +103,8 @@ const Cart = () => {
             .then(res => {
                 console.log("Cart: ", res.data)
                 let cartData = res.data[0];
-                let total = res.data.total
-                let stripe = "res.data.cartItem[0].stripeAccountId"
+                let total = res.data[1];
+                let stripe = cartData[0].stripeAccountId;
                 console.log('Total', total)
                 console.log('cart data',  cartData)
                 console.log('stripe', stripe)
@@ -180,13 +180,14 @@ const Cart = () => {
                 console.log(res.data)
                 let stripe = res.data[0].stripeAccountId;
                 let purchasedGoods = cartItems;
+                console.log("purchased Goods:", purchasedGoods);
                 purchasedGoods = purchasedGoods.map(purchasedGood => {
                     return (
-                      {vendor_id: purchasedGood.vendor_id, stall_id: purchasedGood.stall_id, market_id: purchasedGood.market_id, size: purchasedGood.size, price: purchasedGood.price}
+                      {vendor_id: purchasedGood.vendor_id, stall_id: purchasedGood.stalls_id, market_id: purchasedGood.market_id, size: purchasedGood.size, price: purchasedGood.price}
                     )
                 })
                 
-                axios.post(`/orders/${firebase_id}`, purchasedGoods)
+                axios.post(`/orders/vendor/${firebase_id}`, purchasedGoods)
                   .then(res => {
                       console.log("Res:", res);
                       console.log("Added to purchased orders");
