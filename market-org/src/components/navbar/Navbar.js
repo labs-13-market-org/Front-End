@@ -239,13 +239,8 @@ function ButtonAppBar(props) {
   }
 
   const toCart = () => {
-<<<<<<< HEAD
     let firebase_id = localStorage.getItem('firebaseId')
       props.history.push(`/cart/${firebase_id}`)
-=======
-    // let firebase_id = localStorage.getItem('firebaseId')
-      props.history.push(`cart/${firebaseId}`)
->>>>>>> bb18284835af906eb3ed955f50149bff1529e1cd
   }
 
   const register = () => {
