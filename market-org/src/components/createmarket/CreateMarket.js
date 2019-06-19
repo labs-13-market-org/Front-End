@@ -61,7 +61,7 @@ const CreateMarket = props => {
   };
 
   const initStripeConnection = () => {
-    const market = {
+    const populateInputs = {
       market_name,
       contact_first_name,
       contact_last_name,
@@ -69,16 +69,11 @@ const CreateMarket = props => {
       city,
       state,
       zipcode,
-      phone_number
+      phone_number,
+      email: currentUser.email
     };
-    console.log("initstripe");
-    axios({
-      method: "get",
-      url: "stripe/authorize",
-      params: {
-        ...market
-      }
-    })
+    console.log("initstripe", populateInputs);
+    axios.post('stripe/authorize', populateInputs)
       .then(res => {
         console.log("createmarket res data:", res.data);
         window.location.href = res.data;
@@ -98,7 +93,8 @@ const CreateMarket = props => {
       city,
       state,
       zipcode,
-      phone_number
+      phone_number,
+      
     };
     console.log(currentUser.uid);
     axios
