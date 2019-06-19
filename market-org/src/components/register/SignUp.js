@@ -60,7 +60,7 @@ function Register(props) {
 				if (user) {
 					const { uid, ra, email } = user;
 					localStorage.setItem('token', ra);
-					// localStorage.setItem('firebaseId', uid)
+					localStorage.setItem('firebaseId', uid)
 					console.log("getting uId :", uid);
 					if (user.email) {
 						const { email } = user;
