@@ -300,11 +300,12 @@ console.log(vendorProfile, 'vendor profile')
                    onClose={handleClose}
                 >       
                   <MenuItem className={classes.menuItem} onClick={register} ><Typography>Register A Market</Typography></MenuItem>
+                  <MenuItem className={classes.menuItem} onClick={() => toMyStalls(user_type)}><Typography>View My Stalls</Typography></MenuItem>
                   <MenuItem className={classes.menuItem} onClick={toAllMarkets}><Typography>View All Markets</Typography></MenuItem>
                   <MenuItem className={classes.menuItem} onClick={handleClose}><Typography>More Info</Typography></MenuItem>               
                 </StyledMenu>
            
-          <VendorMenu signup={register} toAllVendors={toAllVendors}/>
+          <VendorMenu signup={register} toAllVendors={toAllVendors} toMyStalls={() => toMyStalls(user_type)}/>
 
           <Typography ariant="h6"  className={classes.title}>
               <Link className={classes.link}  underline='none'>About</Link>
