@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Cart = () => {
+const Cart = (props) => {
     const [cartItems, setCartItems] = useState([])
     const [total, setTotal] = useState('')
     const [stripeId, setStripeId] = useState('')
@@ -175,6 +175,7 @@ const Cart = () => {
                           setTotal(0)
                           setStripeId(stripe)
                         
+                          props.history.push("/vendorStall");
                         })
                         .catch(err =>{
                           console.log(err);
