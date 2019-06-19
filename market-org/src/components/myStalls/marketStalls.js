@@ -115,7 +115,7 @@ const MyMarketStalls = () => {
 
     return (
             <div className={classes.root}>
-                <Typography className={classes.title}>My Currently Purchased Stalls (for {marketName}):</Typography>
+                <Typography className={classes.title}>My Current Market Stalls (for {marketName}):</Typography>
 
                 <div className={classes.headers}>
                     <Typography className={classes.priceHeader}>Price</Typography>
