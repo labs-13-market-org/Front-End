@@ -71,6 +71,17 @@ function SignIn(props) {
 								console.log("res:", res);
 								localStorage.setItem("userTypes", res.data.user_type);
 
+								axios.get(`users/${uid}`).
+								then(res =>{
+									localStorage.setItem("userTypes", res.data.user_type);
+								})
+								.catch(err => {
+
+									console.log(err);
+								}
+
+								)
+
 							})
 							.catch(err => {
 								console.log(err)
@@ -112,6 +123,15 @@ function SignIn(props) {
 							.then(res => {
 								console.log("res:", res);
 								localStorage.setItem("userTypes", res.data.user_type);
+
+								axios.get(`users/${uid}`).
+								then(res =>{
+									localStorage.setItem("userTypes", res.data.user_type);
+								})
+								.catch(err => {
+
+									console.log(err);
+								})
 
 							})
 							.catch(err => {

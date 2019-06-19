@@ -227,9 +227,19 @@ function ButtonAppBar(props) {
     props.history.push('/markets')
   }
 
+  const toMyStalls = (user_type) => {
+    if (user_type == "vendor") {
+      props.history.push('/vendorStall')
+    }
+    else if (user_type == "market") {
+      props.history.push('/marketStall')
+    }
+    
+  }
+
   const toCart = () => {
-    // let firebase_id = localStorage.getItem('firebaseId')
-      props.history.push(`cart/${firebaseId}`)
+    let firebase_id = localStorage.getItem('firebaseId')
+      props.history.push(`/cart/${firebase_id}`)
   }
 
   const register = () => {
@@ -367,8 +377,8 @@ console.log(vendorProfile, 'vendor profile')
             onClose={handleClose}
             className={ currentUser ? null : classes.closed}
            >         
-           <StyledMenuItem className={classes.menuItem} onClick={toPrivateVendorProfile}>View Profile</StyledMenuItem>
-            <StyledMenuItem className={classes.menuItem} onClick={handleRegOpen}>{user_type === 'vendor' ? 'My Stalls' : 'My Orders'}</StyledMenuItem>
+           <StyledMenuItem className={classes.menuItem} onClick={handleRegOpen}>View Profile</StyledMenuItem>
+            <StyledMenuItem className={classes.menuItem} onClick={() => toMyStalls(user_type)}>{user_type === 'vendor' ? 'My Purchased Orders' : 'My Stalls'}</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={toAllVendors}>Account Settings</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={logout}>Logout</StyledMenuItem>
           </StyledMenu> */}
