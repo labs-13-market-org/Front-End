@@ -111,7 +111,7 @@ const MyVendorStalls = () => {
 
     return (
             <div className={classes.root}>
-                <Typography className={classes.title}>My Currently Purchased Stalls</Typography>
+                <Typography className={classes.title}>My Currently Purchased Stalls:</Typography>
 
                 <div className={classes.headers}>
                     <Typography className={classes.priceHeader}>Market Name</Typography>
