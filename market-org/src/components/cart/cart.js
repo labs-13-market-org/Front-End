@@ -136,17 +136,17 @@ const Cart = () => {
         }));
       }
 
-      const removeFromCart = (cart_item_id) => {
+      const removeFromCart = (cart_item_id, stall_id) => {
          const firebase_id = localStorage.getItem('firebaseId')
         // axios.delete(`/cart/delete-stall-from-cart/${cart_item_id}`)
-        axios.delete(`/cart/delete-stall-from-cart/${cart_item_id}`, {data: {cart_item_id: cart_item_id}})
+        axios.delete(`/cart/delete-stall-from-cart/${firebase_id}`, {data: { stalls_id: stall_id}})
         .then(res => {
           console.log(res, 'delete res')
           axios.get(`/cart/${firebase_id}`)
           .then(res => {
               console.log(res.data)
-              let cartData = res.data.cartItem
-              let total = res.data.total
+              let cartData = res.data[0];
+              let total = res.data[1];
               console.log('Total', total)
               console.log('cart data',  cartData)
               setCartItems(cartData)
@@ -183,7 +183,7 @@ const Cart = () => {
                 console.log("purchased Goods:", purchasedGoods);
                 purchasedGoods = purchasedGoods.map(purchasedGood => {
                     return (
-                      {vendor_id: purchasedGood.vendor_id, stall_id: purchasedGood.stalls_id, market_id: purchasedGood.market_id, size: purchasedGood.size, price: purchasedGood.price}
+                      {vendor_id: purchasedGood.vendor_id, stall_id: purchasedGood.stalls_id, market_id: purchasedGood.market_id, market_name: purchasedGood.market_name, size: purchasedGood.size, price: purchasedGood.price}
                     )
                 })
                 
@@ -231,6 +231,7 @@ console.log(cartItems, 'cart items state')
         <div className={classes.root}>
             <Typography className={classes.title}>Shopping Cart</Typography>
             <div className={classes.headers}>
+                <Typography className={classes.priceHeader}>Market Name</Typography>
                 <Typography className={classes.priceHeader}>Price</Typography>
                 <Typography className={classes.qtyHeader}>Quantity</Typography>
            </div>
@@ -243,6 +244,9 @@ console.log(cartItems, 'cart items state')
                 <Grid item xs={10}>
                 
                     <Paper className={classes.paper}>
+                       <Typography variant="h6" component="h5">
+                            {cartItems[item].market_name}
+                        </Typography>
                         <Typography variant="h6" component="h5">
                             Stall Dimensions: Length: {cartItems[item].size.length} ft. X  Width: {cartItems[item].size.width} ft.
                         </Typography>
@@ -284,7 +288,7 @@ console.log(cartItems, 'cart items state')
                                 <MenuItem value={3}>5</MenuItem>
                             </Select> 
                          </FormControl>  */}
-                        <button onClick={() => removeFromCart(cartItems[item].cart_item_id)}>Remove From Cart</button>
+                        <button onClick={() => removeFromCart(cartItems[item].id, cartItems[item].stalls_id)}>Remove From Cart</button>
                     </Paper>
                 </Grid>
             </Grid>
