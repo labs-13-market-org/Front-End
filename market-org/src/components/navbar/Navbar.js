@@ -193,7 +193,7 @@ function ButtonAppBar(props) {
 
   const toCart = () => {
     let firebase_id = localStorage.getItem('firebaseId')
-      props.history.push(`cart/${firebase_id}`)
+      props.history.push(`/cart/${firebase_id}`)
   }
 
   const register = () => {
@@ -369,7 +369,7 @@ console.log({currentUser}, 'currentuser')
             className={ currentUser ? null : classes.closed}
            >         
            <StyledMenuItem className={classes.menuItem} onClick={handleRegOpen}>View Profile</StyledMenuItem>
-            <StyledMenuItem className={classes.menuItem} onClick={() => toMyStalls(user_type)}>{user_type === 'vendor' ? 'My Stalls' : 'My Orders'}</StyledMenuItem>
+            <StyledMenuItem className={classes.menuItem} onClick={() => toMyStalls(user_type)}>{user_type === 'vendor' ? 'My Purchased Orders' : 'My Stalls'}</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={toAllVendors}>Account Settings</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={logout}>Logout</StyledMenuItem>
           </StyledMenu>
