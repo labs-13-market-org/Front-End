@@ -83,6 +83,13 @@ function Register(props) {
 									console.log(userTypes, 'user types')
 									localStorage.setItem('userType', userTypes);
 
+									if (res.data.user_type=== 'vendor') {
+										console.log(res.data.user_type, 'from res')
+										props.history.push('/vendor')
+									} else {
+										props.history.push('/create-market')
+									}
+
 								})
 								.catch(err => {
 									console.log(err)

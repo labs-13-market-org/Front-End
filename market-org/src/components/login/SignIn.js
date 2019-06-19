@@ -69,11 +69,17 @@ function SignIn(props) {
 						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
-								localStorage.setItem("userTypes", res.data.user_type);
+								
 
 								axios.get(`users/${uid}`).
 								then(res =>{
 									localStorage.setItem("userTypes", res.data.user_type);
+									if (res.data.user_type=== 'vendor') {
+										console.log(res.data.user_type, 'from res')
+										props.history.push(`/oneVendorPrivate/${localStorage.getItem('firebaseId')}`)
+									} else {
+										props.history.push(`/vendorsByMarketId/${localStorage.getItem('firebaseId')}`)
+									}
 								})
 								.catch(err => {
 
@@ -122,11 +128,17 @@ function SignIn(props) {
 						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
-								localStorage.setItem("userTypes", res.data.user_type);
+								
 
 								axios.get(`users/${uid}`).
 								then(res =>{
 									localStorage.setItem("userTypes", res.data.user_type);
+									if (res.data.user_type=== 'vendor') {
+										console.log(res.data.user_type, 'from res')
+										props.history.push(`/oneVendorPrivate/${localStorage.getItem('firebaseId')}`)
+									} else {
+										props.history.push(`/vendorsByMarketId/${localStorage.getItem('firebaseId')}`)
+									}
 								})
 								.catch(err => {
 

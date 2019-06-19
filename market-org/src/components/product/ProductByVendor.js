@@ -185,7 +185,7 @@ const ProductByVendor = props => {
           products.map(eachProduct => {
             return (
               <>
-                <Card className={classes.card}>
+                <Card className={classes.card} key={eachProduct.id}>
                   <CardContent>
                     <Typography component="p">
                       Product Title: {eachProduct.title}
