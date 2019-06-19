@@ -69,6 +69,7 @@ function SignIn(props) {
 						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
+								localStorage.setItem("userTypes", res.data.user_type);
 
 							})
 							.catch(err => {
@@ -110,6 +111,7 @@ function SignIn(props) {
 						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
+								localStorage.setItem("userTypes", res.data.user_type);
 
 							})
 							.catch(err => {

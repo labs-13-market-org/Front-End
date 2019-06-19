@@ -245,6 +245,7 @@ function ButtonAppBar(props) {
     props.history.push("/");
   };
 
+
   const { currentUser } = useContext(AuthContext);
   const classes = useStyles();
   const user_type = localStorage.getItem('userTypes')
@@ -337,7 +338,7 @@ console.log(vendorProfile, 'vendor profile')
             </IconButton>
           </Typography>
           <Typography ariant="h6"  className={ currentUser ? classes.title : classes.closed}>
-           <ProfileMenu handleRegOpen={SignUp} user={user_type} toAllVendors={toAllVendors} logout={logout}/>
+           <ProfileMenu handleRegOpen={SignUp} user={user_type} toAllVendors={toAllVendors} logout={logout} toPrivateVendorProfile={toPrivateVendorProfile}/>
             {/* <IconButton
               edge="end"
               className={classes.icons}

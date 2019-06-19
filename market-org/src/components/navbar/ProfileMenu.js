@@ -73,6 +73,8 @@ const StyledMenu = withStyles({
 const VendorMenu = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const firebaseId = localStorage.getItem('firebaseId');
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   }
@@ -112,7 +114,7 @@ const VendorMenu = (props) => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem className={classes.menuItem} onClick={props.handleRegOpen}>View Profile</MenuItem>
+                        <MenuItem className={classes.menuItem} onClick={props.toPrivateVendorProfile}>View Profile</MenuItem>
                         <MenuItem className={classes.menuItem} onClick={props.handleRegOpen}>{props.user === 'vendor' ? 'My Stalls' : 'My Orders'}</MenuItem>
                         <MenuItem className={classes.menuItem} onClick={props.toAllVendors}>Account Settings</MenuItem>
                         <MenuItem className={classes.menuItem} onClick={props.logout}>Logout</MenuItem>

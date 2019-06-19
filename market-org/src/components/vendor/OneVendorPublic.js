@@ -99,21 +99,22 @@ const OneVendorPublic = props => {
             <Typography component="p">
               Company website: {aPublicVendor.company_url}
             </Typography>
-            <Link to={`/oneVendorPublic/${aPublicVendor.firebase_id}/product`}>
+            {/* <Link to={`/oneVendorPublic/${aPublicVendor.firebase_id}/product`}>
               <Typography component="p">View my products</Typography>
-            </Link>
+            </Link> */}
           </CardContent>
           <CardContent />
         </Card>
       </Container>
-      <Switch>
+      {/* <Switch>
         <Route
           path="/oneVendorPublic/:firebase_id/product"
           render={props => (
             <ProductByVendorCard {...props} vendor={aPublicVendor} />
           )}
         />
-      </Switch>
+      </Switch> */}
+      <ProductByVendorCard {...props} />
     </>
   );
 };
