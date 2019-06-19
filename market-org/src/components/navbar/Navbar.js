@@ -10,9 +10,6 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Modal from "@material-ui/core/Modal";
-import SignIn from "../login/SignIn";
-import SignUp from "../register/SignUp";
 import Expand from '@material-ui/icons/ExpandMore';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import Profile from '@material-ui/icons/AccountCircle';
@@ -144,20 +141,12 @@ function ButtonAppBar(props) {
   const handleClose = ()  => {
     setAnchorEl(null);
   }
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
   const handleRegOpen = () => {
     setOpenReg(true);
   };
 
   const handleCloseMenu = () => {
     setOpen(false);
-  };
-
-  const handleRegClose = () => {
-    setOpenReg(false);
   };
 
   const toHome = () => {
@@ -453,27 +442,6 @@ console.log({currentUser}, 'currentuser')
               </Button> */}
             </>
           {/* )} */}
-
-          <Modal
-          className={currentUser ? classes.closed : null}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            open={open}
-            onClose={handleClose}
-          >
-            <SignIn />
-          </Modal>
-
-
-          <Modal
-          className={currentUser ? classes.closed : null}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            open={openReg}
-            onClose={handleRegClose}
-          >
-            <SignUp />
-          </Modal>
         </Toolbar>
       </AppBar>
     </div>
