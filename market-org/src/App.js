@@ -57,11 +57,11 @@ function App() {
           <Route path="/vendorsByMarket/:firebase_id" component={VendorsPerMarket} />
           <Route path="/markets/marketProfile/" component={MarketProfilePage} />
           <Route path="/landing-page" component={LandingPage}/>
-          <Route path="/stalls/" component={StallsList}/>  
+          <Route exact path="/stalls/" component={StallsList}/>  
           <Route path="/allVendors" component={VendorLandingPage} />
           <Route path="/oneVendorPublic/:firebase_id" component={OneVendorPublic} />
           <Route path="/oneVendorPrivate/:firebase_id" component={OneVendorPrivate} />        
-          <Route path='/cart/:id' component={VendorCart}/>
+          <Route exact path='/cart/:id' component={VendorCart}/>
           {/* <Route
           path="/allVendors/:id"
           render={props => <ProductByVendorCard {...props} />}
