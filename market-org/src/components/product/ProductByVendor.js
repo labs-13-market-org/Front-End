@@ -30,7 +30,7 @@ const styles = theme => ({
   },
   appBar: {
     //   marginLeft: drawerWidth,
-    backgroundColor: "lightgreen",
+    backgroundColor: '#38212E',
     zIndex: theme.zIndex.drawer + 1
   },
 
@@ -58,11 +58,10 @@ const ProductByVendor = props => {
   const { classes } = props;
 
   const [vendorProfile, setVendorProfile] = useContext(VendorContext);
-  const [product, setProduct] = useContext(ProductContext);
+  // const [products, setProducts] = useContext(ProductContext);
 
   const [products, setProducts] = useState([]);
   const [delProduct, setDelProduct] = useState(0);
- 
 
   const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
@@ -131,7 +130,7 @@ const ProductByVendor = props => {
           component="p"
           style={{ fontWeight: "bold", fontSize: "40px" }}
         >
-          Your Product information
+          My Products
         </Typography>
 
         <CssBaseline />
@@ -140,28 +139,28 @@ const ProductByVendor = props => {
             <Button
               onClick={backToHome}
               color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              style={{ margin: "10px" }}
             >
               Home
             </Button>
             <Button
               onClick={backToProductForm}
               color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              style={{ margin: "10px" }}
             >
               Add more products
             </Button>
             <Button
               // onClick={toCart}
               color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              style={{ margin: "10px" }}
             >
               Your cart
             </Button>
             <Button
               onClick={toMarkets}
               color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              style={{ margin: "10px" }}
             >
               Markets
             </Button>
@@ -200,9 +199,8 @@ const ProductByVendor = props => {
                     Delete Product
                   </Button>
 
-
                   <Link
-                    to={`productsByVendor/${eachProduct.id}/updateProductForm`}
+                    to={`/oneVendorPrivate/productsByVendor/${eachProduct.id}/updateProductForm`}
                   >
                     <Typography
                       color="inherit"
@@ -213,19 +211,17 @@ const ProductByVendor = props => {
                   </Link>
                 </Card>
                 <Switch>
-        <Route
-          path="/productsByVendor/:id/updateProductForm"
-          render={props => (
-            <UpdateProductForm {...props} eachProduct={eachProduct} />
-          )}
-        />
-      </Switch>
+                  <Route
+                    path="/oneVendorPrivate/productsByVendor/:id/updateProductForm"
+                    render={props => (
+                      <UpdateProductForm {...props} eachProduct={eachProduct} />
+                    )}
+                  />
+                </Switch>
               </>
-              
             );
           })}
       </Container>
-
     </>
   );
 };

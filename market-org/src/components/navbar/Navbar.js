@@ -358,7 +358,7 @@ console.log({currentUser}, 'currentuser')
             onClose={handleClose}
             className={ currentUser ? null : classes.closed}
            >         
-           <StyledMenuItem className={classes.menuItem} onClick={handleRegOpen}>View Profile</StyledMenuItem>
+           <StyledMenuItem className={classes.menuItem} onClick={toPrivateVendorProfile}>View Profile</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={handleRegOpen}>{user_type === 'vendor' ? 'My Stalls' : 'My Orders'}</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={toAllVendors}>Account Settings</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={logout}>Logout</StyledMenuItem>
