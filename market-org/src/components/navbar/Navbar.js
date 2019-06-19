@@ -144,7 +144,8 @@ const useStyles = makeStyles(theme => ({
   },
   menuItem: {
     color: 'white',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    width: "100%"
   },
  
 }));
