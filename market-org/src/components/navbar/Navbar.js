@@ -18,6 +18,7 @@ import { Route, withRouter } from "react-router-dom";
 import VendorMenu from './MenuButton';
 import ProfileMenu from './ProfileMenu';
 import { AuthContext } from "../authContext/authState";
+import { VendorContext } from "../context/vendor";
 
 
 // const useStyles = makeStyles(theme => ({
@@ -176,6 +177,7 @@ const StyledMenu = withStyles({
 ));
 
 function ButtonAppBar(props) {
+  const [vendorProfile, setVendorProfile] = useContext(VendorContext);
   const [open, setOpen] = React.useState(false);
   const [openReg, setOpenReg] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -248,7 +250,7 @@ function ButtonAppBar(props) {
   const classes = useStyles();
   const user_type = localStorage.getItem('userTypes')
   const isOpen = Boolean(anchorEl);
-
+console.log(vendorProfile, 'vendor profile')
   return (
     
     <div className={classes.root}>

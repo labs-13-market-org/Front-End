@@ -17,12 +17,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     marginTop: '2rem',
-    // marginBottom: '4rem',
-    // height: '100vh'
   },
   cartItems: {
     display: 'flex',
-    // marginTop: '3rem',
     justifyContent: 'center'
   },
   title: {
@@ -58,8 +55,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     display: 'flex',
     justifyContent: 'space-around',
-    // textAlign: 'justify',
-    // color: theme.palette.text.secondary,
     color: 'black',
   },
   subtotal: {
@@ -72,11 +67,6 @@ const useStyles = makeStyles(theme => ({
       
       display: 'flex',
       justifyContent: 'center',
-      // marginTop: '3rem',
-    // '&:hover': {
-    //     backgroundColor: "#F5885F",
-    //     textDecoration: 'underline'
-    //  },
   },
   checkoutButton: {
     backgroundColor: '#F5885F',
@@ -94,7 +84,7 @@ const Cart = () => {
     const [total, setTotal] = useState('')
     const [stripeId, setStripeId] = useState('')
     const [quantity, setQuantity] = useState(1)
-    // const [stripe_id, setStripe_id] = useState('')
+
 
     useEffect(() => {
         let firebase_id = localStorage.getItem('firebaseId')
@@ -106,11 +96,7 @@ const Cart = () => {
                 let total = res.data.total
                 let stripe = res.data.cartItem[0].stripeAccountId
                 console.log('Total', total)
-                // console.log('cart data',  cartData[2].cart_item_id)
                 console.log('stripe', stripe)
-                // const cartItemsIds = Object.keys(cartData).map((item, i) => {
-                //   return cartData[item].cart_item_id})
-                // console.log(cartItemsIds, 'ids')
                 setCartItems(cartData)
                 setTotal(total)
                 setStripeId(stripe)
@@ -119,14 +105,6 @@ const Cart = () => {
                 console.log(err)
             })
     }, [])
-
-    // const  handleChange = (event)  => {
-    //   let event
-    //     setQuantity(oldQuantity => ({
-    //       ...oldQuantity,
-    //       [event.target.name]: event.target.value,
-    //     }));
-    //   }
 
       const handleChange = (event) => {
         const selectEvent = event
@@ -156,10 +134,10 @@ const Cart = () => {
               console.log(err)
           })
         })
-        // console.log(cart_item_id, 'from remove')
+      
 
     }
-    // console.log(cartItems.length, 'cart item type')
+    
 
    const handleToken = (token )  => {
     let amt = total
@@ -169,9 +147,6 @@ const Cart = () => {
         { token, amt, stripe_account }
       )
       .then(res => {
-        // const cart_item_id = localStorage.getItem('firebaseId')
-        // let stalls_id = {}
-        // console.log(stalls_id, 'stalls id')
         console.log("Response:", res.data.status, )
         alert('payment completed')
         let firebase_id = localStorage.getItem('firebaseId')
@@ -195,14 +170,7 @@ const Cart = () => {
         .catch(err => {
           console.log(err)
         }) 
-      //})
-      // const { status } = response.data;
      
-      // if (status === "success") {
-      //   toast("Success! Check email for details", { type: "success" });
-      // } else {
-      //   toast("Something went wrong", { type: "error" });
-      // }
     }
     const classes = useStyles();
 console.log(cartItems, 'cart items state')
@@ -229,40 +197,7 @@ console.log(cartItems, 'cart items state')
                         
                             Stall Price: ${cartItems[item].price} 
                         </Typography>
-                        {/* <TextField
-              style={{ width: "20%" }}
-              id="outlined-number"
-              label="quantity"
-              value={quantity}
-              onChange={e => setQuantity(e.target.value)}
-              type="number"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true
-              }}
-              margin="normal"
-              variant="outlined"
-            /> */}
-                        {/* <FormControl variant="outlined" className={classes.formControl}>
-                            <InputLabel  htmlFor="outlined-age-simple">
-                            Quantity
-                            </InputLabel>
-                             <Select
-                                value={quantity}
-                                onChange={e => setQuantity(e.target.value)}
-                                placeholder='Quantity'
-                                input={<OutlinedInput  name="quantity" id="outlined-age-simple" />}
-                            > 
-                                 <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem> 
-                                 <MenuItem value={1}>1</MenuItem>
-                                <MenuItem value={2}>2</MenuItem>
-                                <MenuItem value={3}>3</MenuItem>
-                                <MenuItem value={4}>4</MenuItem>
-                                <MenuItem value={3}>5</MenuItem>
-                            </Select> 
-                         </FormControl>  */}
+           
                         <button onClick={() => removeFromCart(cartItems[item].cart_item_id)}>Remove From Cart</button>
                     </Paper>
                 </Grid>
@@ -272,18 +207,14 @@ console.log(cartItems, 'cart items state')
 } 
          <Typography className={classes.subtotal}>Subtotal({cartItems.length} items): ${total}</Typography>
          <StripeCheckout
-        stripeKey="pk_test_R4kvaWNKnku78DL2dwXpLiTq00R1MdFKhb"
-        token={handleToken}
-        amount={total * 100}
-        name="Tesla Roadster"
-        billingAddress
-        shippingAddress
-      />
-         {/* <div className={classes.checkout}>
-         <Button variant="outlined" size="large" color="primary" className={classes.checkoutButton}>
-             <Typography>Proceed to checkout</Typography>
-         </Button>
-         </div> */}
+            stripeKey="pk_test_R4kvaWNKnku78DL2dwXpLiTq00R1MdFKhb"
+            token={handleToken}
+            amount={total * 100}
+            name="Tesla Roadster"
+            billingAddress
+            shippingAddress
+        />
+       
         </div>
 
     )
