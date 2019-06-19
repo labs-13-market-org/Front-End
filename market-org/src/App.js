@@ -12,9 +12,10 @@ import Homepage2 from './components/homepage/Homepage2';
 import PrivateRoute from './components/privateroute/PrivateRoute';
 import StallsList from './components/stalls/stallsList';
 
-
-import VendorNav from './components/vendor-nav/VendorNav';
 import VendorForm from "./components/vendor/VendorForm";
+import MyVendorStalls from "./components/myStalls/vendorStalls";
+import MyMarketStalls from "./components/myStalls/marketStalls";
+
 import VendorLandingPage from "./components/vendor/VendorLandingPage";
 import ProductForm from "./components/product/ProductForm";
 import UpdateProductForm from "./components/product/UpdateProductForm";
@@ -23,29 +24,29 @@ import OneVendorPublic from './components/vendor/OneVendorPublic';
 import OneVendorPrivate from './components/vendor/OneVendorPrivate';
 import MarketProfilePage from './components/markets/marketProfile';
 import VendorCart from './components/cart/cart';
+import CartTest from "./components/cart/cart-test.js";
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
 import VendorsPerMarket from "./components/marketLandingPage/VendorsPerMarket";
 
 import { ContextProvider } from './components/context/state';
-import { AuthContext } from "./components/authContext/authState";
 import "./App.css";
 
 
 function App() {
-  // const { currentUser } = useContext(AuthContext);
-  // console.log(currentUser, 'from app js')
+  
   return (
       <React.Fragment>
         <div className='app-wrapper'>
         <CssBaseline />
         <ContextProvider>
         <Navbar className='nav-bar' />
-          {/* <VendorNav/> */}
-        {/* <Navbar /> */}
         <Switch>
           <Route exact exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
           <Route path="/vendor" component={VendorForm} />
+          <Route path="/vendorStall" component={MyVendorStalls} />
+          <Route path="/marketStall" component={MyMarketStalls} />
+          <Route path="/cart-test" component={CartTest}/>
           <Route path="/productForm" component={ProductForm} />
           <Route path='/signup' component={SignUp}/>
           <Route path='/signin' component={SignIn}/>
@@ -56,15 +57,11 @@ function App() {
           <Route path="/vendorsByMarket/:firebase_id" component={VendorsPerMarket} />
           <Route path="/markets/marketProfile/" component={MarketProfilePage} />
           <Route path="/landing-page" component={LandingPage}/>
-          <Route path="/stalls/" component={StallsList}/>  
+          <Route exact path="/stalls/" component={StallsList}/>  
           <Route path="/allVendors" component={VendorLandingPage} />
           <Route path="/oneVendorPublic/:firebase_id" component={OneVendorPublic} />
           <Route path="/oneVendorPrivate/:firebase_id" component={OneVendorPrivate} />        
-          <Route path='/cart/:id' component={VendorCart}/>
-          {/* <Route
-          path="/allVendors/:id"
-          render={props => <ProductByVendorCard {...props} />}
-        /> */}
+          <Route exact path='/cart/:id' component={VendorCart}/>
         </Switch>
         </ContextProvider>
         </div>

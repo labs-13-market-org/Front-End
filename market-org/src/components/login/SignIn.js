@@ -70,6 +70,17 @@ function SignIn(props) {
 							.then(res => {
 								console.log("res:", res);
 
+								axios.get(`users/${uid}`).
+								then(res =>{
+									localStorage.setItem("userTypes", res.data.user_type);
+								})
+								.catch(err => {
+
+									console.log(err);
+								}
+
+								)
+
 							})
 							.catch(err => {
 								console.log(err)
@@ -110,6 +121,15 @@ function SignIn(props) {
 						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
+
+								axios.get(`users/${uid}`).
+								then(res =>{
+									localStorage.setItem("userTypes", res.data.user_type);
+								})
+								.catch(err => {
+
+									console.log(err);
+								})
 
 							})
 							.catch(err => {

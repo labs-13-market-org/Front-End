@@ -140,12 +140,15 @@ const CreateMarket = props => {
 
   return (
     <React.Fragment>
-      <div className="market-registration-form">
+      <div className="market-form-wrapper">
+      <div className='market-form-left'>  
+      </div>
+      <div className='market-form-right'>
         <h1>Register A Market</h1>
         <form>
           <TextField
             required
-            className="input-field-market-register"
+            className="input-field"
             id="marketName"
             name="marketName"
             label="Market Name"
@@ -154,17 +157,11 @@ const CreateMarket = props => {
             fullWidth
             autoComplete="fname"
             margin="normal"
-            variant="outlined"
-            InputProps={{
-              classes: {
-                notchedOutline: classes.notchedOutline,
-                input: classes.input
-              }
-            }}
           />
+          
           <TextField
             required
-            className="input-field-market-register"
+            className="input-field"
             id="firstName"
             name="firstName"
             label="First Name"
@@ -173,17 +170,11 @@ const CreateMarket = props => {
             fullWidth
             autoComplete="fname"
             margin="normal"
-            variant="outlined"
-            InputProps={{
-              classes: {
-                notchedOutline: classes.notchedOutline,
-                input: classes.input
-              }
-            }}
           />
+
           <TextField
             required
-            className="input-field-market-register"
+            className="input-field"
             id="lastName"
             name="lastName"
             label="last Name"
@@ -192,17 +183,11 @@ const CreateMarket = props => {
             fullWidth
             autoComplete="fname"
             margin="normal"
-            variant="outlined"
-            InputProps={{
-              classes: {
-                notchedOutline: classes.notchedOutline,
-                input: classes.input
-              }
-            }}
           />
+
           <TextField
             required
-            className="input-field-market-register"
+            className="input-field"
             id="address"
             name="address"
             label="Adress"
@@ -211,17 +196,10 @@ const CreateMarket = props => {
             fullWidth
             autoComplete="fname"
             margin="normal"
-            variant="outlined"
-            InputProps={{
-              classes: {
-                notchedOutline: classes.notchedOutline,
-                input: classes.input
-              }
-            }}
           />
           <TextField
             required
-            className="input-field-market-register"
+            className="input-field"
             id="city"
             name="city"
             label="City"
@@ -230,17 +208,10 @@ const CreateMarket = props => {
             fullWidth
             autoComplete="fname"
             margin="normal"
-            variant="outlined"
-            InputProps={{
-              classes: {
-                notchedOutline: classes.notchedOutline,
-                input: classes.input
-              }
-            }}
           />
           <TextField
             required
-            className="input-field-market-register"
+            className="input-field"
             id="state"
             name="state"
             label="State"
@@ -249,17 +220,12 @@ const CreateMarket = props => {
             fullWidth
             autoComplete="fname"
             margin="normal"
-            variant="outlined"
-            InputProps={{
-              classes: {
-                notchedOutline: classes.notchedOutline,
-                input: classes.input
-              }
-            }}
+         
+           
           />
           <TextField
             required
-            className="input-field-market-register"
+            className="input-field"
             id="zipCode"
             name="zipCode"
             label="Zip Code"
@@ -268,17 +234,11 @@ const CreateMarket = props => {
             fullWidth
             autoComplete="fname"
             margin="normal"
-            variant="outlined"
-            InputProps={{
-              classes: {
-                notchedOutline: classes.notchedOutline,
-                input: classes.input
-              }
-            }}
+            
           />
           <TextField
             required
-            className="input-field-market-register"
+            className="input-field"
             id="phone_number"
             name="phone_number"
             label="Phone Number"
@@ -287,13 +247,7 @@ const CreateMarket = props => {
             fullWidth
             autoComplete="fname"
             margin="normal"
-            variant="outlined"
-            InputProps={{
-              classes: {
-                notchedOutline: classes.notchedOutline,
-                input: classes.input
-              }
-            }}
+            
           />
 
           <div style={{ width: "100%", marginTop: "25px" }}>
@@ -429,6 +383,7 @@ const CreateMarket = props => {
             </Dialog>
           </div>
         </form>
+        </div>
       </div>
     </React.Fragment>
   );
