@@ -172,8 +172,7 @@ function ButtonAppBar(props) {
     props.history.push("/allVendors");
   };
 
-  const toPrivateVendorProfile = () => {
-    
+  const toPrivateVendorProfile = () => {    
     props.history.push(`/oneVendorPrivate/${firebaseId}`);
   };
 

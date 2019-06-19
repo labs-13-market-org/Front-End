@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route, Link, withRouter, Switch } from "react-router-dom";
 import { storage } from "../../firebase";
+import { auth } from "../../firebase";
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
@@ -78,7 +79,7 @@ const ProductByVendor = props => {
       .catch(err => {
         console.log(err.message);
       });
-    console.log(delProduct);
+    // console.log(delProduct);
   }, [products]);
 
   const toMarkets = () => {
@@ -123,6 +124,12 @@ const ProductByVendor = props => {
     props.history.push("/updateProductForm");
   };
 
+  const logout = () => {
+    auth.signOut();
+    localStorage.clear();
+    props.history.push("/");
+  };
+
   return (
     <>
       <Container maxWidth="lg">
@@ -163,6 +170,13 @@ const ProductByVendor = props => {
               style={{ margin: "10px" }}
             >
               Markets
+            </Button>
+            <Button
+              onClick={logout}
+              color="inherit"
+              style={{ margin: "10px" }}
+            >
+              Log Out
             </Button>
           </Toolbar>
         </AppBar>

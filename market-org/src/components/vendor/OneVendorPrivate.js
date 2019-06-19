@@ -92,10 +92,6 @@ const OneVendorPrivate = props => {
       });
   };
 
-  // const toAddProductForm = () => {
-  //   props.history.replace("/markets");
-  // }
-
   return (
     <>
       <Container
@@ -131,7 +127,7 @@ const OneVendorPrivate = props => {
             <Button
               onClick={e => deleteVendor(e, firebase_id)}
               color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              style={{ margin: "10px" }}
             >
               Delete My Profile
             </Button>
