@@ -101,12 +101,12 @@ const Cart = () => {
         console.log(firebase_id)
         axios.get(`/cart/${firebase_id}`)
             .then(res => {
-                console.log(res.data)
-                let cartData = res.data.cartItem
+                console.log("Cart: ", res.data)
+                let cartData = res.data[0];
                 let total = res.data.total
-                let stripe = res.data.cartItem[0].stripeAccountId
+                let stripe = "res.data.cartItem[0].stripeAccountId"
                 console.log('Total', total)
-                // console.log('cart data',  cartData[2].cart_item_id)
+                console.log('cart data',  cartData)
                 console.log('stripe', stripe)
                 // const cartItemsIds = Object.keys(cartData).map((item, i) => {
                 //   return cartData[item].cart_item_id})
@@ -178,15 +178,35 @@ const Cart = () => {
         axios.get(`/cart/${firebase_id}`)
             .then(res => {
                 console.log(res.data)
-                let cartData = res.data.cartItem
-                let total = res.data.total
-                let stripe = res.data.cartItem[0].stripeAccountId
-                console.log('Total', total)
-                console.log('cart data',  cartData.cart_item_id)
-                console.log('stripe', stripe)
-                setCartItems(cartData)
-                setTotal(total)
-                setStripeId(stripe)
+                let stripe = res.data[0].stripeAccountId;
+                let purchasedGoods = cartItems;
+                purchasedGoods = purchasedGoods.map(purchasedGood => {
+                    return (
+                      {vendor_id: purchasedGood.vendor_id, stall_id: purchasedGood.stall_id, market_id: purchasedGood.market_id, size: purchasedGood.size, price: purchasedGood.price}
+                    )
+                })
+                
+                axios.post(`/orders/${firebase_id}`, purchasedGoods)
+                  .then(res => {
+                      console.log("Res:", res);
+                      console.log("Added to purchased orders");
+
+                      axios.delete(`/cart/clear-cart/${firebase_id}`)
+                        .then(res =>{
+                          console.log("Successsful clearing of cart:", res)
+                          setCartItems([])
+                          setTotal(0)
+                          setStripeId(stripe)
+                        
+                        })
+                        .catch(err =>{
+                          console.log(err);
+                        })
+
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  })
             })
             .catch(err => {
                 console.log(err)
