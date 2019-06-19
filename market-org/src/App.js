@@ -14,6 +14,9 @@ import PrivateRoute from './components/privateroute/PrivateRoute';
 import StallsList from './components/stalls/stallsList';
 
 import VendorForm from "./components/vendor/VendorForm";
+import MyVendorStalls from "./components/myStalls/vendorStalls";
+import MyMarketStalls from "./components/myStalls/marketStalls";
+
 import VendorLandingPage from "./components/vendor/VendorLandingPage";
 import ProductForm from "./components/product/ProductForm";
 import UpdateProductForm from "./components/product/UpdateProductForm";
@@ -22,6 +25,7 @@ import OneVendorPublic from './components/vendor/OneVendorPublic';
 import OneVendorPrivate from './components/vendor/OneVendorPrivate';
 import MarketProfilePage from './components/markets/marketProfile';
 import VendorCart from './components/cart/cart';
+import CartTest from "./components/cart/cart-test.js";
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
 import VendorsPerMarket from "./components/marketLandingPage/VendorsPerMarket";
 
@@ -41,6 +45,9 @@ function App() {
           <Route exact exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
           <Route path="/vendor" component={VendorForm} />
+          <Route path="/vendorStall" component={MyVendorStalls} />
+          <Route path="/marketStall" component={MyMarketStalls} />
+          <Route path="/cart-test" component={CartTest}/>
           <Route path="/productForm" component={ProductForm} />
           <Route path='/signup' component={SignUp}/>
           <Route path='/signin' component={SignIn}/>
