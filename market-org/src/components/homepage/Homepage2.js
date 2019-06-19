@@ -97,16 +97,6 @@ const Homepage2 = props => {
         {/* <div className='search-bar'>
           <Searchbar />
         </div> */}
-        {currentUser ? (
-          <div className="logged-in-view">
-            <Button className="button">Create Market profile</Button>
-            <Button className="button" onClick={vendorFormPage}>
-              Create vendor Profile
-            </Button>
-            <Button className="button" onClick={stripeDashboardLink}>Stripe Dashboard</Button>
-
-          </div>
-        ) : (
           <div className="home-wrapper">
             <div className="welcome">
               <div>

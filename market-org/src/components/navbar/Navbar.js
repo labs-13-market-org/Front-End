@@ -16,6 +16,7 @@ import VendorMenu from './MenuButton';
 import ProfileMenu from './ProfileMenu';
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
+import SignUp from '../register/SignUp';
 
 
 // const useStyles = makeStyles(theme => ({
