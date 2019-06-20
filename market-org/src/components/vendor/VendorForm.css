@@ -70,3 +70,12 @@
     
 }
 
+@media (max-width: 1000px){
+    .vendor-form-left{
+        display:none;
+    }
+    .vendor-form-right{
+        width:100%;
+    }
+}
+

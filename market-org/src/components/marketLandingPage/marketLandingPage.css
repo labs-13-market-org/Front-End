@@ -33,6 +33,7 @@
 
 .market-info{
     text-align: center;
+    width: 100%;
     
 }
 
@@ -81,5 +82,19 @@
     margin-bottom:50px;
     text-shadow: 2px 2px #000000;
   
+}
+
+@media (max-width: 1500px){
+    .market-card{
+        width: 40%;
+    }
+    
+}
+
+@media (max-width: 875px){
+    .market-card{
+        width: 100%;
+    }
+    
 }
 

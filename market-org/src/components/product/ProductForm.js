@@ -191,6 +191,7 @@ const ProductForm = props => {
 
 <div className="vendor-form-wrapper">
         <div className='vendor-form-left'>  
+        
         </div>
     <div className='vendor-form-right'>
       <h2>Add A Product</h2>
