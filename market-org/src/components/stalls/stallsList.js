@@ -3,6 +3,12 @@ import styled from "styled-components";
 
 import axios from "../../axios-instance";
 import Stall from "./stall.js";
+import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+
 
 // {
 //     // "id": 0,
@@ -14,11 +20,20 @@ import Stall from "./stall.js";
 // }
 
 const StallsContainer = styled.div` 
-    width: 850px;
+    width: 1250px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+
+`
+
+const StallCard = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around; 
 `
 
 const StallsList = (props) => {
@@ -74,30 +89,71 @@ const StallsList = (props) => {
         setStallChangeStatus(true);
     }
 
+    const useStyles = makeStyles(theme => ({
+        root: {
+          padding: theme.spacing(5, 1.5),
+          width: "1250px"
+        },
+        card: {
+            minWidth: 275,
+            margin: "2%",
+            width: "1250px"
+          },
+          bullet: {
+            display: 'inline-block',
+            margin: '0 2px',
+            transform: 'scale(0.8)',
+          },
+          title: {
+            fontSize: 14,
+          },
+          pos: {
+            marginBottom: 12,
+          },
+          button: {
+            margin: theme.spacing(1),
+          }
+      }));
  
+    const classes = useStyles();
+
     // const cart_id = localStorage.getItem('firebaseId')
     console.log("Getting stalls ", stalls);
     return(
         <StallsContainer>
-            <h2>Market Name: {market.market_name}</h2>
-            <h2>Market street: {market.address}</h2>
-            <h2>Market city: {market.city}</h2>
-            <h2>Market state: {market.state}</h2>
-            <h2>Market phone number: {market.phone_number}</h2>
+            <Paper className={classes.root}>
+            <center><h1>Market Name: {market.market_name}</h1></center>
+            <center>
+            <address>
+            <ul>
+            <b>Address:</b> {market.address} , {market.city} , {market.state}, {market.zip_code} ,  
+            <b>Phone number:</b> {market.phone_number} 
+            </ul>
+            </address>
+            </center>
+
+            </Paper>
+
             {Object.keys(stalls).map((stall, index) => (
                 
-                <div key ={index}>
+                <Card className={classes.card}>
+                <StallCard key ={index}>
                     {console.log(stalls[stall].id, 'stall id')}
-                    <h2>Size: length: {stalls[stall].size.length} X width: {stalls[stall].size.width}</h2>
+                    <div>
+                    <h2>Size: {stalls[stall].size.length} feet by {stalls[stall].size.width} feet </h2>
                     <h2>Price: ${stalls[stall].price}</h2>
+                    </div>
 
+                    <div>
                     {stalls[stall].available ? 
-                    <button onClick={() => addToCart(stalls[stall].id)}>Add To Cart</button> : 
-                    "This stall is unavailable for renting."
+                    <Button variant="contained" color="primary" className={classes.button} onClick={() => addToCart(stalls[stall].id)}>Add To Cart</Button> : 
+                    "Unavailable to rent"
                     }
+                    </div>
                 
                 
-                </div>
+                </StallCard>
+                </Card>
             ))}
             {/* <h2> List of available stalls for {props.location.state.market_name}</h2>
             {stalls.map(stall_item => {
