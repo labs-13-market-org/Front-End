@@ -170,6 +170,10 @@ function Register(props) {
 	console.log('user type:', user)
 
 	return (
+		<div className='sign-in-wrapper'>
+			
+		<div className='sign-in-left'></div>
+			<div className='sign-in-right'>
 		<main className={classes.main}>
 			<Paper className={classes.paper}>
 				<Avatar className={classes.avatar}>
@@ -245,6 +249,8 @@ function Register(props) {
 				</form>
 			</Paper>
 		</main>
+		</div>
+		</div>
 	)
 
 }
