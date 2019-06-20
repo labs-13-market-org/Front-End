@@ -54,7 +54,7 @@ const styles = theme => ({
   }
 });
 
-// public page of products by Vendor
+// Public page of products by Vendor
 
 const ProductByVendorCard = props => {
   const { classes } = props;
@@ -99,7 +99,7 @@ const ProductByVendorCard = props => {
         productsByVendor.map(eachVendorProduct => {
           return (
             <>
-              <Card className={classes.card}>
+              <Card className={classes.card} key={eachVendorProduct.id}>
                 <CardContent>
                   <Typography component="p">
                     Product Title: {eachVendorProduct.title}
