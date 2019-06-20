@@ -25,7 +25,7 @@ const StallsList = (props) => {
 
     const [stalls, setStalls] = useState([]);
     const [market, setMarket] = useState({})
-    // const [hasAStallChanged, setStallChangeStatus] = useState(false);
+    const [hasAStallChanged, setStallChangeStatus] = useState(false);
 
     // useEffect(() => {
     //     axios.get(`/stalls/market/${props.location.state.firebase_id}`)
@@ -54,18 +54,24 @@ const StallsList = (props) => {
             console.log("stalls",typeof stalls);
            setStalls(stallItems);
             
-        //    setStallChangeStatus(false);
+           setStallChangeStatus(false);
         }).catch(err => {
                 console.log(err.message);
         })
 
 
-    }, []);
+    }, [hasAStallChanged]);
 
     const addToCart = (stalls_id) => {
         const cart_id = localStorage.getItem('firebaseId')
         console.log(cart_id, 'vendor firebase id')
         axios.post(`cart/add-stall-to-cart/${cart_id}`, {stalls_id})
+        axios.request({
+          method: "PUT",
+          url: `stalls/${stalls_id}`,
+          data: { available: false }
+        })
+        setStallChangeStatus(true);
     }
 
  
@@ -84,7 +90,13 @@ const StallsList = (props) => {
                     {console.log(stalls[stall].id, 'stall id')}
                     <h2>Size: length: {stalls[stall].size.length} X width: {stalls[stall].size.width}</h2>
                     <h2>Price: ${stalls[stall].price}</h2>
-                    <button onClick={() => addToCart(stalls[stall].id)}>Add To Cart</button>
+
+                    {stalls[stall].available ? 
+                    <button onClick={() => addToCart(stalls[stall].id)}>Add To Cart</button> : 
+                    "This stall is unavailable for renting."
+                    }
+                
+                
                 </div>
             ))}
             {/* <h2> List of available stalls for {props.location.state.market_name}</h2>
