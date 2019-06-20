@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
-
+import "./stallsList.css"
 
 // {
 //     // "id": 0,
@@ -148,15 +148,15 @@ const StallsList = (props) => {
     console.log("Getting stalls ", stalls);
     return(
         <StallsContainer>
-            <Paper className={classes.root}>
+            <Paper class="stalls-list-page-header">
             <div>
             <center><h1 className={classes.headerTitle}> List of Stalls For Rent </h1> </center>
             </div>
 
-            <center><h1 className={classes.marketTitle}>{market.market_name} Market</h1></center>
-            <center>
+            <center><h2 className={classes.marketTitle}>{market.market_name} Market</h2></center>
+            <center className={classes.stallProps}>
             <strong>Address: </strong> {market.address} , {market.city} , {market.state}, {market.zip_code} ,  
-            <strong>Phone number: </strong> {market.phone_number} 
+            <strong>Phone Number: </strong> {market.phone_number} 
             </center>
             </Paper>
 
