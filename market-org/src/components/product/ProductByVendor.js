@@ -23,22 +23,26 @@ import {
   CssBaseline,
   AppBar,
   Toolbar,
+  Grid,
   GridList,
-  Paper 
+  Paper
 } from "@material-ui/core";
+
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 
 import axios from "../../axios-instance";
 
 const styles = theme => ({
   root: {
     display: "flex",
-    margin: "0 auto",
-    flexWrap: 'wrap',
-    justifyContent: 'space-around'
+    margin: "0 auto"
+    // flexWrap: 'wrap',
+    // justifyContent: 'space-around'
   },
   appBar: {
     //   marginLeft: drawerWidth,
-    backgroundColor: '#38212E',
+    backgroundColor: "#38212E",
     zIndex: theme.zIndex.drawer + 1
   },
 
@@ -63,16 +67,28 @@ const styles = theme => ({
 
   card: {
     width: 345,
+    // heigt: 500,
     margin: "10px"
-    
   },
-  // media: {
-  //   height: 140
-  // },
+  media: {
+    height: 345,
+    textAlign: 'center'
+  },
   gridList: {
-    margin: '0 auto'
-
+    margin: "0 auto"
+    // height: '800px'
   },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text,
+    fontWeight: "bold",
+    fontSize: "40px"
+  },
+  icon: {
+    margin: theme.spacing(1),
+    fontSize: 32
+  }
 });
 
 const ProductByVendor = props => {
@@ -153,15 +169,13 @@ const ProductByVendor = props => {
   return (
     <>
       <Container maxWidth="lg">
-        <Typography
-          component="p"
-          style={{ fontWeight: "bold", fontSize: "40px" }}
-        >
+        <Paper className={classes.paper} style={{ marginTop: "20px" }}>
           My Products
-        </Typography>
+        </Paper>
+
         <Typography>
-        testing global context: {vendorProfile.company_name}
-        </Typography>        
+          testing global context: {vendorProfile.company_name}
+        </Typography>
 
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
@@ -194,22 +208,17 @@ const ProductByVendor = props => {
             >
               Markets
             </Button>
-            <Button
-              onClick={logout}
-              color="inherit"
-              style={{ margin: "10px" }}
-            >
+            <Button onClick={logout} color="inherit" style={{ margin: "10px" }}>
               Log Out
             </Button>
           </Toolbar>
         </AppBar>
 
-        <GridList className={classes.gridList} cols={3}>
-
-        {products &&
-          products.map(eachProduct => {
-            return (
-              <>
+        <GridList cellHeight={1000} className={classes.gridList} cols={3}>
+          {products &&
+            products.map(eachProduct => {
+              return (
+                <div>
                   {/* <Card className={classes.card} key={eachProduct.id}>
       <CardActionArea>
         <CardMedia
@@ -237,72 +246,80 @@ const ProductByVendor = props => {
       </CardActions>
     </Card> */}
 
+                  <Card className={classes.card} key={eachProduct.id}>
+                    <CardActionArea>
+                      <CardContent className={classes.media}>
+                        <img
+                          src={eachProduct.image}
+                          title="Vendor product"
+                          // className="productImage"
+                          style={{ maxWidth: "100%", maxHeight: "100%"}}
+                        />
+                      </CardContent>
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {eachProduct.title}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          component="p"
+                        >
+                          {eachProduct.description}
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          color="textSecondary"
+                          component="p"
+                        >
+                          ${eachProduct.price}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
 
-
-
-  
-
-                    <Card className={classes.card} key={eachProduct.id}>
-                <CardActionArea>
-                <CardContent>
-                    <img
-                      src={eachProduct.image}
-                      title="Vendor product"
-                      // className="productImage"
-                      style={{ maxWidth: "100%", maxHeight: "100%" }}
-                    />                    
-                  </CardContent>
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {eachProduct.title}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                      {eachProduct.description}
-                    </Typography>
-                    <Typography variant="body1" color="textSecondary" component="p">
-                      ${eachProduct.price}
-                    </Typography>
-                  </CardContent>
-                  </CardActionArea>
-
-                  <CardActions>
-                  <Button
-                    onClick={e => deleteProduct(e, eachProduct.id)}
-                    color="inherit"
-                    style={{ backgroundColor: "#30cc32", margin: "10px" }}
+                    <CardActions style={{ display: "flex", flexWrap: "wrap" }}>
+                      <DeleteIcon
+                        className={classes.icon}
+                        onClick={e => deleteProduct(e, eachProduct.id)}
+                      />
+                      {/* <Button size="small" color="primary"
+                    onClick={e => deleteProduct(e, eachProduct.id)}                   
+                    style={{  margin: "10px" }}
                   >
                     Delete Product
-                  </Button>
+                  </Button> */}
 
-                  <Link
-                    to={`/oneVendorPrivate/productsByVendor/${eachProduct.id}/updateProductForm`}
-                  >
-                    <Typography
-                      color="inherit"
-                      // style={{ backgroundColor: "#30cc32", margin: "10px" }}
+                      <Link
+                        to={`/oneVendorPrivate/productsByVendor/${
+                          eachProduct.id
+                        }/updateProductForm`}
+                      >
+                        <EditIcon className={classes.icon} />
+                        {/* <Typography
+                      color="primary"
+                      // style={{ margin: "10px" }}
                     >
                       Edit Product
-                    </Typography>
-                  </Link>
+                    </Typography> */}
+                      </Link>
+                    </CardActions>
+                  </Card>
 
-                  </CardActions>
-
-
-                </Card>              
-               
-          
-                <Switch>
-                  <Route
-                    path="/oneVendorPrivate/productsByVendor/:id/updateProductForm"
-                    render={props => (
-                      <UpdateProductForm {...props} eachProduct={eachProduct} />
-                    )}
-                  />
-                </Switch>
-              </>
-            );
-          })}
-          </GridList>
+                  <Switch>
+                    <Route
+                      path="/oneVendorPrivate/productsByVendor/:id/updateProductForm"
+                      render={props => (
+                        <UpdateProductForm
+                          {...props}
+                          eachProduct={eachProduct}
+                        />
+                      )}
+                    />
+                  </Switch>
+                </div>
+              );
+            })}
+        </GridList>
       </Container>
     </>
   );

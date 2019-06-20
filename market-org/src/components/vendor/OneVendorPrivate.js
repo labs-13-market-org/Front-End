@@ -26,9 +26,11 @@ import {
 // import Card from "@material-ui/core/Card";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import AddCircleOutline from '@material-ui/icons/AddCircleOutlined';
+import AddCircleOutline from "@material-ui/icons/AddCircleOutlined";
 
 import axios from "../../axios-instance";
+
+import market3 from "../../images/market3.jpg";
 
 const styles = theme => ({
   root: {
@@ -131,11 +133,14 @@ const OneVendorPrivate = props => {
         <Paper className={classes.paper}>
           <Grid container spacing={2}>
             <Grid item>
-              <ButtonBase className={classes.image}>
+              <ButtonBase
+                className={classes.image}
+                style={{ maxWidth: "100%", maxHeight: "100%" }}
+              >
                 <img
                   className={classes.img}
                   alt="vendor picture"
-                  src="/static/images/grid/complex.jpg"
+                  src={market3}
                 />
               </ButtonBase>
             </Grid>
@@ -152,7 +157,7 @@ const OneVendorPrivate = props => {
                   <Typography
                     variant="body2"
                     gutterBottom
-                    style={{ padding: 3, fontSize: "18px", fontWeight: "bold" }}
+                    style={{ padding: 3, fontSize: "22px" }}
                   >
                     {aPrivateVendor.contact_fullname}
                   </Typography>
@@ -189,11 +194,21 @@ const OneVendorPrivate = props => {
                 </Grid>
                 <Grid item style={{ margin: "10px" }}>
                   <Link to={`/productForm`}>
-                  <AddCircleOutline className={classes.icon} style={{ margin: 'auto', width: '100%', 
-    textAlign: 'center' }}/>
+                    <AddCircleOutline
+                      className={classes.icon}
+                      style={{
+                        margin: "auto",
+                        width: "100%",
+                        textAlign: "center"
+                      }}
+                    />
                     <Typography
                       variant="body2"
-                      style={{ cursor: "pointer", fontSize: "16px", textAlign: 'center' }}
+                      style={{
+                        cursor: "pointer",
+                        fontSize: "16px",
+                        textAlign: "center"
+                      }}
                     >
                       ADD PRODUCT
                     </Typography>
@@ -206,7 +221,11 @@ const OneVendorPrivate = props => {
                   <EditIcon className={classes.icon} />
                   <Typography
                     variant="body2"
-                    style={{ cursor: "pointer", fontSize: "11px", textAlign: 'center' }}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "11px",
+                      textAlign: "center"
+                    }}
                   >
                     EDIT PROFILE
                   </Typography>
@@ -215,11 +234,15 @@ const OneVendorPrivate = props => {
                 <Grid item style={{ padding: 5, margin: 8 }}> */}
                 <DeleteIcon
                   className={classes.icon}
-                  onClick={e => deleteVendor(e, firebase_id)}                  
+                  onClick={e => deleteVendor(e, firebase_id)}
                 />
                 <Typography
                   variant="body2"
-                  style={{ cursor: "pointer", fontSize: "11px", textAlign: 'center' }}
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "11px",
+                    textAlign: "center"
+                  }}
                 >
                   DELETE PROFILE
                 </Typography>
