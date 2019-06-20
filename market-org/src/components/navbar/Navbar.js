@@ -338,7 +338,7 @@ console.log(vendorProfile, 'vendor profile')
             </IconButton>
           </Typography>
           <Typography ariant="h6"  className={ currentUser ? classes.title : classes.closed}>
-           <ProfileMenu handleRegOpen={SignUp} user={user_type} toAllVendors={toAllVendors} logout={logout} toPrivateVendorProfile={toPrivateVendorProfile}/>
+           <ProfileMenu handleRegOpen={SignUp} user={user_type} toAllVendors={toAllVendors} logout={logout} />
             {/* <IconButton
               edge="end"
               className={classes.icons}

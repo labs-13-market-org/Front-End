@@ -136,6 +136,4 @@ const VendorMenu = (props) => {
   )
 }
 
-
-
 export default withRouter(VendorMenu);
