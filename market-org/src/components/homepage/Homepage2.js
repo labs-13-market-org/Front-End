@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 //import styles
 import "./Homepage.css";
-// import Navbar from '../navbar/Navbar';
+import Navbar from '../navbar/Navbar';
 import Searchbar from "../navbar/Searchbar";
 import { AuthContext } from "../authContext/authState";
 import { Container, Grid, Paper, makeStyles, Button } from "@material-ui/core";
@@ -28,11 +28,7 @@ import team from '../../images/team.png'
 import queryString from 'query-string';
 
 
-
-
-const Homepage2 = props => {
-
-  
+const Homepage2 = props => {  
   
   const [users, setUsers] = useState([]);
   const { currentUser } = useContext(AuthContext);
@@ -47,6 +43,7 @@ const Homepage2 = props => {
       .then(res => {
         console.log('homepage:', res.data)
         setStripeAccId(res.data.body.stripe_user_id)
+        localStorage.setItem("stripeid", res.data.body.stripe_user_id)
         return axios.put(`/markets/${firebase_id}`, {stripeAccountId: res.data.body.stripe_user_id})
         .then(res => {
           console.log("put", res)
@@ -63,6 +60,22 @@ const Homepage2 = props => {
 
   const stripeDashboardLink = () => {
     console.log('sci',stripe_acc_id)
+    console.log("fire", firebase_id)
+    console.log(stripe_acc_id)
+    const stripeId = localStorage.getItem("stripeid")
+    if(stripe_acc_id === null) {
+      console.log("hello")
+      axios.get(`/markets/${firebase_id}`).then(res => {
+        console.log(res)
+        const stripe_id = res.data.stripeAccountId
+        console.log("stripeid0",stripe_id)
+        return axios.post('/stripe/stripe-dashboard', {stripe_acc_id: stripe_id}).then(res => {
+          console.log('link:', res.data)
+          window.open(res.data.url)
+        })
+      })
+    }
+    
     axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
          .then(res => {
            console.log('link:', res.data)
@@ -80,16 +93,6 @@ const Homepage2 = props => {
         {/* <div className='search-bar'>
           <Searchbar />
         </div> */}
-        {currentUser ? (
-          <div className="logged-in-view">
-            <Button className="button">Create Market profile</Button>
-            <Button className="button" onClick={vendorFormPage}>
-              Create vendor Profile
-            </Button>
-            <Button className="button" onClick={stripeDashboardLink}>Stripe Dashboard</Button>
-
-          </div>
-        ) : (
           <div className="home-wrapper">
             <div className="welcome">
               <div>

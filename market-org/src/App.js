@@ -4,11 +4,11 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withRouter } from 'react-router'
 import Navbar from './components/navbar/Navbar';
+
 import SignIn from './components/login/SignIn';
 import SignUp from './components/register/SignUp';
 import LandingPage from './components/landingpage/landingpage';
 import CreateMarket from './components/createmarket/CreateMarket';
-
 import Homepage2 from './components/homepage/Homepage2';
 import PrivateRoute from './components/privateroute/PrivateRoute';
 import StallsList from './components/stalls/stallsList';
@@ -20,6 +20,7 @@ import MyMarketStalls from "./components/myStalls/marketStalls";
 import VendorLandingPage from "./components/vendor/VendorLandingPage";
 import ProductForm from "./components/product/ProductForm";
 import UpdateProductForm from "./components/product/UpdateProductForm";
+// import ProductByVendorCard from './components/product/ProductByVendorCard';
 import ProductByVendor from './components/product/ProductByVendor';
 import OneVendorPublic from './components/vendor/OneVendorPublic';
 import OneVendorPrivate from './components/vendor/OneVendorPrivate';
@@ -53,6 +54,7 @@ function App() {
           <Route path='/signin' component={SignIn}/>
           {/* <Route path="/updateProductForm" component={UpdateProductForm} /> */}
           <Route path="/productsByVendor" component={ProductByVendor} />
+          {/* <Route path="/oneVendorPublic/:firebase_id/product" component={ProductByVendorCard} /> */}
           <Route path="/productsByVendor/:id/updateProductForm" component={UpdateProductForm} />
           <Route exact path="/markets" component={MarketLandingPage} />
           <Route path="/vendorsByMarket/:firebase_id" component={VendorsPerMarket} />

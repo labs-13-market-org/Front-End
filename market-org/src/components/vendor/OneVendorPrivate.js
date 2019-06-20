@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter, Route, Switch } from "react-router-dom";
 
 import UpdateVendorForm from "./UpdateVendorForm";
+import ProductByVendor from '../product/ProductByVendor'
 
 import {
   withStyles,
@@ -27,7 +28,7 @@ const styles = theme => ({
   },
   appBar: {
     //   marginLeft: drawerWidth,
-    backgroundColor: "lightgreen",
+    backgroundColor: '#38212E',
     zIndex: theme.zIndex.drawer + 1
   },
 
@@ -63,14 +64,14 @@ const OneVendorPrivate = props => {
     axios
       .get(`vendor/${firebase_id}`)
       .then(res => {
-        console.log(res, "vendor by Id");
+        // console.log(res, "vendor by Id");
         setAPrivateVendor(res.data);
       })
       .catch(err => {
         console.log(err.message);
       });
-      console.log(delVendor, 'Deleted Vendor')
-  }, []);
+      // console.log(delVendor, 'Deleted Vendor')
+  }, [aPrivateVendor]);
 
   const deleteVendor = (e, vendorId) => {
     e.preventDefault();
@@ -120,10 +121,13 @@ const OneVendorPrivate = props => {
             <Typography component="p">
               Company website: {aPrivateVendor.company_url}
             </Typography>
+            <Link to={`/productForm`}>
+              <Typography component="p">Add more Products</Typography>
+            </Link>
             <Button
               onClick={e => deleteVendor(e, firebase_id)}
               color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              style={{ margin: "10px" }}
             >
               Delete My Profile
             </Button>
@@ -144,6 +148,7 @@ const OneVendorPrivate = props => {
           )}
         />
       </Switch>
+      <ProductByVendor {...props} />
     </>
   );
 };
