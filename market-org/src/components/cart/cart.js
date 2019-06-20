@@ -130,6 +130,12 @@ const Cart = (props) => {
               console.log('cart data',  cartData)
               setCartItems(cartData)
               setTotal(total)
+
+              axios.request({
+                method: "PUT",
+                url: `stalls/${stall_id}`,
+                data: { available: true }
+              })
           })
           .catch(err => {
               console.log(err)
