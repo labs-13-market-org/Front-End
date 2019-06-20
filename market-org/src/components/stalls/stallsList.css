@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+.landing-page-wrapper{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    padding-top: 20px;
+    box-shadow:inset 0 0 0 2000px rgba(105, 7, 40, 0.3);
+    min-height: calc(100vh - 64px);   
+}
+.list-title{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.market-card-wrapper{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.market-card{
+    background-color: white;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    margin:10px;
+    width:23%;
+    border-radius: 10px;
+}
+
+.market-info{
+    text-align: center;
+    
+}
+
+.market-card-link{
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgba(180, 45, 90, 0.911);
+    font-size:14px ;
+    border-radius: 25px ;
+    padding: 1px;
+    font-family: 'Montserrat';
+    border-radius: 25px ;
+    font-family: 'Montserrat';
+    margin:5px;
+    width:45%;  
+  
+}
+
+.market-card-link h4{
+    color:white;  
+}
+
+.market-card-link a{
+    text-decoration: none;
+}
+
+.market-card-link:hover{
+    background-color: black;
+    color: rgba(180, 45, 90);
+    
+}
+
+.stalls-list-page-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url('../../images/market4.jpg');
+    background-position: center center;
+    box-shadow:inset 0 0 0 2000px rgba(105, 7, 40, 0.3);
+    background-size: cover; 
+    min-height:250px;
+    width: 100%;
+    color: white;
+    font-size: 30px;
+    margin-bottom:50px;
+    text-shadow: 2px 2px #000000;
+
+
+    
+}
+
