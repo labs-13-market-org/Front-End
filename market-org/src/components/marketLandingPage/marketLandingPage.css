@@ -46,7 +46,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    color: rgba(180, 45, 90, 0.911);
+    background-color: rgba(252, 186, 208, 0.911);
     font-size:14px ;
     border-radius: 25px ;
     padding: 1px;
@@ -63,10 +63,11 @@
 
 .market-card-link a{
     text-decoration: none;
+    color: rgba(255, 249, 251, 0.911);
 }
 
 .market-card-link:hover{
-    background-color: #38212F;
+    background-color: #D1FCAB;
     color: white;
     
 }
