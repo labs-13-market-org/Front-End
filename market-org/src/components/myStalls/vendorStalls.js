@@ -42,10 +42,13 @@ const useStyles = makeStyles(theme => ({
   priceHeader: {
       marginRight: '20rem',
       fontSize: '1.3rem',
+      fontWeight: "fontWeightBold"
   },
   qtyHeader: {
     marginRight: '7rem',
     fontSize: '1.3rem',
+    fontWeight: "fontWeightBold"
+
   },
   formControl: {
     margin: theme.spacing(1),
@@ -111,14 +114,17 @@ const MyVendorStalls = () => {
 
     return (
             <div className={classes.root}>
-                <Typography className={classes.title}>My Currently Purchased Stalls:</Typography>
+                <Typography className={classes.title}> <center>My Currently Purchased Stalls: </center></Typography>
 
-                <div className={classes.headers}>
-                    <Typography className={classes.priceHeader}>Market Name</Typography>
-                    <Typography className={classes.priceHeader}>Price</Typography>
-                    <Typography className={classes.qtyHeader}>Quantity</Typography>
-                </div>
-            
+            <Grid container spacing={4} className={classes.cartItems}>
+            <Grid item xs={10}>
+                    <Paper className={classes.paper}>
+                    <Typography className={classes.priceHeader}><h3>Market Name</h3></Typography>
+                    <Typography className={classes.priceHeader}><h3>Quantity</h3></Typography>
+                    <Typography className={classes.qtyHeader}><h3>Price</h3></Typography>
+                    </Paper>
+            </Grid>
+            </Grid>
             {Object.keys(orders).map((item, i) => (
                 <div key={i}>
                 <Grid container spacing={6} className={classes.cartItems}>
@@ -126,15 +132,15 @@ const MyVendorStalls = () => {
                     
                         <Paper className={classes.paper}>
                             <Typography variant="h6" component="h5">
-                               Market Name: {orders[item].market_name}
+                               {orders[item].market_name}
                             </Typography>
 
                             <Typography variant="h6" component="h5">
-                                Stall Dimensions: Length: {orders[item].size.length} ft. X  Width: {orders[item].size.width} ft.
+                                {orders[item].size.length} ft. by {orders[item].size.width} ft.
                             </Typography>
                             <Typography variant="h6" component="h5">
                             
-                                Stall Price: ${orders[item].price} 
+                                 ${orders[item].price} 
                             </Typography>
                         </Paper>
                     </Grid>
