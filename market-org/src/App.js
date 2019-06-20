@@ -9,7 +9,6 @@ import SignIn from './components/login/SignIn';
 import SignUp from './components/register/SignUp';
 import LandingPage from './components/landingpage/landingpage';
 import CreateMarket from './components/createmarket/CreateMarket';
-
 import Homepage2 from './components/homepage/Homepage2';
 import PrivateRoute from './components/privateroute/PrivateRoute';
 import StallsList from './components/stalls/stallsList';

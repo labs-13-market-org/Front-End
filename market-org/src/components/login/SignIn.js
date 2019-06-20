@@ -42,7 +42,7 @@ const styles = theme => ({
 
 function SignIn(props) {
 	const { classes } = props
-
+	const { currentUser } = useContext(AuthContext);
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
@@ -133,23 +133,22 @@ function SignIn(props) {
 								axios.get(`users/${uid}`).
 								then(res =>{
 									localStorage.setItem("userTypes", res.data.user_type);
-									if (res.data.user_type=== 'vendor') {
-										console.log(res.data.user_type, 'from res')
-										props.history.push(`/oneVendorPrivate/${localStorage.getItem('firebaseId')}`)
-									} else {
-										props.history.push(`/vendorsByMarketId/${localStorage.getItem('firebaseId')}`)
-									}
+									console.log("hello")
+									routeToMarketorVendor(uid)
 								})
 								.catch(err => {
 
 									console.log(err);
 								})
+								
 
 							})
 							.catch(err => {
 								console.log(err)
 							})
-						props.history.push('/')
+							
+						
+						
 					
 				}
 			}
@@ -160,8 +159,17 @@ function SignIn(props) {
 		
 	 }
 	 
-	 const { currentUser } = useContext(AuthContext);
-
+	const routeToMarketorVendor = (uid) => {
+		const usertype = localStorage.getItem("userTypes")
+		console.log("routetomarket")
+		if(usertype === "market") {
+			props.history.push(`/vendorsByMarket/${uid}`)
+		} else {
+			props.history.push(`/oneVendorPrivate/${uid}`)
+		}
+	 }
+	 
+	 
 
 
 	return (

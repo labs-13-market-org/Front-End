@@ -4,7 +4,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 
 import { auth, googleProvider } from '../../firebase';
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 
 import { AuthContext } from '../authContext/authState';
 import axios from '../../axios-instance';
