@@ -99,13 +99,15 @@ const StallsList = (props) => {
 
     const useStyles = makeStyles(theme => ({
         root: {
-          padding: theme.spacing(5, 1.5),
+          padding: theme.spacing(3, 0.5),
           width: "1250px"
         },
         card: {
             minWidth: 275,
             margin: "2%",
-            width: "1250px"
+            width: "1250px",
+            paddingLeft: "7%",
+            paddingRight: "10%"
           },
           bullet: {
             display: 'inline-block',
@@ -114,6 +116,15 @@ const StallsList = (props) => {
           },
           title: {
             fontSize: 14,
+          },
+          headerTitle: {
+              fontSize: 48,
+          },
+          marketTitle: {
+              fontSize: 36,
+          },
+          stallProps: {
+              fontSize: 20,
           },
           pos: {
             marginBottom: 12,
@@ -133,12 +144,15 @@ const StallsList = (props) => {
     return(
         <StallsContainer>
             <Paper className={classes.root}>
-            <center><h1>{market.market_name} Market</h1></center>
+            <div>
+            <center><h1 className={classes.headerTitle}> List of Stalls For Rent </h1> </center>
+            </div>
+
+            <center><h1 className={classes.marketTitle}>{market.market_name} Market</h1></center>
             <center>
             <strong>Address: </strong> {market.address} , {market.city} , {market.state}, {market.zip_code} ,  
             <strong>Phone number: </strong> {market.phone_number} 
             </center>
-
             </Paper>
 
             {Object.keys(stalls).map((stall, index) => (
@@ -147,11 +161,16 @@ const StallsList = (props) => {
                 <StallCard key ={index}>
                     {console.log(stalls[stall].id, 'stall id')}
                     <PropertiesCard>
+
                     <div>
-                    <h3>Size: {stalls[stall].size.length} feet by {stalls[stall].size.width} feet </h3>
+                        <h3 className={classes.stallProps}>{index}. </h3>
+                    </div>
+
+                    <div>
+                    <h3 className={classes.stallProps}>Size: {stalls[stall].size.length} ft by {stalls[stall].size.width} ft </h3>
                     </div>
                     <div>
-                    <h3> ${stalls[stall].price}</h3>
+                    <h3 className={classes.stallProps}> ${stalls[stall].price}</h3>
                     </div>
                     </PropertiesCard>
 
