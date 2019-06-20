@@ -104,7 +104,8 @@ const StallsList = (props) => {
             marginBottom: 12,
           },
           button: {
-            margin: theme.spacing(1),
+            // margin: theme.spacing(2),
+            width: "100%"
           },
           chip: {
             margin: theme.spacing(1),
