@@ -68,3 +68,16 @@
   
 }
 
+@media (max-width: 1000px){
+    .vendor-card{
+        width: 45%;
+    }
+    
+}
+
+@media (max-width: 875px){
+    .vendor-card{
+        width: 100%;
+    }
+    
+}
