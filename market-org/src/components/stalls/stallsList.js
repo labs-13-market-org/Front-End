@@ -88,6 +88,10 @@ const StallsList = (props) => {
     const addToCart = (stalls_id) => {
         const cart_id = localStorage.getItem('firebaseId')
         console.log(cart_id, 'vendor firebase id')
+        if(localStorage.getItem("userTypes") != "vendor") {
+            alert("You must be a vendor to rent a stall")
+        }
+        else {
         axios.post(`cart/add-stall-to-cart/${cart_id}`, {stalls_id})
         axios.request({
           method: "PUT",
@@ -95,6 +99,7 @@ const StallsList = (props) => {
           data: { available: false }
         })
         setStallChangeStatus(true);
+        }
     }
 
     const useStyles = makeStyles(theme => ({
