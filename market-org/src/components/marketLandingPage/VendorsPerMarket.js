@@ -8,7 +8,7 @@ const VendorsPerMarket = props => {
   const { firebase_id } = props.match.params;
   const [perMarket, setPerMarket] = useState({});
   const [vendorsPerMarket, setVendorsPerMarket] = useState([]);
-
+  const usertype = localStorage.getItem("userTypes")
   useEffect(() => {
     axios
       .get(`vendor/market/${firebase_id}/vendor`)
@@ -36,6 +36,7 @@ const VendorsPerMarket = props => {
           <p>Contact first name: {perMarket.contact_first_name}</p>
           <p>Contact Last name: {perMarket.contact_last_name}</p>
           <p>Phone number: {perMarket.phone_number}</p>
+
           <Link
             to={{
               pathname: "/stalls/",
@@ -48,9 +49,11 @@ const VendorsPerMarket = props => {
           >
             Rent a stall from us
           </Link>
+
         </div>
         <div className='vendor-wrapper'>
         <h3>Our Vendors</h3>
+
         {vendorsPerMarket &&
           vendorsPerMarket.map(eachVendor => {
             return (

@@ -77,7 +77,7 @@ const UpdateProductForm = props => {
   const [image, setImage] = useState(props.eachProduct.image);
   // const [file, setFile] = useState(props.eachProduct.file);
 
-  const [editProduct, setEditedProduct] = useState(props.eachProduct);
+  // const [editProduct, setEditedProduct] = useState(props.eachProduct);
 
   // const [currentProduct, setCurrentProduct] = useState([]);
 
@@ -85,6 +85,7 @@ const UpdateProductForm = props => {
     e.preventDefault();
     
     const token = localStorage.getItem("token");
+    const firebaseId = localStorage.getItem('firebaseId')
     // let currentProductName = "product-image-" + Date.now();
     // let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
 
@@ -119,7 +120,9 @@ const UpdateProductForm = props => {
               .then(res => {
                 console.log("product res put", res);
                 
-                setEditedProduct(res.data)
+                // setEditedProduct(res.data)
+                setProduct(res.data);
+
               })
               .catch(err => {
                 console.log(err);
@@ -127,7 +130,8 @@ const UpdateProductForm = props => {
           // });
       // }
     // );
-    props.history.push("/productsByVendor");
+    // props.history.push("/productsByVendor");
+    props.history.push(`/oneVendorPrivate/${firebaseId}`);
   };
 
   // const fileHandler = e => {
@@ -252,7 +256,8 @@ const UpdateProductForm = props => {
         fullWidth
         variant="contained"
         color="secondary"
-        onClick={e => updateProduct(e, id, editProduct)}
+        // onClick={e => updateProduct(e, id, editProduct)}
+        onClick={e => updateProduct(e, id, setProduct)}
         className={classes.submit}
       >
         Update your product

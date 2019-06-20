@@ -39,11 +39,9 @@ const MarketLandingPage = props => {
         
         </div>
         {markets.map(market => {
-          return (
-            <div className="market-card">
-              <MarketProfileCard profile={market} />
-            </div>
-          );
+
+        return (<MarketProfileCard className='market-card' profile={market} key={market.firebase_id} />)
+
         })}
       </div>
     </React.Fragment>

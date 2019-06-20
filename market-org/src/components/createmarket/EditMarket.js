@@ -5,10 +5,13 @@ import "./CreateMarket.css";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import TextMaskCustom from '../phonenumberformat/PhoneNumberFormat';
 import {
   Container,
   Paper,
   Button,
+  Input,
+  InputLabel,
   Dialog,
   DialogActions,
   DialogContent,
@@ -45,7 +48,6 @@ const CreateMarket = props => {
   const [available, setAvailable] = useState(true);
 
   const [open, setOpen] = useState(false);
-
   const [market_name, setMarketName] = useState("");
   const [contact_first_name, setFirstName] = useState("");
   const [contact_last_name, setLastName] = useState("");
@@ -53,38 +55,43 @@ const CreateMarket = props => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipcode, setZipCode] = useState("");
-  const [phone_number, setPhoneNumber] = useState("");
+  const [phone_number, setPhoneNumber] = useState({textmask: '(  )    -    '});
   // const [stalls, setStalls] = useState([])
 
   const routeToHome = () => {
-    props.history.push("/");
+    props.history.push(`/vendorsByMarket/${currentUser.uid}`);
   };
 
-  const initStripeConnection = () => {
-    const populateInputs = {
-      market_name,
-      contact_first_name,
-      contact_last_name,
-      address,
-      city,
-      state,
-      zipcode,
-      phone_number,
-      email: currentUser.email
-    };
-    console.log("initstripe", populateInputs);
-    axios.post('stripe/authorize', populateInputs)
-      .then(res => {
-        console.log("createmarket res data:", res.data);
-        window.location.href = res.data;
-        addMarket();
-      })
-      .catch(err => {
-        console.log(err);
-      });
+//   const initStripeConnection = () => {
+//     const populateInputs = {
+//       market_name,
+//       contact_first_name,
+//       contact_last_name,
+//       address,
+//       city,
+//       state,
+//       zipcode,
+//       phone_number,
+//       email: currentUser.email
+//     };
+//     console.log("initstripe", populateInputs);
+//     axios.post('stripe/authorize', populateInputs)
+//       .then(res => {
+//         console.log("createmarket res data:", res.data);
+//         window.location.href = res.data;
+//         addMarket();
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       });
+//   };
+const handleChange = name => event => {
+    setPhoneNumber({
+      [name]: event.target.value,
+    });
   };
 
-  const addMarket = () => {
+  const editMarket = () => {
     const market = {
       market_name,
       contact_first_name,
@@ -98,45 +105,45 @@ const CreateMarket = props => {
     };
     console.log(currentUser.uid);
     axios
-      .post(`/markets/${currentUser.uid}/add-market`, market)
+      .put(`/markets/${currentUser.uid}`, market)
       .then(res => {
-        console.log("ADD MARKET", res.data);
-        addStall();
+        console.log("Update", res.data);
+        
       })
       .catch(err => {
         console.log(err);
       });
   };
 
-  const addStall = () => {
-    const stall = {
-      size: {
-        length: length,
-        width: width
-      },
-      price,
-      available
-    };
-    for (let i = 0; i < quantity; i++) {
-      console.log(currentUser);
-      axios
-        .post(`/stalls/market/${currentUser.uid}`, stall)
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  };
+//   const addStall = () => {
+//     const stall = {
+//       size: {
+//         length: length,
+//         width: width
+//       },
+//       price,
+//       available
+//     };
+//     for (let i = 0; i < quantity; i++) {
+//       console.log(currentUser);
+//       axios
+//         .post(`/stalls/market/${currentUser.uid}`, stall)
+//         .then(res => {
+//           console.log(res);
+//         })
+//         .catch(err => {
+//           console.log(err);
+//         });
+//     }
+//   };
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+//   const handleOpen = () => {
+//     setOpen(true);
+//   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+//   const handleClose = () => {
+//     setOpen(false);
+//   };
 
   return (
     <React.Fragment>
@@ -144,7 +151,7 @@ const CreateMarket = props => {
       <div className='market-form-left'>  
       </div>
       <div className='market-form-right'>
-        <h1>Register A Market</h1>
+        <h1>Update Your Market</h1>
         <form>
           <TextField
             required
@@ -236,7 +243,7 @@ const CreateMarket = props => {
             margin="normal"
             
           />
-          <TextField
+          {/* <TextField
             required
             className="input-field"
             id="phone_number"
@@ -248,9 +255,20 @@ const CreateMarket = props => {
             autoComplete="fname"
             margin="normal"
             
+          /> */}
+           <InputLabel>Phone Number</InputLabel>
+            <Input
+            className="input-field"
+            id="phone_number"
+            name="phone_number"
+            label="Phone Number"
+            value={phone_number.textmask}
+            onChange={handleChange('textmask')}
+            id="formatted-text-mask-input"
+            inputComponent={TextMaskCustom}
           />
 
-          <div style={{ width: "100%", marginTop: "25px" }}>
+          {/* <div style={{ width: "100%", marginTop: "25px" }}>
             <Typography
               variant="h6"
               gutterBottom
@@ -258,8 +276,8 @@ const CreateMarket = props => {
             >
               Available Stalls
             </Typography>
-          </div>
-          <div
+          </div> */}
+          {/* <div
             style={{
               display: "flex",
               width: "100%",
@@ -319,7 +337,7 @@ const CreateMarket = props => {
                 )
               }}
             />
-          </div>
+          </div> */} 
 
           <div
             style={{
@@ -341,46 +359,10 @@ const CreateMarket = props => {
               className="button-market-register"
               variant="contained"
               color="primary"
-              onClick={handleOpen}
+              onClick={editMarket}
             >
               Submit
             </Button>
-            <Dialog
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                {"Use Stripe service?"}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  We use Stripe to make sure you get paid on time and to keep
-                  your personal bank and details secure. Do you wish to proceed?
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <Button
-                  onClick={handleClose}
-                  color="primary"
-                  style={{ backgroundColor: "lightGrey", width: "100px" }}
-                >
-                  Back
-                </Button>
-                <Button
-                  onClick={handleClose}
-                  color="primary"
-                  style={{ backgroundColor: "lightGrey", width: "100px" }}
-                  onClick={initStripeConnection}
-                  autoFocus
-                >
-                  Continue
-                </Button>
-              </DialogActions>
-            </Dialog>
           </div>
         </form>
         </div>

@@ -75,19 +75,19 @@ const ProductForm = props => {
   const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
 
-  useEffect(() => {
-    const firebaseId = localStorage.getItem("firebaseId");
-    axios
-      .get(`vendor/${firebaseId}`)
-      .then(res => {
-        // console.log(res, "vendor by Id");
-        setVendorProfile(res.data);
-        // console.log(vendorProfile);
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-  }, [vendorProfile]);
+  // useEffect(() => {
+  //   const firebaseId = localStorage.getItem("firebaseId");
+  //   axios
+  //     .get(`vendor/${firebaseId}`)
+  //     .then(res => {
+  //       // console.log(res, "vendor by Id");
+  //       setVendorProfile(res.data);
+  //       // console.log(vendorProfile);
+  //     })
+  //     .catch(err => {
+  //       console.log(err.message);
+  //     });
+  // }, [vendorProfile]);
 
   const submitProductProfile = e => {
     e.preventDefault();
@@ -140,7 +140,8 @@ const ProductForm = props => {
           });
       }
     );
-    props.history.push("/productsByVendor");
+    // props.history.push("/productsByVendor");
+    props.history.push(`/oneVendorPrivate/${vendorId}`);
   };
 
   const fileHandler = e => {
@@ -185,7 +186,7 @@ const ProductForm = props => {
         <Link to={`/oneVendorPrivate/${vendorProfile.firebase_id}`}>
           <Typography component="p">My Profile Settings</Typography>
         </Link>
-      </Card>
+      </Card> */}
 
       <Typography component="p">Product form:</Typography> */}
 
