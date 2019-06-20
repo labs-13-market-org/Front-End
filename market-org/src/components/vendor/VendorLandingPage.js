@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter, Route, Switch } from "react-router-dom";
-
+import "./VendorLandingPage.css";
 import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
 import { AuthContext } from "../authContext/authState";
@@ -31,7 +31,7 @@ const styles = theme => ({
   },
   appBar: {
     //   marginLeft: drawerWidth,
-    backgroundColor: "lightgreen",
+    backgroundColor: '#38212E',
     zIndex: theme.zIndex.drawer + 1
   },
 
@@ -75,41 +75,32 @@ const VendorLandingPage = props => {
 
   return (
     <>
-      <Typography
-        component="p"
-        style={{ fontWeight: "bold", fontSize: "40px" }}
-      >
-        Our vendors
-      </Typography>
+      <div className="landing-page-wrapper">
+        <div className="vendor-list-page-header">
+          <h2>Vendors</h2>
+        </div>
+        <div className="list-title" />
+        <div className="vendor-card-wrapper" >
+        {allVendors &&
+          allVendors.map(eachVendor => {
+            return (
+              <>
 
-      {allVendors &&
-        allVendors.map(eachVendor => {
-          return (
-            <>
-              <Container maxWidth="lg" key={eachVendor.firebase_id}>
-                <Card className={classes.card}>
-                  <CardContent>
-                    <Typography component="p">
-                      Company: {eachVendor.company_name}
-                    </Typography>
-                    <Typography component="p">
-                      Full Name: {eachVendor.contact_fullname}
-                    </Typography>
-                    {/* <Link to={`/allVendors/${eachVendor.firebase_id}`}>
-                      <Typography component="p">View my products</Typography>
-                    </Link> */}
+                  <div className="vendor-card" key={eachVendor.firebase_id}>
+                    <h4>Company: {eachVendor.company_name}</h4>
+                    <h4>Full Name: {eachVendor.contact_fullname}</h4>
+                    <div className='vendor-card-link'>
                     <Link to={`/oneVendorPublic/${eachVendor.firebase_id}`}>
-                      <Typography component="p">
-                        Get more information about me
-                      </Typography>
+                      More Info
                     </Link>
-                  </CardContent>
-                  <CardContent />
-                </Card>
-              </Container>
-            </>
-          );
-        })}
+                    </div>
+                  </div>
+                
+              </>
+            );
+          })}
+          </div>
+      </div>
       {/* <Switch>
         <Route
           path="/allVendors/:firebase_id"

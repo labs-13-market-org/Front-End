@@ -75,19 +75,19 @@ const ProductForm = props => {
   const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
 
-  useEffect(() => {
-    const firebaseId = localStorage.getItem("firebaseId");
-    axios
-      .get(`vendor/${firebaseId}`)
-      .then(res => {
-        // console.log(res, "vendor by Id");
-        setVendorProfile(res.data);
-        // console.log(vendorProfile);
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-  }, [vendorProfile]);
+  // useEffect(() => {
+  //   const firebaseId = localStorage.getItem("firebaseId");
+  //   axios
+  //     .get(`vendor/${firebaseId}`)
+  //     .then(res => {
+  //       // console.log(res, "vendor by Id");
+  //       setVendorProfile(res.data);
+  //       // console.log(vendorProfile);
+  //     })
+  //     .catch(err => {
+  //       console.log(err.message);
+  //     });
+  // }, [vendorProfile]);
 
   const submitProductProfile = e => {
     e.preventDefault();
@@ -140,7 +140,8 @@ const ProductForm = props => {
           });
       }
     );
-    props.history.push("/productsByVendor");
+    // props.history.push("/productsByVendor");
+    props.history.push(`/oneVendorPrivate/${vendorId}`);
   };
 
   const fileHandler = e => {
@@ -149,7 +150,7 @@ const ProductForm = props => {
 
   return (
     <>
-      <Card className={classes.card}>
+      {/* <Card className={classes.card}>
         <CardContent>
           <Typography
             component="p"
@@ -185,124 +186,79 @@ const ProductForm = props => {
         <Link to={`/oneVendorPrivate/${vendorProfile.firebase_id}`}>
           <Typography component="p">My Profile Settings</Typography>
         </Link>
-      </Card>
+      </Card> */}
 
-      <Typography component="p">Product form:</Typography>
+      <Typography component="p">Product form:</Typography> */}
 
+<div className="vendor-form-wrapper">
+        <div className='vendor-form-left'>  
+        
+        </div>
+    <div className='vendor-form-right'>
+      <h2>Add A Product</h2>
       <form>
+      <h4>Product Name</h4>
         <TextField
+          className="input-field"
           id="outlined-name"
-          label="Title"
           type="search"
           name="title"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
           onChange={e => setTitle(e.target.value)}
           value={title}
           margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
         />
+        <h4>Description</h4>
         <TextField
+          className="input-field"
           id="outlined-name"
-          label="Description"
           type="search"
           name="description"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
           onChange={e => setDescription(e.target.value)}
           value={description}
           margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
+          
+         
         />
+        <h4>Price</h4>
         <TextField
+          className="input-field"
           id="outlined-name"
-          label="Price"
           type="search"
           name="price"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
           onChange={e => setPrice(e.target.value)}
           value={price}
           margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
+          
+       
         />
+        <h4>Upload Image</h4>
         <TextField
+          className="input-field"
           id="upload-button"
           accept="image/*"
-          label="Upload Image"
           name="image"
           type="file"
-          className={classes.textField}
           onChange={e => fileHandler(e)}
           value={image}
           margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            shrink: true,
-            style: {
-              color: "#026440"
-            }
-          }}
+          
+          
         />
-      </form>
-      <Button
+        <div className='submit-section-vendor'>
+        <Button
+        className='submit-button-vendor'
         type="submit"
         fullWidth
-        variant="contained"
-        color="secondary"
         onClick={submitProductProfile}
-        className={classes.submit}
+        
       >
-        Submit your product info
+        Submit 
       </Button>
+      </div>
+      </form>
+      </div>
+      </div>
+      
     </>
   );
 };

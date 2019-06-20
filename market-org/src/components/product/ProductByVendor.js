@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route, Link, withRouter, Switch } from "react-router-dom";
 import { storage } from "../../firebase";
+import { auth } from "../../firebase";
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
@@ -30,7 +31,7 @@ const styles = theme => ({
   },
   appBar: {
     //   marginLeft: drawerWidth,
-    backgroundColor: "lightgreen",
+    backgroundColor: '#38212E',
     zIndex: theme.zIndex.drawer + 1
   },
 
@@ -58,11 +59,10 @@ const ProductByVendor = props => {
   const { classes } = props;
 
   const [vendorProfile, setVendorProfile] = useContext(VendorContext);
-  const [product, setProduct] = useContext(ProductContext);
+  // const [products, setProducts] = useContext(ProductContext);
 
   const [products, setProducts] = useState([]);
   const [delProduct, setDelProduct] = useState(0);
- 
 
   const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
@@ -79,7 +79,7 @@ const ProductByVendor = props => {
       .catch(err => {
         console.log(err.message);
       });
-    console.log(delProduct);
+    // console.log(delProduct);
   }, [products]);
 
   const toMarkets = () => {
@@ -124,6 +124,12 @@ const ProductByVendor = props => {
     props.history.push("/updateProductForm");
   };
 
+  const logout = () => {
+    auth.signOut();
+    localStorage.clear();
+    props.history.push("/");
+  };
+
   return (
     <>
       <Container maxWidth="lg">
@@ -131,7 +137,7 @@ const ProductByVendor = props => {
           component="p"
           style={{ fontWeight: "bold", fontSize: "40px" }}
         >
-          Your Product information
+          My Products
         </Typography>
 
         <CssBaseline />
@@ -140,30 +146,37 @@ const ProductByVendor = props => {
             <Button
               onClick={backToHome}
               color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              style={{ margin: "10px" }}
             >
               Home
             </Button>
             <Button
               onClick={backToProductForm}
               color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              style={{ margin: "10px" }}
             >
               Add more products
             </Button>
             <Button
               // onClick={toCart}
               color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              style={{ margin: "10px" }}
             >
               Your cart
             </Button>
             <Button
               onClick={toMarkets}
               color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              style={{ margin: "10px" }}
             >
               Markets
+            </Button>
+            <Button
+              onClick={logout}
+              color="inherit"
+              style={{ margin: "10px" }}
+            >
+              Log Out
             </Button>
           </Toolbar>
         </AppBar>
@@ -172,7 +185,7 @@ const ProductByVendor = props => {
           products.map(eachProduct => {
             return (
               <>
-                <Card className={classes.card}>
+                <Card className={classes.card} key={eachProduct.id}>
                   <CardContent>
                     <Typography component="p">
                       Product Title: {eachProduct.title}
@@ -200,9 +213,8 @@ const ProductByVendor = props => {
                     Delete Product
                   </Button>
 
-
                   <Link
-                    to={`productsByVendor/${eachProduct.id}/updateProductForm`}
+                    to={`/oneVendorPrivate/productsByVendor/${eachProduct.id}/updateProductForm`}
                   >
                     <Typography
                       color="inherit"
@@ -213,19 +225,17 @@ const ProductByVendor = props => {
                   </Link>
                 </Card>
                 <Switch>
-        <Route
-          path="/productsByVendor/:id/updateProductForm"
-          render={props => (
-            <UpdateProductForm {...props} eachProduct={eachProduct} />
-          )}
-        />
-      </Switch>
+                  <Route
+                    path="/oneVendorPrivate/productsByVendor/:id/updateProductForm"
+                    render={props => (
+                      <UpdateProductForm {...props} eachProduct={eachProduct} />
+                    )}
+                  />
+                </Switch>
               </>
-              
             );
           })}
       </Container>
-
     </>
   );
 };

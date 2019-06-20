@@ -75,12 +75,14 @@ const UpdateVendorForm = props => {
   const [phone, setPhone] = useState(props.aPrivateVendor.phone_number);
   const [companyUrl, setCompanyUrl] = useState(props.aPrivateVendor.company_url);
 
-  const [editVendor, setEditedVendor] = useState(props.aPrivateVendor);
+  // const [editVendor, setEditedVendor] = useState(props.aPrivateVendor);
+  const [vendorProfile, setVendorProfile] = useContext(VendorContext);
 
   const updateVendor = (e, id, updatedVendor) => {
     e.preventDefault();
     
     const token = localStorage.getItem("token");
+    // const firebase_id = localStorage.getItem("firebaseId");
 
     updatedVendor = {
         firebase_id: firebase_id,        
@@ -100,15 +102,15 @@ const UpdateVendorForm = props => {
       headers: { Authorization: token }
     })
     .then(res => {
-      console.log("product res put", res);
-      
-      setEditedVendor(res.data)
+      console.log("product res put", res);      
+      // setEditedVendor(res.data)
+      setVendorProfile(res.data)
     })
     .catch(err => {
       console.log(err);
     });
-
-    props.history.push("/productForm");
+    // props.history.push("/productForm");
+    props.history.replace(`/oneVendorPrivate/${firebase_id}`);
   }
 
 
@@ -330,7 +332,8 @@ const UpdateVendorForm = props => {
         fullWidth
         variant="contained"
         color="secondary"
-        onClick={e => updateVendor(e, firebase_id, editVendor)}
+        // onClick={e => updateVendor(e, firebase_id, editVendor)}
+        onClick={e => updateVendor(e, firebase_id, vendorProfile)}
         className={classes.submit}
       >
         Update Your Profile

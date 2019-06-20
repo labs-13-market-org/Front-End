@@ -4,7 +4,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 
 import { auth, googleProvider } from '../../firebase';
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 
 import { AuthContext } from '../authContext/authState';
 import axios from '../../axios-instance';
@@ -60,7 +60,7 @@ function Register(props) {
 				if (user) {
 					const { uid, ra, email } = user;
 					localStorage.setItem('token', ra);
-					// localStorage.setItem('firebaseId', uid)
+					localStorage.setItem('firebaseId', uid)
 					console.log("getting uId :", uid);
 					if (user.email) {
 						const { email } = user;
@@ -82,6 +82,13 @@ function Register(props) {
 									let userTypes= res.data.user_type
 									console.log(userTypes, 'user types')
 									localStorage.setItem('userType', userTypes);
+
+									if (res.data.user_type=== 'vendor') {
+										console.log(res.data.user_type, 'from res')
+										props.history.push('/vendor')
+									} else {
+										props.history.push('/create-market')
+									}
 
 								})
 								.catch(err => {
@@ -163,6 +170,10 @@ function Register(props) {
 	console.log('user type:', user)
 
 	return (
+		<div className='sign-in-wrapper'>
+			
+		<div className='sign-in-left'></div>
+			<div className='sign-in-right'>
 		<main className={classes.main}>
 			<Paper className={classes.paper}>
 				<Avatar className={classes.avatar}>
@@ -238,6 +249,8 @@ function Register(props) {
 				</form>
 			</Paper>
 		</main>
+		</div>
+		</div>
 	)
 
 }

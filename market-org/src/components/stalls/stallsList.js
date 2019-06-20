@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-
 import axios from "../../axios-instance";
 import Stall from "./stall.js";
 import Paper from '@material-ui/core/Paper';
@@ -9,40 +7,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import "./stallsList.css"
-
-// {
-//     // "id": 0,
-//     // "size": {
-//     // },
-//     // "market_id": "",
-//     // "available": false,
-//     // "qty": 0
-// }
-
-const StallsContainer = styled.div` 
-    width: 1250px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+import './Stalls.css';
 
 
-`
 
-const StallCard = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around; 
-`
 
-const PropertiesCard = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between; 
-    width: 66%
-`
 
 const StallsList = (props) => {
 
@@ -147,38 +116,34 @@ const StallsList = (props) => {
     // const cart_id = localStorage.getItem('firebaseId')
     console.log("Getting stalls ", stalls);
     return(
-        <StallsContainer>
-            <Paper class="stalls-list-page-header">
-            <div>
-            <center><h1 className={classes.headerTitle}> List of Stalls For Rent </h1> </center>
+        <div className='market-by-id-wrapper'>
+           
+            
+            <div className='market-by-id-header'>
+            <h2>Rent Your Stalls</h2>
             </div>
-
-            <center><h2 className={classes.marketTitle}>{market.market_name} Market</h2></center>
-            <center className={classes.stallProps}>
-            <strong>Address: </strong> {market.address} , {market.city} , {market.state}, {market.zip_code} ,  
-            <strong>Phone Number: </strong> {market.phone_number} 
-            </center>
-            </Paper>
-
+            <div className='market-by-id-info'>
+            <h3>Selected Market:</h3>
+            <h4>{market.market_name}</h4>
+            <h4>{market.address}</h4>
+            <h4>{market.city}</h4>
+            <h4>{market.state}</h4>
+            <h4>{market.phone_number}</h4>
+            </div>
+            
+            
+            
+            <div className='stalls'>
+            <h2>Available Stalls:</h2>
             {Object.keys(stalls).map((stall, index) => (
                 
-                <Card className={classes.card}>
-                <StallCard key ={index}>
+                
+                <div className='stall'key ={index}>
                     {console.log(stalls[stall].id, 'stall id')}
-                    <PropertiesCard>
-
-                    <div>
-                        <h3 className={classes.stallProps}>{index}. </h3>
-                    </div>
-
-                    <div>
-                    <h3 className={classes.stallProps}>Size: {stalls[stall].size.length} ft by {stalls[stall].size.width} ft </h3>
-                    </div>
-                    <div>
-                    <h3 className={classes.stallProps}> ${stalls[stall].price}</h3>
-                    </div>
-                    </PropertiesCard>
-
+                    <h3>Size:</h3>
+                    <p> Length: {stalls[stall].size.length} ft. Width: {stalls[stall].size.width} ft.</p>
+                    <h3>Price:</h3>
+                    <p>${stalls[stall].price}</p>
                     <div>
                     {stalls[stall].available ? 
                     <Button variant="contained" color="primary" className={classes.button} onClick={() => addToCart(stalls[stall].id)}>Add To Cart</Button> : 
@@ -191,11 +156,12 @@ const StallsList = (props) => {
                     }
                     </div>
                 
-                
-                </StallCard>
-                </Card>
+                </div>
             ))}
-            {/* <h2> List of available stalls for {props.location.state.market_name}</h2>
+            </div>
+            </div>
+           
+            /* <h2> List of available stalls for {props.location.state.market_name}</h2>
             {stalls.map(stall_item => {
                 console.log(stall_item, 'stall item')
                 return (
@@ -204,8 +170,8 @@ const StallsList = (props) => {
                     </div>
                 )
                 // return (<Stall stall={stall_item} setStallChangedStatus={setStallChangeStatus}/>)
-            })} */}
-        </StallsContainer>
+            })} */
+        
     )
 }
 

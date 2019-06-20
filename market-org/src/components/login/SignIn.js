@@ -4,6 +4,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { Link, withRouter } from 'react-router-dom'
 import { auth, googleProvider } from '../../firebase';
 import axios from '../../axios-instance';
+import './SignIn.css'
 
 import { AuthContext } from '../authContext/authState';
 
@@ -42,7 +43,7 @@ const styles = theme => ({
 
 function SignIn(props) {
 	const { classes } = props
-
+	const { currentUser } = useContext(AuthContext);
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
@@ -69,10 +70,17 @@ function SignIn(props) {
 						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
+								
 
 								axios.get(`users/${uid}`).
 								then(res =>{
 									localStorage.setItem("userTypes", res.data.user_type);
+									if (res.data.user_type=== 'vendor') {
+										console.log(res.data.user_type, 'from res')
+										props.history.push(`/oneVendorPrivate/${localStorage.getItem('firebaseId')}`)
+									} else {
+										props.history.push(`/vendorsByMarketId/${localStorage.getItem('firebaseId')}`)
+									}
 								})
 								.catch(err => {
 
@@ -121,21 +129,27 @@ function SignIn(props) {
 						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
+								
 
 								axios.get(`users/${uid}`).
 								then(res =>{
 									localStorage.setItem("userTypes", res.data.user_type);
+									console.log("hello")
+									routeToMarketorVendor(uid)
 								})
 								.catch(err => {
 
 									console.log(err);
 								})
+								
 
 							})
 							.catch(err => {
 								console.log(err)
 							})
-						props.history.push('/')
+							
+						
+						
 					
 				}
 			}
@@ -146,11 +160,24 @@ function SignIn(props) {
 		
 	 }
 	 
-	 const { currentUser } = useContext(AuthContext);
-
+	const routeToMarketorVendor = (uid) => {
+		const usertype = localStorage.getItem("userTypes")
+		console.log("routetomarket")
+		if(usertype === "market") {
+			props.history.push(`/vendorsByMarket/${uid}`)
+		} else {
+			props.history.push(`/oneVendorPrivate/${uid}`)
+		}
+	 }
+	 
+	 
 
 
 	return (
+		<div className='sign-in-wrapper'>
+			
+			<div className='sign-in-left'></div>
+			<div className='sign-in-right'>
 		<main className={classes.main}>
 			<Paper className={classes.paper}>
 				<Avatar className={classes.avatar}>
@@ -190,6 +217,8 @@ function SignIn(props) {
 				</form>
 			</Paper>
 		</main>
+		</div>
+		</div>
 	)
 
 }
