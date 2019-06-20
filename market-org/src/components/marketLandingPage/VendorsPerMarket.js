@@ -56,7 +56,7 @@ const VendorsPerMarket = props => {
 
   const [perMarket, setPerMarket] = useState({});
   const [vendorsPerMarket, setVendorsPerMarket] = useState([]);
-
+  const usertype = localStorage.getItem("userTypes")
   useEffect(() => {
     axios
       .get(`vendor/market/${firebase_id}/vendor`)
@@ -103,6 +103,7 @@ const VendorsPerMarket = props => {
             </Typography>
           </CardContent>
           <CardContent />
+          { usertype === "market" ? null :
           <Link
             to={{
               pathname: "/stalls/",
@@ -115,6 +116,7 @@ const VendorsPerMarket = props => {
           >
             Rent a stall from us
           </Link>
+          }
         </Card>
         <Typography
           component="p"

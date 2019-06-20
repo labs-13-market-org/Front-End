@@ -8,6 +8,7 @@ import SignIn from './components/login/SignIn';
 import SignUp from './components/register/SignUp';
 import LandingPage from './components/landingpage/landingpage';
 import CreateMarket from './components/createmarket/CreateMarket';
+
 import Homepage2 from './components/homepage/Homepage2';
 import PrivateRoute from './components/privateroute/PrivateRoute';
 import StallsList from './components/stalls/stallsList';
@@ -30,6 +31,7 @@ import VendorsPerMarket from "./components/marketLandingPage/VendorsPerMarket";
 
 import { ContextProvider } from './components/context/state';
 import "./App.css";
+import EditMarket from './components/createmarket/EditMarket';
 
 
 function App() {
@@ -43,6 +45,7 @@ function App() {
         <Switch>
           <Route exact exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
+          <PrivateRoute exact path="/edit-market/:firebase_id" component={EditMarket} />
           <Route path="/vendor" component={VendorForm} />
           <Route path="/vendorStall" component={MyVendorStalls} />
           <Route path="/marketStall" component={MyMarketStalls} />
