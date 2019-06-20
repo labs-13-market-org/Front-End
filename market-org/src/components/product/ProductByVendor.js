@@ -52,7 +52,7 @@ const styles = theme => ({
   },
   input: {
     display: "none"
-  }
+  },
 });
 
 const ProductByVendor = props => {
