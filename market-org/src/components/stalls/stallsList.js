@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import Chip from '@material-ui/core/Chip';
 
 
 // {
@@ -34,6 +34,14 @@ const StallCard = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-around; 
+`
+
+const PropertiesCard = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; 
+    width: 66%
 `
 
 const StallsList = (props) => {
@@ -112,6 +120,9 @@ const StallsList = (props) => {
           },
           button: {
             margin: theme.spacing(1),
+          },
+          chip: {
+            margin: theme.spacing(1),
           }
       }));
  
@@ -122,14 +133,10 @@ const StallsList = (props) => {
     return(
         <StallsContainer>
             <Paper className={classes.root}>
-            <center><h1>Market Name: {market.market_name}</h1></center>
+            <center><h1>{market.market_name} Market</h1></center>
             <center>
-            <address>
-            <ul>
-            <b>Address:</b> {market.address} , {market.city} , {market.state}, {market.zip_code} ,  
-            <b>Phone number:</b> {market.phone_number} 
-            </ul>
-            </address>
+            <strong>Address: </strong> {market.address} , {market.city} , {market.state}, {market.zip_code} ,  
+            <strong>Phone number: </strong> {market.phone_number} 
             </center>
 
             </Paper>
@@ -139,15 +146,24 @@ const StallsList = (props) => {
                 <Card className={classes.card}>
                 <StallCard key ={index}>
                     {console.log(stalls[stall].id, 'stall id')}
+                    <PropertiesCard>
                     <div>
-                    <h2>Size: {stalls[stall].size.length} feet by {stalls[stall].size.width} feet </h2>
-                    <h2>Price: ${stalls[stall].price}</h2>
+                    <h3>Size: {stalls[stall].size.length} feet by {stalls[stall].size.width} feet </h3>
                     </div>
+                    <div>
+                    <h3> ${stalls[stall].price}</h3>
+                    </div>
+                    </PropertiesCard>
 
                     <div>
                     {stalls[stall].available ? 
                     <Button variant="contained" color="primary" className={classes.button} onClick={() => addToCart(stalls[stall].id)}>Add To Cart</Button> : 
-                    "Unavailable to rent"
+                    <Chip
+                    label="Unavailable To Rent"
+                    className={classes.chip}
+                    color="secondary"
+                    variant="default"
+                    />
                     }
                     </div>
                 
