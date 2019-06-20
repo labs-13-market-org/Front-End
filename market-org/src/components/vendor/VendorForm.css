@@ -23,6 +23,9 @@
     flex-wrap: wrap;
     padding:20px;
 }
+.vendor-form-right h2{
+    margin-left: 15px;
+}
 
 .vendor-form-right form{
     width: 100%;
