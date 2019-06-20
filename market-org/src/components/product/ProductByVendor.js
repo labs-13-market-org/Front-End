@@ -12,22 +12,29 @@ import {
   Typography,
   TextField,
   Button,
+  Card,
+  CardActionArea,
+  CardActions,
   CardContent,
+  CardMedia,
   Menu,
   MenuItem,
   Container,
   CssBaseline,
   AppBar,
-  Toolbar
+  Toolbar,
+  GridList,
+  Paper 
 } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
 
 import axios from "../../axios-instance";
 
 const styles = theme => ({
   root: {
     display: "flex",
-    margin: "0 auto"
+    margin: "0 auto",
+    flexWrap: 'wrap',
+    justifyContent: 'space-around'
   },
   appBar: {
     //   marginLeft: drawerWidth,
@@ -52,6 +59,19 @@ const styles = theme => ({
   },
   input: {
     display: "none"
+  },
+
+  card: {
+    width: 345,
+    margin: "10px"
+    
+  },
+  // media: {
+  //   height: 140
+  // },
+  gridList: {
+    margin: '0 auto'
+
   },
 });
 
@@ -139,6 +159,9 @@ const ProductByVendor = props => {
         >
           My Products
         </Typography>
+        <Typography>
+        testing global context: {vendorProfile.company_name}
+        </Typography>        
 
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
@@ -181,30 +204,68 @@ const ProductByVendor = props => {
           </Toolbar>
         </AppBar>
 
+        <GridList className={classes.gridList} cols={3}>
+
         {products &&
           products.map(eachProduct => {
             return (
               <>
-                <Card className={classes.card} key={eachProduct.id}>
-                  <CardContent>
-                    <Typography component="p">
-                      Product Title: {eachProduct.title}
-                    </Typography>
-                    <Typography component="p">
-                      Product Description: {eachProduct.description}
-                    </Typography>
-                    <Typography component="p">
-                      Product price: ${eachProduct.price}
-                    </Typography>
-                  </CardContent>
-                  <CardContent>
+                  {/* <Card className={classes.card} key={eachProduct.id}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={eachProduct.image}
+          title="Vendor product"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            Lizard
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button>
+      </CardActions>
+    </Card> */}
+
+
+
+
+  
+
+                    <Card className={classes.card} key={eachProduct.id}>
+                <CardActionArea>
+                <CardContent>
                     <img
                       src={eachProduct.image}
-                      alt="Vendor product"
-                      className="productImage"
-                    />
-                    testing global context: {vendorProfile.company_name}
+                      title="Vendor product"
+                      // className="productImage"
+                      style={{ maxWidth: "100%", maxHeight: "100%" }}
+                    />                    
                   </CardContent>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {eachProduct.title}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {eachProduct.description}
+                    </Typography>
+                    <Typography variant="body1" color="textSecondary" component="p">
+                      ${eachProduct.price}
+                    </Typography>
+                  </CardContent>
+                  </CardActionArea>
+
+                  <CardActions>
                   <Button
                     onClick={e => deleteProduct(e, eachProduct.id)}
                     color="inherit"
@@ -223,7 +284,13 @@ const ProductByVendor = props => {
                       Edit Product
                     </Typography>
                   </Link>
-                </Card>
+
+                  </CardActions>
+
+
+                </Card>              
+               
+          
                 <Switch>
                   <Route
                     path="/oneVendorPrivate/productsByVendor/:id/updateProductForm"
@@ -235,6 +302,7 @@ const ProductByVendor = props => {
               </>
             );
           })}
+          </GridList>
       </Container>
     </>
   );

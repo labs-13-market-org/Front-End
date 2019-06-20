@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter, Route, Switch } from "react-router-dom";
 
 import UpdateVendorForm from "./UpdateVendorForm";
-import ProductByVendor from '../product/ProductByVendor'
+import ProductByVendor from "../product/ProductByVendor";
 
 import {
   withStyles,
@@ -13,19 +13,22 @@ import {
   Menu,
   MenuItem,
   Container,
+  Card,
   CssBaseline,
   AppBar,
-  Toolbar, 
+  Toolbar,
   Paper,
   Grid,
-  ButtonBase
+  ButtonBase,
+  Breadcrumbs,
+  Avatar
 } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import DeleteIcon from '@material-ui/icons/Delete'
-import EditIcon from '@material-ui/icons/Edit';
+// import Card from "@material-ui/core/Card";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import AddCircleOutline from '@material-ui/icons/AddCircleOutlined';
 
-import axios from '../../axios-instance'
-
+import axios from "../../axios-instance";
 
 const styles = theme => ({
   root: {
@@ -34,7 +37,7 @@ const styles = theme => ({
   },
   appBar: {
     //   marginLeft: drawerWidth,
-    backgroundColor: '#38212E',
+    backgroundColor: "#38212E",
     zIndex: theme.zIndex.drawer + 1
   },
 
@@ -59,23 +62,23 @@ const styles = theme => ({
 
   paper: {
     padding: theme.spacing(2),
-    margin: 'auto',
+    margin: "auto"
     // maxWidth: 800,
   },
   image: {
     width: 350,
-    height: 350,
+    height: 350
   },
   img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%"
   },
   icon: {
     margin: theme.spacing(1),
-    fontSize: 32,
-  },
+    fontSize: 32
+  }
 });
 
 const OneVendorPrivate = props => {
@@ -84,7 +87,7 @@ const OneVendorPrivate = props => {
   const { firebase_id } = props.match.params;
 
   const [aPrivateVendor, setAPrivateVendor] = useState([]);
-  const [delVendor, setDelVendor] = useState('');
+  const [delVendor, setDelVendor] = useState("");
 
   useEffect(() => {
     axios
@@ -96,7 +99,7 @@ const OneVendorPrivate = props => {
       .catch(err => {
         console.log(err.message);
       });
-      // console.log(delVendor, 'Deleted Vendor')
+    // console.log(delVendor, 'Deleted Vendor')
   }, [aPrivateVendor]);
 
   const deleteVendor = (e, vendorId) => {
@@ -111,7 +114,7 @@ const OneVendorPrivate = props => {
       .then(res => {
         console.log(res);
         setDelVendor(res.data);
-        props.history.replace('/');
+        props.history.replace("/");
       })
       .catch(err => {
         console.log(err);
@@ -125,61 +128,113 @@ const OneVendorPrivate = props => {
         key={aPrivateVendor.firebase_id}
         style={{ marginTop: "50px" }}
       >
+        <Paper className={classes.paper}>
+          <Grid container spacing={2}>
+            <Grid item>
+              <ButtonBase className={classes.image}>
+                <img
+                  className={classes.img}
+                  alt="vendor picture"
+                  src="/static/images/grid/complex.jpg"
+                />
+              </ButtonBase>
+            </Grid>
+            <Grid item xs={12} sm container>
+              <Grid item xs container direction="column" spacing={1}>
+                <Grid item xs>
+                  <Typography
+                    gutterBottom
+                    variant="subtitle1"
+                    style={{ padding: 3, fontSize: "28px", fontWeight: "bold" }}
+                  >
+                    {aPrivateVendor.company_name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    gutterBottom
+                    style={{ padding: 3, fontSize: "18px", fontWeight: "bold" }}
+                  >
+                    {aPrivateVendor.contact_fullname}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    gutterBottom
+                    style={{ padding: 3, fontSize: "18px" }}
+                  >
+                    {aPrivateVendor.address}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    gutterBottom
+                    style={{ padding: 3, fontSize: "18px" }}
+                  >
+                    {aPrivateVendor.city}, {aPrivateVendor.state}{" "}
+                    {aPrivateVendor.zip_code}
+                  </Typography>
 
-<Paper className={classes.paper}>
-        <Grid container spacing={2}>
-          <Grid item>
-            <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="vendor picture" src="/static/images/grid/complex.jpg" />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={1}>
-              <Grid item xs>
-                <Typography gutterBottom variant="subtitle1" style={{ padding: 5, fontSize: "28px", fontWeight: 'bold'}} >
-                {aPrivateVendor.company_name}
-                </Typography>
-                <Typography variant="body2" gutterBottom style={{ padding: 3, fontSize: "18px" }}>
-                {aPrivateVendor.contact_fullname}
-                </Typography>
-                <Typography variant="body2" gutterBottom style={{ padding: 3, fontSize: "18px" }}>
-                {aPrivateVendor.address}
-                </Typography>
-                <Typography variant="body2" gutterBottom style={{ padding: 3, fontSize: "18px" }}>
-                {aPrivateVendor.city}, {' '} {aPrivateVendor.state} {' '} {aPrivateVendor.zip_code}
-                </Typography>
+                  <Typography
+                    variant="body2"
+                    gutterBottom
+                    style={{ padding: 3, fontSize: "18px" }}
+                  >
+                    {aPrivateVendor.phone_number}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    style={{ padding: 3, fontSize: "18px" }}
+                  >
+                    {aPrivateVendor.company_url}
+                  </Typography>
+                </Grid>
+                <Grid item style={{ margin: "10px" }}>
+                  <Link to={`/productForm`}>
+                  <AddCircleOutline className={classes.icon} style={{ margin: 'auto', width: '100%', 
+    textAlign: 'center' }}/>
+                    <Typography
+                      variant="body2"
+                      style={{ cursor: "pointer", fontSize: "16px", textAlign: 'center' }}
+                    >
+                      ADD PRODUCT
+                    </Typography>
+                  </Link>
+                </Grid>
+              </Grid>
 
-                <Typography variant="body2" gutterBottom style={{ padding: 3, fontSize: "18px" }}>
-                {aPrivateVendor.phone_number}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" style={{ padding: 3, fontSize: "18px" }}>
-                {aPrivateVendor.company_url}
+              <Grid item style={{ padding: 5, margin: 8 }}>
+                <Link to={`/oneVendorPrivate/${firebase_id}/editForm`}>
+                  <EditIcon className={classes.icon} />
+                  <Typography
+                    variant="body2"
+                    style={{ cursor: "pointer", fontSize: "11px", textAlign: 'center' }}
+                  >
+                    EDIT PROFILE
+                  </Typography>
+                </Link>
+                {/* </Grid>
+                <Grid item style={{ padding: 5, margin: 8 }}> */}
+                <DeleteIcon
+                  className={classes.icon}
+                  onClick={e => deleteVendor(e, firebase_id)}                  
+                />
+                <Typography
+                  variant="body2"
+                  style={{ cursor: "pointer", fontSize: "11px", textAlign: 'center' }}
+                >
+                  DELETE PROFILE
                 </Typography>
               </Grid>
-              <Grid item>
-              <Link to={`/productForm`}>
-              <Typography variant="body2" style={{ cursor: 'pointer', fontSize: '22px' }}>Add more Products</Typography>
-            </Link>
-
-              </Grid>
-            </Grid>
-            <Grid item>              
-              <DeleteIcon className={classes.icon} onClick={e => deleteVendor(e, firebase_id)} />
-              <Link to={`/oneVendorPrivate/${firebase_id}/editForm`}>
-              <EditIcon className={classes.icon} />
-              </Link>
             </Grid>
           </Grid>
-        </Grid>
-      </Paper> 
+        </Paper>
 
-{/* 
+        {/* 
         <Card className={classes.card}>
           <CardContent> */}
-            {/* <Typography component="p">
+        {/* <Typography component="p">
               Company: {aPrivateVendor.company_name}
             </Typography> */}
-            {/* <Typography component="p">
+        {/* <Typography component="p">
               Full Name: {aPrivateVendor.contact_fullname}
             </Typography>
             <Typography component="p">
@@ -196,10 +251,10 @@ const OneVendorPrivate = props => {
             <Typography component="p">
               Company website: {aPrivateVendor.company_url}
             </Typography> */}
-            {/* <Link to={`/productForm`}>
+        {/* <Link to={`/productForm`}>
               <Typography component="p">Add more Products</Typography>
             </Link> */}
-            {/* <Button
+        {/* <Button
               onClick={e => deleteVendor(e, firebase_id)}
               color="inherit"
               style={{ margin: "10px" }}
