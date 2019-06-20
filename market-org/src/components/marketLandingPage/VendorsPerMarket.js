@@ -61,7 +61,7 @@ const VendorsPerMarket = props => {
     axios
       .get(`vendor/market/${firebase_id}/vendor`)
       .then(res => {
-        console.log(res, "Market by firbaseId and its vendors");
+        console.log(res.data, "Market by firbaseId and its vendors");
         setPerMarket(res.data);
         setVendorsPerMarket(res.data.vendors);
       })

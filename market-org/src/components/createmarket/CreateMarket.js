@@ -4,9 +4,12 @@ import axios from "../../axios-instance";
 import "./CreateMarket.css";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import TextMaskCustom from '../phonenumberformat/PhoneNumberFormat';
 import TextField from "@material-ui/core/TextField";
 import {
   Container,
+  Input,
+  InputLabel,
   Paper,
   Button,
   Dialog,
@@ -53,7 +56,7 @@ const CreateMarket = props => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipcode, setZipCode] = useState("");
-  const [phone_number, setPhoneNumber] = useState("");
+  const [phone_number, setPhoneNumber] = useState({textmask: '(  )    -    '});
   // const [stalls, setStalls] = useState([])
 
   const routeToHome = () => {
@@ -85,6 +88,7 @@ const CreateMarket = props => {
   };
 
   const addMarket = () => {
+    const { textmask } = phone_number;
     const market = {
       market_name,
       contact_first_name,
@@ -93,7 +97,7 @@ const CreateMarket = props => {
       city,
       state,
       zipcode,
-      phone_number,
+      phone_number: textmask
       
     };
     console.log(currentUser.uid);
@@ -106,6 +110,12 @@ const CreateMarket = props => {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  const handleChange = name => event => {
+    setPhoneNumber({
+      [name]: event.target.value,
+    });
   };
 
   const addStall = () => {
@@ -236,18 +246,17 @@ const CreateMarket = props => {
             margin="normal"
             
           />
-          <TextField
+           <InputLabel>Phone Number</InputLabel>
+            <Input
             required
             className="input-field"
             id="phone_number"
             name="phone_number"
             label="Phone Number"
-            value={phone_number}
-            onChange={e => setPhoneNumber(e.target.value)}
-            fullWidth
-            autoComplete="fname"
-            margin="normal"
-            
+            value={phone_number.textmask}
+            onChange={handleChange('textmask')}
+            id="formatted-text-mask-input"
+            inputComponent={TextMaskCustom}
           />
 
           <div style={{ width: "100%", marginTop: "25px" }}>
