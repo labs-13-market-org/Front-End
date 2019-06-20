@@ -116,6 +116,7 @@ const handleChange = name => event => {
       .catch(err => {
         console.log(err);
       });
+      props.history.push(`/vendorsByMarket/${currentUser.uid}`)
   };
 
 //   const addStall = () => {
