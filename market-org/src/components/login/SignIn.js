@@ -4,6 +4,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { Link, withRouter } from 'react-router-dom'
 import { auth, googleProvider } from '../../firebase';
 import axios from '../../axios-instance';
+import './SignIn.css'
 
 import { AuthContext } from '../authContext/authState';
 
@@ -151,6 +152,10 @@ function SignIn(props) {
 
 
 	return (
+		<div className='sign-in-wrapper'>
+			
+			<div className='sign-in-left'></div>
+			<div className='sign-in-right'>
 		<main className={classes.main}>
 			<Paper className={classes.paper}>
 				<Avatar className={classes.avatar}>
@@ -190,6 +195,8 @@ function SignIn(props) {
 				</form>
 			</Paper>
 		</main>
+		</div>
+		</div>
 	)
 
 }
