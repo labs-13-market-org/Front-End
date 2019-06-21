@@ -20,9 +20,6 @@ import {
   Menu,
   MenuItem,
   Container,
-  CssBaseline,
-  AppBar,
-  Toolbar,
   Grid,
   GridList,
   Paper
@@ -74,8 +71,8 @@ const styles = theme => ({
     fontSize: "40px",
     display: "flex",
     margin: "0 auto",
-    flexWrap: 'wrap',
-    justifyContent: 'space-evenly'
+    flexWrap: "wrap",
+    justifyContent: "space-evenly"
   },
   icon: {
     margin: theme.spacing(1),
@@ -167,8 +164,7 @@ const ProductByVendor = props => {
         </Typography>
 
         <Paper className={classes.paper}>
-
-        {/* <GridList cellHeight={1000} className={classes.gridList} cols={3}> */}
+          {/* <GridList cellHeight={1000} className={classes.gridList} cols={3}> */}
           {products &&
             products.map(eachProduct => {
               return (
@@ -234,7 +230,7 @@ const ProductByVendor = props => {
                 </>
               );
             })}
-        {/* </GridList> */}
+          {/* </GridList> */}
         </Paper>
       </Container>
     </>

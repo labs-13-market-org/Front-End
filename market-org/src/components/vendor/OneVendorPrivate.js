@@ -14,16 +14,12 @@ import {
   MenuItem,
   Container,
   Card,
-  CssBaseline,
-  AppBar,
-  Toolbar,
   Paper,
   Grid,
   ButtonBase,
   Breadcrumbs,
   Avatar
 } from "@material-ui/core";
-// import Card from "@material-ui/core/Card";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutlined";
@@ -250,47 +246,6 @@ const OneVendorPrivate = props => {
             </Grid>
           </Grid>
         </Paper>
-
-        {/* 
-        <Card className={classes.card}>
-          <CardContent> */}
-        {/* <Typography component="p">
-              Company: {aPrivateVendor.company_name}
-            </Typography> */}
-        {/* <Typography component="p">
-              Full Name: {aPrivateVendor.contact_fullname}
-            </Typography>
-            <Typography component="p">
-              Address: {aPrivateVendor.address}
-            </Typography>
-            <Typography component="p">City: {aPrivateVendor.city}</Typography>
-            <Typography component="p">State: {aPrivateVendor.state}</Typography>
-            <Typography component="p">
-              Zip Code: {aPrivateVendor.zip_code}
-            </Typography>
-            <Typography component="p">
-              Phone: {aPrivateVendor.phone_number}
-            </Typography>
-            <Typography component="p">
-              Company website: {aPrivateVendor.company_url}
-            </Typography> */}
-        {/* <Link to={`/productForm`}>
-              <Typography component="p">Add more Products</Typography>
-            </Link> */}
-        {/* <Button
-              onClick={e => deleteVendor(e, firebase_id)}
-              color="inherit"
-              style={{ margin: "10px" }}
-            >
-              Delete My Profile
-            </Button>
-
-            <Link to={`/oneVendorPrivate/${firebase_id}/editForm`}>
-              <Typography component="p">Edit My Profile</Typography>
-            </Link>
-          </CardContent>
-          <CardContent />
-        </Card> */}
       </Container>
 
       <Switch>
