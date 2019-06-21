@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../axios-instance";
 import Stall from "./stall.js";
+import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
+import "./stallsList.css"
 import './Stalls.css';
 
 
@@ -11,7 +17,7 @@ const StallsList = (props) => {
 
     const [stalls, setStalls] = useState([]);
     const [market, setMarket] = useState({})
-    // const [hasAStallChanged, setStallChangeStatus] = useState(false);
+    const [hasAStallChanged, setStallChangeStatus] = useState(false);
 
     // useEffect(() => {
     //     axios.get(`/stalls/market/${props.location.state.firebase_id}`)
@@ -40,21 +46,74 @@ const StallsList = (props) => {
             console.log("stalls",typeof stalls);
            setStalls(stallItems);
             
-        //    setStallChangeStatus(false);
+           setStallChangeStatus(false);
         }).catch(err => {
                 console.log(err.message);
         })
 
 
-    }, []);
+    }, [hasAStallChanged]);
 
     const addToCart = (stalls_id) => {
         const cart_id = localStorage.getItem('firebaseId')
         console.log(cart_id, 'vendor firebase id')
+        if(localStorage.getItem("userTypes") != "vendor") {
+            alert("You must be a vendor to rent a stall")
+        }
+        else {
         axios.post(`cart/add-stall-to-cart/${cart_id}`, {stalls_id})
+        axios.request({
+          method: "PUT",
+          url: `stalls/${stalls_id}`,
+          data: { available: false }
+        })
+        setStallChangeStatus(true);
+        }
     }
 
+    const useStyles = makeStyles(theme => ({
+        root: {
+          padding: theme.spacing(3, 0.5),
+          width: "1250px"
+        },
+        card: {
+            minWidth: 275,
+            margin: "2%",
+            width: "1250px",
+            paddingLeft: "7%",
+            paddingRight: "10%"
+          },
+          bullet: {
+            display: 'inline-block',
+            margin: '0 2px',
+            transform: 'scale(0.8)',
+          },
+          title: {
+            fontSize: 14,
+          },
+          headerTitle: {
+              fontSize: 48,
+          },
+          marketTitle: {
+              fontSize: 36,
+          },
+          stallProps: {
+              fontSize: 20,
+          },
+          pos: {
+            marginBottom: 12,
+          },
+          button: {
+            // margin: theme.spacing(2),
+            width: "100%"
+          },
+          chip: {
+            margin: theme.spacing(1),
+          }
+      }));
  
+    const classes = useStyles();
+
     // const cart_id = localStorage.getItem('firebaseId')
     console.log("Getting stalls ", stalls);
     return(
@@ -86,7 +145,18 @@ const StallsList = (props) => {
                     <p> Length: {stalls[stall].size.length} ft. Width: {stalls[stall].size.width} ft.</p>
                     <h3>Price:</h3>
                     <p>${stalls[stall].price}</p>
-                    <button onClick={() => addToCart(stalls[stall].id)}>Add To Cart</button>
+                    <div>
+                    {stalls[stall].available ? 
+                    <Button variant="contained" color="primary" className={classes.button} onClick={() => addToCart(stalls[stall].id)}>Add To Cart</Button> : 
+                    <Chip
+                    label="Unavailable To Rent"
+                    className={classes.chip}
+                    color="secondary"
+                    variant="default"
+                    />
+                    }
+                    </div>
+                
                 </div>
             ))}
             </div>
