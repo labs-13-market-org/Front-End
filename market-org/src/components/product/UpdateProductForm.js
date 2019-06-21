@@ -21,39 +21,41 @@ import CardMedia from "@material-ui/core/CardMedia";
 import axios from "../../axios-instance";
 
 const styles = theme => ({
-  newgroup: {
-    display: "flex",
-    width: "500px",
-    height: "500px",
-    margin: "0px auto",
-    marginTop: "200px",
-    justifyContent: "center",
-    fontWeight: "bold",
-    color: "#026440",
-    fontSize: "40px",
-    letterSpacing: "4px"
-  },
-  form: {
-    width: "110%",
-    height: "850px",
-    margin: "0 auto",
-    marginTop: "-240px"
-  },
+  // newgroup: {
+  //   display: "flex",
+  //   width: "500px",
+  //   height: "500px",
+  //   margin: "0px auto",
+  //   marginTop: "200px",
+  //   justifyContent: "center",
+  //   fontWeight: "bold",
+  //   color: "#026440",
+  //   fontSize: "40px",
+  //   letterSpacing: "4px"
+  // },
+  // form: {    
+  //   width: "80%",
+  //   height: "850px",
+  //   margin: "0 auto",
+  //   marginTop: "-240px",
+  //   display: "flex",
+  //   flexDirection: 'column'
+  // },
   textField: {
     width: "330px"
   },
   textColor: {
-    borderWidth: "1px",
+    // borderWidth: "1px",
     color: "#026440",
-    borderColor: "#026440 !important"
+    // borderColor: "#026440 !important"
   },
-  notchedOutline: {
-    borderWidth: "1px",
-    borderColor: "#026440 !important",
-    color: "#026440"
-  },
+  // notchedOutline: {
+  //   borderWidth: "1px",
+  //   borderColor: "#026440 !important",
+  //   color: "#026440"
+  // },
   input: {
-    color: "#026440"
+    // color: "#026440"
   },
   card: {
     maxWidth: 800
@@ -140,30 +142,35 @@ const UpdateProductForm = props => {
 
   return (
     <>
-      <Typography component="p">Update your product here:</Typography>
+      {/* <Typography component="p">Update your product here:</Typography>
       <Typography component="p">
         Global product context check: {product.id}
       </Typography>
-      <Typography component="p">params check: {id}</Typography>
+      <Typography component="p">params check: {id}</Typography> */}
 
-      <form>
+      <form style={{ width: "80%",
+    
+    margin: "0 auto",
+    
+    display: "flex",
+    flexDirection: 'column' }}>
         <TextField
           id="outlined-name"
           label="Title"
           type="search"
           name="title"
-          style={{ width: "450px" }}
-          multiline={false}
+          style={{ width: "200px" }}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setTitle(e.target.value)}
           value={title}
           margin="normal"
-          variant="outlined"
+          // variant="outlined"
           InputProps={{
             classes: {
-              notchedOutline: classes.notchedOutline,
+              // notchedOutline: classes.notchedOutline,
               input: classes.input
             }
           }}
@@ -178,18 +185,18 @@ const UpdateProductForm = props => {
           label="Description"
           type="search"
           name="description"
-          style={{ width: "450px" }}
-          multiline={false}
+          style={{ width: "200px" }}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setDescription(e.target.value)}
           value={description}
           margin="normal"
-          variant="outlined"
+          // variant="outlined"
           InputProps={{
             classes: {
-              notchedOutline: classes.notchedOutline,
+              // notchedOutline: classes.notchedOutline,
               input: classes.input
             }
           }}
@@ -204,18 +211,18 @@ const UpdateProductForm = props => {
           label="Price"
           type="search"
           name="price"
-          style={{ width: "450px" }}
-          multiline={false}
+          style={{ width: "200px" }}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setPrice(e.target.value)}
           value={price}
           margin="normal"
-          variant="outlined"
+          // variant="outlined"
           InputProps={{
             classes: {
-              notchedOutline: classes.notchedOutline,
+              // notchedOutline: classes.notchedOutline,
               input: classes.input
             }
           }}
@@ -253,7 +260,7 @@ const UpdateProductForm = props => {
       
       <Button
         type="submit"
-        fullWidth
+        // fullWidth
         variant="contained"
         color="secondary"
         // onClick={e => updateProduct(e, id, editProduct)}

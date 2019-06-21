@@ -41,7 +41,6 @@ const styles = theme => ({
     // justifyContent: 'space-around'
   },
   appBar: {
-    //   marginLeft: drawerWidth,
     backgroundColor: "#38212E",
     zIndex: theme.zIndex.drawer + 1
   },
@@ -66,13 +65,13 @@ const styles = theme => ({
   },
 
   card: {
-    width: 345,
+    width: 345
     // heigt: 500,
-    margin: "10px"
+    // margin: "10px"
   },
   media: {
     height: 345,
-    textAlign: 'center'
+    textAlign: "center"
   },
   gridList: {
     margin: "0 auto"
@@ -122,9 +121,6 @@ const ProductByVendor = props => {
     props.history.push("/markets");
   };
 
-  const toCart = () => {
-    props.history.push("/carts");
-  };
   // console.log("vendor profile in product", vendorProfile);
 
   const backToProductForm = () => {
@@ -219,33 +215,6 @@ const ProductByVendor = props => {
             products.map(eachProduct => {
               return (
                 <div>
-                  {/* <Card className={classes.card} key={eachProduct.id}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={eachProduct.image}
-          title="Vendor product"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-    </Card> */}
-
                   <Card className={classes.card} key={eachProduct.id}>
                     <CardActionArea>
                       <CardContent className={classes.media}>
@@ -253,7 +222,7 @@ const ProductByVendor = props => {
                           src={eachProduct.image}
                           title="Vendor product"
                           // className="productImage"
-                          style={{ maxWidth: "100%", maxHeight: "100%"}}
+                          style={{ maxWidth: "100%", maxHeight: "100%" }}
                         />
                       </CardContent>
                       <CardContent>
@@ -282,12 +251,6 @@ const ProductByVendor = props => {
                         className={classes.icon}
                         onClick={e => deleteProduct(e, eachProduct.id)}
                       />
-                      {/* <Button size="small" color="primary"
-                    onClick={e => deleteProduct(e, eachProduct.id)}                   
-                    style={{  margin: "10px" }}
-                  >
-                    Delete Product
-                  </Button> */}
 
                       <Link
                         to={`/oneVendorPrivate/productsByVendor/${
@@ -295,12 +258,6 @@ const ProductByVendor = props => {
                         }/updateProductForm`}
                       >
                         <EditIcon className={classes.icon} />
-                        {/* <Typography
-                      color="primary"
-                      // style={{ margin: "10px" }}
-                    >
-                      Edit Product
-                    </Typography> */}
                       </Link>
                     </CardActions>
                   </Card>
