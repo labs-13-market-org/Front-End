@@ -234,8 +234,12 @@ function ButtonAppBar(props) {
   }
 
   const register = () => {
-    props.history.push("/create-market");
+    props.history.push("/signup");
   };
+
+  const createMarket = () => {
+    props.history.push("/create-market")
+  }
 
   const login = () => {
     props.history.push('/signin')
@@ -290,7 +294,7 @@ console.log(vendorProfile, 'vendor profile')
                    open={Boolean(anchorEl)}
                    onClose={handleClose}
                 >       
-                  <MenuItem className={classes.menuItem} onClick={register} ><Typography>Register A Market</Typography></MenuItem>
+                  <MenuItem className={classes.menuItem} onClick={createMarket} ><Typography>Register A Market</Typography></MenuItem>
                   <MenuItem className={classes.menuItem} onClick={() => toMyStalls(user_type)}><Typography>View My Stalls</Typography></MenuItem>
                   <MenuItem className={classes.menuItem} onClick={toAllMarkets}><Typography>View All Markets</Typography></MenuItem>
                   <MenuItem className={classes.menuItem} onClick={handleClose}><Typography>More Info</Typography></MenuItem>               
