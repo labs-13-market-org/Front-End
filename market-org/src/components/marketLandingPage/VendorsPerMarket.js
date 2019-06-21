@@ -13,7 +13,7 @@ const VendorsPerMarket = props => {
     axios
       .get(`vendor/market/${firebase_id}/vendor`)
       .then(res => {
-        console.log(res, "Market by firbaseId and its vendors");
+        console.log(res.data, "Market by firbaseId and its vendors");
         setPerMarket(res.data);
         setVendorsPerMarket(res.data.vendors);
       })
@@ -36,7 +36,7 @@ const VendorsPerMarket = props => {
           <p>Contact first name: {perMarket.contact_first_name}</p>
           <p>Contact Last name: {perMarket.contact_last_name}</p>
           <p>Phone number: {perMarket.phone_number}</p>
-
+          { usertype === "market" ? null :
           <Link
             to={{
               pathname: "/stalls/",
@@ -49,6 +49,7 @@ const VendorsPerMarket = props => {
           >
             Rent a stall from us
           </Link>
+          }
 
         </div>
         <div className='vendor-wrapper'>
