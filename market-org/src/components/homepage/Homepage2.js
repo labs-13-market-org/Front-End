@@ -111,7 +111,7 @@ const Homepage2 = props => {
                   <div className='info'>
                   <h3> What is Market Organizer?</h3>
                   <p>Market Organizer is a platform that was built to connect markets
-                  with thier vendors. Markets can be created and, then vendors can rent stalls.</p>
+                  with their vendors. Markets can be created and, then vendors can rent stalls.</p>
                   </div>
             
 
@@ -136,8 +136,8 @@ const Homepage2 = props => {
                   <img src={market2} alt="market-image-1" />
                 </div>
                 <div id="content" class="content-1">
-                  <h3>Info Goes Here</h3>
-                  <p>More interesting things about stuff</p>
+                  <h3>A Bridge Between Customers and Their Products</h3>
+                  <p>No more searching endlessly for the right market to sell your products. Let us take care of it!</p>
                   <a href="">
                     <button>Register Today</button>
                   </a>
@@ -150,28 +150,14 @@ const Homepage2 = props => {
                 
                 <div id="content" class="content-1">
         
-                  <h3>Info Goes Here</h3>
-                  <p>More interesting things about stuff</p>
+                  <h3>Diverse selection of goods & services waiting for your customers</h3>
+                  <p>From farmer's market produce, fresh seafood, poltury, vegetables, boutique handcrafted goods, our markets have it all!</p>
                 </div>
                 <div id="pic">
                   <img src={market4} alt="market-image-2" />
                 </div>
               </div>
 
-            </div>
-            <div className='row-stagger-wrapper-left'>
-            <div class="section-one">
-                <div id="pic">
-                  <img src={market5} alt="market-image-3" />
-                </div>
-                <div id="content" class="content-1">
-                <h3>Info Goes Here</h3>
-                  <p>More interesting things about stuff</p>
-                  <a href="">
-                    <button>Register Today</button>
-                  </a>
-                </div>
-              </div>
             </div>
             <div className='bullet-points-wrapper'>
                 
@@ -194,18 +180,18 @@ const Homepage2 = props => {
                 </div>
                 <div className='bullet'>
                     <img src={flowerIcon} alt=''/>
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                    <h3>Marketing</h3>
+                    <p>We handle all the branding, user acquisition, and customer retention, so you can focus on selling the products you love.</p>
                 </div>
                 <div className='bullet'>
                     <img src={vegetables} alt=''/> 
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                    <h3>A Network of Trusted Vendors</h3>
+                    <p>You're not just connecting with your customers, you're also connected with a network of experienced vendors from all walks of life.</p>
                 </div>
                 <div className='bullet'>
                     <img src={team} alt=''/>
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                    <h3> Facilities Management </h3>
+                    <p>From stall set up, stall organization, operations: we will help ensure your vendor operations will be the most seamless ever. </p>
                 </div>
                 </div>
               
