@@ -10,56 +10,38 @@ import {
   Typography,
   TextField,
   Button,
-  CardContent
+  Paper
 } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardMedia from "@material-ui/core/CardMedia";
 
 import axios from '../../axios-instance';
 
 const styles = theme => ({
-  newgroup: {
-    display: "flex",
-    width: "500px",
-    height: "500px",
-    margin: "0px auto",
-    marginTop: "200px",
-    justifyContent: "center",
-    fontWeight: "bold",
-    color: "#026440",
-    fontSize: "40px",
-    letterSpacing: "4px"
-  },
-  form: {
-    width: "110%",
-    height: "850px",
-    margin: "0 auto",
-    marginTop: "-240px"
-  },
+  // form: {
+  //   width: "110%",
+  //   height: "850px",
+  //   margin: "0 auto",
+  //   marginTop: "-240px"
+  // },
   textField: {
     width: "330px"
   },
   textColor: {
-    borderWidth: "1px",
     color: "#026440",
-    borderColor: "#026440 !important"
-  },
-  notchedOutline: {
-    borderWidth: "1px",
-    borderColor: "#026440 !important",
-    color: "#026440"
   },
   input: {
-    color: "#026440"
+    // color: "#026440"
   },
   card: {
     maxWidth: 800
   },
-  media: {
-    height: 300
-  }
+  paper: {
+    marginTop: theme.spacing.unit * 8,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`
+  },
 });
 
 const UpdateVendorForm = props => {
@@ -116,6 +98,7 @@ const UpdateVendorForm = props => {
 
   return (
     <>
+    <Paper className={classes.paper}>
           <form>
         <TextField
           id="outlined-name"
@@ -123,17 +106,15 @@ const UpdateVendorForm = props => {
           type="search"
           name="companyName"
           style={{ width: "450px" }}
-          multiline={false}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setCompanyName(e.target.value)}
             // value={props.aPrivateVendor.company_name}
-          margin="normal"
-          variant="outlined"
+          margin="normal"          
           InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
+            classes: {              
               input: classes.input
             }
           }}
@@ -149,17 +130,15 @@ const UpdateVendorForm = props => {
           type="search"
           name="fullName"
           style={{ width: "450px" }}
-          multiline={false}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setFullName(e.target.value)}
           //   value={}
-          margin="normal"
-          variant="outlined"
+          margin="normal"          
           InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
+            classes: {              
               input: classes.input
             }
           }}
@@ -175,17 +154,15 @@ const UpdateVendorForm = props => {
           type="search"
           name="address"
           style={{ width: "450px" }}
-          multiline={false}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setAddress(e.target.value)}
           //   value={}
-          margin="normal"
-          variant="outlined"
+          margin="normal"          
           InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
+            classes: {              
               input: classes.input
             }
           }}
@@ -201,17 +178,15 @@ const UpdateVendorForm = props => {
           type="search"
           name="city"
           style={{ width: "450px" }}
-          multiline={false}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setCity(e.target.value)}
           //   value={}
-          margin="normal"
-          variant="outlined"
+          margin="normal"          
           InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
+            classes: {              
               input: classes.input
             }
           }}
@@ -227,17 +202,15 @@ const UpdateVendorForm = props => {
           type="search"
           name="state"
           style={{ width: "450px" }}
-          multiline={false}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setState(e.target.value)}
           //   value={}
-          margin="normal"
-          variant="outlined"
+          margin="normal"          
           InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
+            classes: {              
               input: classes.input
             }
           }}
@@ -253,17 +226,15 @@ const UpdateVendorForm = props => {
           type="search"
           name="zipcode"
           style={{ width: "450px" }}
-          multiline={false}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setZipcode(e.target.value)}
           //   value={}
-          margin="normal"
-          variant="outlined"
+          margin="normal"          
           InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
+            classes: {              
               input: classes.input
             }
           }}
@@ -279,17 +250,15 @@ const UpdateVendorForm = props => {
           type="search"
           name="phone"
           style={{ width: "450px" }}
-          multiline={false}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setPhone(e.target.value)}
           //   value={}
-          margin="normal"
-          variant="outlined"
+          margin="normal"          
           InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
+            classes: {              
               input: classes.input
             }
           }}
@@ -305,17 +274,15 @@ const UpdateVendorForm = props => {
           type="search"
           name="companyUrl"
           style={{ width: "450px" }}
-          multiline={false}
+          multiline={true}
           rows={2}
           rowsMax={2}
           className={classes.textField}
           onChange={e => setCompanyUrl(e.target.value)}
           //   value={}
-          margin="normal"
-          variant="outlined"
+          margin="normal"          
           InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
+            classes: {              
               input: classes.input
             }
           }}
@@ -325,19 +292,18 @@ const UpdateVendorForm = props => {
             }
           }}
         />
-      </form>
 
+      </form>
       <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="secondary"
+        type="submit"    
+        variant="contained"        
         // onClick={e => updateVendor(e, firebase_id, editVendor)}
         onClick={e => updateVendor(e, firebase_id, vendorProfile)}
         className={classes.submit}
       >
         Update Your Profile
       </Button>
+      </Paper>
     </>
   ) 
 };

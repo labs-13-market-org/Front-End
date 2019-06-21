@@ -138,94 +138,94 @@ const UpdateProductForm = props => {
         Global product context check: {product.id}
       </Typography>
       <Typography component="p">params check: {id}</Typography> */}
-<Paper className={classes.paper}>
-      <form
-        style={{
-          width: "80%",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column"
-        }}
-      >
-        <TextField
-          id="outlined-name"
-          label="Title"
-          type="search"
-          name="title"
-          style={{ width: "200px" }}
-          multiline={true}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setTitle(e.target.value)}
-          value={title}
-          margin="normal"
-          // variant="outlined"
-          InputProps={{
-            classes: {
-              // notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
+      <Paper className={classes.paper}>
+        <form
+          style={{
+            width: "80%",
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column"
           }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-          id="outlined-name"
-          label="Description"
-          type="search"
-          name="description"
-          style={{ width: "200px" }}
-          multiline={true}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setDescription(e.target.value)}
-          value={description}
-          margin="normal"
-          // variant="outlined"
-          InputProps={{
-            classes: {
-              // notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-          id="outlined-name"
-          label="Price"
-          type="search"
-          name="price"
-          style={{ width: "200px" }}
-          multiline={true}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setPrice(e.target.value)}
-          value={price}
-          margin="normal"
-          // variant="outlined"
-          InputProps={{
-            classes: {
-              // notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        {/* <TextField
+        >
+          <TextField
+            id="outlined-name"
+            label="Title"
+            type="search"
+            name="title"
+            style={{ width: "200px" }}
+            multiline={true}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setTitle(e.target.value)}
+            value={title}
+            margin="normal"
+            // variant="outlined"
+            InputProps={{
+              classes: {
+                // notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+          <TextField
+            id="outlined-name"
+            label="Description"
+            type="search"
+            name="description"
+            style={{ width: "200px" }}
+            multiline={true}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setDescription(e.target.value)}
+            value={description}
+            margin="normal"
+            // variant="outlined"
+            InputProps={{
+              classes: {
+                // notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+          <TextField
+            id="outlined-name"
+            label="Price"
+            type="search"
+            name="price"
+            style={{ width: "200px" }}
+            multiline={true}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setPrice(e.target.value)}
+            value={price}
+            margin="normal"
+            // variant="outlined"
+            InputProps={{
+              classes: {
+                // notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+          {/* <TextField
           id="upload-button"
           accept="image/*"
           label="Upload Image"
@@ -249,17 +249,17 @@ const UpdateProductForm = props => {
             }
           }}
         /> */}
-              <Button
-        type="submit"
-        variant="contained"
-        // onClick={e => updateProduct(e, id, editProduct)}
-        onClick={e => updateProduct(e, id, setProduct)}
-        className={classes.submit}
-      >
-        Update your product
-      </Button>
-      </form>
-      </Paper>      
+          <Button
+            type="submit"
+            variant="contained"
+            // onClick={e => updateProduct(e, id, editProduct)}
+            onClick={e => updateProduct(e, id, setProduct)}
+            className={classes.submit}
+          >
+            Update your product
+          </Button>
+        </form>
+      </Paper>
     </>
   );
 };
