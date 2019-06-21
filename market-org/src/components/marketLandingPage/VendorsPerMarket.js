@@ -24,11 +24,11 @@ const VendorsPerMarket = props => {
 
   return (
     <>
-      <div className="market-vendor-wrapper">
-        <div className="market-vendor-header">
+      <div className="market-vendorpage-wrapper">
+        <div className='market-vendorpage-left'>  
+          
+          <div className="market-vendorpage-info">
           <h2>{perMarket.market_name}</h2>
-        </div>
-        <div className="market-vendor-info">
           <h3>Contact Info:</h3>
           <p>Address: {perMarket.address}</p>
           <p>City: {perMarket.city}</p>
@@ -52,14 +52,17 @@ const VendorsPerMarket = props => {
           }
 
         </div>
-        <div className='vendor-wrapper'>
+        </div>
+        <div className='market-vendorpage-right'>
+          
+        <div className='market-vendorpage-vendor-wrapped'>
         <h3>Our Vendors</h3>
 
         {vendorsPerMarket &&
           vendorsPerMarket.map(eachVendor => {
             return (
               <>
-                <div className="vendor-card">
+                <div className="market-vendorpage-vendor-card">
                   <div>
                     <p>Company: {eachVendor.company_name}</p>
                     <p>Full Name: {eachVendor.contact_fullname}</p>
@@ -75,6 +78,9 @@ const VendorsPerMarket = props => {
             );
           })}
           </div>
+        
+        </div>
+        
       </div>
     </>
   );
