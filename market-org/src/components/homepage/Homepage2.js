@@ -36,7 +36,7 @@ const Homepage2 = props => {
   const firebase_id = localStorage.getItem('firebaseId')
 
  useEffect(() => {
-    console.log(currentUser)
+
     let params = queryString.parse(props.location.search)
     console.log('params:', params)
       axios.get(`/stripe/token/?code=${params['code']}&state=${params['state']}`)
@@ -58,30 +58,30 @@ const Homepage2 = props => {
 
   console.log("curr", currentUser);
 
-  const stripeDashboardLink = () => {
-    console.log('sci',stripe_acc_id)
-    console.log("fire", firebase_id)
-    console.log(stripe_acc_id)
-    const stripeId = localStorage.getItem("stripeid")
-    if(stripe_acc_id === null) {
-      console.log("hello")
-      axios.get(`/markets/${firebase_id}`).then(res => {
-        console.log(res)
-        const stripe_id = res.data.stripeAccountId
-        console.log("stripeid0",stripe_id)
-        return axios.post('/stripe/stripe-dashboard', {stripe_acc_id: stripe_id}).then(res => {
-          console.log('link:', res.data)
-          window.open(res.data.url)
-        })
-      })
-    }
+  // const stripeDashboardLink = () => {
+  //   console.log('sci',stripe_acc_id)
+  //   console.log("fire", firebase_id)
+   
+  
+  //   if(stripe_acc_id === null) {
+  //     console.log("hello")
+  //     axios.get(`/markets/${firebase_id}`).then(res => {
+  //       console.log(res)
+  //       const stripe_id = res.data.stripeAccountId
+  //       console.log("stripeid0",stripe_id)
+  //       return axios.post('/stripe/stripe-dashboard', {stripe_acc_id: stripe_id}).then(res => {
+  //         console.log('link:', res.data)
+  //         window.open(res.data.url)
+  //       })
+  //     })
+  //   }
     
-    axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
-         .then(res => {
-           console.log('link:', res.data)
-           window.open(res.data.url)
-         })
-  }
+  //   axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
+  //        .then(res => {
+  //          console.log('link:', res.data)
+  //          window.open(res.data.url)
+  //        })
+  // }
 
   const vendorFormPage = () => {
     props.history.push(`/vendor`);

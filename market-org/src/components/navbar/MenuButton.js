@@ -150,6 +150,7 @@ const VendorMenu = (props) => {
               >
                   <MenuItem onClick={props.signup} className={classes.menuItem}> Become A Vendor </MenuItem>
                   <MenuItem onClick={props.toAllVendors} className={classes.menuItem}> View Our Vendors </MenuItem>
+                  <MenuItem onClick={props.toMyStalls} className={classes.menuItem}> View My Vendor Stalls </MenuItem>
                   <MenuItem className={classes.menuItem}> More Info</MenuItem>
               </StyledMenu>
               

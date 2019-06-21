@@ -23,6 +23,9 @@
     flex-wrap: wrap;
     padding:20px;
 }
+.vendor-form-right h2{
+    margin-left: 15px;
+}
 
 .vendor-form-right form{
     width: 100%;
@@ -65,5 +68,14 @@
     color:rgba(180, 45, 90);
     font-family: 'Montserrat';
     
+}
+
+@media (max-width: 1000px){
+    .vendor-form-left{
+        display:none;
+    }
+    .vendor-form-right{
+        width:100%;
+    }
 }
 
