@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import { Route, NavLink, Link, Switch } from "react-router-dom";
 import StallsList from "../stalls/stallsList";
 import MarketLandingPage from "../markets/marketProfile";
+import "./marketLandingPage.css";
 
 
 const firebase_id = null;
