@@ -92,6 +92,7 @@ const handleChange = name => event => {
   };
 
   const editMarket = () => {
+    const { textmask } = phone_number;
     const market = {
       market_name,
       contact_first_name,
@@ -100,9 +101,11 @@ const handleChange = name => event => {
       city,
       state,
       zipcode,
-      phone_number,
+      phone_number: textmask,
       
     };
+    console.log("text", textmask)
+    console.log("edit",market)
     console.log(currentUser.uid);
     axios
       .put(`/markets/${currentUser.uid}`, market)
@@ -113,6 +116,7 @@ const handleChange = name => event => {
       .catch(err => {
         console.log(err);
       });
+      props.history.push(`/vendorsByMarket/${currentUser.uid}`)
   };
 
 //   const addStall = () => {
@@ -258,6 +262,7 @@ const handleChange = name => event => {
           /> */}
            <InputLabel>Phone Number</InputLabel>
             <Input
+            required
             className="input-field"
             id="phone_number"
             name="phone_number"
