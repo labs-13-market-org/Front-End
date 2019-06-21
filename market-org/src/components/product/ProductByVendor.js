@@ -40,17 +40,6 @@ const styles = theme => ({
     // flexWrap: 'wrap',
     // justifyContent: 'space-around'
   },
-  appBar: {
-    backgroundColor: "#38212E",
-    zIndex: theme.zIndex.drawer + 1
-  },
-
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3
-  },
 
   text: {
     color: "#008BC9",
@@ -82,7 +71,11 @@ const styles = theme => ({
     textAlign: "center",
     color: theme.palette.text,
     fontWeight: "bold",
-    fontSize: "40px"
+    fontSize: "40px",
+    display: "flex",
+    margin: "0 auto",
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly'
   },
   icon: {
     margin: theme.spacing(1),
@@ -173,48 +166,13 @@ const ProductByVendor = props => {
           testing global context: {vendorProfile.company_name}
         </Typography>
 
-        <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button
-              onClick={backToHome}
-              color="inherit"
-              style={{ margin: "10px" }}
-            >
-              Home
-            </Button>
-            <Button
-              onClick={backToProductForm}
-              color="inherit"
-              style={{ margin: "10px" }}
-            >
-              Add more products
-            </Button>
-            <Button
-              // onClick={toCart}
-              color="inherit"
-              style={{ margin: "10px" }}
-            >
-              Your cart
-            </Button>
-            <Button
-              onClick={toMarkets}
-              color="inherit"
-              style={{ margin: "10px" }}
-            >
-              Markets
-            </Button>
-            <Button onClick={logout} color="inherit" style={{ margin: "10px" }}>
-              Log Out
-            </Button>
-          </Toolbar>
-        </AppBar>
+        <Paper className={classes.paper}>
 
-        <GridList cellHeight={1000} className={classes.gridList} cols={3}>
+        {/* <GridList cellHeight={1000} className={classes.gridList} cols={3}> */}
           {products &&
             products.map(eachProduct => {
               return (
-                <div>
+                <>
                   <Card className={classes.card} key={eachProduct.id}>
                     <CardActionArea>
                       <CardContent className={classes.media}>
@@ -273,10 +231,11 @@ const ProductByVendor = props => {
                       )}
                     />
                   </Switch>
-                </div>
+                </>
               );
             })}
-        </GridList>
+        {/* </GridList> */}
+        </Paper>
       </Container>
     </>
   );

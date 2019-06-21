@@ -11,7 +11,8 @@ import {
   Typography,
   TextField,
   Button,
-  CardContent
+  FormControl,
+  Paper
 } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -21,19 +22,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import axios from "../../axios-instance";
 
 const styles = theme => ({
-  // newgroup: {
-  //   display: "flex",
-  //   width: "500px",
-  //   height: "500px",
-  //   margin: "0px auto",
-  //   marginTop: "200px",
-  //   justifyContent: "center",
-  //   fontWeight: "bold",
-  //   color: "#026440",
-  //   fontSize: "40px",
-  //   letterSpacing: "4px"
-  // },
-  // form: {    
+  // form: {
   //   width: "80%",
   //   height: "850px",
   //   margin: "0 auto",
@@ -46,14 +35,17 @@ const styles = theme => ({
   },
   textColor: {
     // borderWidth: "1px",
-    color: "#026440",
+    color: "#026440"
     // borderColor: "#026440 !important"
   },
-  // notchedOutline: {
-  //   borderWidth: "1px",
-  //   borderColor: "#026440 !important",
-  //   color: "#026440"
-  // },
+  paper: {
+    marginTop: theme.spacing.unit * 8,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`
+  },
   input: {
     // color: "#026440"
   },
@@ -85,9 +77,9 @@ const UpdateProductForm = props => {
 
   const updateProduct = (e, id, updatedProduct) => {
     e.preventDefault();
-    
+
     const token = localStorage.getItem("token");
-    const firebaseId = localStorage.getItem('firebaseId')
+    const firebaseId = localStorage.getItem("firebaseId");
     // let currentProductName = "product-image-" + Date.now();
     // let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
 
@@ -106,31 +98,30 @@ const UpdateProductForm = props => {
     //         console.log(url);
     //         setImage(url);
 
-            updatedProduct = {
-              // vendors_id: vendorId,
-              title: title,
-              description: description,
-              price: price,
-              // image: url
-            };
+    updatedProduct = {
+      // vendors_id: vendorId,
+      title: title,
+      description: description,
+      price: price
+      // image: url
+    };
 
-            axios
-              .put(`products/${id}`, updatedProduct, {
-                "Content-Type": "application/json",
-                headers: { Authorization: token }
-              })
-              .then(res => {
-                console.log("product res put", res);
-                
-                // setEditedProduct(res.data)
-                setProduct(res.data);
+    axios
+      .put(`products/${id}`, updatedProduct, {
+        "Content-Type": "application/json",
+        headers: { Authorization: token }
+      })
+      .then(res => {
+        console.log("product res put", res);
 
-              })
-              .catch(err => {
-                console.log(err);
-              });
-          // });
-      // }
+        // setEditedProduct(res.data)
+        setProduct(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    // });
+    // }
     // );
     // props.history.push("/productsByVendor");
     props.history.push(`/oneVendorPrivate/${firebaseId}`);
@@ -147,13 +138,15 @@ const UpdateProductForm = props => {
         Global product context check: {product.id}
       </Typography>
       <Typography component="p">params check: {id}</Typography> */}
-
-      <form style={{ width: "80%",
-    
-    margin: "0 auto",
-    
-    display: "flex",
-    flexDirection: 'column' }}>
+<Paper className={classes.paper}>
+      <form
+        style={{
+          width: "80%",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column"
+        }}
+      >
         <TextField
           id="outlined-name"
           label="Title"
@@ -256,19 +249,17 @@ const UpdateProductForm = props => {
             }
           }}
         /> */}
-      </form>
-      
-      <Button
+              <Button
         type="submit"
-        // fullWidth
         variant="contained"
-        color="secondary"
         // onClick={e => updateProduct(e, id, editProduct)}
         onClick={e => updateProduct(e, id, setProduct)}
         className={classes.submit}
       >
         Update your product
       </Button>
+      </form>
+      </Paper>      
     </>
   );
 };
