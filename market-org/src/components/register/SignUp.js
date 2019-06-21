@@ -54,7 +54,10 @@ function Register(props) {
 	const [user, setUser] = useState('')
 
 	const signUpWithGoogle = () => {
-		auth.signInWithPopup(googleProvider)
+		if(userType === null) {
+			alert('Choose your account type')
+		} else {
+			auth.signInWithPopup(googleProvider)
 			.then(({ user }) => {
 				console.log("user:", user);
 				if (user) {
@@ -103,7 +106,9 @@ function Register(props) {
 				console.log(err);
 			})
 			props.history.push('/create-market')
-			console.log('user type:', user)
+			console.log('user type:', userType)
+		}
+		
 	}
 
 
@@ -111,8 +116,11 @@ function Register(props) {
 	// using firebase auth method to register new user via email password
 
 	const signUpWithEmailAndPassword = () => {
-		// let userTypes 
-		auth.createUserWithEmailAndPassword(email, password)
+		// let userTypes
+		if(userType === null) {
+			alert("You must choose your account type")
+		} else {
+			auth.createUserWithEmailAndPassword(email, password)
 			.then(({ user }) => {
 
 				if (user) {
@@ -155,7 +163,9 @@ function Register(props) {
 			.catch(err => {
 				console.log(err);
 			})
-			console.log(user, 'user type')
+		}
+		
+		
 			// let user_types = localStorage.getItem('userType')
 			// console.log(user_types)
 			// setUser(user_types)
@@ -167,7 +177,7 @@ function Register(props) {
 	}
 
 	const { currentUser } = useContext(AuthContext);
-	console.log('user type:', user)
+	console.log('user type:', userType)
 
 	return (
 		<div className='sign-in-wrapper'>

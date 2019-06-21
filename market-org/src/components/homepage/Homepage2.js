@@ -43,7 +43,6 @@ const Homepage2 = props => {
       .then(res => {
         console.log('homepage:', res.data)
         setStripeAccId(res.data.body.stripe_user_id)
-        localStorage.setItem("stripeid", res.data.body.stripe_user_id)
         return axios.put(`/markets/${firebase_id}`, {stripeAccountId: res.data.body.stripe_user_id})
         .then(res => {
           console.log("put", res)
