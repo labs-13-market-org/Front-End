@@ -115,12 +115,16 @@ const MyMarketStalls = () => {
 
     return (
             <div className={classes.root}>
-                <Typography className={classes.title}>My Current Market Stalls (for {marketName}):</Typography>
+                <Typography className={classes.title}><center>My Current Market Stalls (for {marketName}):</center></Typography>
 
-                <div className={classes.headers}>
-                    <Typography className={classes.priceHeader}>Price</Typography>
-                    <Typography className={classes.qtyHeader}>Quantity</Typography>
-                </div>
+                <Grid container spacing={6} className={classes.cartItems}>
+                    <Grid item xs={10}>
+                <Paper className={classes.paper}>
+                    <Typography className={classes.priceHeader}><h3>Stall Dimensions </h3></Typography>
+                    <Typography className={classes.qtyHeader}> <h3>Price </h3></Typography>
+                </Paper>
+                </Grid>
+                </Grid>
             
             {Object.keys(stalls).map((item, i) => (
                 <div key={i}>
@@ -130,11 +134,11 @@ const MyMarketStalls = () => {
                         <Paper className={classes.paper}>
 
                             <Typography variant="h6" component="h5">
-                                Stall Dimensions: Length: {stalls[item].size.length} ft. X  Width: {stalls[item].size.width} ft.
+                               {stalls[item].size.length} ft. by {stalls[item].size.width} ft.
                             </Typography>
                             <Typography variant="h6" component="h5">
                             
-                                Stall Price: ${stalls[item].price} 
+                                ${stalls[item].price} 
                             </Typography>
                         </Paper>
                     </Grid>
