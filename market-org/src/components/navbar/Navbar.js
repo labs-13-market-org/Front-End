@@ -234,7 +234,7 @@ function ButtonAppBar(props) {
   }
 
   const register = () => {
-    props.history.push("/signup");
+    props.history.push("/create-market");
   };
 
   const login = () => {
