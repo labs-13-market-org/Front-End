@@ -231,8 +231,9 @@ const ProductForm = props => {
                 cursor: "pointer"
               }}
             >
-              Choose file {' '} {file ? file.name : ''}
+              Choose file 
             </label>
+            <Typography>{file ? file.name : ""}</Typography>
             <div className="submit-section-vendor">
               <Button
                 className="submit-button-vendor"
