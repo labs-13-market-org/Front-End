@@ -10,28 +10,12 @@ import {
   Typography,
   TextField,
   Button,
-  CardContent
+  Input
 } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardMedia from "@material-ui/core/CardMedia";
 
 import axios from "../../axios-instance";
 
 const styles = theme => ({
-  newgroup: {
-    display: "flex",
-    width: "500px",
-    height: "500px",
-    margin: "0px auto",
-    marginTop: "200px",
-    justifyContent: "center",
-    fontWeight: "bold",
-    color: "#026440",
-    fontSize: "40px",
-    letterSpacing: "4px"
-  },
   form: {
     width: "110%",
     height: "850px",
@@ -45,11 +29,6 @@ const styles = theme => ({
     borderWidth: "1px",
     color: "#026440",
     borderColor: "#026440 !important"
-  },
-  notchedOutline: {
-    borderWidth: "1px",
-    borderColor: "#026440 !important",
-    color: "#026440"
   },
   input: {
     color: "#026440"
@@ -74,6 +53,8 @@ const ProductForm = props => {
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
+
+  const photoInp = React.createRef();
 
   // useEffect(() => {
   //   const firebaseId = localStorage.getItem("firebaseId");
@@ -145,7 +126,11 @@ const ProductForm = props => {
   };
 
   const fileHandler = e => {
-    setFile(e.target.files[0]);
+    e.persist();
+    if (e.target.files[0]) {
+      setFile(() => e.target.files[0]);
+    }
+    // setFile(e.target.files[0]);
   };
 
   return (
@@ -188,77 +173,79 @@ const ProductForm = props => {
         </Link>
       </Card> */}
 
-      <Typography component="p">Product form:</Typography> */}
+      <Typography component="p">Product form:</Typography>
 
-<div className="vendor-form-wrapper">
-        <div className='vendor-form-left'>  
-        
+      <div className="vendor-form-wrapper">
+        <div className="vendor-form-left" />
+        <div className="vendor-form-right">
+          <h2>Add A Product</h2>
+          <form>
+            <h4>Product Name</h4>
+            <TextField
+              className="input-field"
+              id="outlined-name"
+              type="search"
+              name="title"
+              onChange={e => setTitle(e.target.value)}
+              value={title}
+              margin="normal"
+            />
+            <h4>Description</h4>
+            <TextField
+              className="input-field"
+              id="outlined-name"
+              type="search"
+              name="description"
+              onChange={e => setDescription(e.target.value)}
+              value={description}
+              margin="normal"
+            />
+
+            <h4>Price</h4>
+            <TextField
+              className="input-field"
+              id="outlined-name"
+              type="search"
+              name="price"
+              onChange={e => setPrice(e.target.value)}
+              value={price}
+              margin="normal"
+            />
+
+            <h4>Upload Image</h4>
+            <Input
+              className="input-field"
+              id="upload-button"
+              accept="image/*"
+              name="file"
+              type="file"
+              onChange={e => fileHandler(e)}
+              value={image}
+              margin="normal"
+              ref={photoInp}
+              style={{ display: "none" }}
+            />
+            <label
+              htmlFor="upload-button"
+              style={{
+                cursor: "pointer"
+              }}
+            >
+              Choose file {' '} {file ? file.name : ''}
+            </label>
+            <div className="submit-section-vendor">
+              <Button
+                className="submit-button-vendor"
+                type="submit"
+                fullWidth
+                onClick={submitProductProfile}
+              >
+                Submit
+              </Button>
+            </div>
+          </form>
         </div>
-    <div className='vendor-form-right'>
-      <h2>Add A Product</h2>
-      <form>
-      <h4>Product Name</h4>
-        <TextField
-          className="input-field"
-          id="outlined-name"
-          type="search"
-          name="title"
-          onChange={e => setTitle(e.target.value)}
-          value={title}
-          margin="normal"
-        />
-        <h4>Description</h4>
-        <TextField
-          className="input-field"
-          id="outlined-name"
-          type="search"
-          name="description"
-          onChange={e => setDescription(e.target.value)}
-          value={description}
-          margin="normal"
-          
-         
-        />
-        <h4>Price</h4>
-        <TextField
-          className="input-field"
-          id="outlined-name"
-          type="search"
-          name="price"
-          onChange={e => setPrice(e.target.value)}
-          value={price}
-          margin="normal"
-          
-       
-        />
-        <h4>Upload Image</h4>
-        <TextField
-          className="input-field"
-          id="upload-button"
-          accept="image/*"
-          name="image"
-          type="file"
-          onChange={e => fileHandler(e)}
-          value={image}
-          margin="normal"
-          
-          
-        />
-        <div className='submit-section-vendor'>
-        <Button
-        className='submit-button-vendor'
-        type="submit"
-        fullWidth
-        onClick={submitProductProfile}
-        
-      >
-        Submit 
-      </Button>
       </div>
-      </form>
-      </div>
-      </div>
-      
     </>
   );
 };
