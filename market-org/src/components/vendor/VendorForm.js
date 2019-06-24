@@ -187,7 +187,7 @@ const VendorForm = props => {
               className="input-field"
               id="upload-button"
               accept="image/*"
-              name="file"
+              name="image"
               type="file"
               onChange={e => fileHandler(e)}
               value={image}

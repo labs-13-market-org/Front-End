@@ -4,8 +4,9 @@ import axios from "../../axios-instance";
 import "./CreateMarket.css";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import TextMaskCustom from '../phonenumberformat/PhoneNumberFormat';
+import TextMaskCustom from "../phonenumberformat/PhoneNumberFormat";
 import TextField from "@material-ui/core/TextField";
+import { storage } from "../../firebase";
 import {
   Container,
   Input,
@@ -56,8 +57,14 @@ const CreateMarket = props => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipcode, setZipCode] = useState("");
-  const [phone_number, setPhoneNumber] = useState({ textmask: '(  )    -    ' });
+  const [phone_number, setPhoneNumber] = useState({
+    textmask: "(  )    -    "
+  });
+  const [image, setImage] = useState("");
+  const [file, setFile] = useState(null);
   // const [stalls, setStalls] = useState([])
+
+  const photoInp = React.createRef();
 
   const routeToHome = () => {
     props.history.push("/");
@@ -76,7 +83,8 @@ const CreateMarket = props => {
       email: currentUser.email
     };
     console.log("initstripe", populateInputs);
-    axios.post('stripe/authorize', populateInputs)
+    axios
+      .post("stripe/authorize", populateInputs)
       .then(res => {
         console.log("createmarket res data:", res.data);
         window.location.href = res.data;
@@ -89,32 +97,61 @@ const CreateMarket = props => {
 
   const addMarket = () => {
     const { textmask } = phone_number;
-    const market = {
-      market_name,
-      contact_first_name,
-      contact_last_name,
-      address,
-      city,
-      state,
-      zipcode,
-      phone_number: textmask
 
-    };
-    console.log(currentUser.uid);
-    axios
-      .post(`/markets/${currentUser.uid}/add-market`, market)
-      .then(res => {
-        console.log("ADD MARKET", res.data);
-        addStall();
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    let currentMarketImageName = "market-image-" + Date.now();
+    let uploadImage = storage.ref(`images/${currentMarketImageName}`).put(file);
+
+    uploadImage.on(
+      "state_changed",
+      snapshot => {},
+      error => {
+        alert(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(currentMarketImageName)
+          .getDownloadURL()
+          .then(url => {
+            console.log(url);
+            setImage(url);
+
+            const market = {
+              market_name,
+              contact_first_name,
+              contact_last_name,
+              address,
+              city,
+              state,
+              zipcode,
+              phone_number: textmask,
+              image: url
+            };
+            console.log(currentUser.uid);
+            axios
+              .post(`/markets/${currentUser.uid}/add-market`, market)
+              .then(res => {
+                console.log("ADD MARKET", res.data);
+                addStall();
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          });
+      }
+    );
+  };
+
+  const fileHandler = e => {
+    e.persist();
+    if (e.target.files[0]) {
+      setFile(() => e.target.files[0]);
+    }
   };
 
   const handleChange = name => event => {
     setPhoneNumber({
-      [name]: event.target.value,
+      [name]: event.target.value
     });
   };
 
@@ -142,26 +179,24 @@ const CreateMarket = props => {
 
   const handleOpen = () => {
     if (market_name === "") {
-      alert("You must enter a market name")
+      alert("You must enter a market name");
     } else if (contact_first_name === "") {
-      alert("You must enter your name")
+      alert("You must enter your name");
     } else if (contact_last_name === "") {
-      alert("You must enter your last name")
+      alert("You must enter your last name");
     } else if (address === "") {
-      alert("You must enter your address")
+      alert("You must enter your address");
     } else if (city === "") {
-      alert("You must enter your city")
+      alert("You must enter your city");
     } else if (state === "") {
-      alert("You must enter your state")
+      alert("You must enter your state");
     } else if (zipcode === "") {
-      alert("You must enter your zipecode")
+      alert("You must enter your zipecode");
     } else if (phone_number === "") {
-      alert("You must enter your phone number")
-    } 
-    else {
+      alert("You must enter your phone number");
+    } else {
       setOpen(true);
     }
-
   };
 
   const handleClose = () => {
@@ -171,9 +206,8 @@ const CreateMarket = props => {
   return (
     <React.Fragment>
       <div className="market-form-wrapper">
-        <div className='market-form-left'>
-        </div>
-        <div className='market-form-right'>
+        <div className="market-form-left" />
+        <div className="market-form-right">
           <h1>Register A Market</h1>
           <form>
             <TextField
@@ -250,8 +284,6 @@ const CreateMarket = props => {
               fullWidth
               autoComplete="fname"
               margin="normal"
-
-
             />
             <TextField
               required
@@ -261,15 +293,14 @@ const CreateMarket = props => {
               label="Zip Code"
               value={zipcode}
               inputProps={{
-                maxLength: 5,
+                maxLength: 5
               }}
               onChange={e => setZipCode(e.target.value)}
               fullWidth
               autoComplete="fname"
               margin="normal"
-
-            ><Input maxlength="5" />
-
+            >
+              <Input maxlength="5" />
             </TextField>
             <InputLabel>Phone Number</InputLabel>
             <Input
@@ -279,10 +310,33 @@ const CreateMarket = props => {
               name="phone_number"
               label="Phone Number"
               value={phone_number.textmask}
-              onChange={handleChange('textmask')}
+              onChange={handleChange("textmask")}
               id="formatted-text-mask-input"
               inputComponent={TextMaskCustom}
             />
+            
+            <InputLabel style={{marginTop: "10px"}}>Upload your Profile photo</InputLabel>
+            <Input
+              className="input-field"
+              id="upload-button"
+              accept="image/*"
+              name="image"
+              type="file"
+              onChange={e => fileHandler(e)}
+              value={image}
+              margin="normal"
+              ref={photoInp}
+              style={{ display: "none" }}
+            />
+            <label
+              htmlFor="upload-button"
+              style={{
+                cursor: "pointer"
+              }}
+            >
+              Choose file
+            </label>
+            <Typography>{file ? file.name : ""}</Typography>
 
             <div style={{ width: "100%", marginTop: "25px" }}>
               <Typography
@@ -291,7 +345,7 @@ const CreateMarket = props => {
                 style={{ textAlign: "center", fontSize: "16px" }}
               >
                 Available Stalls
-            </Typography>
+              </Typography>
             </div>
             <div
               style={{
@@ -311,8 +365,10 @@ const CreateMarket = props => {
                 InputLabelProps={{
                   shrink: true
                 }}
-                onInput={(e) => {
-                  e.target.value = Math.max(1, parseInt(e.target.value)).toString().slice(0, 2)
+                onInput={e => {
+                  e.target.value = Math.max(1, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 2);
                 }}
                 min={1}
                 margin="normal"
@@ -325,14 +381,16 @@ const CreateMarket = props => {
                 value={width}
                 type="number"
                 className={classes.textField}
-                onInput={(e) => {
-                  e.target.value = Math.max(1, parseInt(e.target.value)).toString().slice(0, 2)
+                onInput={e => {
+                  e.target.value = Math.max(1, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 2);
                 }}
                 min={1}
                 onChange={e => setWidth(e.target.value)}
                 margin="normal"
                 variant="outlined"
-                inputProps={{ "aria-label": "bare", }}
+                inputProps={{ "aria-label": "bare" }}
               />
               <TextField
                 style={{ width: "20%" }}
@@ -342,8 +400,10 @@ const CreateMarket = props => {
                 type="number"
                 className={classes.textField}
                 onChange={e => setLength(e.target.value)}
-                onInput={(e) => {
-                  e.target.value = Math.max(1, parseInt(e.target.value)).toString().slice(0, 2)
+                onInput={e => {
+                  e.target.value = Math.max(1, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 2);
                 }}
                 min={1}
                 margin="normal"
@@ -359,8 +419,10 @@ const CreateMarket = props => {
                 margin="normal"
                 label="price"
                 value={price}
-                onInput={(e) => {
-                  e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0, 3)
+                onInput={e => {
+                  e.target.value = Math.max(0, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 3);
                 }}
                 min={0}
                 onChange={e => setPrice(e.target.value)}
@@ -386,7 +448,7 @@ const CreateMarket = props => {
                 onClick={routeToHome}
               >
                 Back
-            </Button>
+              </Button>
 
               <Button
                 className="button-market-register"
@@ -395,7 +457,7 @@ const CreateMarket = props => {
                 onClick={handleOpen}
               >
                 Submit
-            </Button>
+              </Button>
               <Dialog
                 open={open}
                 onClose={handleClose}
@@ -408,8 +470,9 @@ const CreateMarket = props => {
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description">
                     We use Stripe to make sure you get paid on time and to keep
-                    your personal bank and details secure. Do you wish to proceed?
-                </DialogContentText>
+                    your personal bank and details secure. Do you wish to
+                    proceed?
+                  </DialogContentText>
                 </DialogContent>
                 <DialogActions
                   style={{ display: "flex", justifyContent: "space-between" }}
@@ -420,7 +483,7 @@ const CreateMarket = props => {
                     style={{ backgroundColor: "lightGrey", width: "100px" }}
                   >
                     Back
-                </Button>
+                  </Button>
                   <Button
                     onClick={handleClose}
                     color="primary"
@@ -429,7 +492,7 @@ const CreateMarket = props => {
                     autoFocus
                   >
                     Continue
-                </Button>
+                  </Button>
                 </DialogActions>
               </Dialog>
             </div>
