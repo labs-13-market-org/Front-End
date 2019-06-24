@@ -136,7 +136,7 @@ const OneVendorPrivate = props => {
                 <img
                   className={classes.img}
                   alt="vendor picture"
-                  src={market3}
+                  src={aPrivateVendor.image}
                 />
               </ButtonBase>
             </Grid>

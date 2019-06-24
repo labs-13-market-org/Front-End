@@ -14,7 +14,7 @@ const MarketLandingPage = props => {
   console.log("check marketProfiles:", marketProfiles);
 
   useEffect(() => {
-    console.log("Error");
+    // console.log("Error");
     axios
       .get("/markets/")
       .then(res => {

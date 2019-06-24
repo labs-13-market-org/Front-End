@@ -13,14 +13,13 @@ import {
   TextField,
   Button,
   CardContent,
-  Menu,
+  CardActionArea,
   MenuItem,
   Container,
   CssBaseline,
-  AppBar,
-  Toolbar
+  Card,
+  Paper
 } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
 
 import axios from "../../axios-instance";
 
@@ -81,12 +80,24 @@ const VendorLandingPage = props => {
         </div>
         <div className="list-title" />
         <div className="vendor-card-wrapper" >
+        <Paper className={classes.paper}>
         {allVendors &&
           allVendors.map(eachVendor => {
             return (
               <>
 
                   <div className="vendor-card" key={eachVendor.firebase_id}>
+                  <Card className={classes.card} key={eachVendor.firebase_id}>
+                    <CardActionArea>
+                      <CardContent className={classes.media}>
+                        <img
+                          src={eachVendor.image}
+                          title="Vendor profile image"
+                          // className="productImage"
+                          style={{ maxWidth: "100%", maxHeight: "100%" }}
+                        />
+                      </CardContent>
+                      </CardActionArea>
                     <h4>Company: {eachVendor.company_name}</h4>
                     <h4>Full Name: {eachVendor.contact_fullname}</h4>
                     <div className='vendor-card-link'>
@@ -94,11 +105,13 @@ const VendorLandingPage = props => {
                       More Info
                     </Link>
                     </div>
+                    </Card>
                   </div>
                 
               </>
             );
           })}
+          </Paper>
           </div>
       </div>
       {/* <Switch>
