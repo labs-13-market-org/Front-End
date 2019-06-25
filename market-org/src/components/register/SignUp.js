@@ -6,13 +6,17 @@ import {
   Button,
   FormControl,
   Input,
-  InputLabel
+  InputLabel,
+  Snackbar,
+  SnackbarContent
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import { auth, googleProvider } from "../../firebase";
 import { Link, withRouter, Redirect } from "react-router-dom";
+
+import MySnackbarContentWrapper from "../customizesnackbar/CustomizeSnackbar";
 
 import { AuthContext } from "../authContext/authState";
 import axios from "../../axios-instance";
@@ -53,6 +57,7 @@ const styles = theme => ({
 function Register(props) {
   const { classes } = props;
 
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [market, setMarket] = useState("market");
@@ -61,10 +66,16 @@ function Register(props) {
   const [background, setBackground] = useState("");
   const [marketBg, setMarketBg] = useState("");
   const [user, setUser] = useState("");
+  const [errorMsg, setErrorMsg] = useState(null)
+  const [acctTypeError, setAcctType] = useState(null)
+
+ 
+
 
   const signUpWithGoogle = () => {
     if (userType === null) {
-      alert("Choose your account type");
+      // alert("Choose your account type");
+      setAcctType("Choose your account type")
     } else {
       auth
         .signInWithPopup(googleProvider)
@@ -123,7 +134,7 @@ function Register(props) {
   const signUpWithEmailAndPassword = () => {
     // let userTypes
     if (userType === null) {
-      alert("You must choose your account type");
+      setAcctType("Choose your account type")
     } else {
       auth
         .createUserWithEmailAndPassword(email, password)
@@ -166,7 +177,8 @@ function Register(props) {
           }
         })
         .catch(err => {
-          alert(err);
+          console.log("err", err)
+          setErrorMsg(err.message)
         });
     }
 
@@ -178,6 +190,7 @@ function Register(props) {
     // console.log({user}, 'user type')
   };
 
+
   const { currentUser } = useContext(AuthContext);
   console.log("user type:", userType);
 
@@ -187,6 +200,12 @@ function Register(props) {
       <div className="sign-in-right">
         <main className={classes.main}>
           <Paper className={classes.paper}>
+          {errorMsg ?
+                  <MySnackbarContentWrapper
+                    variant="error"
+                    message={errorMsg}
+                  /> : null
+                }
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
@@ -205,6 +224,7 @@ function Register(props) {
                   autoComplete="off"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
+                  onClick={e => setErrorMsg(null)}
                 />
               </FormControl>
               <FormControl margin="normal" required fullWidth>
@@ -216,11 +236,17 @@ function Register(props) {
                   autoComplete="off"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
+                  onClick={e => setErrorMsg(null)}
                 />
               </FormControl>
               <div style={{ textAlign: "center", marginTop: "20px" }}>
                 <Typography style={{ fontWeight: "bold", color: "#547c94" }}>
-                  Choose your account Type
+                  {acctTypeError ?
+                    <MySnackbarContentWrapper
+                      variant="error"
+                      message={acctTypeError}
+                    /> : "Choose your account type"
+                  }
                 </Typography>
               </div>
               <div

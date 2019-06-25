@@ -4,7 +4,7 @@ import "./VendorLandingPage.css";
 import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
 import { AuthContext } from "../authContext/authState";
-
+import LinearProgress from '@material-ui/core/LinearProgress';
 // import ProductByVendorCard from "../product/ProductByVendorCard";
 
 import {
@@ -57,7 +57,7 @@ const styles = theme => ({
 
 const VendorLandingPage = props => {
   const { classes } = props;
-
+  const [isLoading, setIsLoading] = useState(true)
   const [allVendors, setAllVendors] = useState([]);
 
   useEffect(() => {
@@ -67,6 +67,7 @@ const VendorLandingPage = props => {
         console.log(res, "vendor by Id");
         setAllVendors(res.data);
         // console.log(allVendors);
+        setIsLoading(false)
       })
       .catch(err => {
         console.log(err.message);
@@ -75,6 +76,9 @@ const VendorLandingPage = props => {
 
   return (
     <>
+    {
+      isLoading ?
+      <LinearProgress color="secondary"/> :
       <div className="landing-page-wrapper">
         <div className="vendor-list-page-header">
           <h2>Vendors</h2>
@@ -101,6 +105,7 @@ const VendorLandingPage = props => {
           })}
           </div>
       </div>
+    }
       {/* <Switch>
         <Route
           path="/allVendors/:firebase_id"
