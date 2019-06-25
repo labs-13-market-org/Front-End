@@ -230,25 +230,25 @@ function Register(props) {
                   onClick={e => setErrorMsg(null)}
                 />
              
-              <div style={{ textAlign: "center", marginTop: "20px" }}>
+              <div className='account-type-header'>
                
                   {acctTypeError ?
                     <MySnackbarContentWrapper
                       className='sign-in-error'
                       variant="error"
                       message={acctTypeError}
-                    /> : "Choose your account type"
+                    /> : <h4>Choose your account type:</h4>
                   }
                 
               </div>
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-around",
-                  marginTop: "10px"
+                  justifyContent: "space-between",
+                  marginBottom: "60px"
                 }}
               >
-                <div>
+                <div className='account-type-button-wrapper'>
                   <Button
                     variant="outlined"
                     color="primary"
@@ -258,12 +258,13 @@ function Register(props) {
                       setMarketBg("lightBlue");
                       setBackground("white");
                     }}
-                    style={{ backgroundColor: `${marketBg}` }}
+                    style={{ backgroundColor: `${marketBg}`, width: '100%' }}
                   >
                     Market
                   </Button>
-                </div>
-                <div>
+                  </div>
+                
+                <div className='account-type-button-wrapper'>
                   <Button
                     variant="outlined"
                     color="primary"
@@ -273,7 +274,7 @@ function Register(props) {
                       setBackground("lightBlue");
                       setMarketBg("white");
                     }}
-                    style={{ backgroundColor: `${background}` }}
+                    style={{ backgroundColor: `${background}`, width: '100%' }}
                   >
                     Vendor
                   </Button>
