@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter, Route, Switch } from "react-router-dom";
 
+import { VendorContext } from "../context/vendor";
+
 import UpdateVendorForm from "./UpdateVendorForm";
 import ProductByVendor from "../product/ProductByVendor";
 
@@ -84,7 +86,8 @@ const OneVendorPrivate = props => {
 
   const { firebase_id } = props.match.params;
 
-  const [aPrivateVendor, setAPrivateVendor] = useState([]);
+  // const [aPrivateVendor, setAPrivateVendor] = useState([]);
+  const [aPrivateVendor, setAPrivateVendor] = useContext(VendorContext);
   const [delVendor, setDelVendor] = useState("");
 
   useEffect(() => {

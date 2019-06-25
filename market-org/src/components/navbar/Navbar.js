@@ -255,7 +255,7 @@ function ButtonAppBar(props) {
   const classes = useStyles();
   const user_type = localStorage.getItem('userTypes')
   const isOpen = Boolean(anchorEl);
-console.log(vendorProfile, 'vendor profile')
+// console.log(vendorProfile, 'vendor profile')
   return (
     
     <div className={classes.root}>

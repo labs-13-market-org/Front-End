@@ -70,7 +70,32 @@ const CreateMarket = props => {
     props.history.push("/");
   };
 
+  const fileHandler = (e) => {
+    e.persist();
+    if (e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
   const initStripeConnection = () => {
+    // let currentMarketImageName = "market-image-" + Date.now();
+    // let uploadImage = storage.ref(`images/${currentMarketImageName}`).put(file);
+
+    // uploadImage.on(
+    //   "state_changed",
+    //   snapshot => {},
+    //   error => {
+    //     alert(error);
+    //   },
+    //   () => {
+    //     storage
+    //       .ref("images")
+    //       .child(currentMarketImageName)
+    //       .getDownloadURL()
+    //       .then(url => {
+    //         console.log(url);
+    //         setImage(url);
+
     const populateInputs = {
       market_name,
       contact_first_name,
@@ -80,23 +105,32 @@ const CreateMarket = props => {
       state,
       zipcode,
       phone_number,
-      email: currentUser.email
+      email: currentUser.email,
+      image: file.name
     };
     console.log("initstripe", populateInputs);
     axios
       .post("stripe/authorize", populateInputs)
       .then(res => {
-        console.log("createmarket res data:", res.data);
-        window.location.href = res.data;
+        // console.log("createmarket res data:", res.data);
+        window.location.href = res.data;       
         addMarket();
+        console.log("res data after add market:", res.data);
       })
       .catch(err => {
         console.log(err);
       });
-  };
+  }
+
+  //           )
+  //     }
+  //   );
+  // };
 
   const addMarket = () => {
     const { textmask } = phone_number;
+
+    const token = localStorage.getItem("token");
 
     let currentMarketImageName = "market-image-" + Date.now();
     let uploadImage = storage.ref(`images/${currentMarketImageName}`).put(file);
@@ -137,16 +171,10 @@ const CreateMarket = props => {
               .catch(err => {
                 console.log(err);
               });
-          });
+          }
+          )
       }
     );
-  };
-
-  const fileHandler = e => {
-    e.persist();
-    if (e.target.files[0]) {
-      setFile(() => e.target.files[0]);
-    }
   };
 
   const handleChange = name => event => {
@@ -322,7 +350,7 @@ const CreateMarket = props => {
               accept="image/*"
               name="image"
               type="file"
-              onChange={e => fileHandler(e)}
+              onChange={e => setFile(e.target.files[0])}
               value={image}
               margin="normal"
               ref={photoInp}
