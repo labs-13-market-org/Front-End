@@ -61,7 +61,7 @@ const CreateMarket = props => {
     textmask: "(  )    -    "
   });
   const [image, setImage] = useState("");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState("");
   // const [stalls, setStalls] = useState([])
 
   const photoInp = React.createRef();
@@ -69,6 +69,12 @@ const CreateMarket = props => {
   const routeToHome = () => {
     props.history.push("/");
   }
+
+  const fileHandler = (e) => {
+    e.persist();
+    console.log("filehandler", e.target.files[0])
+    setFile(e.target.files[0]);
+  };
 
   const initStripeConnection = () => {
     // let currentMarketImageName = "market-image-" + Date.now();
@@ -99,16 +105,15 @@ const CreateMarket = props => {
       zipcode,
       phone_number,
       email: currentUser.email,
-      // image: image
     };
     console.log("initstripe", populateInputs);
     axios
       .post("stripe/authorize", populateInputs)
       .then(res => {
-        console.log("createmarket res data:", res.data);
+        // console.log("createmarket res data:", res.data);
         // window.location.href = res.data;       
         addMarket();
-        // console.log("res data after add market:", res.data);
+        console.log("res data after add market:", res.data);
       })
       .catch(err => {
         console.log(err);
@@ -125,7 +130,7 @@ const CreateMarket = props => {
     console.log('addMarket invoked')
 
     const token = localStorage.getItem("token");
-
+    console.log("file", file)
     let currentMarketImageName = "market-image-" + Date.now();
     let uploadImage = storage.ref(`images/${currentMarketImageName}`).put(file);
 
@@ -142,7 +147,7 @@ const CreateMarket = props => {
           .getDownloadURL()
           .then(url => {
             console.log(url);
-            setImage(url);
+            // setImage(url);
 
             const market = {
               market_name,
@@ -155,9 +160,10 @@ const CreateMarket = props => {
               phone_number: textmask,
               image: url
             };
-            console.log(currentUser.uid);
+            console.log(image);
+            console.log("market", market)
             axios
-              .post(`/markets/${currentUser.uid}/add-market`, market)
+              .post(`/markets/${currentUser.uid}/add-market`, {...market})
               .then(res => {
                 console.log("ADD MARKET", res.data);
                 addStall();
@@ -344,7 +350,7 @@ const CreateMarket = props => {
             />
             
             <InputLabel style={{marginTop: "10px"}}>Upload your Profile photo</InputLabel>
-            <Input
+            <TextField
               className="input-field"
               id="upload-button"
               accept="image/*"
@@ -353,8 +359,8 @@ const CreateMarket = props => {
               onChange={e => fileHandler(e)}
               value={image}
               margin="normal"
-              ref={photoInp}
-              style={{ display: "none" }}
+              
+              
             />
             <label
               htmlFor="upload-button"

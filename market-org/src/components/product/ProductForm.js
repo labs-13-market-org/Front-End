@@ -92,7 +92,7 @@ const ProductForm = props => {
           .then(url => {
             console.log(url);
             setImage(url);
-
+            console.log(image)
             const productObj = {
               vendors_id: vendorId,
               title: title,
@@ -100,7 +100,8 @@ const ProductForm = props => {
               price: price,
               image: url
             };
-
+            console.log("url", url)
+            console.log("image", image)
             axios
               .post(
                 `products/vendor/${vendorId}`,
@@ -126,11 +127,16 @@ const ProductForm = props => {
   };
 
   const fileHandler = e => {
+<<<<<<< HEAD
     e.persist();
     if (e.target.files[0]) {
       setFile(() => e.target.files[0]);
     }
     // setFile(e.target.files[0]);
+=======
+    console.log("filehandler", e.target.files[0])
+    setFile(e.target.files[0]);
+>>>>>>> b857cf44127380752dc255d26ec97f28e9cc7e1d
   };
 
   return (
