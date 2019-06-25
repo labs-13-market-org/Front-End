@@ -4,6 +4,8 @@ import StallsList from "../stalls/stallsList";
 import MarketLandingPage from "../markets/marketProfile";
 import "./marketLandingPage.css";
 
+import fruitstand from "../../images/fruit-stand.jpg";
+
 const firebase_id = null;
 
 const MarketProfileCard = props => {
@@ -11,7 +13,21 @@ const MarketProfileCard = props => {
     <div className="market-card-wrapper">
       <div className="market-info">
         <h2>{" " + props.profile.market_name}</h2>
-        <img alt="Market profile picture" src={props.profile.image} style={{ maxWidth: 200, maxHeight: 200}}/>
+
+        {props.profile.image ? <img
+          alt="Market profile picture"
+          src={props.profile.image}
+          style={{ maxWidth: 250, maxHeight: 250 }}
+        /> : <img
+            alt="Market profile picture"
+            src={fruitstand}
+            style={{ width: 250, height: 300 }}
+          /> }
+        {/* <img
+          alt="Market profile picture"
+          src={props.profile.image}
+          style={{ maxWidth: 200, maxHeight: 200 }}
+        /> */}
         <h4>
           Address:
           {" " + props.profile.address}
