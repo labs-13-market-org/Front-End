@@ -7,7 +7,7 @@ import axios from '../../axios-instance';
 import './SignIn.css'
 
 import { AuthContext } from '../authContext/authState';
-
+import MySnackbarContentWrapper from "../customizesnackbar/CustomizeSnackbar";
 
 const styles = theme => ({
 	main: {
@@ -46,6 +46,7 @@ function SignIn(props) {
 	const { currentUser } = useContext(AuthContext);
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [errorMsg, setErrMsg] = useState(null);
 
 	const signInWithGoogle = () => {
         auth.signInWithPopup(googleProvider)
@@ -155,7 +156,7 @@ function SignIn(props) {
 			}
 		})
 		.catch(err => {
-			console.log(err);
+			setErrMsg(err.message)
 		})
 		
 	 }
@@ -170,8 +171,6 @@ function SignIn(props) {
 		}
 	 }
 	 
-	 
-
 
 	return (
 		<div className='sign-in-wrapper'>
@@ -180,6 +179,12 @@ function SignIn(props) {
 			<div className='sign-in-right'>
 		<main className={classes.main}>
 			<Paper className={classes.paper}>
+			{errorMsg ?
+                  <MySnackbarContentWrapper
+                    variant="error"
+                    message={errorMsg}
+                  /> : null
+                }
 				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />
 				</Avatar>
@@ -189,11 +194,11 @@ function SignIn(props) {
 				<form className={classes.form} onSubmit={e => e.preventDefault() && false}>
 					<FormControl margin="normal" required fullWidth>
 						<InputLabel htmlFor="email">Email Address</InputLabel>
-						<Input id="email" name="email" autoComplete="off" autoFocus value={email} onChange={e => setEmail(e.target.value)} />
+						<Input id="email" name="email" autoComplete="off" autoFocus value={email} onChange={e => setEmail(e.target.value)} onClick={e => setErrMsg(null)}/>
 					</FormControl>
 					<FormControl margin="normal" required fullWidth>
 						<InputLabel htmlFor="password">Password</InputLabel>
-						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} />
+						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} onClick={e => setErrMsg(null)}/>
 					</FormControl>
 					<Button
 						type="submit"
