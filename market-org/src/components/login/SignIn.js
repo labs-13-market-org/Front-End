@@ -189,7 +189,7 @@ function SignIn(props) {
           <h2>Sign in</h2>
 
           {errorMsg ? (
-            <MySnackbarContentWrapper variant="error" message={errorMsg} />
+            <MySnackbarContentWrapper  className='sign-in-error'variant="error" message={errorMsg} />
           ) : null}
 
           <InputLabel htmlFor="email">Email Address</InputLabel>
