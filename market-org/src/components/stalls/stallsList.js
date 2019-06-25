@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "../../axios-instance";
 import Stall from "./stall.js";
 import Paper from '@material-ui/core/Paper';
@@ -8,10 +8,7 @@ import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import "./stallsList.css"
 import './Stalls.css';
-
-
-
-
+import { VendorContext, VendorProvider } from "../context/vendor";
 
 const StallsList = (props) => {
 
@@ -19,6 +16,9 @@ const StallsList = (props) => {
     const [market, setMarket] = useState({})
     const [hasAStallChanged, setStallChangeStatus] = useState(false);
 
+    const [vendorProfile, setVendorProfile] = useContext(VendorContext);
+
+    console.log("Vendor Profile:", vendorProfile)
     // useEffect(() => {
     //     axios.get(`/stalls/market/${props.location.state.firebase_id}`)
     //     .then(res => {
@@ -45,31 +45,57 @@ const StallsList = (props) => {
             // stalls = stalls.map(stall => JSON.parse(stall));
             console.log("stalls",typeof stalls);
            setStalls(stallItems);
-            
            setStallChangeStatus(false);
         }).catch(err => {
                 console.log(err.message);
         })
 
 
+
+
     }, [hasAStallChanged]);
 
-    const addToCart = (stalls_id) => {
+    const addToCart = (stalls_id, market_id) => {
         const cart_id = localStorage.getItem('firebaseId')
         console.log(cart_id, 'vendor firebase id')
+        console.log(market_id, "our market id");
         if(localStorage.getItem("userTypes") != "vendor") {
             alert("You must be a vendor to rent a stall")
         }
-        else {
-        axios.post(`cart/add-stall-to-cart/${cart_id}`, {stalls_id})
-        axios.request({
-          method: "PUT",
-          url: `stalls/${stalls_id}`,
-          data: { available: false }
-        })
-        setStallChangeStatus(true);
-        }
-    }
+
+            // axios.put(`/cart/${firebase_id}`, {current_market_id: market_id});
+            axios.request({
+              method: "POST",
+              url: `cart/add-stall-to-cart/${cart_id}`, 
+              data: {stalls_id: stalls_id, market_id: market_id}
+            }).then(res => {
+              console.log("res:", res);
+            
+
+                      axios.request({
+                        method: "PUT",
+                        url: `stalls/${stalls_id}`,
+                        data: { available: false }
+                      })
+                      .then(res => {
+                        console.log("res:", res);
+                        setStallChangeStatus(true)
+                      })
+                      .catch(err => {
+
+                        console.log(err.message);
+                        
+                      })
+              
+
+              }).catch(err => {
+                console.log(err.message);
+                alert("You already have stalls in your cart from an existing market. Please remove that stall from your cart, if you wish to rent from us");
+            }
+
+            )
+
+      }
 
     const useStyles = makeStyles(theme => ({
         root: {
@@ -117,6 +143,7 @@ const StallsList = (props) => {
     // const cart_id = localStorage.getItem('firebaseId')
     console.log("Getting stalls ", stalls);
     return(
+        <VendorContext.Provider value={vendorProfile}>
         <div className='market-by-id-wrapper'>
            
             
@@ -147,7 +174,7 @@ const StallsList = (props) => {
                     <p>${stalls[stall].price}</p>
                     <div>
                     {stalls[stall].available ? 
-                    <Button variant="contained" color="primary" className={classes.button} onClick={() => addToCart(stalls[stall].id)}>Add To Cart</Button> : 
+                    <Button variant="contained" color="primary" className={classes.button} onClick={() => addToCart(stalls[stall].id, stalls[stall].market_id)}>Add To Cart</Button> : 
                     <Chip
                     label="Unavailable To Rent"
                     className={classes.chip}
@@ -161,6 +188,7 @@ const StallsList = (props) => {
             ))}
             </div>
             </div>
+            </VendorContext.Provider>
            
             /* <h2> List of available stalls for {props.location.state.market_name}</h2>
             {stalls.map(stall_item => {
