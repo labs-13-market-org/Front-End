@@ -12,7 +12,7 @@ const MarketProfileCard = props => {
       <div className='market-card-wrapper'>
         <div className ='market-info'>
           <h2>{' ' + props.profile.market_name}</h2>
-          <h2>Insert Market Image Here</h2>
+          <h2>Insert Market Image Here </h2>
           <h4>Address: 
           {' ' + props.profile.address}
           </h4>

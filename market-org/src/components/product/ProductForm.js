@@ -111,7 +111,7 @@ const ProductForm = props => {
           .then(url => {
             console.log(url);
             setImage(url);
-
+            console.log(image)
             const productObj = {
               vendors_id: vendorId,
               title: title,
@@ -119,7 +119,8 @@ const ProductForm = props => {
               price: price,
               image: url
             };
-
+            console.log("url", url)
+            console.log("image", image)
             axios
               .post(
                 `products/vendor/${vendorId}`,
@@ -145,6 +146,7 @@ const ProductForm = props => {
   };
 
   const fileHandler = e => {
+    console.log("filehandler", e.target.files[0])
     setFile(e.target.files[0]);
   };
 

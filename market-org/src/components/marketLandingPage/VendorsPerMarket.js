@@ -28,6 +28,7 @@ const VendorsPerMarket = props => {
         <div className='market-vendorpage-left'>  
           
           <div className="market-vendorpage-info">
+          <img alt="Market profile picture" src={perMarket.image} />
           <h2>{perMarket.market_name}</h2>
           <h3>Contact Info:</h3>
           <p>Address: {perMarket.address}</p>
