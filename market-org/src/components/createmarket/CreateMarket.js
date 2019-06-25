@@ -72,8 +72,10 @@ const CreateMarket = props => {
 
   const fileHandler = (e) => {
     e.persist();
-    console.log("filehandler", e.target.files[0])
-    setFile(e.target.files[0]);
+    // console.log("filehandler", e.target.files[0])
+    if (e.target.files[0]) {
+      setFile(() => e.target.files[0]);
+    }
   };
 
   const initStripeConnection = () => {
@@ -111,7 +113,7 @@ const CreateMarket = props => {
       .post("stripe/authorize", populateInputs)
       .then(res => {
         // console.log("createmarket res data:", res.data);
-        // window.location.href = res.data;       
+        window.location.href = res.data;       
         addMarket();
         console.log("res data after add market:", res.data);
       })
@@ -182,12 +184,12 @@ const CreateMarket = props => {
       [name]: event.target.value
     });
   };
-  const fileHandler = (e) => {
-    e.persist();
-    if (e.target.files[0]) {
-      setFile(() => e.target.files[0]);
-    }
-  };
+  // const fileHandler = (e) => {
+  //   e.persist();
+  //   if (e.target.files[0]) {
+  //     setFile(() => e.target.files[0]);
+  //   }
+  // };
 
   const addStall = () => {
     const stall = {
@@ -350,7 +352,7 @@ const CreateMarket = props => {
             />
             
             <InputLabel style={{marginTop: "10px"}}>Upload your Profile photo</InputLabel>
-            <TextField
+            <Input
               className="input-field"
               id="upload-button"
               accept="image/*"
@@ -358,9 +360,8 @@ const CreateMarket = props => {
               type="file"
               onChange={e => fileHandler(e)}
               value={image}
-              margin="normal"
-              
-              
+              margin="normal" 
+              style={{ display: "none" }}             
             />
             <label
               htmlFor="upload-button"
