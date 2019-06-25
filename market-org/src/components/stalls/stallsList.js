@@ -40,7 +40,7 @@ const StallsList = (props) => {
         .then(res => {
             console.log("Stalls : ", res.data)
             let stallItems = res.data.stallData;
-            const market = res.data.marketData
+            const market = res.data.marketData;
             setMarket(market)
             // stalls = stalls.map(stall => JSON.parse(stall));
             console.log("stalls",typeof stalls);
@@ -72,20 +72,20 @@ const StallsList = (props) => {
               console.log("res:", res);
             
 
-                      axios.request({
-                        method: "PUT",
-                        url: `stalls/${stalls_id}`,
-                        data: { available: false }
-                      })
-                      .then(res => {
-                        console.log("res:", res);
-                        setStallChangeStatus(true)
-                      })
-                      .catch(err => {
+                      // axios.request({
+                      //   method: "PUT",
+                      //   url: `stalls/${stalls_id}`,
+                      //   data: { available: false }
+                      // })
+                      // .then(res => {
+                      //   console.log("res:", res);
+                      //   setStallChangeStatus(true)
+                      // })
+                      // .catch(err => {
 
-                        console.log(err.message);
+                      //   console.log(err.message);
                         
-                      })
+                      // })
               
 
               }).catch(err => {
@@ -143,7 +143,6 @@ const StallsList = (props) => {
     // const cart_id = localStorage.getItem('firebaseId')
     console.log("Getting stalls ", stalls);
     return(
-        <VendorContext.Provider value={vendorProfile}>
         <div className='market-by-id-wrapper'>
            
             
@@ -166,31 +165,22 @@ const StallsList = (props) => {
             {Object.keys(stalls).map((stall, index) => (
                 
                 
-                <div className='stall'key ={index}>
+                <div className={stalls[stall].available  == true ? "stall" : "closed"} key ={index}>
                     {console.log(stalls[stall].id, 'stall id')}
-                    <h3>Size:</h3>
-                    <p> Length: {stalls[stall].size.length} ft. Width: {stalls[stall].size.width} ft.</p>
-                    <h3>Price:</h3>
-                    <p>${stalls[stall].price}</p>
-                    <div>
-                    {stalls[stall].available ? 
-                    <Button variant="contained" color="primary" className={classes.button} onClick={() => addToCart(stalls[stall].id, stalls[stall].market_id)}>Add To Cart</Button> : 
-                    <Chip
-                    label="Unavailable To Rent"
-                    className={classes.chip}
-                    color="secondary"
-                    variant="default"
-                    />
-                    }
-                    </div>
-                
+
+                        <h3>Size:</h3>
+                        <p> Length: {stalls[stall].size.length} ft. Width: {stalls[stall].size.width} ft.</p>
+                        <h3>Price:</h3>
+                        <p>${stalls[stall].price}</p>
+                        
+                    
+                      <Button variant="contained" color="primary" className={classes.button} onClick={() => addToCart(stalls[stall].id, stalls[stall].market_id)}>Add To Cart</Button> 
+
                 </div>
             ))}
             </div>
-            </div>
-            </VendorContext.Provider>
-           
-            /* <h2> List of available stalls for {props.location.state.market_name}</h2>
+
+            {/* /* <h2> List of available stalls for {props.location.state.market_name}</h2>
             {stalls.map(stall_item => {
                 console.log(stall_item, 'stall item')
                 return (
@@ -199,7 +189,8 @@ const StallsList = (props) => {
                     </div>
                 )
                 // return (<Stall stall={stall_item} setStallChangedStatus={setStallChangeStatus}/>)
-            })} */
+            })} */ }
+      </div>
         
     )
 }
