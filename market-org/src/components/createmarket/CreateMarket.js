@@ -68,14 +68,7 @@ const CreateMarket = props => {
 
   const routeToHome = () => {
     props.history.push("/");
-  };
-
-  const fileHandler = (e) => {
-    e.persist();
-    if (e.target.files[0]) {
-      setFile(e.target.files[0]);
-    }
-  };
+  }
 
   const initStripeConnection = () => {
     // let currentMarketImageName = "market-image-" + Date.now();
@@ -106,16 +99,16 @@ const CreateMarket = props => {
       zipcode,
       phone_number,
       email: currentUser.email,
-      image: file.name
+      // image: image
     };
     console.log("initstripe", populateInputs);
     axios
       .post("stripe/authorize", populateInputs)
       .then(res => {
-        // console.log("createmarket res data:", res.data);
-        window.location.href = res.data;       
+        console.log("createmarket res data:", res.data);
+        // window.location.href = res.data;       
         addMarket();
-        console.log("res data after add market:", res.data);
+        // console.log("res data after add market:", res.data);
       })
       .catch(err => {
         console.log(err);
@@ -129,6 +122,7 @@ const CreateMarket = props => {
 
   const addMarket = () => {
     const { textmask } = phone_number;
+    console.log('addMarket invoked')
 
     const token = localStorage.getItem("token");
 
@@ -181,6 +175,12 @@ const CreateMarket = props => {
     setPhoneNumber({
       [name]: event.target.value
     });
+  };
+  const fileHandler = (e) => {
+    e.persist();
+    if (e.target.files[0]) {
+      setFile(() => e.target.files[0]);
+    }
   };
 
   const addStall = () => {
@@ -350,7 +350,7 @@ const CreateMarket = props => {
               accept="image/*"
               name="image"
               type="file"
-              onChange={e => setFile(e.target.files[0])}
+              onChange={e => fileHandler(e)}
               value={image}
               margin="normal"
               ref={photoInp}
