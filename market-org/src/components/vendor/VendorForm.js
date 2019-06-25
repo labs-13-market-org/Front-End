@@ -141,9 +141,7 @@ const VendorForm = props => {
             type="search"
             name="phone"
             onChange={e => setPhone(e.target.value)}
-            margin="normal"
-            
-            
+            margin="normal" 
           />
           <TextField
             className="input-field"
