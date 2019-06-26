@@ -17,105 +17,16 @@ import ProfileMenu from './ProfileMenu';
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import SignUp from '../register/SignUp';
+import './navbar.css'
 
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     flexGrow: 1, 
-//   },
- 
-//   title: {
-//     flexGrow: 1,
-//   },
-
-//   appBar: { 
-//     backgroundColor: '#38212E',
-//   },
-
-//   link: {
-//     color: 'white',
-//     fontSize: '1.2rem',
-//     margin: "10px",
-//     cursor: 'pointer',
-//     '&:hover': {
-//       borderBottom: '1px solid #30cc32'
-//     }
-    
-//   },
-
-//   icons: {
-//     color: 'white',
-//     fontSize: '1.2rem',
-//     // margin: "10px",
-//     cursor: 'pointer',
-//   },
-
-//   dropDown: {
-//     // border: '1px solid red',
-//     height: '165px',
-//     display: 'flex',
-//     flexDirection: 'column',
-//     paddingLeft: '1rem',
-//     justifyContent: 'space-around',
-//   },
-
-
-//   closed: {
-//     display: 'none'
-//   },
-//   vendor: {
-//     border: '3px solid green'
-//   }, 
-//   menuItem: {
-//     color: 'white',
-//     textDecoration: 'none'
-//   },
-
-//   menuNav: {
-//     marginTop: '2rem',
-   
-//     // background: '#b42d5ae8',
-//     // color: 'white'
-//     // border: '1px solid red',
-//   },
-
- 
-// }));
-
-
-
-// const StyledMenu = withStyles({
-//   paper: {
-
-//     marginTop: '3rem',
-//     backgroundColor: '#b42d5ae8',
-//     height: '170px',
-//     width: '10%'
-//   },
-
-//   close: {
-//     display: 'none'
-//   }
-// })(props => (
-//   <Menu
-//     elevation={0}
-//     // getContentAnchorEl={null}
-//     anchorOrigin={{
-//       vertical: 'bottom',
-//       horizontal: 'center',
-//     }}
-//     transformOrigin={{
-//       vertical: 'top',
-//       horizontal: 'center',
-//     }}
-//     {...props}
-    
-//   />
-// ));
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1, 
+    ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
+      border: '5px solid red'
+    }
   },
  
   title: {
@@ -258,7 +169,7 @@ function ButtonAppBar(props) {
 // console.log(vendorProfile, 'vendor profile')
   return (
     
-    <div className={classes.root}>
+    <div className= {classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title} />
@@ -274,6 +185,7 @@ function ButtonAppBar(props) {
                     aria-haspopup='true'
                     onClick={handleClick}
                     color="inherit"
+                    to='/markets'
                   >
                    Markets
                  
