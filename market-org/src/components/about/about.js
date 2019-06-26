@@ -19,14 +19,15 @@ const useStyles = makeStyles(theme => ({
     },
 
     card: {
-        width: "25%",
+        width: "36%",
         minHeight: 250,
         margin: "2%",
         padding: "2%"
     },
 
     bioText: {
-        fontSize: "36px"
+        fontSize: "32px",
+        width: "100%"
     },
 
     imgStyling: {
@@ -60,6 +61,8 @@ const SocialMedia = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 2%;
+    margin-bottom: 2%;
 `
 export const About = () => {
 
@@ -83,11 +86,11 @@ return (
 
             <img src="https://avatars2.githubusercontent.com/u/5484192?s=460&v=4" className={classes.imgStyling}></img>
 
-            <BioText>
+        {/* <BioText>
 
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-            </BioText>
+        </BioText> */}
             
             <SocialMedia>
             <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
@@ -98,11 +101,11 @@ return (
 
             <img src="https://avatars2.githubusercontent.com/u/7892799?s=460&v=4" align="middle" className={classes.imgStyling}></img>
             
-            <BioText>
+            {/* <BioText>
 
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-            </BioText>
+            </BioText> */}
             
             <SocialMedia>
             <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
@@ -113,11 +116,11 @@ return (
             
             <img src="https://avatars2.githubusercontent.com/u/38023390?s=460&v=4" className={classes.imgStyling}></img>
 
-            <BioText>
+            {/* <BioText>
 
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-            </BioText>
+            </BioText> */}
             
             <SocialMedia>
             <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
@@ -132,11 +135,11 @@ return (
             
             <img src={patrick} className={classes.imgStyling}></img>
             
-            <BioText>
+            {/* <BioText>
 
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-            </BioText>
+            </BioText> */}
 
             <SocialMedia>
             <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
@@ -147,11 +150,11 @@ return (
             
             <img src={toua} className={classes.imgStyling}></img>
 
-            <BioText>
+            {/* <BioText>
 
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-            </BioText>
+            </BioText> */}
             
             <SocialMedia>
             <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
@@ -159,15 +162,15 @@ return (
             </SocialMedia>
             </Card>
 
-            <Card className={classes.card}><center><h2 className={classes.bioText}>(PM) Lloyd Edwards</h2> </center>
+            <Card className={classes.card}><center><h2 className={classes.bioText}> Lloyd Edwards</h2> </center>
             
             <img src={lloyd} className={classes.imgStyling}></img>
-
+{/* 
             <BioText>
 
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-            </BioText>
+            </BioText> */}
 
             <SocialMedia>
             <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
