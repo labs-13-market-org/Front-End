@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:black;
+    background-color:#38212E;
     width: 175px;
     height: 175px;
     border-radius: 150px;
@@ -43,7 +43,10 @@
     width:30%;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, .5);
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, .5);
+    background-image: url('../../images/defaultStall.jpg');
+    background-size: cover;
+    background-position: center center;
 }
 
 .vendor-card{

@@ -94,13 +94,7 @@ const VendorLandingPage = props => {
               <>
               
                 <div className='sidebar-info'>
-                  <div>
-                    test
-                  </div>
-                  <div>
-                    test
-                  </div>
-
+                  
                 </div>
 
                 <div className='vendor-card-wrapper-right'>
