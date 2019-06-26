@@ -5,6 +5,7 @@ import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
 import { AuthContext } from "../authContext/authState";
 import LinearProgress from '@material-ui/core/LinearProgress';
+import vendorIcon from '../../images/stallicon.png';
 // import ProductByVendorCard from "../product/ProductByVendorCard";
 
 import {
@@ -84,7 +85,7 @@ const VendorLandingPage = props => {
           <h2>Vendors</h2>
         </div>
         <div className="vendor-icon">
-          <h1>test</h1>
+        <img src={vendorIcon} alt="logo" />
         </div>
         <div className="vendor-card-wrapper" >
         {allVendors &&

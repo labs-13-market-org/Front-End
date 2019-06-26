@@ -10,6 +10,26 @@
     
 }
 
+.vendor-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:black;
+    width: 175px;
+    height: 175px;
+    border-radius: 150px;
+    margin-top: -190px;
+    margin-left: 30px;
+    margin-bottom: 50px;
+    border: 2px solid white;
+}
+
+.vendor-icon img{
+    width: 66%;
+    height: 66%;
+    
+}
+
 .sidebar-info{
     display: flex;
     flex-wrap: wrap;
