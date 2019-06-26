@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     },
 
     bioText: {
-        fontSize: "32px",
+        fontSize: "28px",
         width: "100%"
     },
 
@@ -162,7 +162,7 @@ return (
             </SocialMedia>
             </Card>
 
-            <Card className={classes.card}><center><h2 className={classes.bioText}> Lloyd Edwards</h2> </center>
+            <Card className={classes.card}><center><h2 className={classes.bioText}> (PM) Lloyd Edwards</h2> </center>
             
             <img src={lloyd} className={classes.imgStyling}></img>
 {/* 
