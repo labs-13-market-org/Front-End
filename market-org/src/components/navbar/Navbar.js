@@ -19,7 +19,8 @@ import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import SignUp from '../register/SignUp';
 import './navbar.css'
-
+import Slide from '@material-ui/core/Slide';
+import Clear from '@material-ui/core/Clear';
 
 
 const useStyles = makeStyles(theme => ({
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1, 
     position: 'absolute',
     width: '100%',
-    border: '1px solid red',
+    // border: '1px solid red',
     // ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
     //   border: '5px solid red'
     // },
@@ -40,17 +41,33 @@ const useStyles = makeStyles(theme => ({
 
   appBar: { 
     backgroundColor: '#38212E',
-    // ['@media (max-width: 660px)']: {
-    //   display: 'none'
-    // }
+    ['@media (max-width: 660px)']: {
+      display: 'none'
+    }
+  },
+
+  openAppBar: {
+    backgroundColor: '#38212E',
+    displsy: 'none',
+    ['@media (max-width: 660px)']: {
+      backgroundColor: '#38212E',
+      display: 'block',
+      // opacity: '.5',
+    }
   },
   toolbar: {
   
+    
     ['@media (max-width:660px)']: {
+  
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       height: '250px',
+      // backgroundColor: '#38212e75',
+      backgroundColor: '#38212E',
+      // opacity: '.5',
+    
       border: '2px solid green',
     }
   },
@@ -58,7 +75,8 @@ const useStyles = makeStyles(theme => ({
   menubar: {
     display: 'none',
     ['@media (max-width: 660px)']: {
-      display: 'block'
+      display: 'block',
+      color: 'white',
     }
   },
   link: {
@@ -120,6 +138,7 @@ function ButtonAppBar(props) {
   const [open, setOpen] = React.useState(false);
   const [openReg, setOpenReg] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openNav, setOpenNav] = React.useState(false);
 
   const firebaseId = localStorage.getItem('firebaseId');
 
@@ -127,6 +146,9 @@ function ButtonAppBar(props) {
     setAnchorEl(event.currentTarget);
   }
 
+  const openNavBar = () => {
+    setOpenNav(true)
+  }
   const handleClose = ()  => {
     setAnchorEl(null);
   }
@@ -199,14 +221,16 @@ function ButtonAppBar(props) {
   return (
     
     <div className= {classes.root}>
-      <IconButton className={classes.menubar}>
+      <IconButton className={openNav ? classes.closed : classes.menubar} onClick={openNavBar}>
         <MenuBars/>
       </IconButton>
-      <AppBar position="static" className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
+      <AppBar position="static" className= {openNav ? classes.OpenAppBar :  classes.appBar} >
+        <Slide direction="down" in={openNav} mountOnEnter unmountOnExit>
+        <Toolbar className={classes.toolbar } >
+          
           <Typography variant="h6" className={classes.title} />
             <Typography variant="h6"  className={classes.title}>
-                <Link onClick={toHome} className={classes.link} underline='none'>Home</Link>
+                <Link onClick={toHome} className={openNav ? classes.closed : classes.link} underline='none'>Home</Link>
             </Typography>
             <>
             <Typography variant="h6"  className={classes.title}>
@@ -247,11 +271,11 @@ function ButtonAppBar(props) {
            
           <VendorMenu signup={register} toAllVendors={toAllVendors} toMyStalls={() => toMyStalls(user_type)}/>
 
-          <Typography ariant="h6"  className={classes.title}>
-              <Link className={classes.link}  underline='none'>About</Link>
+          <Typography ariant="h6"  className={openNav ? classes.closed : classes.title}>
+              <Link className={classes.link}   underline='none'>About</Link>
           </Typography>
 
-          <Typography ariant="h6"  className={classes.title}>
+          <Typography ariant="h6"  className={openNav ? classes.closed : classes.link} >
             <Link className={classes.link}  underline='none'>Contact Us</Link>
           </Typography>
 
@@ -414,6 +438,7 @@ function ButtonAppBar(props) {
             </>
           {/* )} */}
         </Toolbar>
+        </Slide>
       </AppBar>
     </div>
   );
