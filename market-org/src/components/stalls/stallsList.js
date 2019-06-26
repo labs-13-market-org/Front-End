@@ -73,11 +73,11 @@ const StallsList = (props) => {
     console.log("Getting stalls ", stalls);
     return(
         <StallsContainer>
-            <h2>Market Name: {market.market_name}</h2>
+            {/* <h2>Market Name: {market.market_name}</h2>
             <h2>Market street: {market.address}</h2>
             <h2>Market city: {market.city}</h2>
             <h2>Market state: {market.state}</h2>
-            <h2>Market phone number: {market.phone_number}</h2>
+            <h2>Market phone number: {market.phone_number}</h2> */}
             {Object.keys(stalls).map((stall, index) => (
                 
                 <div key ={index}>
