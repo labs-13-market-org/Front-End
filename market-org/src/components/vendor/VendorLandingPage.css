@@ -2,10 +2,28 @@
 
 
 .vendor-card-wrapper{
+
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    
+}
+
+.sidebar-info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    margin-top:10px;
+    margin-bottom:10px;
+    width:30%;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .5);
 }
 
 .vendor-card{
@@ -16,10 +34,17 @@
     font-family: 'Montserrat';
     font-size: 20px;
     margin:10px;
-    width:30%;
+    width:100%;
     border-radius: 10px;
     text-align: center;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .5);
 }
+
+.vendor-card-wrapper-right{
+    width: 70%;
+    
+}
+
 
 .vendor-card h4{
     width: 100%;
@@ -65,7 +90,16 @@
     font-size: 30px;
     margin-bottom:50px;
     text-shadow: 2px 2px #000000;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .5);
   
+}
+
+.vendor-landing-page-wrapper{
+    background-color: #E9EBEE;
+    padding-bottom: 50px;
+    padding-right: 20%;
+    padding-left: 20%;
+    
 }
 
 @media (max-width: 1000px){

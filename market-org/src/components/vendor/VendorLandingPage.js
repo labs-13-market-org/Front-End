@@ -79,16 +79,30 @@ const VendorLandingPage = props => {
     {
       isLoading ?
       <LinearProgress color="secondary"/> :
-      <div className="landing-page-wrapper">
+      <div className="vendor-landing-page-wrapper">
         <div className="vendor-list-page-header">
           <h2>Vendors</h2>
         </div>
-        <div className="list-title" />
+        <div className="vendor-icon">
+          <h1>test</h1>
+        </div>
         <div className="vendor-card-wrapper" >
         {allVendors &&
           allVendors.map(eachVendor => {
             return (
               <>
+              
+                <div className='sidebar-info'>
+                  <div>
+                    test
+                  </div>
+                  <div>
+                    test
+                  </div>
+
+                </div>
+
+                <div className='vendor-card-wrapper-right'>
 
                   <div className="vendor-card" key={eachVendor.firebase_id}>
                     <h4>Company: {eachVendor.company_name}</h4>
@@ -98,6 +112,7 @@ const VendorLandingPage = props => {
                       More Info
                     </Link>
                     </div>
+                  </div>
                   </div>
                 
               </>
