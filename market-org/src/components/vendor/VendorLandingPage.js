@@ -87,7 +87,7 @@ const VendorLandingPage = props => {
         <img src={vendorIcon} alt="logo" />
         </div>
         <div className="vendor-card-wrapper" >
-        <Paper className={classes.paper}>
+        
         {allVendors &&
           allVendors.map(eachVendor => {
             return (
@@ -100,7 +100,7 @@ const VendorLandingPage = props => {
                 <div className='vendor-card-wrapper-right'>
 
                   <div className="vendor-card" key={eachVendor.firebase_id}>
-                  <Card className={classes.card} key={eachVendor.firebase_id}>
+                  
                     <CardActionArea>
                       <CardContent className={classes.media}>
                         <img
@@ -118,14 +118,14 @@ const VendorLandingPage = props => {
                       More Info
                     </Link>
                     </div>
-                    </Card>
+                    
                   </div>
                   </div>
                 
               </>
             );
           })}
-          </Paper>
+          
           </div>
       </div>
     }
