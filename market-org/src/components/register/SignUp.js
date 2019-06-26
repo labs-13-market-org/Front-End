@@ -265,6 +265,7 @@ function Register(props) {
                       setUserType(e.currentTarget.value);
                       setMarketBg("lightBlue");
                       setBackground("white");
+                      setAcctType(null);
                     }}
                     style={{ backgroundColor: `${marketBg}` }}
                   >
@@ -280,6 +281,7 @@ function Register(props) {
                       setUserType(e.currentTarget.value);
                       setBackground("lightBlue");
                       setMarketBg("white");
+                      setAcctType(null);
                     }}
                     style={{ backgroundColor: `${background}` }}
                   >

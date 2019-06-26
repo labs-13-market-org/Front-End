@@ -17,8 +17,11 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle
+  DialogTitle,
+  CircularProgress,
+  LinearProgress
 } from "@material-ui/core";
+
 import { withStyles } from "@material-ui/core";
 import queryString from "query-string";
 import { AuthContext } from "../authContext/authState";
@@ -35,7 +38,10 @@ const styles = theme => ({
     borderColor: "rgba(180, 45, 90, 0.911) !important",
     color: "#ffffff",
     borderRadius: "25px"
-  }
+  },
+  progress: {
+    margin: theme.spacing(2),
+  },
 });
 
 const CreateMarket = props => {
@@ -50,6 +56,7 @@ const CreateMarket = props => {
 
   const [open, setOpen] = useState(false);
 
+
   const [market_name, setMarketName] = useState("");
   const [contact_first_name, setFirstName] = useState("");
   const [contact_last_name, setLastName] = useState("");
@@ -62,6 +69,8 @@ const CreateMarket = props => {
   });
   const [image, setImage] = useState("");
   const [file, setFile] = useState("");
+  const [urldata, setData] = useState("");
+  const [isLoading, setLoading] = useState(false)
   // const [stalls, setStalls] = useState([])
 
   const photoInp = React.createRef();
@@ -107,17 +116,17 @@ const CreateMarket = props => {
       email: currentUser.email,
     };
     console.log("initstripe", populateInputs);
-    axios
-      .post("stripe/authorize", populateInputs)
-      .then(res => {
-        // console.log("createmarket res data:", res.data);
-        // window.location.href = res.data;       
-        addMarket();
-        console.log("res data after add market:", res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    
+      axios.post("stripe/authorize", populateInputs)
+           .then(res => {
+             console.log(res.data)
+             localStorage.setItem("url", res.data)
+             setData(res.data)
+           })
+           .catch(err => {
+             console.log(err)
+           })
+    addMarket();
   }
 
   //           )
@@ -128,12 +137,11 @@ const CreateMarket = props => {
   const addMarket = () => {
     const { textmask } = phone_number;
     console.log('addMarket invoked')
-
+    console.log(urldata)
     const token = localStorage.getItem("token");
     console.log("file", file)
     let currentMarketImageName = "market-image-" + Date.now();
     let uploadImage = storage.ref(`images/${currentMarketImageName}`).put(file);
-
     uploadImage.on(
       "state_changed",
       snapshot => {},
@@ -147,8 +155,8 @@ const CreateMarket = props => {
           .getDownloadURL()
           .then(url => {
             console.log(url);
-            // setImage(url);
-
+            // setImage(true);
+           
             const market = {
               market_name,
               contact_first_name,
@@ -165,16 +173,18 @@ const CreateMarket = props => {
             axios
               .post(`/markets/${currentUser.uid}/add-market`, {...market})
               .then(res => {
-                console.log("ADD MARKET", res.data);
-                addStall();
+                console.log(res)
               })
               .catch(err => {
-                console.log(err);
-              });
+                console.log(err)
+              })     
+              addStall()
           }
-          )
+        )
+          
       }
     );
+    
   };
 
   const handleChange = name => event => {
@@ -183,7 +193,8 @@ const CreateMarket = props => {
     });
   };
 
-  const addStall = () => {
+  const addStall = async () => {
+    console.log("data", urldata)
     const stall = {
       size: {
         length: length,
@@ -194,15 +205,13 @@ const CreateMarket = props => {
     };
     for (let i = 0; i < quantity; i++) {
       console.log(currentUser);
-      axios
+     const stalls = await axios
         .post(`/stalls/market/${currentUser.uid}`, stall)
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+        console.log(stalls)
     }
+    console.log("data", urldata)
+    window.location.href = localStorage.getItem("url")
+    
   };
 
   const handleOpen = () => {
@@ -492,8 +501,9 @@ const CreateMarket = props => {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
               >
+                {isLoading ? <LinearProgress color="secondary"/> : null}
                 <DialogTitle id="alert-dialog-title">
-                  {"Use Stripe service?"}
+                  {"Do You Want To Use Stripe Service?"}
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description">
@@ -516,7 +526,10 @@ const CreateMarket = props => {
                     onClick={handleClose}
                     color="primary"
                     style={{ backgroundColor: "lightGrey", width: "100px" }}
-                    onClick={initStripeConnection}
+                    onClick={() => {
+                      initStripeConnection()
+                      setLoading(true)
+                      }}
                     autoFocus
                   >
                     Continue

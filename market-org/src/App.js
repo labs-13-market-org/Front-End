@@ -34,6 +34,7 @@ import VendorsPerMarket from "./components/marketLandingPage/VendorsPerMarket";
 import { ContextProvider } from './components/context/state';
 import "./App.css";
 import EditMarket from './components/createmarket/EditMarket';
+import NoMatchingRoutes from './components/nomatchingroutes/NoMatchingRoutes';
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
           <Route path="/oneVendorPublic/:firebase_id" component={OneVendorPublic} />
           <Route path="/oneVendorPrivate/:firebase_id" component={OneVendorPrivate} />        
           <Route exact path='/cart/:id' component={VendorCart}/>
+          <Route component={NoMatchingRoutes} />
         </Switch>
         </ContextProvider>
         </div>
