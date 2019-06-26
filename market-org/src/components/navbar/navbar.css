@@ -5,7 +5,7 @@
     }
 }
 
-@-webkit-keyframes slideInDown {
+@keyframes slideInDown {
     from {
       -webkit-transform: translate3d(0, -100%, 0);
       transform: translate3d(0, -100%, 0);
@@ -18,13 +18,24 @@
     }
   }
 
-.nav-bar {
-    @media only screen and (max-width: 660px) {
-        animation:  slideInRight 1s ease-in-out forwards;
-        border: 1px solid orange;
+@media only screen and (max-width: 660px) {
+   .nav-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    background-color: #38212E;
+    border: 1px solid orange;
+    animation:  slideInDown .3s ease-in-out forwards;
+    
     }
-   
+  
 }
+/* .nav-bar {
+ 
+    
+   
+} */
 
 .checking {
     color: #38212e75;

@@ -25,6 +25,7 @@ import Slide from '@material-ui/core/Slide';
 
 
 const useStyles = makeStyles(theme => ({
+  
   root: {
     flexGrow: 1, 
     position: 'absolute',
@@ -59,18 +60,31 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
   
     
-    ['@media (max-width:660px)']: {
+    // ['@media (max-width:660px)']: {
   
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      height: '250px',
-      // backgroundColor: '#38212e75',
-      backgroundColor: '#38212E',
+    //   display: 'flex',
+    //   flexDirection: 'column',
+    //   alignItems: 'center',
+    //   height: '250px',
+    //   animation: `ripple-effect 550ms `,
+    //   // backgroundColor: '#38212e75',
+    //   backgroundColor: '#38212E',
       // opacity: '.5',
     
       // border: '2px solid green',
-    }
+
+    // "@keyframes ripple-effect": {
+    //   "0%": {
+    //       transform: "scale(0)",
+    //       opacity: 0.1
+    //   },
+    //   "100%": {
+    //       transform: "scale(1)",
+    //       opacity: 0.9
+    //   }
+    // }
+    //},
+
   },
 
   menubar: {
@@ -118,11 +132,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const StyledMenu = withStyles({
+  
   paper: {
     marginTop: '3rem',
     backgroundColor: '#b42d5ae8',
     height: '170px',
-    width: '10%'
+    width: '10%',
+   
   },
 
   close: {
@@ -244,8 +260,8 @@ function ButtonAppBar(props) {
       <AppBar position="static" className= {openNav ? classes.OpenAppBar :  classes.appBar} >
         {/* <Slide direction="down" in={openNav} mountOnEnter unmountOnExit> */}
         {/* <Toolbar  > */}
-        <Toolbar className={openNav ? classes.toolbar : null } >
-          <IconButton className={classes.clearIcon} onClick={closeNavBar}>
+        <Toolbar className={openNav ?  'nav-bar' : null } onMouseLeave={closeNavBar}>
+          <IconButton className={openNav ? classes.clearIcon : classes.closed} onClick={closeNavBar}>
             <Clear/>
           </IconButton>
           <Typography variant="h6" className={classes.title} />
@@ -299,12 +315,12 @@ function ButtonAppBar(props) {
             <Link className={classes.link}  underline='none'>Contact Us</Link>
           </Typography>
 
-          <Typography ariant="h6"  className={classes.title} >
+          <Typography ariant="h6"  className={currentUser ? classes.closed : classes.title} >
               <Link 
                 // className={classes.link}
                 color="inherit"
                 onClick={register}
-                className={currentUser ? classes.closed : classes.link }
+                className={ classes.link }
                 underline='none'
               >
                   Sign Up
@@ -336,17 +352,9 @@ function ButtonAppBar(props) {
            <ProfileMenu handleRegOpen={SignUp} user={user_type} toAllVendors={toAllVendors} logout={logout} />
       
           </Typography>
-  
-              
-          
             </>
-  
             <>
-             
-            
-            
             </>
-    
         </Toolbar>
         {/* </Slide> */}
       </AppBar>
