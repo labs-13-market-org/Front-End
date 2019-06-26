@@ -9,6 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Expand from '@material-ui/icons/ExpandMore';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import Clear from '@material-ui/icons/Clear';
 import MenuBars from '@material-ui/icons/Menu';
 import Link from '@material-ui/core/Link';
 import { auth } from "../../firebase";
@@ -20,7 +21,7 @@ import { VendorContext } from "../context/vendor";
 import SignUp from '../register/SignUp';
 import './navbar.css'
 import Slide from '@material-ui/core/Slide';
-import Clear from '@material-ui/core/Clear';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -47,8 +48,8 @@ const useStyles = makeStyles(theme => ({
   },
 
   openAppBar: {
-    backgroundColor: '#38212E',
-    displsy: 'none',
+    // backgroundColor: '#38212E',
+    display: 'none',
     ['@media (max-width: 660px)']: {
       backgroundColor: '#38212E',
       display: 'block',
@@ -68,7 +69,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#38212E',
       // opacity: '.5',
     
-      border: '2px solid green',
+      // border: '2px solid green',
     }
   },
 
@@ -91,9 +92,19 @@ const useStyles = makeStyles(theme => ({
     
   },
   icon: {
-    ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
+    ['@media (max-width:800px)']: { 
       display: 'none',
     }
+  },
+
+  clearIcon: {
+    // display: 'none',
+    ['@media (max-width:660px)']: {
+      position: 'absolute',
+      left: '20px',
+      color: 'white',
+    }
+   
   },
   closed: {
     display: 'none'
@@ -148,6 +159,11 @@ function ButtonAppBar(props) {
 
   const openNavBar = () => {
     setOpenNav(true)
+  }
+
+
+  const closeNavBar = () => {
+    setOpenNav(false)
   }
   const handleClose = ()  => {
     setAnchorEl(null);
@@ -224,10 +240,14 @@ function ButtonAppBar(props) {
       <IconButton className={openNav ? classes.closed : classes.menubar} onClick={openNavBar}>
         <MenuBars/>
       </IconButton>
+      {/* <AppBar position="static" className= {classes.appBar} > */}
       <AppBar position="static" className= {openNav ? classes.OpenAppBar :  classes.appBar} >
-        <Slide direction="down" in={openNav} mountOnEnter unmountOnExit>
-        <Toolbar className={classes.toolbar } >
-          
+        {/* <Slide direction="down" in={openNav} mountOnEnter unmountOnExit> */}
+        {/* <Toolbar  > */}
+        <Toolbar className={openNav ? classes.toolbar : null } >
+          <IconButton className={classes.clearIcon} onClick={closeNavBar}>
+            <Clear/>
+          </IconButton>
           <Typography variant="h6" className={classes.title} />
             <Typography variant="h6"  className={classes.title}>
                 <Link onClick={toHome} className={openNav ? classes.closed : classes.link} underline='none'>Home</Link>
@@ -275,7 +295,7 @@ function ButtonAppBar(props) {
               <Link className={classes.link}   underline='none'>About</Link>
           </Typography>
 
-          <Typography ariant="h6"  className={openNav ? classes.closed : classes.link} >
+          <Typography ariant="h6"  className={openNav ? classes.closed : classes.title} >
             <Link className={classes.link}  underline='none'>Contact Us</Link>
           </Typography>
 
@@ -314,131 +334,21 @@ function ButtonAppBar(props) {
           </Typography>
           <Typography ariant="h6"  className={ currentUser ? classes.title : classes.closed}>
            <ProfileMenu handleRegOpen={SignUp} user={user_type} toAllVendors={toAllVendors} logout={logout} />
-            {/* <IconButton
-              edge="end"
-              className={classes.icons}
-              color="inherit"
-              aria-label="profile"
-              // onClick={handleClick}
-            >
-               
-              <Profile />
-            </IconButton>
-            <IconButton
-            onClick={handleClick}
-                      // edge="end"
-              // className={classes.profile}
-              color="inherit"
-              aria-label='profile'
-            >
-              <Expand />
-            </IconButton> */}
+      
           </Typography>
-          {/* <StyledMenu
-            id="profile"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            className={ currentUser ? null : classes.closed}
-           >         
-           <StyledMenuItem className={classes.menuItem} onClick={handleRegOpen}>View Profile</StyledMenuItem>
-            <StyledMenuItem className={classes.menuItem} onClick={() => toMyStalls(user_type)}>{user_type === 'vendor' ? 'My Purchased Orders' : 'My Stalls'}</StyledMenuItem>
-            <StyledMenuItem className={classes.menuItem} onClick={toAllVendors}>Account Settings</StyledMenuItem>
-            <StyledMenuItem className={classes.menuItem} onClick={logout}>Logout</StyledMenuItem>
-          </StyledMenu> */}
-              {/* <Button
-                color="inherit"
-                onClick={toHome}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Home
-              </Button> */}
-              {/* <button onClick={props.history.push('/cart/:id')}>cart</button> */}
-              {/* <Button
-                aria-controls="simple-menu" 
-                aria-haspopup="true" 
-                onClick={handleClick}
-                color="inherit"
-                  // onClick={toAllMarkets}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                  Markets  <IconButton
-                        edge="end"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="simple-menu"
-                    >
-                        <Expand />
-                    </IconButton>
-              </Button> */}
   
-              {/* <Button
-                color="inherit"
-                onClick={toAllVendors}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Vendors
-              </Button>
-              <Button
-                color="inherit"
-                // onClick={logout}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                About
-              </Button>
-              <Button
-                color="inherit"
-                // onClick={logout}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Contact Us
-              </Button> */}
               
-              {/* <Button
-                color="inherit"
-                onClick={routetoCreate}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Register A Market
-              </Button> */}
+          
             </>
-          {/* ) : ( */}
+  
             <>
-              {/* <Button
-                color="inherit"
-                onClick={handleRegOpen}
-                className={currentUser ? classes.closed : classes.button }
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Sign Up
-              </Button> */}
-
-              {/* <Button
-                color="inherit"
-                onClick={logout}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                {currentUser ? 'Logout' : 'Login'}
-              </Button> */}
-              {/* <Button
-                color="inherit"
-                onClick={handleOpen}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Log In
-              </Button> */}
+             
+            
+            
             </>
-          {/* )} */}
+    
         </Toolbar>
-        </Slide>
+        {/* </Slide> */}
       </AppBar>
     </div>
   );
