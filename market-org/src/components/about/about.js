@@ -93,7 +93,7 @@ return (
         </BioText> */}
             
             <SocialMedia>
-            <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
+            <a href="https://www.linkedin.com/in/francischen2/"><img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img></a>
             <a href="https://github.com/fncischen"><img src="https://github.com/favicon.ico" width="50"></img></a>
             </SocialMedia>
             </Card>
@@ -108,7 +108,7 @@ return (
             </BioText> */}
             
             <SocialMedia>
-            <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
+            <a href="https://www.linkedin.com/in/sem-limi-85316427/"><img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img></a>
             <a href="https://github.com/Sem8"><img src="https://github.com/favicon.ico" width="50"/></a>
             </SocialMedia>
             </Card>
@@ -123,7 +123,7 @@ return (
             </BioText> */}
             
             <SocialMedia>
-            <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
+            <a href="https://www.linkedin.com/in/latifah-president/"><img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img></a>
             <a href="https://github.com/latifahpresident"><img src="https://github.com/favicon.ico" width="50"></img></a>
             </SocialMedia>
             </Card>
@@ -142,7 +142,7 @@ return (
             </BioText> */}
 
             <SocialMedia>
-            <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
+            <a href="https://www.linkedin.com/in/patrick-schwindt-059089a3/"><img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img></a>
             <a href="https://github.com/pschwin"><img src="https://github.com/favicon.ico" width="50"></img></a>
             </SocialMedia>
             </Card>
@@ -157,7 +157,7 @@ return (
             </BioText> */}
             
             <SocialMedia>
-            <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
+            <a href="https://www.linkedin.com/in/toua-xiong-14674b141/"><img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img></a>
             <a href="https://github.com/txiong000"><img src="https://github.com/favicon.ico" width="50"></img></a>
             </SocialMedia>
             </Card>
@@ -173,7 +173,7 @@ return (
             </BioText> */}
 
             <SocialMedia>
-            <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img>
+            <a href="https://www.linkedin.com/in/tactnician/"><img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img></a>
             <a href="https://github.com/tactnician"><img src="https://github.com/favicon.ico" width="50"></img></a>
             </SocialMedia>
             </Card>
