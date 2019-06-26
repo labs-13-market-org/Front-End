@@ -94,6 +94,35 @@ const UpdateProductForm = props => {
     //         console.log(url);
     //         setImage(url);
 
+      // const storageRef = storage.ref(
+      //     `images/updated-product-images@${new Date().toISOString()}`
+      //   );
+      // let uploadImage = storageRef.put(updatedProduct);
+      // return uploadImage.then(() => {
+      //   return uploadImage.snapshot.ref.getDownloadURL().then(downloadURL => {
+      //     const data = {
+      //       updatedProduct: {
+      //         image: downloadURL
+      //       }
+      //     };
+      //     // this.props.initUsrUpdate(this.props.user, data);
+      //     axios
+      //     .put(`products/${id}`, updatedProduct, {
+      //       "Content-Type": "application/json",
+      //       headers: { Authorization: token }
+      //     })
+      //     .then(res => {
+      //       console.log("product res put", res);           
+      //       setProduct(res.data);
+      //     })
+      //     .catch(err => {
+      //       console.log(err);
+      //     });
+
+      //   });
+      // });
+
+
     updatedProduct = {
       // vendors_id: vendorId,
       title: title,
