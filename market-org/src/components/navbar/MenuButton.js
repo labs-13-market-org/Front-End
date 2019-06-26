@@ -29,6 +29,9 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     '&:hover': {
       borderBottom: '1px solid #30cc32'
+    },
+    ['@media (max-width:660px)']: { // eslint-disable-line no-useless-computed-key
+      display: 'none',
     }
     
   },
@@ -38,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem',
     // margin: "10px",
     cursor: 'pointer',
-    ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
+    ['@media (max-width:660px)']: { // eslint-disable-line no-useless-computed-key
         display: 'none',
       }
     

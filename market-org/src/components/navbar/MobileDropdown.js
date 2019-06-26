@@ -1,41 +1,56 @@
 import React, { useContext, useState } from 'react';
 import { withRouter } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import { withStyles } from '@material-ui/styles';
-import Expand from '@material-ui/icons/ExpandMore';
+import MenuBars from '@material-ui/icons/Menu';
 import Profile from '@material-ui/icons/AccountCircle';
 import { AuthContext } from "../authContext/authState";
 import axios from "../../axios-instance";
+import Slide from '@material-ui/core/Slide';
+import './navbar.css'
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1, 
+//     position: 'absolute',
+//    left: '0',
+//    marginTop: '2rem',
+
   },
  
   title: {
     flexGrow: 1,
+  
+    // border: '1px solid green',
   },
 
-  appBar: { 
-    backgroundColor: '#38212E',
-  },
+//   appBar: { 
+//     backgroundColor: '#38212E',
+//   },
 
   link: {
     color: 'white',
     fontSize: '1.2rem',
-    margin: "10px",
+      position: 'absolute',
+    left: '0',
+    
+    // marginTop: '2rem',
+    border: '1px solid red',
+    // margin: "10px",
     cursor: 'pointer',
     textDecoration: 'none',
-    '&:hover': {
-      borderBottom: '1px solid #30cc32'
-    }
+    // '&:hover': {
+    //   borderBottom: '1px solid #30cc32'
+    // }
     
   },
+
+
   closed: {
     display: 'none'
   },
@@ -78,13 +93,16 @@ const StyledMenu = withStyles({
   />
 ));
 
-const VendorMenu = (props) => {
+const MobileDropdown = (props) => {
  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [stripe_acc_id, setStripeAccId] = useState(null)
+  const [OpenNav, setOpenNav] = useState(false)
   const { currentUser } = useContext(AuthContext);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log('clicked')
   }
 
   const handleClose = ()  => {
@@ -127,6 +145,7 @@ const VendorMenu = (props) => {
   }
 
   const classes = useStyles();
+  console.log(props, 'props from mobile nav')
 
   return (
     <div className={classes.root} >
@@ -137,25 +156,36 @@ const VendorMenu = (props) => {
                       aria-controls="profile" 
                       color="inherit"
                       aria-label="profile"
+                      className={classes.link}
                     >
-                      <Profile />
+                      <MenuBars className={classes.icon} />
                     </IconButton>
 
-                    <IconButton
+                    {/* <IconButton
                         onClick={handleClick}
                         color="inherit"
                         aria-label='profile'
                     >
                         <Expand />
-                     </IconButton> 
+                     </IconButton>  */}
            
-               
-                    <StyledMenu
+                       {/* <Slide direction="down" in={handleClick} mountOnEnter unmountOnExit> */}
+                        <div className='mobile-nav'>
+                            <NavLink>Home</NavLink>
+                            <NavLink>View Our Markets</NavLink>
+                            <NavLink>View Our Vendors</NavLink>
+                            <NavLink>Become A Market</NavLink>
+                            <NavLink>Become A Vendor</NavLink>
+                            <NavLink>Login</NavLink>
+                            <NavLink>Contact</NavLink>
+                            <NavLink>About</NavLink>
+                    {/* <StyledMenu
                         id="profile"
                         anchorEl={anchorEl}
                         keepMounted
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
+                        className='mobile-nav'
                     >
                         <MenuItem className={classes.menuItem} onClick={routeToProfile}>View Profile</MenuItem>
                         <MenuItem className={classes.menuItem} onClick={props.handleRegOpen}>{props.user === 'vendor' ? 'My Orders' : 'My Stalls'}</MenuItem>
@@ -164,11 +194,12 @@ const VendorMenu = (props) => {
                         }
                         <MenuItem className={classes.menuItem} onClick={accountSettingRoute}>Account Settings</MenuItem>
                         <MenuItem className={classes.menuItem} onClick={props.logout}>Logout</MenuItem>
-                    </StyledMenu>
-             
+                    </StyledMenu> */}
+                    </div>
+             {/* </Slide> */}
               </Typography>
     </div>
   )
 }
 
-export default withRouter(VendorMenu);
+export default withRouter(MobileDropdown);

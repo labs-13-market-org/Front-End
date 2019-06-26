@@ -16,6 +16,7 @@ import { auth } from "../../firebase";
 import { Route, withRouter } from "react-router-dom";
 import VendorMenu from './MenuButton';
 import ProfileMenu from './ProfileMenu';
+import MenuDropdown from './MobileDropdown';
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import SignUp from '../register/SignUp';
@@ -39,13 +40,16 @@ const useStyles = makeStyles(theme => ({
  
   title: {
     flexGrow: 1,
+    ['@media (max-width: 660px)']: {
+      display: 'none'
+    }
   },
 
   appBar: { 
     backgroundColor: '#38212E',
-    ['@media (max-width: 660px)']: {
-      display: 'none'
-    }
+    // ['@media (max-width: 660px)']: {
+    //   display: 'none'
+    // }
   },
 
   openAppBar: {
@@ -55,6 +59,12 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#38212E',
       display: 'block',
       // opacity: '.5',
+    }
+  },
+
+  closeItem: {
+    ['@media (max-width: 660px)']: {
+      display: 'none'
     }
   },
   toolbar: {
@@ -106,9 +116,9 @@ const useStyles = makeStyles(theme => ({
     
   },
   icon: {
-    ['@media (max-width:800px)']: { 
-      display: 'none',
-    }
+    // ['@media (max-width:800px)']: { 
+    //   display: 'none',
+    // }
   },
 
   clearIcon: {
@@ -138,7 +148,9 @@ const StyledMenu = withStyles({
     backgroundColor: '#b42d5ae8',
     height: '170px',
     width: '10%',
-   
+   ['@media (max-width: 660px)']: {
+     display: 'none'
+   }
   },
 
   close: {
@@ -175,6 +187,7 @@ function ButtonAppBar(props) {
 
   const openNavBar = () => {
     setOpenNav(true)
+    console.log('clicked')
   }
 
 
@@ -250,23 +263,27 @@ function ButtonAppBar(props) {
   const user_type = localStorage.getItem('userTypes')
   const isOpen = Boolean(anchorEl);
 // console.log(vendorProfile, 'vendor profile')
+console.log('is nav opened', openNav)
   return (
     
     <div className= {classes.root}>
-      <IconButton className={openNav ? classes.closed : classes.menubar} onClick={openNavBar}>
-        <MenuBars/>
+     
+      <AppBar position="static" className= {classes.appBar} >
+      <IconButton >
+
+      {/* <IconButton className={openNav ? classes.closed : classes.menubar} onClick={openNavBar}> */}
+        <MenuDropdown setOpenNav={openNav} onClick={openNavBar}/>
       </IconButton>
-      {/* <AppBar position="static" className= {classes.appBar} > */}
-      <AppBar position="static" className= {openNav ? classes.OpenAppBar :  classes.appBar} >
+      {/* <AppBar position="static" className= {openNav ? classes.OpenAppBar :  classes.appBar} > */}
         {/* <Slide direction="down" in={openNav} mountOnEnter unmountOnExit> */}
-        {/* <Toolbar  > */}
-        <Toolbar className={openNav ?  'nav-bar' : null } onMouseLeave={closeNavBar}>
-          <IconButton className={openNav ? classes.clearIcon : classes.closed} onClick={closeNavBar}>
+        <Toolbar  >
+        {/* <Toolbar className={openNav ?  'nav-bar' : null } onMouseLeave={closeNavBar}> */}
+          {/* <IconButton className={openNav ? classes.clearIcon : classes.closed} onClick={closeNavBar}>
             <Clear/>
-          </IconButton>
+          </IconButton> */}
           <Typography variant="h6" className={classes.title} />
-            <Typography variant="h6"  className={classes.title}>
-                <Link onClick={toHome} className={openNav ? classes.closed : classes.link} underline='none'>Home</Link>
+            <Typography variant="h6"  className={classes.title }>
+                <Link onClick={toHome} className={classes.link} underline='none'>Home</Link>
             </Typography>
             <>
             <Typography variant="h6"  className={classes.title}>
