@@ -94,31 +94,29 @@ const VendorLandingPage = props => {
               <>
               
                 <div className='sidebar-info'>
-                  
+                
+                        <img
+                          src={eachVendor.image}
+                          title="Vendor profile image"
+                        />
+                     
                 </div>
 
                 <div className='vendor-card-wrapper-right'>
 
                   <div className="vendor-card" key={eachVendor.firebase_id}>
                   
-                    <CardActionArea>
-                      <CardContent className={classes.media}>
-                        <img
-                          src={eachVendor.image}
-                          title="Vendor profile image"
-                          // className="productImage"
-                          style={{ maxWidth: "100%", maxHeight: "100%" }}
-                        />
-                      </CardContent>
-                      </CardActionArea>
+                    {/* <CardActionArea>
+                      
+                      </CardActionArea> */}
                     <h4>Company: {eachVendor.company_name}</h4>
                     <h4>Full Name: {eachVendor.contact_fullname}</h4>
+
                     <div className='vendor-card-link'>
                     <Link to={`/oneVendorPublic/${eachVendor.firebase_id}`}>
                       More Info
                     </Link>
                     </div>
-                    
                   </div>
                   </div>
                 

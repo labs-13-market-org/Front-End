@@ -30,9 +30,9 @@ const MarketLandingPage = props => {
 
   return (
     <React.Fragment>
-    {
-      isLoading ?
-      <LinearProgress color="secondary"/> :
+    
+       {/* isLoading ?
+      // <LinearProgress color="secondary"/> : */}
       <div className="landing-page-wrapper">
           <div className='market-list-page-header'>
               <h2>Available Markets</h2>
@@ -46,7 +46,7 @@ const MarketLandingPage = props => {
 
         })}
       </div>
-    }
+    
     </React.Fragment>
   );
 };
