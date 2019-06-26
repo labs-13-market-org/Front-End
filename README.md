@@ -6,7 +6,7 @@
 
 # 1️⃣ Title of project goes here
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+1️⃣ You can find the deployed project at [https://nostalgic-wing-420c23.netlify.com/](https://nostalgic-wing-420c23.netlify.com/).
 
 ## 4️⃣ Contributors
 
@@ -33,67 +33,80 @@
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+1️⃣ [Trello Board](https://trello.com/labs13marketorganizer)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+1️⃣ [Product Canvas](https://projects.invisionapp.com/share/MHRGLDMF8G3#/screens/357205480)
 
 1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
 
-🚫 Replace lorem ipsum with a description of your project
+Small markets (flea markets, farmers markets, etc.) can display how many stalls they have available and of what size. They can also list the current merchants and link to the vendor's profile so customers can see their products. Merchants can rent available stalls on the application and have a display for their store. Merchants can upload and update their inventory or services to display on their profile.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+A online platform for merchants to rent stalls from markets to sell produce at public farmers markets.
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 
 ### 4️⃣ Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+-    Signup as a market user or vendor user
+-    As a market user, advertise/display your market stalls to sell (upload image)
+-    As vendor user, search for suitable stalls to purchase (orders/carts)
+-    Market user, signup with stripe through our platform to receive payment directly from vendors (stripe connect)
+
 
 ## 1️⃣ Tech Stack
 
 ### Front end built using:
 
 #### _Front end framework goes here_
+React
 
-🚫 Why did you choose this framework?
+- Single Page Application, doesn't load new pages from server, allowing for quick load times.
+- Reusable Components (very easy to scale app) 
+- Popular amongst develepors, allowing for library upkeep.
+- Can transition to learning React native easier
 
--    point one
--    point two
--    point three
--    point four
+Material UI
+- Scales between mobile and desktop view out of the box.
+- Developed base on Google's material design
+- Extensive documents, great layout examples on their website
+- Work well with React
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+Firebase
+- For user authentication
+- Easy Oauth implementation
+- Track logged user on web application
 
-#### Front end deployed to `🚫insert service here`
 
-#### [Back end](🚫link to back end repo here) built using:
 
-#### 🚫 back end framework goes here
+#### Front end deployed to `https://www.netlify.com/`
 
--    point one
--    point two
--    point three
+#### [Back end](https://github.com/labs-13-market-org/Backend) built using:
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+
+Node/Express js
+- Uses Javascript to build web server.
+- light-weight web application framework to help organize web application into an MVC architecture
+- Express makes building REST API simpler
+
+PostgreSQL
+- use SQL to build relational database
+- Support JSON
 
 # APIs
 
 ## 2️⃣ Authentication API here
+Firebase authentication
 
-🚫Replace text below with a description of the API
+Firebase Authentication provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, popular federated identity providers like Google, Facebook and Twitter, and more.
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+Firebase Authentication integrates tightly with other Firebase services, and it leverages industry standards like OAuth 2.0 and OpenID Connect, so it can be easily integrated with your custom backend.
+
+
 
 ## 2️⃣ Payment API here
+Stripe Connect
 
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+Marketplaces and platforms use Stripe Connect to accept money and pay out to third parties. Connect provides a complete set of building blocks to support virtually any business model, including on-demand businesses, e‑commerce, crowdfunding, and travel and events.
 
 ## 3️⃣ Misc API here
 
@@ -194,4 +207,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs-13-market-org/Backend/blob/master/README.md) for details on the backend of our project.

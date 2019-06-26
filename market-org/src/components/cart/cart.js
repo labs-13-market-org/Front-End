@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState, useContext} from 'react'
 import axios from '../../axios-instance';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +12,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import StripeCheckout from "react-stripe-checkout";
 import TextField from "@material-ui/core/TextField";
+import { VendorContext, VendorProvider } from "../context/vendor";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -84,10 +85,13 @@ const Cart = (props) => {
     const [total, setTotal] = useState('')
     const [stripeId, setStripeId] = useState('')
     const [quantity, setQuantity] = useState(1)
-
+    const [vendorProfile, setVendorProfile] = useContext(VendorContext);
+    const [auth_token, setToken] = useState("");
 
     useEffect(() => {
         let firebase_id = localStorage.getItem('firebaseId')
+        let a_token = localStorage.getItem("token");
+        setToken(a_token);
         console.log(firebase_id)
         axios.get(`/cart/${firebase_id}`)
             .then(res => {
@@ -136,14 +140,18 @@ const Cart = (props) => {
                 url: `stalls/${stall_id}`,
                 data: { available: true }
               })
+
+              
+          if(cartData.length == 0){
+            setVendorProfile({market_id: null})
+          }
           })
           .catch(err => {
               console.log(err)
           })
         })
-      
 
-    }
+        } 
     
 
    const handleToken = (token )  => {
@@ -168,12 +176,22 @@ const Cart = (props) => {
                       {vendor_id: purchasedGood.vendor_id, stall_id: purchasedGood.stalls_id, market_id: purchasedGood.market_id, market_name: purchasedGood.market_name, size: purchasedGood.size, price: purchasedGood.price}
                     )
                 })
+
+                let MarketIdToInsert = purchasedGoods[0].market_id;
                 
                 axios.post(`/orders/vendor/${firebase_id}`, purchasedGoods)
                   .then(res => {
                       console.log("Res:", res);
                       console.log("Added to purchased orders");
 
+                    axios
+                    .put(`vendor/${firebase_id}`, {market_id: MarketIdToInsert}, {
+                      "Content-Type": "application/json",
+                      headers: { Authorization: auth_token }
+                   })
+                    .then(res => {
+                      console.log("product res put", res)
+                    
                       axios.delete(`/cart/clear-cart/${firebase_id}`)
                         .then(res =>{
                           console.log("Successsful clearing of cart:", res)
@@ -186,6 +204,11 @@ const Cart = (props) => {
                         .catch(err =>{
                           console.log(err);
                         })
+                    
+                    })
+                      .catch(err =>{
+                        console.log(err);
+                      })
 
                   })
                   .catch(err => {
@@ -204,6 +227,8 @@ const Cart = (props) => {
     const classes = useStyles();
 console.log(cartItems, 'cart items state')
     return (
+      <VendorContext.Provider value={vendorProfile}>
+
         <div className={classes.root}>
             <Typography className={classes.title}>Shopping Cart</Typography>
             <div className={classes.headers}>
@@ -248,7 +273,7 @@ console.log(cartItems, 'cart items state')
         />
        
         </div>
-
+    </VendorContext.Provider>
     )
 }
 
