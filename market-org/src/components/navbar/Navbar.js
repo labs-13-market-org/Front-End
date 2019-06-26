@@ -250,6 +250,10 @@ function ButtonAppBar(props) {
     props.history.push("/");
   };
 
+  const about = () => {
+    props.history.push("/about");
+  }
+
 
   const { currentUser } = useContext(AuthContext);
   const classes = useStyles();
@@ -303,7 +307,7 @@ function ButtonAppBar(props) {
           <VendorMenu signup={register} toAllVendors={toAllVendors} toMyStalls={() => toMyStalls(user_type)}/>
 
           <Typography ariant="h6"  className={classes.title}>
-              <Link className={classes.link}  underline='none'>About</Link>
+              <Link className={classes.link} onClick={about} underline='none'>About</Link>
           </Typography>
 
           <Typography ariant="h6"  className={classes.title}>
