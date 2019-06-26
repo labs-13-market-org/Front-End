@@ -7,6 +7,7 @@ import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
 
 import UpdateProductForm from "./UpdateProductForm";
+import UpdateProductImage from "./UpdateProductImage";
 import {
   withStyles,
   Typography,
@@ -27,6 +28,7 @@ import {
 
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import InsertPhoto from "@material-ui/icons/InsertPhoto";
 
 import axios from "../../axios-instance";
 
@@ -212,6 +214,33 @@ const ProductByVendor = props => {
                         }/updateProductForm`}
                       >
                         <EditIcon className={classes.icon} />
+                        <Typography
+                    variant="body2"
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "11px",
+                      textAlign: "center"
+                    }}
+                  >
+                  EDIT INFO
+                  </Typography>
+                      </Link>
+                      <Link
+                        to={`/oneVendorPrivate/productsByVendor/${
+                          eachProduct.id
+                        }/updateProductImage`}
+                      >
+                        <InsertPhoto className={classes.icon} />
+                        <Typography
+                    variant="body2"
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "11px",
+                      textAlign: "center"
+                    }}
+                  >
+                    CHANGE PICTURE
+                  </Typography>
                       </Link>
                     </CardActions>
                   </Card>
@@ -221,6 +250,15 @@ const ProductByVendor = props => {
                       path="/oneVendorPrivate/productsByVendor/:id/updateProductForm"
                       render={props => (
                         <UpdateProductForm
+                          {...props}
+                          eachProduct={eachProduct}
+                        />
+                      )}
+                    />
+                                        <Route
+                      path="/oneVendorPrivate/productsByVendor/:id/updateProductImage"
+                      render={props => (
+                        <UpdateProductImage
                           {...props}
                           eachProduct={eachProduct}
                         />

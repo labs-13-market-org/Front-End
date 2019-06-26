@@ -102,7 +102,7 @@ const VendorMenu = (props) => {
     if(usertype === "market") {
       props.history.push(`/edit-market/${currentUser.uid}`)
     } else {
-      props.history.push(`/oneVendorPrivate/${currentUser.uid}`)
+      props.history.push(`/oneVendorPrivate/${currentUser.uid}/editForm`)
     }
   }
 

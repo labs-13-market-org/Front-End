@@ -90,9 +90,9 @@ const ProductForm = props => {
           .child(currentProductName)
           .getDownloadURL()
           .then(url => {
-            console.log(url);
+            // console.log(url);
             // setImage(url);
-            console.log(image)
+            // console.log(image)
             const productObj = {
               vendors_id: vendorId,
               title: title,
