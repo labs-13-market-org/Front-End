@@ -9,6 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Expand from '@material-ui/icons/ExpandMore';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import MenuBars from '@material-ui/icons/Menu';
 import Link from '@material-ui/core/Link';
 import { auth } from "../../firebase";
 import { Route, withRouter } from "react-router-dom";
@@ -24,9 +25,13 @@ import './navbar.css'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1, 
-    ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
-      border: '5px solid red'
-    }
+    position: 'absolute',
+    width: '100%',
+    border: '1px solid red',
+    // ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
+    //   border: '5px solid red'
+    // },
+    
   },
  
   title: {
@@ -35,8 +40,27 @@ const useStyles = makeStyles(theme => ({
 
   appBar: { 
     backgroundColor: '#38212E',
+    // ['@media (max-width: 660px)']: {
+    //   display: 'none'
+    // }
+  },
+  toolbar: {
+  
+    ['@media (max-width:660px)']: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      height: '250px',
+      border: '2px solid green',
+    }
   },
 
+  menubar: {
+    display: 'none',
+    ['@media (max-width: 660px)']: {
+      display: 'block'
+    }
+  },
   link: {
     color: 'white',
     fontSize: '1.2rem',
@@ -47,6 +71,11 @@ const useStyles = makeStyles(theme => ({
       borderBottom: '1px solid #30cc32'
     }
     
+  },
+  icon: {
+    ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
+      display: 'none',
+    }
   },
   closed: {
     display: 'none'
@@ -170,14 +199,18 @@ function ButtonAppBar(props) {
   return (
     
     <div className= {classes.root}>
+      <IconButton className={classes.menubar}>
+        <MenuBars/>
+      </IconButton>
       <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar className={classes.toolbar}>
           <Typography variant="h6" className={classes.title} />
             <Typography variant="h6"  className={classes.title}>
                 <Link onClick={toHome} className={classes.link} underline='none'>Home</Link>
             </Typography>
             <>
             <Typography variant="h6"  className={classes.title}>
+              {/* changebe to navlink after styling completed */}
                 <Link 
                     className={classes.link}  
                     underline='none'  
@@ -185,7 +218,6 @@ function ButtonAppBar(props) {
                     aria-haspopup='true'
                     onClick={handleClick}
                     color="inherit"
-                    to='/markets'
                   >
                    Markets
                  
@@ -194,6 +226,7 @@ function ButtonAppBar(props) {
                       aria-controls='market-menu'
                       color='inherit'
                       aria-label='market-menu'
+                      className={classes.icon}
                     >
                       <Expand />
                     </IconButton>
