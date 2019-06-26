@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 //import styles
 import "./Homepage.css";
-// import Navbar from '../navbar/Navbar';
+import Navbar from '../navbar/Navbar';
 import Searchbar from "../navbar/Searchbar";
 import { AuthContext } from "../authContext/authState";
 import { Container, Grid, Paper, makeStyles, Button } from "@material-ui/core";
@@ -28,11 +28,7 @@ import team from '../../images/team.png'
 import queryString from 'query-string';
 
 
-
-
-const Homepage2 = props => {
-
-  
+const Homepage2 = props => {  
   
   const [users, setUsers] = useState([]);
   const { currentUser } = useContext(AuthContext);
@@ -40,7 +36,7 @@ const Homepage2 = props => {
   const firebase_id = localStorage.getItem('firebaseId')
 
  useEffect(() => {
-    console.log(currentUser)
+
     let params = queryString.parse(props.location.search)
     console.log('params:', params)
       axios.get(`/stripe/token/?code=${params['code']}&state=${params['state']}`)
@@ -61,14 +57,30 @@ const Homepage2 = props => {
 
   console.log("curr", currentUser);
 
-  const stripeDashboardLink = () => {
-    console.log('sci',stripe_acc_id)
-    axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
-         .then(res => {
-           console.log('link:', res.data)
-           window.open(res.data.url)
-         })
-  }
+  // const stripeDashboardLink = () => {
+  //   console.log('sci',stripe_acc_id)
+  //   console.log("fire", firebase_id)
+   
+  
+  //   if(stripe_acc_id === null) {
+  //     console.log("hello")
+  //     axios.get(`/markets/${firebase_id}`).then(res => {
+  //       console.log(res)
+  //       const stripe_id = res.data.stripeAccountId
+  //       console.log("stripeid0",stripe_id)
+  //       return axios.post('/stripe/stripe-dashboard', {stripe_acc_id: stripe_id}).then(res => {
+  //         console.log('link:', res.data)
+  //         window.open(res.data.url)
+  //       })
+  //     })
+  //   }
+    
+  //   axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
+  //        .then(res => {
+  //          console.log('link:', res.data)
+  //          window.open(res.data.url)
+  //        })
+  // }
 
   const vendorFormPage = () => {
     props.history.push(`/vendor`);
@@ -80,16 +92,6 @@ const Homepage2 = props => {
         {/* <div className='search-bar'>
           <Searchbar />
         </div> */}
-        {currentUser ? (
-          <div className="logged-in-view">
-            <Button className="button">Create Market profile</Button>
-            <Button className="button" onClick={vendorFormPage}>
-              Create vendor Profile
-            </Button>
-            <Button className="button" onClick={stripeDashboardLink}>Stripe Dashboard</Button>
-
-          </div>
-        ) : (
           <div className="home-wrapper">
             <div className="welcome">
               <div>
@@ -108,7 +110,7 @@ const Homepage2 = props => {
                   <div className='info'>
                   <h3> What is Market Organizer?</h3>
                   <p>Market Organizer is a platform that was built to connect markets
-                  with thier vendors. Markets can be created and, then vendors can rent stalls.</p>
+                  with their vendors. Markets can be created and, then vendors can rent stalls.</p>
                   </div>
             
 
@@ -133,8 +135,8 @@ const Homepage2 = props => {
                   <img src={market2} alt="market-image-1" />
                 </div>
                 <div id="content" class="content-1">
-                  <h3>Info Goes Here</h3>
-                  <p>More interesting things about stuff</p>
+                  <h3>A Bridge Between Customers and Their Products</h3>
+                  <p>No more searching endlessly for the right market to sell your products. Let us take care of it!</p>
                   <a href="">
                     <button>Register Today</button>
                   </a>
@@ -147,28 +149,14 @@ const Homepage2 = props => {
                 
                 <div id="content" class="content-1">
         
-                  <h3>Info Goes Here</h3>
-                  <p>More interesting things about stuff</p>
+                  <h3>Diverse selection of goods & services waiting for your customers</h3>
+                  <p>From farmer's market produce, fresh seafood, poltury, vegetables, boutique handcrafted goods, our markets have it all!</p>
                 </div>
                 <div id="pic">
                   <img src={market4} alt="market-image-2" />
                 </div>
               </div>
 
-            </div>
-            <div className='row-stagger-wrapper-left'>
-            <div class="section-one">
-                <div id="pic">
-                  <img src={market5} alt="market-image-3" />
-                </div>
-                <div id="content" class="content-1">
-                <h3>Info Goes Here</h3>
-                  <p>More interesting things about stuff</p>
-                  <a href="">
-                    <button>Register Today</button>
-                  </a>
-                </div>
-              </div>
             </div>
             <div className='bullet-points-wrapper'>
                 
@@ -191,18 +179,18 @@ const Homepage2 = props => {
                 </div>
                 <div className='bullet'>
                     <img src={flowerIcon} alt=''/>
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                    <h3>Marketing</h3>
+                    <p>We handle all the branding, user acquisition, and customer retention, so you can focus on selling the products you love.</p>
                 </div>
                 <div className='bullet'>
                     <img src={vegetables} alt=''/> 
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                    <h3>A Network of Trusted Vendors</h3>
+                    <p>You're not just connecting with your customers, you're also connected with a network of experienced vendors from all walks of life.</p>
                 </div>
                 <div className='bullet'>
                     <img src={team} alt=''/>
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                    <h3> Facilities Management </h3>
+                    <p>From stall set up, stall organization, operations: we will help ensure your vendor operations will be the most seamless ever. </p>
                 </div>
                 </div>
               

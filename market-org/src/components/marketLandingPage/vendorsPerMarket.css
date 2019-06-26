@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+
+
+.market-vendorpage-info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: white;
+    width: 50%;
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px dotted rgba(180, 45, 90, 0.911);
+}
+.market-vendorpage-info a{
+    text-decoration: none;
+    color: rgba(180, 45, 90, 0.911);
+    font-size: 18px;
+    margin-top: 10px;
+    background-color:rgba(252, 186, 208, 0.911);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.market-vendorpage-info a:hover{
+    background-color: black;
+    color: white;
+}
+
+.market-vendorpage-info h2, h3{
+    text-align: center;
+    width: 100%;
+    font-family: 'Montserrat';
+}
+
+.market-vendorpage-info p{
+    width: 100%;
+    font-family: 'Montserrat';
+    text-align: center;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.market-vendorpage-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    min-height: calc(100vh - 64px);    
+}
+
+.market-vendorpage-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../images/market2.jpg');
+    background-position: center center;
+    box-shadow:inset 0 0 0 2000px rgba(105, 7, 40, 0.3);
+    background-size: cover; 
+    width:60%;
+    
+
+}
+
+.market-vendorpage-right{
+    background-color: white;
+    width:40%;
+    display:flex;
+    flex-wrap: wrap;
+    padding:20px;
+}
+
+.market-vendorpage-vendor-wrapped h3{
+        font-size:30px;
+        color:rgba(180, 45, 90);
+        font-family: 'Montserrat';
+        
+}
+
+
+
+@media (max-width: 1000px){
+    .market-vendorpage-left{
+        display:none;
+    }
+    .market-vendorpage-right{
+        width:100%;
+    }
+}
+

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter, Route, Switch } from "react-router-dom";
-
+import './OneVendorPublic.css'
 import ProductByVendorCard from "../product/ProductByVendorCard";
 
 import {
@@ -27,7 +27,7 @@ const styles = theme => ({
   },
   appBar: {
     //   marginLeft: drawerWidth,
-    backgroundColor: "lightgreen",
+    backgroundColor: '#38212E',
     zIndex: theme.zIndex.drawer + 1
   },
 
@@ -72,13 +72,14 @@ const OneVendorPublic = props => {
   }, []);
   return (
     <>
-      <Container
+      {/* <Container
         maxWidth="lg"
         key={aPublicVendor.firebase_id}
         style={{ marginTop: "50px" }}
       >
         <Card className={classes.card}>
           <CardContent>
+            <h1>Testing</h1>
             <Typography component="p">
               Company: {aPublicVendor.company_name}
             </Typography>
@@ -99,21 +100,18 @@ const OneVendorPublic = props => {
             <Typography component="p">
               Company website: {aPublicVendor.company_url}
             </Typography>
-            <Link to={`/oneVendorPublic/${aPublicVendor.firebase_id}/product`}>
-              <Typography component="p">View my products</Typography>
-            </Link>
+            
           </CardContent>
           <CardContent />
         </Card>
-      </Container>
-      <Switch>
-        <Route
-          path="/oneVendorPublic/:firebase_id/product"
-          render={props => (
-            <ProductByVendorCard {...props} vendor={aPublicVendor} />
-          )}
-        />
-      </Switch>
+      </Container> */}
+      <div className="product-wrapper">
+        <div className='product-left'>  
+        </div>
+        <div className='product-right'>
+      <ProductByVendorCard {...props} />
+      </div>
+    </div>
     </>
   );
 };

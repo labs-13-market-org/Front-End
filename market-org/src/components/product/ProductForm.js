@@ -10,28 +10,12 @@ import {
   Typography,
   TextField,
   Button,
-  CardContent
+  Input
 } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardMedia from "@material-ui/core/CardMedia";
 
 import axios from "../../axios-instance";
 
 const styles = theme => ({
-  newgroup: {
-    display: "flex",
-    width: "500px",
-    height: "500px",
-    margin: "0px auto",
-    marginTop: "200px",
-    justifyContent: "center",
-    fontWeight: "bold",
-    color: "#026440",
-    fontSize: "40px",
-    letterSpacing: "4px"
-  },
   form: {
     width: "110%",
     height: "850px",
@@ -45,11 +29,6 @@ const styles = theme => ({
     borderWidth: "1px",
     color: "#026440",
     borderColor: "#026440 !important"
-  },
-  notchedOutline: {
-    borderWidth: "1px",
-    borderColor: "#026440 !important",
-    color: "#026440"
   },
   input: {
     color: "#026440"
@@ -75,19 +54,21 @@ const ProductForm = props => {
   const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
 
-  useEffect(() => {
-    const firebaseId = localStorage.getItem("firebaseId");
-    axios
-      .get(`vendor/${firebaseId}`)
-      .then(res => {
-        // console.log(res, "vendor by Id");
-        setVendorProfile(res.data);
-        // console.log(vendorProfile);
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-  }, [vendorProfile]);
+  const photoInp = React.createRef();
+
+  // useEffect(() => {
+  //   const firebaseId = localStorage.getItem("firebaseId");
+  //   axios
+  //     .get(`vendor/${firebaseId}`)
+  //     .then(res => {
+  //       // console.log(res, "vendor by Id");
+  //       setVendorProfile(res.data);
+  //       // console.log(vendorProfile);
+  //     })
+  //     .catch(err => {
+  //       console.log(err.message);
+  //     });
+  // }, [vendorProfile]);
 
   const submitProductProfile = e => {
     e.preventDefault();
@@ -110,8 +91,8 @@ const ProductForm = props => {
           .getDownloadURL()
           .then(url => {
             console.log(url);
-            setImage(url);
-
+            // setImage(url);
+            console.log(image)
             const productObj = {
               vendors_id: vendorId,
               title: title,
@@ -119,7 +100,8 @@ const ProductForm = props => {
               price: price,
               image: url
             };
-
+            // console.log("url", url)
+            // console.log("image", image)
             axios
               .post(
                 `products/vendor/${vendorId}`,
@@ -140,16 +122,21 @@ const ProductForm = props => {
           });
       }
     );
-    props.history.push("/productsByVendor");
+    // props.history.push("/productsByVendor");
+    props.history.push(`/oneVendorPrivate/${vendorId}`);
   };
 
   const fileHandler = e => {
-    setFile(e.target.files[0]);
+    e.persist();
+    if (e.target.files[0]) {
+      setFile(() => e.target.files[0]);
+    }
+    // setFile(e.target.files[0]);
   };
 
   return (
     <>
-      <Card className={classes.card}>
+      {/* <Card className={classes.card}>
         <CardContent>
           <Typography
             component="p"
@@ -185,124 +172,82 @@ const ProductForm = props => {
         <Link to={`/oneVendorPrivate/${vendorProfile.firebase_id}`}>
           <Typography component="p">My Profile Settings</Typography>
         </Link>
-      </Card>
+      </Card> */}
 
       <Typography component="p">Product form:</Typography>
 
-      <form>
-        <TextField
-          id="outlined-name"
-          label="Title"
-          type="search"
-          name="title"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setTitle(e.target.value)}
-          value={title}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-          id="outlined-name"
-          label="Description"
-          type="search"
-          name="description"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setDescription(e.target.value)}
-          value={description}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-          id="outlined-name"
-          label="Price"
-          type="search"
-          name="price"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setPrice(e.target.value)}
-          value={price}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-          id="upload-button"
-          accept="image/*"
-          label="Upload Image"
-          name="image"
-          type="file"
-          className={classes.textField}
-          onChange={e => fileHandler(e)}
-          value={image}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            shrink: true,
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-      </form>
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="secondary"
-        onClick={submitProductProfile}
-        className={classes.submit}
-      >
-        Submit your product info
-      </Button>
+      <div className="vendor-form-wrapper">
+        <div className="vendor-form-left" />
+        <div className="vendor-form-right">
+          <h2>Add A Product</h2>
+          <form>
+            <h4>Product Name</h4>
+            <TextField
+              className="input-field"
+              id="outlined-name"
+              type="search"
+              name="title"
+              onChange={e => setTitle(e.target.value)}
+              value={title}
+              margin="normal"
+            />
+            <h4>Description</h4>
+            <TextField
+              className="input-field"
+              id="outlined-name"
+              type="search"
+              name="description"
+              onChange={e => setDescription(e.target.value)}
+              value={description}
+              margin="normal"
+            />
+
+            <h4>Price</h4>
+            <TextField
+              className="input-field"
+              id="outlined-name"
+              type="search"
+              name="price"
+              onChange={e => setPrice(e.target.value)}
+              value={price}
+              margin="normal"
+            />
+
+            <h4>Upload Image</h4>
+            <Input
+              className="input-field"
+              id="upload-button"
+              accept="image/*"
+              name="image"
+              type="file"
+              onChange={e => fileHandler(e)}
+              value={image}
+              margin="normal"
+              ref={photoInp}
+              style={{ display: "none" }}
+            />
+            <label
+              htmlFor="upload-button"
+              style={{
+                cursor: "pointer"
+              }}
+            >
+              Choose file 
+            </label>
+            <Typography>{file ? file.name : ""}</Typography>
+            <div className="submit-section-vendor">
+              <Button
+                className="submit-button-vendor"
+                type="submit"
+                fullWidth
+                onClick={submitProductProfile}
+              >
+                Submit
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   );
 };

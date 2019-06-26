@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route, Link, withRouter, Switch } from "react-router-dom";
 import { storage } from "../../firebase";
+import { auth } from "../../firebase";
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
@@ -11,15 +12,21 @@ import {
   Typography,
   TextField,
   Button,
+  Card,
+  CardActionArea,
+  CardActions,
   CardContent,
+  CardMedia,
   Menu,
   MenuItem,
   Container,
-  CssBaseline,
-  AppBar,
-  Toolbar
+  Grid,
+  GridList,
+  Paper
 } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
+
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 
 import axios from "../../axios-instance";
 
@@ -27,18 +34,8 @@ const styles = theme => ({
   root: {
     display: "flex",
     margin: "0 auto"
-  },
-  appBar: {
-    //   marginLeft: drawerWidth,
-    backgroundColor: "lightgreen",
-    zIndex: theme.zIndex.drawer + 1
-  },
-
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3
+    // flexWrap: 'wrap',
+    // justifyContent: 'space-around'
   },
 
   text: {
@@ -51,6 +48,35 @@ const styles = theme => ({
   },
   input: {
     display: "none"
+  },
+
+  card: {
+    width: 345
+    // heigt: 500,
+    // margin: "10px"
+  },
+  media: {
+    height: 345,
+    textAlign: "center"
+  },
+  gridList: {
+    margin: "0 auto"
+    // height: '800px'
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text,
+    fontWeight: "bold",
+    fontSize: "40px",
+    display: "flex",
+    margin: "0 auto",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly"
+  },
+  icon: {
+    margin: theme.spacing(1),
+    fontSize: 32
   }
 });
 
@@ -58,11 +84,10 @@ const ProductByVendor = props => {
   const { classes } = props;
 
   const [vendorProfile, setVendorProfile] = useContext(VendorContext);
-  const [product, setProduct] = useContext(ProductContext);
+  // const [products, setProducts] = useContext(ProductContext);
 
   const [products, setProducts] = useState([]);
   const [delProduct, setDelProduct] = useState(0);
- 
 
   const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
@@ -79,16 +104,13 @@ const ProductByVendor = props => {
       .catch(err => {
         console.log(err.message);
       });
-    console.log(delProduct);
+    // console.log(delProduct);
   }, [products]);
 
   const toMarkets = () => {
     props.history.push("/markets");
   };
 
-  const toCart = () => {
-    props.history.push("/carts");
-  };
   // console.log("vendor profile in product", vendorProfile);
 
   const backToProductForm = () => {
@@ -124,108 +146,93 @@ const ProductByVendor = props => {
     props.history.push("/updateProductForm");
   };
 
+  const logout = () => {
+    auth.signOut();
+    localStorage.clear();
+    props.history.push("/");
+  };
+
   return (
     <>
       <Container maxWidth="lg">
-        <Typography
-          component="p"
-          style={{ fontWeight: "bold", fontSize: "40px" }}
-        >
-          Your Product information
+        <Paper className={classes.paper} style={{ marginTop: "20px" }}>
+          My Products
+        </Paper>
+
+        <Typography>
+          testing global context: {vendorProfile.company_name}
         </Typography>
 
-        <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button
-              onClick={backToHome}
-              color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
-            >
-              Home
-            </Button>
-            <Button
-              onClick={backToProductForm}
-              color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
-            >
-              Add more products
-            </Button>
-            <Button
-              // onClick={toCart}
-              color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
-            >
-              Your cart
-            </Button>
-            <Button
-              onClick={toMarkets}
-              color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
-            >
-              Markets
-            </Button>
-          </Toolbar>
-        </AppBar>
+        <Paper className={classes.paper}>
+          {/* <GridList cellHeight={1000} className={classes.gridList} cols={3}> */}
+          {products &&
+            products.map(eachProduct => {
+              return (
+                <>
+                  <Card className={classes.card} key={eachProduct.id}>
+                    <CardActionArea>
+                      <CardContent className={classes.media}>
+                        <img
+                          src={eachProduct.image}
+                          title="Vendor product"
+                          // className="productImage"
+                          style={{ maxWidth: "100%", maxHeight: "100%" }}
+                        />
+                      </CardContent>
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {eachProduct.title}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          component="p"
+                        >
+                          {eachProduct.description}
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          color="textSecondary"
+                          component="p"
+                        >
+                          ${eachProduct.price}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
 
-        {products &&
-          products.map(eachProduct => {
-            return (
-              <>
-                <Card className={classes.card}>
-                  <CardContent>
-                    <Typography component="p">
-                      Product Title: {eachProduct.title}
-                    </Typography>
-                    <Typography component="p">
-                      Product Description: {eachProduct.description}
-                    </Typography>
-                    <Typography component="p">
-                      Product price: ${eachProduct.price}
-                    </Typography>
-                  </CardContent>
-                  <CardContent>
-                    <img
-                      src={eachProduct.image}
-                      alt="Vendor product"
-                      className="productImage"
+                    <CardActions style={{ display: "flex", flexWrap: "wrap" }}>
+                      <DeleteIcon
+                        className={classes.icon}
+                        onClick={e => deleteProduct(e, eachProduct.id)}
+                      />
+
+                      <Link
+                        to={`/oneVendorPrivate/productsByVendor/${
+                          eachProduct.id
+                        }/updateProductForm`}
+                      >
+                        <EditIcon className={classes.icon} />
+                      </Link>
+                    </CardActions>
+                  </Card>
+
+                  <Switch>
+                    <Route
+                      path="/oneVendorPrivate/productsByVendor/:id/updateProductForm"
+                      render={props => (
+                        <UpdateProductForm
+                          {...props}
+                          eachProduct={eachProduct}
+                        />
+                      )}
                     />
-                    testing global context: {vendorProfile.company_name}
-                  </CardContent>
-                  <Button
-                    onClick={e => deleteProduct(e, eachProduct.id)}
-                    color="inherit"
-                    style={{ backgroundColor: "#30cc32", margin: "10px" }}
-                  >
-                    Delete Product
-                  </Button>
-
-
-                  <Link
-                    to={`productsByVendor/${eachProduct.id}/updateProductForm`}
-                  >
-                    <Typography
-                      color="inherit"
-                      // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-                    >
-                      Edit Product
-                    </Typography>
-                  </Link>
-                </Card>
-                <Switch>
-        <Route
-          path="/productsByVendor/:id/updateProductForm"
-          render={props => (
-            <UpdateProductForm {...props} eachProduct={eachProduct} />
-          )}
-        />
-      </Switch>
-              </>
-              
-            );
-          })}
+                  </Switch>
+                </>
+              );
+            })}
+          {/* </GridList> */}
+        </Paper>
       </Container>
-
     </>
   );
 };
