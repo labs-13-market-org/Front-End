@@ -120,7 +120,7 @@ const MyVendorStalls = () => {
             <Grid item xs={10}>
                     <Paper className={classes.paper}>
                     <Typography className={classes.priceHeader}><h3>Market Name</h3></Typography>
-                    <Typography className={classes.priceHeader}><h3>Quantity</h3></Typography>
+                    <Typography className={classes.priceHeader}><h3>Dimensions</h3></Typography>
                     <Typography className={classes.qtyHeader}><h3>Price</h3></Typography>
                     </Paper>
             </Grid>
