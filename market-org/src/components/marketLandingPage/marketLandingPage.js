@@ -7,13 +7,15 @@ import { Route, NavLink, Switch } from "react-router-dom";
 import StallsList from "../stalls/stallsList";
 import axios from "../../axios-instance";
 import "./marketLandingPage.css";
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from "@material-ui/core/LinearProgress";
+import marketIcon from "../../images/stallicon.png";
 
 const MarketLandingPage = props => {
   const [markets, setMarkets] = useState([]);
   const [marketProfiles] = useContext(MarketProfilesContext);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
   console.log("check marketProfiles:", marketProfiles);
+  console.log("props: ", props);
 
   useEffect(() => {
     axios
@@ -21,7 +23,7 @@ const MarketLandingPage = props => {
       .then(res => {
         console.log(res.data);
         setMarkets(res.data);
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch(err => {
         console.log(err.message);
@@ -30,23 +32,31 @@ const MarketLandingPage = props => {
 
   return (
     <React.Fragment>
-    {
-      isLoading ?
-      <LinearProgress color="secondary"/> :
-      <div className="landing-page-wrapper">
-          <div className='market-list-page-header'>
-              <h2>Available Markets</h2>
+      {isLoading ? (
+        <LinearProgress color="secondary" />
+      ) : (
+        <div className="market-landing-page-wrapper">
+          <div className="market-list-page-header">
+            <h2>Available Markets</h2>
           </div>
-        <div className='list-title'>
-        
+          <div className="market-icon">
+            <img src={marketIcon} alt="logo" />
+          </div>
+          <div className="market-card-wrapper">
+            <div className="market-card">
+              {markets.map(market => {
+                return (
+                  <MarketProfileCard
+                    className="market-card"
+                    profile={market}
+                    key={market.firebase_id}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </div>
-        {markets.map(market => {
-
-        return (<MarketProfileCard className='market-card' profile={market} key={market.firebase_id} />)
-
-        })}
-      </div>
-    }
+      )}
     </React.Fragment>
   );
 };
