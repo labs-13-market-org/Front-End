@@ -28,7 +28,8 @@ import Slide from '@material-ui/core/Slide';
 const useStyles = makeStyles(theme => ({
   
   root: {
-    flexGrow: 1, 
+    flexGrow: 1,
+    border: '1px solid red', 
   },
  
   title: {
