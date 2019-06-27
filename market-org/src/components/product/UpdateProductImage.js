@@ -139,13 +139,18 @@ const UpdateProductImage = props => {
               value={image}
               margin="normal"
               ref={photoInp}
-              style={{ display: "none" }}
+              style={{ display: "none", color: 'white' }}
             />
             <label
               htmlFor="upload-button"
               style={{
                 cursor: "pointer",
-                fontSize: 12 
+                fontSize: 14,
+                margin: '10px',
+                background: 'rgba(180, 45, 90)',
+                color: 'white',
+                padding: '5px',
+                borderRadius: '5px'                 
               }}
             >
               Choose file 

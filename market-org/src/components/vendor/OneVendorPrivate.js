@@ -232,7 +232,8 @@ const OneVendorPrivate = props => {
                   </Typography>
                 </Link>
 
-                <Link to={`/oneVendorPrivate/${firebase_id}/editImage`}>                  
+                <Link to={`/oneVendorPrivate/${firebase_id}/editImage`}>
+                <InsertPhoto className={classes.icon} />
                   <Typography
                     variant="body2"
                     style={{
@@ -240,8 +241,7 @@ const OneVendorPrivate = props => {
                       fontSize: "11px",
                       textAlign: "center"
                     }}
-                  >
-                    <InsertPhoto className={classes.icon} />
+                  >                    
                     EDIT Image
                   </Typography>
                 </Link>
@@ -275,12 +275,12 @@ const OneVendorPrivate = props => {
           )}
         />
 
- <Route
-           path="/oneVendorPrivate/:firebase_id/editImage"
-           render={props => (
-             <UpdateVendorImage {...props} aPrivateVendor={aPrivateVendor} />
-           )}
-         />
+        <Route
+          path="/oneVendorPrivate/:firebase_id/editImage"
+          render={props => (
+            <UpdateVendorImage {...props} aPrivateVendor={aPrivateVendor} />
+          )}
+        />
       </Switch>
       <ProductByVendor {...props} />
     </>

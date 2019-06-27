@@ -118,7 +118,7 @@ const fileHandler = e => {
               style={{
                 cursor: "pointer",
                 fontSize: 16,
-                margin: '5px' 
+                padding: '10px' 
               }}
             >
               Choose file 
