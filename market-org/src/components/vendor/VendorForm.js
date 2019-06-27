@@ -182,7 +182,7 @@ const VendorForm = props => {
               onChange={e => setCompanyUrl(e.target.value)}
               margin="normal"
             />
-            <h4>Upload Your Profile Image</h4>
+            <Typography style={{ margin: '10px'}}>Upload Profile Image</Typography>
             <Input
               className="input-field"
               id="upload-button"
@@ -193,12 +193,17 @@ const VendorForm = props => {
               value={image}
               margin="normal"
               ref={photoInp}
-              style={{ display: "none" }}
+              style={{ display: "none", color: 'white' }}
             />
             <label
               htmlFor="upload-button"
               style={{
-                cursor: "pointer"
+                cursor: "pointer",
+                fontSize: 16,               
+                background: 'rgba(180, 45, 90)',
+                color: 'white',
+                padding: '5px',
+                borderRadius: '5px' 
               }}
             >
               Choose file
