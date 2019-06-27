@@ -117,7 +117,8 @@ const fileHandler = e => {
               htmlFor="upload-button"
               style={{
                 cursor: "pointer",
-                fontSize: 12 
+                fontSize: 16,
+                margin: '5px' 
               }}
             >
               Choose file 
@@ -131,7 +132,7 @@ const fileHandler = e => {
           onClick={e => updateVendorImage(e, firebase_id, setVendorProfile)}
           className={classes.submit}
         >
-          Update Your Profile
+          CHANGE PICTURE
         </Button>
       </Paper>
     </>
