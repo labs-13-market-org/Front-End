@@ -127,14 +127,7 @@ const VendorLandingPage = props => {
           </div>
       </div>
     }
-      {/* <Switch>
-        <Route
-          path="/allVendors/:firebase_id"
-          render={props => (
-            <ProductByVendorCard {...props} vendor={allVendors} />
-          )}
-        />
-      </Switch> */}
+      
     </>
   );
 };

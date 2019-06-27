@@ -259,6 +259,10 @@ function ButtonAppBar(props) {
     props.history.push("/");
   };
 
+  const about = () => {
+    props.history.push("/about");
+  }
+
 
   const { currentUser } = useContext(AuthContext);
   const classes = useStyles();
@@ -317,6 +321,7 @@ console.log('is nav opened', openNav)
                 </StyledMenu>
            
           <VendorMenu signup={register} toAllVendors={toAllVendors} toMyStalls={() => toMyStalls(user_type)}/>
+
 
           <Typography ariant="h6"  className={openNav ? classes.closed : classes.title}>
               <Link className={classes.link}   underline='none' exact to='/about'>About</Link>

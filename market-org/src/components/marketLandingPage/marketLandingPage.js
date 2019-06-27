@@ -42,19 +42,18 @@ const MarketLandingPage = props => {
           <div className="market-icon">
             <img src={marketIcon} alt="logo" />
           </div>
-          <div className="market-card-wrapper">
+        
             <div className="market-card">
               {markets.map(market => {
                 return (
                   <MarketProfileCard
-                    className="market-card"
+                    
                     profile={market}
                     key={market.firebase_id}
                   />
                 );
               })}
             </div>
-          </div>
         </div>
       )}
     </React.Fragment>

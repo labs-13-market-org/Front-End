@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { withRouter } from 'react-router'
 import Navbar from './components/navbar/Navbar';
 
+import About from './components/about/about';
 import SignIn from './components/login/SignIn';
 import SignUp from './components/register/SignUp';
 import LandingPage from './components/landingpage/landingpage';
@@ -33,7 +34,8 @@ import VendorsPerMarket from "./components/marketLandingPage/VendorsPerMarket";
 
 import { ContextProvider } from './components/context/state';
 import "./App.css";
-import EditMarket from './components/createmarket/EditMarket';
+import EditMarket from './components/createmarket/EditMarket2';
+import NoMatchingRoutes from './components/nomatchingroutes/NoMatchingRoutes';
 
 
 function App() {
@@ -55,6 +57,7 @@ function App() {
           <Route path="/productForm" component={ProductForm} />
           <Route path='/signup' component={SignUp}/>
           <Route path='/signin' component={SignIn}/>
+          <Route path="/about" component={About}/>
           {/* <Route path="/updateProductForm" component={UpdateProductForm} /> */}
           <Route path="/productsByVendor" component={ProductByVendor} />
           {/* <Route path="/oneVendorPublic/:firebase_id/product" component={ProductByVendorCard} /> */}
@@ -68,6 +71,7 @@ function App() {
           <Route path="/oneVendorPublic/:firebase_id" component={OneVendorPublic} />
           <Route path="/oneVendorPrivate/:firebase_id" component={OneVendorPrivate} />        
           <Route exact path='/cart/:id' component={VendorCart}/>
+          <Route component={NoMatchingRoutes} />
         </Switch>
         </ContextProvider>
         </div>
