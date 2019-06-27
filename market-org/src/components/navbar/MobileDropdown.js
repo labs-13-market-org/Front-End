@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { withRouter } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import { auth } from "../../firebase";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ProfileMenu from './ProfileMenu'
@@ -19,6 +20,7 @@ import { VendorContext } from "../context/vendor";
 import axios from "../../axios-instance";
 import Slide from '@material-ui/core/Slide';
 import './navbar.css'
+import SignIn from '../login/SignIn';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -118,8 +120,8 @@ const StyledMenu = withStyles({
     width: '10%',
     ['@media (max-width: 660px)']: {
      width: '40%',
-      border: '2px solid red',
-     backgroundColor: 'green'
+    //   border: '2px solid red',
+    //  backgroundColor: 'green'
     }
   },
 
@@ -162,6 +164,7 @@ const MobileDropdown = (props) => {
   
   const toHome = () => {
       props.history.push('/')
+      setOpenNav(false)
   }
 
   const routeToProfile = () => {
@@ -204,6 +207,27 @@ const MobileDropdown = (props) => {
     let firebase_id = localStorage.getItem('firebaseId')
       props.history.push(`/cart/${firebase_id}`)
   }
+
+  const toAllMarkets = () => {
+    props.history.push('/markets')
+  }
+
+  const toAllVendors = () => {
+    props.history.push("/allVendors");
+  };
+
+  const register = () => {
+    props.history.push("/signup");
+  };
+
+  const login = () => {
+    props.history.push('/signin')
+  }
+  const logout = () => {
+    auth.signOut();
+    localStorage.clear();
+    props.history.push("/");
+  };
 
   const classes = useStyles();
   const user_type = localStorage.getItem('userTypes')
@@ -254,18 +278,18 @@ const MobileDropdown = (props) => {
                             <span style={{borderBottom: '1.5px solid lightgreen', margin: ' 1.5rem 1rem' }}>Market Organizer</span>
                             <IconButton 
                             onClick={handleClose}
-                            aria-controls="profile" 
+                            aria-controls="close" 
                             color="inherit"
-                            aria-label="profile"
+                            aria-label="close"
                             className={classes.closeButton}
                             >
                                 <Clear/>
                             </IconButton>
                             
                             <div className='links'>
-                            <NavLink className='nav-link'  activeClassName='selected' exact to='/'>Home  
+                            <NavLink className='nav-link'  activeClassName='selected' onClick={toHome} exact to='/'>Home  
                                 <IconButton 
-                                    onClick={handleClose}
+                                    // onClick={handleClose}
                                     aria-controls="expand" 
                                     color="inherit"
                                     aria-label="expand"
@@ -274,7 +298,7 @@ const MobileDropdown = (props) => {
                                     <Expand/>
                                 </IconButton>
                             </NavLink>
-                            <NavLink className='nav-link' activeClassName='selected' exact to='/markets'>
+                            <NavLink className='nav-link' activeClassName='selected' exact to='/markets' onClick={toAllMarkets}>
                                 View Our Markets 
                                     <IconButton 
                                         onClick={handleClose}
@@ -286,7 +310,7 @@ const MobileDropdown = (props) => {
                                         <Expand/>
                                 </IconButton>
                             </NavLink>
-                            <NavLink className='nav-link' activeClassName='selected' exact to='/allVendors'>
+                            <NavLink className='nav-link' activeClassName='selected' exact to='/allVendors' onClick={toAllVendors}>
                                 View Our Vendors
                                 <IconButton 
                                         onClick={handleClose}
@@ -298,7 +322,7 @@ const MobileDropdown = (props) => {
                                         <Expand/>
                                 </IconButton>
                             </NavLink>
-                            <NavLink className='nav-link' activeClassName='selected' exact to='/signup'>
+                            <NavLink className='nav-link' activeClassName='selected' exact to='/signup' onClick={register}>
                                 Register
                                 <IconButton 
                                     onClick={handleClose}
@@ -311,8 +335,8 @@ const MobileDropdown = (props) => {
                                 </IconButton>
                             </NavLink>
                             {/* <NavLink className='nav-link' activeClassName='selected' exact to='/signup'>Become A Vendor</NavLink> */}
-                            <NavLink className='nav-link' activeClassName='selected' exact to='/signin'>
-                                Login
+                            <NavLink className='nav-link' activeClassName='selected' exact to={currentUser ? '/' : '/signin'} onClick={SignIn}>
+                            {currentUser ? 'Logout' : 'Login'}
                                 <IconButton 
                                         onClick={handleClose}
                                         aria-controls="expand" 
