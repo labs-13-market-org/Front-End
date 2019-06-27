@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
  
   title: {
     flexGrow: 1,
-    ['@media (max-width: 660px)']: {
+    ['@media (max-width: 750px)']: {
       display: 'none'
     }
   },
@@ -136,7 +136,7 @@ const useStyles = makeStyles(theme => ({
   },
   mobileNav: {
     display: 'none',
-    ['@media (max-width:660px)']: {
+    ['@media (max-width:900px)']: {
      display: 'block',
      border: '1px solid red'
     }
@@ -150,7 +150,7 @@ const StyledMenu = withStyles({
     backgroundColor: '#b42d5ae8',
     height: '170px',
     width: '10%',
-   ['@media (max-width: 660px)']: {
+   ['@media (max-width: 900px)']: {
      display: 'none'
    }
   },
@@ -272,17 +272,9 @@ console.log('is nav opened', openNav)
      
       <AppBar position="static" className= {classes.appBar} >
       <IconButton >
-
-      {/* <IconButton className={openNav ? classes.closed : classes.menubar} onClick={openNavBar}> */}
         <MenuDropdown className={classes.mobileNav}/>
       </IconButton>
-      {/* <AppBar position="static" className= {openNav ? classes.OpenAppBar :  classes.appBar} > */}
-        {/* <Slide direction="down" in={openNav} mountOnEnter unmountOnExit> */}
         <Toolbar  >
-        {/* <Toolbar className={openNav ?  'nav-bar' : null } onMouseLeave={closeNavBar}> */}
-          {/* <IconButton className={openNav ? classes.clearIcon : classes.closed} onClick={closeNavBar}>
-            <Clear/>
-          </IconButton> */}
           <Typography variant="h6" className={classes.title} />
             <Typography variant="h6"  className={classes.title }>
                 <Link onClick={toHome} className={classes.link} underline='none'>Home</Link>

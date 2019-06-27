@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1, 
     display: 'none',
 // border: '1px solid red',
-['@media (max-width: 660px)']: {
+['@media (max-width: 750px)']: {
     display: 'block',
    }
   },
