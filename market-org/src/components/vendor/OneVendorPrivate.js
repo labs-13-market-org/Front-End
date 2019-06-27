@@ -242,7 +242,7 @@ const OneVendorPrivate = props => {
                       textAlign: "center"
                     }}
                   >                    
-                    EDIT Image
+                    CHANGE PHOTO
                   </Typography>
                 </Link>
                 {/* </Grid>

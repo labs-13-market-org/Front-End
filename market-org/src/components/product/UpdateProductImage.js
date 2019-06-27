@@ -162,7 +162,7 @@ const UpdateProductImage = props => {
             onClick={e => updateImage(e, id, setProduct)}
             className={classes.submit}
           >
-            Update your image
+            Update Picture
           </Button>
         </form>
       </Paper>

@@ -111,14 +111,17 @@ const fileHandler = e => {
               value={image}
               margin="normal"
               ref={vendorPhotoInp}
-              style={{ display: "none" }}
+              style={{ display: "none", color: 'white' }}
             />
             <label
               htmlFor="upload-button"
               style={{
                 cursor: "pointer",
-                fontSize: 16,
-                padding: '10px' 
+                fontSize: 16,               
+                background: 'rgba(180, 45, 90)',
+                color: 'white',
+                padding: '5px',
+                borderRadius: '5px'  
               }}
             >
               Choose file 
@@ -131,8 +134,9 @@ const fileHandler = e => {
           // onClick={e => updateVendor(e, firebase_id, editVendor)}
           onClick={e => updateVendorImage(e, firebase_id, setVendorProfile)}
           className={classes.submit}
+          style={{ margin: '15px'}}
         >
-          CHANGE PICTURE
+          UPDATE PHOTO
         </Button>
       </Paper>
     </>
