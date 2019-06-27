@@ -9,6 +9,7 @@ import Chip from '@material-ui/core/Chip';
 import "./stallsList.css"
 import './Stalls.css';
 import { VendorContext, VendorProvider } from "../context/vendor";
+import rentIcon from "../../images/stallicon.png";
 
 const StallsList = (props) => {
 
@@ -19,21 +20,6 @@ const StallsList = (props) => {
     const [vendorProfile, setVendorProfile] = useContext(VendorContext);
 
     console.log("Vendor Profile:", vendorProfile)
-    // useEffect(() => {
-    //     axios.get(`/stalls/market/${props.location.state.firebase_id}`)
-    //     .then(res => {
-    //         console.log("Stalls : ", res.data)
-    //         let stallItems = res.data.stallData;
-    //         // stalls = stalls.map(stall => JSON.parse(stall));
-    //        setStalls(stallItems);
-    //         console.log("stalls", stalls);
-    //        setStallChangeStatus(false);
-    //     }).catch(err => {
-    //             console.log(err.message);
-    //     })
-
-
-    // }, [hasAStallChanged]);
 
     useEffect(() => {
         axios.get(`/stalls/market/${props.location.state.firebase_id}`)
@@ -42,16 +28,12 @@ const StallsList = (props) => {
             let stallItems = res.data.stallData;
             const market = res.data.marketData;
             setMarket(market)
-            // stalls = stalls.map(stall => JSON.parse(stall));
             console.log("stalls",typeof stalls);
            setStalls(stallItems);
            setStallChangeStatus(false);
         }).catch(err => {
                 console.log(err.message);
         })
-
-
-
 
     }, [hasAStallChanged]);
 
@@ -63,30 +45,12 @@ const StallsList = (props) => {
             alert("You must be a vendor to rent a stall")
         }
 
-            // axios.put(`/cart/${firebase_id}`, {current_market_id: market_id});
             axios.request({
               method: "POST",
               url: `cart/add-stall-to-cart/${cart_id}`, 
               data: {stalls_id: stalls_id, market_id: market_id}
             }).then(res => {
               console.log("res:", res);
-            
-
-                      // axios.request({
-                      //   method: "PUT",
-                      //   url: `stalls/${stalls_id}`,
-                      //   data: { available: false }
-                      // })
-                      // .then(res => {
-                      //   console.log("res:", res);
-                      //   setStallChangeStatus(true)
-                      // })
-                      // .catch(err => {
-
-                      //   console.log(err.message);
-                        
-                      // })
-              
 
               }).catch(err => {
                 console.log(err.message);
@@ -98,58 +62,26 @@ const StallsList = (props) => {
       }
 
     const useStyles = makeStyles(theme => ({
-        root: {
-          padding: theme.spacing(3, 0.5),
-          width: "1250px"
-        },
-        card: {
-            minWidth: 275,
-            margin: "2%",
-            width: "1250px",
-            paddingLeft: "7%",
-            paddingRight: "10%"
-          },
-          bullet: {
-            display: 'inline-block',
-            margin: '0 2px',
-            transform: 'scale(0.8)',
-          },
-          title: {
-            fontSize: 14,
-          },
-          headerTitle: {
-              fontSize: 48,
-          },
-          marketTitle: {
-              fontSize: 36,
-          },
-          stallProps: {
-              fontSize: 20,
-          },
-          pos: {
-            marginBottom: 12,
-          },
-          button: {
-            // margin: theme.spacing(2),
-            width: "100%"
-          },
-          chip: {
-            margin: theme.spacing(1),
-          }
+        
       }));
  
     const classes = useStyles();
 
-    // const cart_id = localStorage.getItem('firebaseId')
     console.log("Getting stalls ", stalls);
     return(
-        <div className='market-by-id-wrapper'>
-           
+      
+
+      <div className="rent-page-wrapper">
+      <div className="rent-page-header">
+        <h2>Rent Stalls</h2>
+      </div>
+      <div className="rent-icon">
+      <img src={rentIcon} alt="logo" />
+      </div>
+          <div className='stall-wrapper'>
+  
             
-            <div className='market-by-id-header'>
-            <h2>Rent Your Stalls</h2>
-            </div>
-            <div className='market-by-id-info'>
+            <div className='rent-market-info'>
             <h3>Selected Market:</h3>
             <h4>{market.market_name}</h4>
             <h4>{market.address}</h4>
@@ -157,8 +89,6 @@ const StallsList = (props) => {
             <h4>{market.state}</h4>
             <h4>{market.phone_number}</h4>
             </div>
-            
-            
             
             <div className='stalls'>
             <h2>Available Stalls:</h2>
@@ -174,25 +104,17 @@ const StallsList = (props) => {
                         <p>${stalls[stall].price}</p>
                         
                     
-                      <Button variant="contained" color="primary" className={classes.button} onClick={() => addToCart(stalls[stall].id, stalls[stall].market_id)}>Add To Cart</Button> 
+                      <Button variant="contained" className='rent-add-button' onClick={() => addToCart(stalls[stall].id, stalls[stall].market_id)}>Add To Cart</Button> 
 
                 </div>
             ))}
             </div>
-
-            {/* /* <h2> List of available stalls for {props.location.state.market_name}</h2>
-            {stalls.map(stall_item => {
-                console.log(stall_item, 'stall item')
-                return (
-                    <div>
-                        {stall_item}
-                    </div>
-                )
-                // return (<Stall stall={stall_item} setStallChangedStatus={setStallChangeStatus}/>)
-            })} */ }
+            </div>
       </div>
         
     )
+
+    
 }
 
 export default StallsList;

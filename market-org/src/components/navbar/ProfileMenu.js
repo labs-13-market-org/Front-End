@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { withRouter } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import { Link } from 'react-router-dom'
+import ProfileMenu from './ProfileMenu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from "@material-ui/core/styles";
@@ -48,10 +49,18 @@ const useStyles = makeStyles(theme => ({
 
 const StyledMenu = withStyles({
   paper: {
-    marginTop: '3rem',
+    marginTop: '3.5rem',
+    marginLeft: '1.2rem',
     backgroundColor: '#b42d5ae8',
-    height: '170px',
-    width: '10%'
+    height: '190px',
+    width: '15%',
+    ['@media (max-width: 660px)']: {
+     width: '40%',
+     marginLeft: '.5rem',
+     height: '200px',
+    //   border: '2px solid red',
+    //  backgroundColor: 'green'
+    }
   },
 
   close: {
@@ -127,14 +136,15 @@ const VendorMenu = (props) => {
     <div className={classes.root} >
       <Typography variant="h6" className={classes.title} />
                <Typography variant="h6"  className={classes.title}>
-                   <IconButton
+                 
+                    <IconButton
                       onClick={handleClick}
                       aria-controls="profile" 
                       color="inherit"
                       aria-label="profile"
                     >
                       <Profile />
-                    </IconButton>
+                    </IconButton> 
 
                     <IconButton
                         onClick={handleClick}

@@ -1,11 +1,64 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 
-.vendor-card-wrapper{
-    display:flex;
+.vendor-landing-page-wrapper{
+
+    background-color: #E9EBEE;
+    padding-bottom: 50px;
+    padding-right: 20%;
+    padding-left: 20%;
+    font-family: 'Montserrat'
+    
+}
+
+.vendor-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#38212E;
+    width: 175px;
+    height: 175px;
+    border-radius: 150px;
+    margin-top: -190px;
+    margin-left: 30px;
+    margin-bottom: 50px;
+    border: 2px solid white;
+}
+
+.vendor-icon img{
+    width: 66%;
+    height: 66%;
+    
+}
+
+.sidebar-info{
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
+    align-items: center;
+    background-color: white;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    margin-top:10px;
+    margin-bottom:10px;
+    width:30%;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, .5);
+    /* background-image: url('../../images/defaultStall.jpg'); */
+    background-color: white;
+    max-height: 220px;
+    overflow: hidden;
+    
+}
+.sidebar-info img{
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%
+}
+.vendor-card-wrapper{
+    display: flex; 
+    flex-wrap: wrap;
 }
 
 .vendor-card{
@@ -16,10 +69,17 @@
     font-family: 'Montserrat';
     font-size: 20px;
     margin:10px;
-    width:30%;
+    width:100%;
     border-radius: 10px;
     text-align: center;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .5);
 }
+
+.vendor-card-wrapper-right{
+    width: 70%;
+    
+}
+
 
 .vendor-card h4{
     width: 100%;
@@ -35,10 +95,6 @@
     margin: 5px;
     width: 50%;
 }
-
-/* .vendor-card-link h4{
-    color: rgba(180, 45, 90, 0.911);  
-} */
 
 .vendor-card-link a{
     text-decoration: none;
@@ -65,8 +121,10 @@
     font-size: 30px;
     margin-bottom:50px;
     text-shadow: 2px 2px #000000;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .5);
   
 }
+
 
 @media (max-width: 1000px){
     .vendor-card{
