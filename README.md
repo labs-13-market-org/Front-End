@@ -83,7 +83,6 @@ Firebase
 
 #### [Back end](https://github.com/labs-13-market-org/Backend) built using:
 
-
 Node/Express js
 - Uses Javascript to build web server.
 - light-weight web application framework to help organize web application into an MVC architecture
