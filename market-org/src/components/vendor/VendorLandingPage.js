@@ -92,7 +92,7 @@ const VendorLandingPage = props => {
           allVendors.map(eachVendor => {
             return (
               <>
-              
+              <div className='one-vendor-wrapped'>
                 <div className='sidebar-info'>
                 
                         <img
@@ -112,11 +112,12 @@ const VendorLandingPage = props => {
                     <h4>Company: {eachVendor.company_name}</h4>
                     <h4>Full Name: {eachVendor.contact_fullname}</h4>
 
-                    <div className='vendor-card-link'>
+                    
                     <Link to={`/oneVendorPublic/${eachVendor.firebase_id}`}>
                       More Info
                     </Link>
-                    </div>
+                    
+                  </div>
                   </div>
                   </div>
                 
