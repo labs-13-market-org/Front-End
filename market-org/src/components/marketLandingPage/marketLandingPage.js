@@ -39,7 +39,7 @@ const MarketLandingPage = props => {
           <div className="market-list-page-header">
             <h2>Available Markets</h2>
           </div>
-          <div className="market-icon">
+          <div className="market-landing-icon">
             <img src={marketIcon} alt="logo" />
           </div>
         
