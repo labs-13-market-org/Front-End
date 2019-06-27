@@ -59,8 +59,8 @@
   /* align-items: space-around;
   justify-content: center; */
   /* margin-right: 2rem; */
-  animation:  slideInUp 2s ease-in-out forwards;
-  z-index: 2;
+  animation:  slideInUp 1s ease-in-out forwards;
+  z-index: 1;
   /* background-color: #b42d5ae8; */
   background-color: #b42d5afb;
   height: 100vh;
@@ -69,6 +69,9 @@
   /* border: 1px solid salmon; */
 }
 
+.profile-link {
+  color: white;
+}
 .links {
   height: 50vh;
   text-align: left;

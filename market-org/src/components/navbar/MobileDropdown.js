@@ -4,15 +4,18 @@ import Typography from "@material-ui/core/Typography";
 import { NavLink } from 'react-router-dom'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import ProfileMenu from './ProfileMenu'
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import { withStyles } from '@material-ui/styles';
 import MenuBars from '@material-ui/icons/Menu';
+import Home from '@material-ui/icons/Home';
 import Profile from '@material-ui/icons/AccountCircle';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import Expand from '@material-ui/icons/ExpandMore';
 import Clear from '@material-ui/icons/Clear';
 import { AuthContext } from "../authContext/authState";
+import { VendorContext } from "../context/vendor";
 import axios from "../../axios-instance";
 import Slide from '@material-ui/core/Slide';
 import './navbar.css'
@@ -27,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 border: '1px solid red',
 ['@media (max-width: 660px)']: {
     display: 'block',
+    // justify: 'space-around'
    }
   },
  
@@ -34,6 +38,7 @@ border: '1px solid red',
     flexGrow: 1,
     display: 'flex',
   justify: 'flex-start',
+  color: 'white',
     // border: '1px solid green',
   },
 
@@ -78,10 +83,30 @@ border: '1px solid red',
   },
   shoppingCart: {
     position: 'absolute',
-    right: '10px',
+    right: '25px',
     color: 'white',
     fontSize: '1.2rem',
     cursor: 'pointer',
+    // marginLeft: '10rem',
+    // border: '1px solid red',
+  },
+  profile: {
+    color: 'white',
+    fontSize: '1.2rem',
+    cursor: 'pointer',
+    position: 'absolute',
+    right: '75px',
+    // marginLeft: '9rem',
+    // border: '1px solid red',
+  },
+  home: {
+    color: 'white',
+    fontSize: '1.2rem',
+    cursor: 'pointer',
+    position: 'absolute',
+    right: '110px',
+    // marginLeft: '9rem',
+    // border: '1px solid red',
   }
 }));
 
@@ -123,6 +148,7 @@ const MobileDropdown = (props) => {
   const [stripe_acc_id, setStripeAccId] = useState(null)
   const [openNav, setOpenNav] = useState(false)
   const { currentUser } = useContext(AuthContext);
+  const { vendor } = useContext(VendorContext);
 
   const handleClick = (event) => {
       setOpenNav(true)
@@ -134,6 +160,10 @@ const MobileDropdown = (props) => {
     setOpenNav(false)
   }
   
+  const toHome = () => {
+      props.history.push('/')
+  }
+
   const routeToProfile = () => {
     const usertype = localStorage.getItem("userTypes")
     console.log("userType", usertype)
@@ -153,6 +183,7 @@ const MobileDropdown = (props) => {
       props.history.push(`/oneVendorPrivate/${currentUser.uid}`)
     }
   }
+
 
   const stripeDashboardLink = () => {  
     if(stripe_acc_id === null) {
@@ -176,12 +207,13 @@ const MobileDropdown = (props) => {
 
   const classes = useStyles();
   const user_type = localStorage.getItem('userTypes')
-  console.log(props, 'props from mobile nav')
+  console.log(vendor, 'vendor from mobile nav')
 
   return (
     <div className={classes.root} >
       <Typography variant="h6" className={classes.title} />
                <Typography variant="h6"  className={classes.title}>
+                   
                    <IconButton
                       onClick={handleClick}
                       aria-controls="open menu" 
@@ -191,6 +223,24 @@ const MobileDropdown = (props) => {
                     >
                       <MenuBars className={classes.icon} />
                     </IconButton>
+                    <IconButton
+                      onClick={toHome}
+                      aria-controls="home" 
+                      color="inherit"
+                      aria-label="home"
+                      className={classes.home}
+                    >
+                      <Home />
+                    </IconButton>
+                    {/* <IconButton
+                        edge="end"
+                        className={currentUser ? classes.profile : classes.closed}
+                        color="inherit"
+                        aria-label="Profile"
+                    >
+              <Profile onClick={routeToProfile} />
+            </IconButton> */}
+            <ProfileMenu className='profile-link'/>
                     <IconButton
                         edge="end"
                         className={user_type === 'vendor' ? classes.shoppingCart : classes.closed}
