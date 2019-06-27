@@ -1,0 +1,108 @@
+.nav-wrapper {
+    /* border: 1px solid red; */
+    @media only screen and (max-width: 600px) {
+        border: 2px solid orange;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+      visibility: visible;
+    }
+  
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+@media only screen and (max-width: 660px) {
+   .nav-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    background-color: #38212E;
+    border: 1px solid orange;
+    animation:  slideInDown .3s ease-in-out forwards;
+    
+    }
+  
+}
+
+@keyframes slideInUp {
+  from {
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.close {
+  display: none;
+}
+.mobile-nav {
+  animation:  slideInUp .3s ease-in-out forwards;
+  color: white;
+  display: flex;
+  position: absolute;
+  top: 70px;
+  width: 99%;
+  flex-direction: column;
+  /* align-items: space-around;
+  justify-content: center; */
+  /* margin-right: 2rem; */
+  animation:  slideInUp 1s ease-in-out forwards;
+  z-index: 1;
+  /* background-color: #b42d5ae8; */
+  background-color: #b42d5afb;
+  height: 100vh;
+  /* margin-top: 10rem; */
+  /* border: 1px solid silver; */
+  /* border: 1px solid salmon; */
+}
+
+.profile-link {
+  color: white;
+}
+.links {
+  height: 50vh;
+  text-align: left;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-self: space-between;
+  justify-content: space-between;
+  width: 50%;
+  /* border: 1px solid white; */
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+}
+
+/* .selected {
+  border-bottom: 1.5px solid lightgreen;
+} */
+/* @media only screen and (max-width: 660px) {
+  .mobile-nav {
+     animation:  slideInUp .3s ease-in-out forwards;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+    border: 1px solid silver; 
+}
+} */
+
+.checking {
+    color: #38212e75;
+}

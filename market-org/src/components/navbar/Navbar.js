@@ -9,123 +9,97 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Expand from '@material-ui/icons/ExpandMore';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import Clear from '@material-ui/icons/Clear';
+import MenuBars from '@material-ui/icons/Menu';
 import Link from '@material-ui/core/Link';
 import { auth } from "../../firebase";
 import { Route, withRouter } from "react-router-dom";
 import VendorMenu from './MenuButton';
 import ProfileMenu from './ProfileMenu';
+import MenuDropdown from './MobileDropdown';
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import SignUp from '../register/SignUp';
+import './navbar.css'
+import Slide from '@material-ui/core/Slide';
 
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     flexGrow: 1, 
-//   },
- 
-//   title: {
-//     flexGrow: 1,
-//   },
-
-//   appBar: { 
-//     backgroundColor: '#38212E',
-//   },
-
-//   link: {
-//     color: 'white',
-//     fontSize: '1.2rem',
-//     margin: "10px",
-//     cursor: 'pointer',
-//     '&:hover': {
-//       borderBottom: '1px solid #30cc32'
-//     }
-    
-//   },
-
-//   icons: {
-//     color: 'white',
-//     fontSize: '1.2rem',
-//     // margin: "10px",
-//     cursor: 'pointer',
-//   },
-
-//   dropDown: {
-//     // border: '1px solid red',
-//     height: '165px',
-//     display: 'flex',
-//     flexDirection: 'column',
-//     paddingLeft: '1rem',
-//     justifyContent: 'space-around',
-//   },
-
-
-//   closed: {
-//     display: 'none'
-//   },
-//   vendor: {
-//     border: '3px solid green'
-//   }, 
-//   menuItem: {
-//     color: 'white',
-//     textDecoration: 'none'
-//   },
-
-//   menuNav: {
-//     marginTop: '2rem',
-   
-//     // background: '#b42d5ae8',
-//     // color: 'white'
-//     // border: '1px solid red',
-//   },
-
- 
-// }));
-
-
-
-// const StyledMenu = withStyles({
-//   paper: {
-
-//     marginTop: '3rem',
-//     backgroundColor: '#b42d5ae8',
-//     height: '170px',
-//     width: '10%'
-//   },
-
-//   close: {
-//     display: 'none'
-//   }
-// })(props => (
-//   <Menu
-//     elevation={0}
-//     // getContentAnchorEl={null}
-//     anchorOrigin={{
-//       vertical: 'bottom',
-//       horizontal: 'center',
-//     }}
-//     transformOrigin={{
-//       vertical: 'top',
-//       horizontal: 'center',
-//     }}
-//     {...props}
-    
-//   />
-// ));
 
 const useStyles = makeStyles(theme => ({
+  
   root: {
     flexGrow: 1, 
   },
  
   title: {
     flexGrow: 1,
+    ['@media (max-width: 750px)']: {
+      display: 'none'
+    }
   },
 
   appBar: { 
     backgroundColor: '#38212E',
+    ['@media (max-width:800px)']: { 
+      height: '70px'
+    },
+    // ['@media (max-width: 660px)']: {
+    //   display: 'none'
+    // }
   },
 
+  openAppBar: {
+    // backgroundColor: '#38212E',
+    display: 'none',
+    ['@media (max-width: 660px)']: {
+      backgroundColor: '#38212E',
+      display: 'block',
+      // opacity: '.5',
+    }
+  },
+
+  closeItem: {
+    ['@media (max-width: 660px)']: {
+      display: 'none'
+    }
+  },
+  toolbar: {
+  
+    
+    // ['@media (max-width:660px)']: {
+  
+    //   display: 'flex',
+    //   flexDirection: 'column',
+    //   alignItems: 'center',
+    //   height: '250px',
+    //   animation: `ripple-effect 550ms `,
+    //   // backgroundColor: '#38212e75',
+    //   backgroundColor: '#38212E',
+      // opacity: '.5',
+    
+      // border: '2px solid green',
+
+    // "@keyframes ripple-effect": {
+    //   "0%": {
+    //       transform: "scale(0)",
+    //       opacity: 0.1
+    //   },
+    //   "100%": {
+    //       transform: "scale(1)",
+    //       opacity: 0.9
+    //   }
+    // }
+    //},
+
+  },
+
+  menubar: {
+    display: 'none',
+    ['@media (max-width: 660px)']: {
+      display: 'block',
+      color: 'white',
+    }
+  },
   link: {
     color: 'white',
     fontSize: '1.2rem',
@@ -137,6 +111,21 @@ const useStyles = makeStyles(theme => ({
     }
     
   },
+  icon: {
+    // ['@media (max-width:800px)']: { 
+    //   display: 'none',
+    // }
+  },
+
+  clearIcon: {
+    // display: 'none',
+    ['@media (max-width:660px)']: {
+      position: 'absolute',
+      left: '20px',
+      color: 'white',
+    }
+   
+  },
   closed: {
     display: 'none'
   },
@@ -145,15 +134,25 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     width: "100%"
   },
- 
+  mobileNav: {
+    display: 'none',
+    ['@media (max-width:900px)']: {
+     display: 'block',
+     border: '1px solid red'
+    }
+  }
 }));
 
 const StyledMenu = withStyles({
+  
   paper: {
     marginTop: '3rem',
     backgroundColor: '#b42d5ae8',
     height: '170px',
-    width: '10%'
+    width: '10%',
+   ['@media (max-width: 900px)']: {
+     display: 'none'
+   }
   },
 
   close: {
@@ -180,6 +179,7 @@ function ButtonAppBar(props) {
   const [open, setOpen] = React.useState(false);
   const [openReg, setOpenReg] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openNav, setOpenNav] = React.useState(false);
 
   const firebaseId = localStorage.getItem('firebaseId');
 
@@ -187,6 +187,15 @@ function ButtonAppBar(props) {
     setAnchorEl(event.currentTarget);
   }
 
+  const openNavBar = () => {
+    setOpenNav(true)
+    console.log('clicked')
+  }
+
+
+  const closeNavBar = () => {
+    setOpenNav(false)
+  }
   const handleClose = ()  => {
     setAnchorEl(null);
   }
@@ -250,23 +259,33 @@ function ButtonAppBar(props) {
     props.history.push("/");
   };
 
+  const about = () => {
+    props.history.push("/about");
+  }
+
 
   const { currentUser } = useContext(AuthContext);
   const classes = useStyles();
   const user_type = localStorage.getItem('userTypes')
   const isOpen = Boolean(anchorEl);
 // console.log(vendorProfile, 'vendor profile')
+console.log('is nav opened', openNav)
   return (
     
-    <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
+    <div className= {classes.root}>
+     
+      <AppBar position="static" className= {classes.appBar} >
+      <IconButton >
+        <MenuDropdown className={classes.mobileNav}/>
+      </IconButton>
+        <Toolbar  >
           <Typography variant="h6" className={classes.title} />
-            <Typography variant="h6"  className={classes.title}>
+            <Typography variant="h6"  className={classes.title }>
                 <Link onClick={toHome} className={classes.link} underline='none'>Home</Link>
             </Typography>
             <>
             <Typography variant="h6"  className={classes.title}>
+              {/* changebe to navlink after styling completed */}
                 <Link 
                     className={classes.link}  
                     underline='none'  
@@ -282,6 +301,7 @@ function ButtonAppBar(props) {
                       aria-controls='market-menu'
                       color='inherit'
                       aria-label='market-menu'
+                      className={classes.icon}
                     >
                       <Expand />
                     </IconButton>
@@ -302,20 +322,21 @@ function ButtonAppBar(props) {
            
           <VendorMenu signup={register} toAllVendors={toAllVendors} toMyStalls={() => toMyStalls(user_type)}/>
 
-          <Typography ariant="h6"  className={classes.title}>
-              <Link className={classes.link}  underline='none'>About</Link>
+
+          <Typography ariant="h6"  className={openNav ? classes.closed : classes.title}>
+              <Link className={classes.link}   underline='none' exact to='/about'>About</Link>
           </Typography>
 
-          <Typography ariant="h6"  className={classes.title}>
-            <Link className={classes.link}  underline='none'>Contact Us</Link>
+          <Typography ariant="h6"  className={openNav ? classes.closed : classes.title} >
+            <Link className={classes.link}  underline='none' exact to='/contact'>Contact Us</Link>
           </Typography>
 
-          <Typography ariant="h6"  className={classes.title} >
+          <Typography ariant="h6"  className={currentUser ? classes.closed : classes.title} >
               <Link 
                 // className={classes.link}
                 color="inherit"
                 onClick={register}
-                className={currentUser ? classes.closed : classes.link }
+                className={ classes.link }
                 underline='none'
               >
                   Sign Up
@@ -345,130 +366,13 @@ function ButtonAppBar(props) {
           </Typography>
           <Typography ariant="h6"  className={ currentUser ? classes.title : classes.closed}>
            <ProfileMenu handleRegOpen={SignUp} user={user_type} toAllVendors={toAllVendors} logout={logout} />
-            {/* <IconButton
-              edge="end"
-              className={classes.icons}
-              color="inherit"
-              aria-label="profile"
-              // onClick={handleClick}
-            >
-               
-              <Profile />
-            </IconButton>
-            <IconButton
-            onClick={handleClick}
-                      // edge="end"
-              // className={classes.profile}
-              color="inherit"
-              aria-label='profile'
-            >
-              <Expand />
-            </IconButton> */}
+      
           </Typography>
-          {/* <StyledMenu
-            id="profile"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            className={ currentUser ? null : classes.closed}
-           >         
-           <StyledMenuItem className={classes.menuItem} onClick={handleRegOpen}>View Profile</StyledMenuItem>
-            <StyledMenuItem className={classes.menuItem} onClick={() => toMyStalls(user_type)}>{user_type === 'vendor' ? 'My Purchased Orders' : 'My Stalls'}</StyledMenuItem>
-            <StyledMenuItem className={classes.menuItem} onClick={toAllVendors}>Account Settings</StyledMenuItem>
-            <StyledMenuItem className={classes.menuItem} onClick={logout}>Logout</StyledMenuItem>
-          </StyledMenu> */}
-              {/* <Button
-                color="inherit"
-                onClick={toHome}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Home
-              </Button> */}
-              {/* <button onClick={props.history.push('/cart/:id')}>cart</button> */}
-              {/* <Button
-                aria-controls="simple-menu" 
-                aria-haspopup="true" 
-                onClick={handleClick}
-                color="inherit"
-                  // onClick={toAllMarkets}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                  Markets  <IconButton
-                        edge="end"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="simple-menu"
-                    >
-                        <Expand />
-                    </IconButton>
-              </Button> */}
-  
-              {/* <Button
-                color="inherit"
-                onClick={toAllVendors}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Vendors
-              </Button>
-              <Button
-                color="inherit"
-                // onClick={logout}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                About
-              </Button>
-              <Button
-                color="inherit"
-                // onClick={logout}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Contact Us
-              </Button> */}
-              
-              {/* <Button
-                color="inherit"
-                onClick={routetoCreate}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Register A Market
-              </Button> */}
             </>
-          {/* ) : ( */}
             <>
-              {/* <Button
-                color="inherit"
-                onClick={handleRegOpen}
-                className={currentUser ? classes.closed : classes.button }
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Sign Up
-              </Button> */}
-
-              {/* <Button
-                color="inherit"
-                onClick={logout}
-                className={classes.button}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                {currentUser ? 'Logout' : 'Login'}
-              </Button> */}
-              {/* <Button
-                color="inherit"
-                onClick={handleOpen}
-                // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-              >
-                Log In
-              </Button> */}
             </>
-          {/* )} */}
         </Toolbar>
+        {/* </Slide> */}
       </AppBar>
     </div>
   );

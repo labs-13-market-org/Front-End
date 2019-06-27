@@ -267,7 +267,7 @@ console.log(cartItems, 'cart items state')
             stripeKey="pk_test_R4kvaWNKnku78DL2dwXpLiTq00R1MdFKhb"
             token={handleToken}
             amount={total * 100}
-            name="Tesla Roadster"
+            name='Market Organizer'
             billingAddress
             shippingAddress
         />
