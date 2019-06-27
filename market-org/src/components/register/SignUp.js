@@ -20,6 +20,7 @@ import MySnackbarContentWrapper from "../customizesnackbar/CustomizeSnackbar";
 
 import { AuthContext } from "../authContext/authState";
 import axios from "../../axios-instance";
+import './SignUp.css'
 
 const styles = theme => ({
   main: {
@@ -43,7 +44,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing,
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: "#38212E"
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -181,13 +182,6 @@ function Register(props) {
           setErrorMsg(err.message)
         });
     }
-
-    // let user_types = localStorage.getItem('userType')
-    // console.log(user_types)
-    // setUser(user_types)
-    // console.log(user, 'user from axios call')
-    // // props.history.push('/create-market')
-    // console.log({user}, 'user type')
   };
 
 
@@ -195,30 +189,26 @@ function Register(props) {
   console.log("user type:", userType);
 
   return (
-    <div className="sign-in-wrapper">
-      <div className="sign-in-left" />
-      <div className="sign-in-right">
-        <main className={classes.main}>
-          <Paper className={classes.paper}>
-          {errorMsg ?
-                  <MySnackbarContentWrapper
-                    variant="error"
-                    message={errorMsg}
-                  /> : null
-                }
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Register Account
-            </Typography>
+    <div className="sign-up-wrapper">
+      <div className="sign-up-left" />
+      <div className="sign-up-right">
+        
+          
+            
             <form
-              className={classes.form}
+              
               onSubmit={e => e.preventDefault() && false}
             >
-              <FormControl margin="normal" required fullWidth>
+              <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <h2>
+              Register Account
+            </h2>
+              
                 <InputLabel htmlFor="email">Email Address</InputLabel>
                 <Input
+                  className="input-field"
                   id="email"
                   name="email"
                   autoComplete="off"
@@ -226,10 +216,11 @@ function Register(props) {
                   onChange={e => setEmail(e.target.value)}
                   onClick={e => setErrorMsg(null)}
                 />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
+              
+             
                 <InputLabel htmlFor="password">Password</InputLabel>
                 <Input
+                  className="input-field"
                   name="password"
                   type="password"
                   id="password"
@@ -238,25 +229,26 @@ function Register(props) {
                   onChange={e => setPassword(e.target.value)}
                   onClick={e => setErrorMsg(null)}
                 />
-              </FormControl>
-              <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <Typography style={{ fontWeight: "bold", color: "#547c94" }}>
+             
+              <div className='account-type-header'>
+               
                   {acctTypeError ?
                     <MySnackbarContentWrapper
+                      className='sign-in-error'
                       variant="error"
                       message={acctTypeError}
-                    /> : "Choose your account type"
+                    /> : <h4>Choose your account type:</h4>
                   }
-                </Typography>
+                
               </div>
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-around",
-                  marginTop: "10px"
+                  justifyContent: "space-between",
+                  marginBottom: "60px"
                 }}
               >
-                <div>
+                <div className='account-type-button-wrapper'>
                   <Button
                     variant="outlined"
                     color="primary"
@@ -266,12 +258,13 @@ function Register(props) {
                       setMarketBg("lightBlue");
                       setBackground("white");
                     }}
-                    style={{ backgroundColor: `${marketBg}` }}
+                    style={{ backgroundColor: `${marketBg}`, width: '100%' }}
                   >
                     Market
                   </Button>
-                </div>
-                <div>
+                  </div>
+                
+                <div className='account-type-button-wrapper'>
                   <Button
                     variant="outlined"
                     color="primary"
@@ -281,7 +274,7 @@ function Register(props) {
                       setBackground("lightBlue");
                       setMarketBg("white");
                     }}
-                    style={{ backgroundColor: `${background}` }}
+                    style={{ backgroundColor: `${background}`, width: '100%' }}
                   >
                     Vendor
                   </Button>
@@ -292,9 +285,9 @@ function Register(props) {
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="primary"
+               
                 onClick={signUpWithEmailAndPassword}
-                className={classes.submit}
+                className='sign-up-button'
               >
                 Register
               </Button>
@@ -305,13 +298,12 @@ function Register(props) {
                 variant="contained"
                 color="secondary"
                 onClick={signUpWithGoogle}
-                className={classes.submit}
+                className='sign-up-button'
               >
                 Sign up with Google
               </Button>
             </form>
-          </Paper>
-        </main>
+          
       </div>
     </div>
   );
