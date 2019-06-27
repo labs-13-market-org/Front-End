@@ -59,7 +59,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color:#90EE90;
+    background-color:#b42d5ae8;
+    width: 100%;
+    color: white;
 
 }
 
@@ -104,7 +106,7 @@
 }
 
 .spotlight{
-    background-color: #90EE90;
+    background-color: #b42d5ae8;
     text-align: center;
     display: flex;
     justify-content: center;  
@@ -166,17 +168,18 @@
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
+     padding: 75px;
  }
  .row-stagger-wrapper-left .content-1 h3{
      width: 100%;
      font-size: 30px;
-     color:white;
+     color:black;
      text-align: center;
  }
  .row-stagger-wrapper-left .content-1 p{
     width: 100%;
     font-size: 18px;
-    color:white;
+    color:black;
     text-align: center;
 }
 
@@ -190,7 +193,7 @@
 }
 
 .row-stagger-wrapper-left{
-    background-color: #212B31;
+    background-color:  pink;
     display: flex; 
     flex-wrap: wrap;
     width: 100%;
@@ -212,19 +215,20 @@
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
+     padding: 75px;
  }
  .row-stagger-wrapper-right .content-1 h3{
     width: 100%;
     font-size: 30px;
     text-align: center;
-    color: black;
+    color: white;
 }
 
 .row-stagger-wrapper-right .content-1 p{
     width: 100%;
     text-align: center;
     font-size: 20px;
-    color:black;
+    color:white;
 }
 
 
@@ -236,11 +240,12 @@
 }
 
 .row-stagger-wrapper-right{
-    background-color: #ffffff;
+    
+    background-color: #38212E;
     display: flex; 
     flex-wrap: wrap;
     width: 100%;
-    box-shadow:inset 0 0 0 2000px rgba(105, 7, 40, 0.3);
+
     
 }
 
@@ -250,7 +255,7 @@
     justify-content: center;
     width: 100%;
     flex-wrap: wrap;
-    background-color: #90EE90;
+    background-color: pink;
     padding: 50px;
     
 }
@@ -265,7 +270,7 @@
     justify-content: center;
     align-items: center;
     width: 70%;
-    background-color: #D4BDC5;
+    background-color: #38212E;
     padding:50px;
 }
 
@@ -276,7 +281,7 @@
     width: 45%;
     align-items: center;
     text-align: center;
-    background-color:  #7807B7;
+    background-color:  #BB426A;
     color: white;
     
 }
@@ -303,7 +308,7 @@
 .bullet-section h1{
     width: 100%;
     font-size: 35px;
-    color: black;
+    color: white;
     text-align: center;
 }
 

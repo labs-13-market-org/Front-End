@@ -81,7 +81,7 @@ const CreateMarket = props => {
 
   const fileHandler = (e) => {
     e.persist();
-    console.log("filehandler", e.target.files[0])
+    // console.log("filehandler", e.target.files[0])
     setFile(e.target.files[0]);
   };
 
@@ -353,7 +353,7 @@ const CreateMarket = props => {
             />
             
             <InputLabel style={{marginTop: "10px"}}>Upload your Profile photo</InputLabel>
-            <TextField
+            <Input
               className="input-field"
               id="upload-button"
               accept="image/*"
@@ -362,8 +362,7 @@ const CreateMarket = props => {
               onChange={e => fileHandler(e)}
               value={image}
               margin="normal"
-              
-              
+              style={{ display: "none" }}             
             />
             <label
               htmlFor="upload-button"

@@ -20,3 +20,57 @@
     align-items: center;
     padding:20px;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.sign-in-right form{
+    width: 100%;
+    padding:15px;
+}
+
+
+.sign-in-button{
+    color: #ffffff !important;
+    background-color: rgba(180, 45, 90, 0.911) !important;
+    font-size:18px !important;
+    border-radius: 25px !important;
+    padding: 7px !important;
+    font-family: 'Montserrat' !important;
+    width: 100%;
+    margin-top:20px !important;
+    
+}
+
+.sign-in-button:hover{
+    background-color: white !important;
+    color: rgba(180, 45, 90) !important;
+}
+
+.input-field{
+    /* background-color: grey; */
+    width: 100%; 
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+
+.sign-in-right h2{
+    font-size:30px;
+    color:rgba(180, 45, 90);
+    font-family: 'Montserrat';
+    
+}
+
+.sign-in-error{
+    margin-bottom: 30px !important;
+}
+
+@media (max-width: 1000px){
+    .sign-in-left{
+        display:none;
+    }
+    .sign-in-right{
+        width:100%;
+    }
+}
+
