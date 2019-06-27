@@ -57,31 +57,6 @@ const Homepage2 = props => {
 
   console.log("curr", currentUser);
 
-  // const stripeDashboardLink = () => {
-  //   console.log('sci',stripe_acc_id)
-  //   console.log("fire", firebase_id)
-   
-  
-  //   if(stripe_acc_id === null) {
-  //     console.log("hello")
-  //     axios.get(`/markets/${firebase_id}`).then(res => {
-  //       console.log(res)
-  //       const stripe_id = res.data.stripeAccountId
-  //       console.log("stripeid0",stripe_id)
-  //       return axios.post('/stripe/stripe-dashboard', {stripe_acc_id: stripe_id}).then(res => {
-  //         console.log('link:', res.data)
-  //         window.open(res.data.url)
-  //       })
-  //     })
-  //   }
-    
-  //   axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
-  //        .then(res => {
-  //          console.log('link:', res.data)
-  //          window.open(res.data.url)
-  //        })
-  // }
-
   const vendorFormPage = () => {
     props.history.push(`/vendor`);
   };
@@ -115,7 +90,7 @@ const Homepage2 = props => {
             
 
                   <div class="img-row">
-                  <img src={veggies} />
+                  {/* <img src={veggies} /> */}
                   
                 </div>
                 </div>
@@ -124,14 +99,6 @@ const Homepage2 = props => {
             <div className='row-stagger-wrapper-left'>
             <div class="section-one">
                 <div id="pic">
-                  {/* <iframe
-                    title='movie'
-                    class="iframe"
-                    src="https://www.youtube.com/embed/o4ijHIRaGXc"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  /> */}
                   <img src={market2} alt="market-image-1" />
                 </div>
                 <div id="content" class="content-1">
@@ -151,11 +118,15 @@ const Homepage2 = props => {
         
                   <h3>Diverse selection of goods & services waiting for your customers</h3>
                   <p>From farmer's market produce, fresh seafood, poltury, vegetables, boutique handcrafted goods, our markets have it all!</p>
+                  <a href="">
+                    <button>Register Today</button>
+                  </a>
                 </div>
                 <div id="pic">
                   <img src={market4} alt="market-image-2" />
                 </div>
               </div>
+              
 
             </div>
             <div className='bullet-points-wrapper'>
@@ -215,10 +186,11 @@ const Homepage2 = props => {
           </div>
           
           
-        )}
+        
       </section>
     </React.Fragment>
-  );
+  )
+  
 };
 
 export default Homepage2;

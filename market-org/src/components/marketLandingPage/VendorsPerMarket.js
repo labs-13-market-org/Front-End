@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, withRouter, Route, Switch } from "react-router-dom";
 import axios from "../../axios-instance";
 import "./vendorsPerMarket.css";
+import marketIcon from "../../images/stallicon.png";
 
 import market3 from "../../images/market3.jpg";
 
@@ -26,9 +27,17 @@ const VendorsPerMarket = props => {
 
   return (
     <>
-      <div className="market-vendorpage-wrapper">
+    <div className="market-profile-page-wrapper">
+          <div className="market-profile-page-header">
+            <h2>Market Profile</h2>
+          </div>
+          <div className="market-icon">
+            <img src={marketIcon} alt="logo" />
+          </div>
+    
+      <div className='market-profile-wrapper'>
         <div className="market-vendorpage-left">
-          <div className="market-vendorpage-info">
+        <h2>{perMarket.market_name}</h2>
             {perMarket.image ? <img
               alt="Market profile picture"
               src={perMarket.image}
@@ -39,13 +48,13 @@ const VendorsPerMarket = props => {
             style={{ width: 300, height: 300 }}
           /> }
 
-            <h2>{perMarket.market_name}</h2>
+            
             <h3>Contact Info:</h3>
             <p>Address: {perMarket.address}</p>
             <p>City: {perMarket.city}</p>
             <p>State: {perMarket.state}</p>
-            <p>Contact first name: {perMarket.contact_first_name}</p>
-            <p>Contact Last name: {perMarket.contact_last_name}</p>
+            <p>Name: {perMarket.contact_first_name} {perMarket.contact_last_name}</p>
+            
             <p>Phone number: {perMarket.phone_number}</p>
             {usertype === "market" ? null : (
               <Link
@@ -61,8 +70,9 @@ const VendorsPerMarket = props => {
                 Rent a stall from us
               </Link>
             )}
-          </div>
+          
         </div>
+        
         <div className="market-vendorpage-right">
           <div className="market-vendorpage-vendor-wrapped">
             <h3>Our Vendors</h3>
@@ -87,6 +97,7 @@ const VendorsPerMarket = props => {
                 );
               })}
           </div>
+        </div>
         </div>
       </div>
     </>

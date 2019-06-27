@@ -5,6 +5,7 @@ import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
 import { AuthContext } from "../authContext/authState";
 import LinearProgress from '@material-ui/core/LinearProgress';
+import vendorIcon from '../../images/stallicon.png';
 // import ProductByVendorCard from "../product/ProductByVendorCard";
 
 import {
@@ -78,55 +79,55 @@ const VendorLandingPage = props => {
     {
       isLoading ?
       <LinearProgress color="secondary"/> :
-      <div className="landing-page-wrapper">
+      <div className="vendor-landing-page-wrapper">
         <div className="vendor-list-page-header">
           <h2>Vendors</h2>
         </div>
-        <div className="list-title" />
+        <div className="vendor-icon">
+        <img src={vendorIcon} alt="logo" />
+        </div>
         <div className="vendor-card-wrapper" >
-        <Paper className={classes.paper}>
+        
         {allVendors &&
           allVendors.map(eachVendor => {
             return (
               <>
-
-                  <div className="vendor-card" key={eachVendor.firebase_id}>
-                  <Card className={classes.card} key={eachVendor.firebase_id}>
-                    <CardActionArea>
-                      <CardContent className={classes.media}>
+              
+                <div className='sidebar-info'>
+                
                         <img
                           src={eachVendor.image}
                           title="Vendor profile image"
-                          // className="productImage"
-                          style={{ maxWidth: "100%", maxHeight: "100%" }}
                         />
-                      </CardContent>
-                      </CardActionArea>
+                     
+                </div>
+
+                <div className='vendor-card-wrapper-right'>
+
+                  <div className="vendor-card" key={eachVendor.firebase_id}>
+                  
+                    {/* <CardActionArea>
+                      
+                      </CardActionArea> */}
                     <h4>Company: {eachVendor.company_name}</h4>
                     <h4>Full Name: {eachVendor.contact_fullname}</h4>
+
                     <div className='vendor-card-link'>
                     <Link to={`/oneVendorPublic/${eachVendor.firebase_id}`}>
                       More Info
                     </Link>
                     </div>
-                    </Card>
+                  </div>
                   </div>
                 
               </>
             );
           })}
-          </Paper>
+          
           </div>
       </div>
     }
-      {/* <Switch>
-        <Route
-          path="/allVendors/:firebase_id"
-          render={props => (
-            <ProductByVendorCard {...props} vendor={allVendors} />
-          )}
-        />
-      </Switch> */}
+      
     </>
   );
 };
