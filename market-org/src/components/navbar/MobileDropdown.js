@@ -20,12 +20,13 @@ const useStyles = makeStyles(theme => ({
 //     position: 'absolute',
 //    left: '0',
 //    marginTop: '2rem',
-
+// border: '1px solid red'
   },
  
   title: {
     flexGrow: 1,
-  
+    display: 'flex',
+  justify: 'flex-start',
     // border: '1px solid green',
   },
 
@@ -36,8 +37,8 @@ const useStyles = makeStyles(theme => ({
   link: {
     color: 'white',
     fontSize: '1.2rem',
-      position: 'absolute',
-    left: '0',
+    //   position: 'absolute',
+    // left: '0',
     
     // marginTop: '2rem',
     border: '1px solid red',
@@ -171,14 +172,16 @@ const MobileDropdown = (props) => {
            
                        {/* <Slide direction="down" in={handleClick} mountOnEnter unmountOnExit> */}
                         <div className='mobile-nav'>
-                            <NavLink>Home</NavLink>
-                            <NavLink>View Our Markets</NavLink>
-                            <NavLink>View Our Vendors</NavLink>
-                            <NavLink>Become A Market</NavLink>
-                            <NavLink>Become A Vendor</NavLink>
-                            <NavLink>Login</NavLink>
-                            <NavLink>Contact</NavLink>
-                            <NavLink>About</NavLink>
+                            <div className='links'>
+                            <NavLink className='nav-link'>Home</NavLink>
+                            <NavLink className='nav-link'>View Our Markets</NavLink>
+                            <NavLink className='nav-link'>View Our Vendors</NavLink>
+                            <NavLink className='nav-link'>Become A Market</NavLink>
+                            <NavLink className='nav-link'>Become A Vendor</NavLink>
+                            <NavLink className='nav-link'>Login</NavLink>
+                            <NavLink className='nav-link'>Contact</NavLink>
+                            <NavLink className='nav-link'>About</NavLink>
+                            </div>
                     {/* <StyledMenu
                         id="profile"
                         anchorEl={anchorEl}

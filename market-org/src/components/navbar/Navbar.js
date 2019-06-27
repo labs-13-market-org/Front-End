@@ -32,9 +32,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     width: '100%',
     // border: '1px solid red',
-    // ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
-    //   border: '5px solid red'
-    // },
+  
     
   },
  
@@ -47,6 +45,9 @@ const useStyles = makeStyles(theme => ({
 
   appBar: { 
     backgroundColor: '#38212E',
+    ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
+      height: '70px'
+    },
     // ['@media (max-width: 660px)']: {
     //   display: 'none'
     // }
