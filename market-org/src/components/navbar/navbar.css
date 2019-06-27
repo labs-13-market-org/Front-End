@@ -89,9 +89,9 @@
   text-decoration: none;
 }
 
-.selected {
+/* .selected {
   border-bottom: 1.5px solid lightgreen;
-}
+} */
 /* @media only screen and (max-width: 660px) {
   .mobile-nav {
      animation:  slideInUp .3s ease-in-out forwards;

@@ -233,14 +233,7 @@ const MobileDropdown = (props) => {
                     >
                       <Home />
                     </IconButton>
-                    {/* <IconButton
-                        edge="end"
-                        className={currentUser ? classes.profile : classes.closed}
-                        color="inherit"
-                        aria-label="Profile"
-                    >
-              <Profile onClick={routeToProfile} />
-            </IconButton> */}
+                   
             <ProfileMenu className={classes.profileLink}/>
                     <IconButton
                         edge="end"
@@ -252,7 +245,10 @@ const MobileDropdown = (props) => {
             </IconButton>
                        {/* <Slide direction="down" in={handleClick} mountOnEnter unmountOnExit> */}
                         <div className={openNav ? 'mobile-nav' : classes.closed}>
-                            <span style={{borderBottom: '1.5px solid lightgreen', margin: ' 1.5rem 1rem' }}>Market Organizer</span>
+                        <Typography variant="h4"  >
+                        <span style={{borderBottom: '1.5px solid lightgreen', margin: ' 2rem 1rem', textTransform: 'uppercase', letterSpacing: '7.5px' }}>Market Organizer</span>
+
+                        </Typography>
                             <IconButton 
                             onClick={handleClose}
                             aria-controls="close" 
