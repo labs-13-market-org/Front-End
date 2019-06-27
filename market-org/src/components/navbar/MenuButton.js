@@ -29,6 +29,9 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     '&:hover': {
       borderBottom: '1px solid #30cc32'
+    },
+    ['@media (max-width:750px)']: { 
+      display: 'none',
     }
     
   },
@@ -38,6 +41,10 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem',
     // margin: "10px",
     cursor: 'pointer',
+    ['@media (max-width:750px)']: { 
+        display: 'none',
+      }
+    
   },
 
   dropDown: {
@@ -63,10 +70,6 @@ const useStyles = makeStyles(theme => ({
 
   menuNav: {
     marginTop: '2rem',
-   
-    // background: '#b42d5ae8',
-    // color: 'white'
-    // border: '1px solid red',
   },
 
  
@@ -77,10 +80,10 @@ const useStyles = makeStyles(theme => ({
 const StyledMenu = withStyles({
   paper: {
 
-    marginTop: '3rem',
+    marginTop: '3.5rem',
     backgroundColor: '#b42d5ae8',
-    height: '170px',
-    width: '10%'
+    height: '190px',
+    width: '20%',
   },
 
   close: {
@@ -135,6 +138,7 @@ const VendorMenu = (props) => {
                   aria-controls="vendor-menu" 
                   color="inherit"
                   aria-label="vendor-menu"
+                  className={classes.icons}
                 >
                   <Expand />
                 </IconButton>
