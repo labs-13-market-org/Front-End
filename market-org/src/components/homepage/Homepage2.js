@@ -5,7 +5,7 @@ import Navbar from '../navbar/Navbar';
 import Searchbar from "../navbar/Searchbar";
 import { AuthContext } from "../authContext/authState";
 import { Container, Grid, Paper, makeStyles, Button } from "@material-ui/core";
-
+import Footer from '../footer/footer.js'
 // import VendorForm from '../vendor/VendorForm';
 import axios from "../../axios-instance";
 import logo from "../../images/logo.png";
@@ -22,6 +22,7 @@ import strawberry from '../../images/strawberry.jpg'
 import veggies from '../../images/veggies.jpg'
 import salad from '../../images/salad.jpg'
 import logo2 from '../../images/logo2.png'
+import mainLogo from '../../images/logo-white.png'
 import vegetables from '../../images/vegetables.png'
 import team from '../../images/team.png'
 // import StallsList from './components/stalls/stallsList';
@@ -71,7 +72,7 @@ const Homepage2 = props => {
             <div className="welcome">
               <div>
                 <div className="logo">
-                  <img src={logo} alt="logo" />
+                  <img src={mainLogo} alt="logo" />
                 </div>
                 <div className="message">
                   <h1>Welcome to Market Organizer</h1>
@@ -183,6 +184,7 @@ const Homepage2 = props => {
               <img src={logo} alt=''/>
               </div>
             </div>
+            <Footer />
           </div>
           
           

@@ -82,12 +82,12 @@ const StallsList = (props) => {
   
             
             <div className='rent-market-info'>
-            <h3>Selected Market:</h3>
+            <h2>Selected Market:</h2>
             <h4>{market.market_name}</h4>
             <h4>{market.address}</h4>
             <h4>{market.city}</h4>
             <h4>{market.state}</h4>
-            <h4>{market.phone_number}</h4>
+            <h3>{market.phone_number}</h3>
             </div>
             
             <div className='stalls'>

@@ -55,7 +55,7 @@ const VendorsPerMarket = props => {
             <p>State: {perMarket.state}</p>
             <p>Name: {perMarket.contact_first_name} {perMarket.contact_last_name}</p>
             
-            <p>Phone number: {perMarket.phone_number}</p>
+            <h4>Phone number: {perMarket.phone_number}</h4>
             {usertype === "market" ? null : (
               <Link
                 to={{
