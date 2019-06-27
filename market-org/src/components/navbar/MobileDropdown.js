@@ -208,7 +208,7 @@ const MobileDropdown = (props) => {
 
   const classes = useStyles();
   const user_type = localStorage.getItem('userTypes')
-  console.log(vendor, 'vendor from mobile nav')
+  // console.log(vendor, 'vendor from mobile nav')
 
   return (
     <div className={classes.root} >
