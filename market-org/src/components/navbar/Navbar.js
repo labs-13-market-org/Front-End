@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   
   root: {
     flexGrow: 1,
-    border: '1px solid red', 
+     
   },
  
   title: {
@@ -280,13 +280,14 @@ console.log('is nav opened', openNav)
         <MenuDropdown className={classes.mobileNav}/>
       </IconButton>
         <Toolbar  >
-          <Typography variant="h6" className={classes.title} />
+          {/* <Typography variant="h6" className={classes.title} /> */}
             <Typography variant="h6"  className={classes.title }>
                 <Link onClick={toHome} className={classes.link} underline='none'>Home</Link>
             </Typography>
-            <>
-            <Typography variant="h6"  className={classes.title}>
-              {/* changebe to navlink after styling completed */}
+           
+         
+            {/* <Typography variant="h6"  className={classes.title}>
+             
                 <Link 
                     className={classes.link}  
                     underline='none'  
@@ -307,8 +308,8 @@ console.log('is nav opened', openNav)
                       <Expand />
                     </IconButton>
                 </Link>
-              </Typography>
-                <StyledMenu
+              </Typography> */}
+                {/* <StyledMenu
                    id="vendor-menu"
                    anchorEl={anchorEl}
                    keepMounted
@@ -319,9 +320,9 @@ console.log('is nav opened', openNav)
                   <MenuItem className={classes.menuItem} onClick={() => toMyStalls(user_type)}><Typography>View My Stalls</Typography></MenuItem>
                   <MenuItem className={classes.menuItem} onClick={toAllMarkets}><Typography>View All Markets</Typography></MenuItem>
                   <MenuItem className={classes.menuItem} onClick={handleClose}><Typography>More Info</Typography></MenuItem>               
-                </StyledMenu>
+                </StyledMenu> */}
            
-          <VendorMenu signup={register} toAllVendors={toAllVendors} toMyStalls={() => toMyStalls(user_type)}/>
+          {/* <VendorMenu signup={register} toAllVendors={toAllVendors} toMyStalls={() => toMyStalls(user_type)}/> */}
 
 
           <Typography ariant="h6"  className={openNav ? classes.closed : classes.title}>
@@ -369,9 +370,7 @@ console.log('is nav opened', openNav)
            <ProfileMenu handleRegOpen={SignUp} user={user_type} toAllVendors={toAllVendors} logout={logout} />
       
           </Typography>
-            </>
-            <>
-            </>
+          
         </Toolbar>
         {/* </Slide> */}
       </AppBar>

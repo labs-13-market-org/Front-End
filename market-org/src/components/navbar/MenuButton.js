@@ -133,7 +133,7 @@ const VendorMenu = (props) => {
                 color="inherit"
               >
                 Vendors
-              <IconButton
+              {/* <IconButton
                   onClick={handleClick}
                   aria-controls="vendor-menu" 
                   color="inherit"
@@ -141,7 +141,7 @@ const VendorMenu = (props) => {
                   className={classes.icons}
                 >
                   <Expand />
-                </IconButton>
+                </IconButton> */}
             
             </Link>
           
