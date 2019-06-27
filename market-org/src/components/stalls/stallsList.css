@@ -6,7 +6,8 @@
     padding-bottom: 50px;
     padding-right: 20%;
     padding-left: 20%;
-    font-family: 'Montserrat'
+    font-family: 'Montserrat';
+    min-height: calc(100vh - 64px);  
     
 }
 
