@@ -8,13 +8,14 @@ import {
   TextField,
   Button,
   Input,
-  InputBase,
   InputLabel,
   makeStyles,
-  InputAdornment, 
   IconButton,
   Typography,
-  Divider
+  Divider,
+  Container,
+  InputAdornment,
+  LinearProgress
 } from "@material-ui/core";
 
 import { 
@@ -25,13 +26,14 @@ import { AuthContext } from "../authContext/authState";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        marginTop: '0',
-        marginBottom: '0'
+        margin: '5px 15px 30px 15px'
     },
     layout: {
-      width: 'auto',
+      width: '100%',
+      float: 'left',
       border: 'solid',
       borderWidth: 'thin',
+      minHeight: '600px',
       marginLeft: theme.spacing(3),
       marginRight: theme.spacing(3),
       [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
@@ -41,7 +43,9 @@ const useStyles = makeStyles(theme => ({
       },
     },
     container: {
-        marginTop: theme.spacing(1),
+        width: '600px',
+        border: 'solid',
+        borderWidth: 'thin',
         marginBottom: theme.spacing(1),
         margin: theme.spacing(2),
         padding: theme.spacing(1),
@@ -53,8 +57,20 @@ const useStyles = makeStyles(theme => ({
       },
     marketsetting: {
         display: 'flex',
+        marginLeft: '15px',
+        borderBottom: 'solid',
+        borderWidth: 'thin',
+        color: 'lightgray',
         justifyContent: 'space-between',
         alignItems: 'baseline'
+    },
+    rightcol: {
+        float: 'right',
+        textAlign: 'center',
+        minHeight: '50px',
+        padding: '20px 0 0 2px',
+        width: '475px',
+        marginRight: '-173px'
     },
     buttons: {
       display: 'flex',
@@ -76,6 +92,7 @@ const EditMarket = props => {
   const [width, setWidth] = useState("");
   const [length, setLength] = useState("");
   const [available, setAvailable] = useState(true);
+  const [isLoading, setLoading] = useState(false)
 
   const [edit, setEdit] = useState(false)
   const [data, setData ] = useState({})
@@ -137,6 +154,7 @@ const handleChange = name => event => {
       .then(res => {
         console.log("Update", res.data);
         window.location.reload()
+        setEdit(true)
       })
       .catch(err => {
         console.log(err);
@@ -144,18 +162,144 @@ const handleChange = name => event => {
       
     //   props.history.push(`/vendorsByMarket/${currentUser.uid}`)
   };
+  const addStall = () => {
+    setLoading(true)
+    const stall = {
+      size: {
+        length: length,
+        width: width
+      },
+      price,
+      available
+    };
+    if(quantity <= 0) {
+        setLoading(false)
+    } else {
+        for (let i = 0; i < quantity; i++) {
+            console.log(currentUser);
+              axios
+              .post(`/stalls/market/${currentUser.uid}`, stall)
+              .then(res => {
+                  console.log(res)
+                  setQuantity("");
+                  setLength("");
+                  setPrice("");
+                  setWidth("");
+                  setLoading(false)
+              })
+              .catch(err => {
+                  console.log(err)
+              })
+          }
+    }
+    
+  };
 
   return (
     <React.Fragment>
     <CssBaseline />
+    { isLoading ? <LinearProgress color="secondary"/> : null}
+    <Container  style={{width: '980px'}}>
+    <div className={classes.rightcol}>
+        <div style={{display: 'flex', marginLeft: '18px', justifyContent: 'space-between', alignItems: 'baseline'}}>
+            <h2>Add more stalls</h2>
+            <Button
+              className="button-market-register"
+              variant="contained"
+              color="primary"
+              onClick={addStall}
+            >
+              add
+            </Button>
+        </div>
+        <div style={{width: '500px'}}>
+        <Divider style={{color: 'black', margin: '10px'}}/>
+        <TextField
+                style={{ width: "20%", margin: '10px' }}
+                id="outlined-number"
+                label="quantity"
+                value={quantity}
+                onChange={e => setQuantity(e.target.value)}
+                type="number"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                onInput={e => {
+                  e.target.value = Math.max(1, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 2);
+                }}
+                min={1}
+                margin="normal"
+                variant="outlined"
+              />
+              <TextField
+                style={{ width: "20%", margin: '10px'}}
+                id="outlined-bare"
+                label="width(ft)"
+                value={width}
+                type="number"
+                className={classes.textField}
+                onInput={e => {
+                  e.target.value = Math.max(1, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 2);
+                }}
+                min={1}
+                onChange={e => setWidth(e.target.value)}
+                margin="normal"
+                variant="outlined"
+                inputProps={{ "aria-label": "bare" }}
+              />
+              <TextField
+                style={{ width: "20%", margin: '10px' }}
+                id="outlined-bare"
+                label="length(ft)"
+                value={length}
+                type="number"
+                className={classes.textField}
+                onChange={e => setLength(e.target.value)}
+                onInput={e => {
+                  e.target.value = Math.max(1, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 2);
+                }}
+                min={1}
+                margin="normal"
+                variant="outlined"
+                inputProps={{ "aria-label": "bare" }}
+              />
+              <TextField
+                id="outlined-adornment-amount"
+                style={{ width: "20%", margin: '10px' }}
+                className={classes.textField}
+                variant="outlined"
+                type="number"
+                margin="normal"
+                label="price"
+                value={price}
+                onInput={e => {
+                  e.target.value = Math.max(0, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 3);
+                }}
+                min={0}
+                onChange={e => setPrice(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">$</InputAdornment>
+                  )
+                }}
+              />
+              {/* <Divider style={{margin: "10px"}}/> */}
+        </div>
+    </div>
     { 
         edit ?
-
-        <main className={classes.layout}>
-        
         <div className={classes.container}>
         <div className={classes.marketsetting}>
-            <h1>Market Settings</h1>
+            <h1 style={{color: 'black'}}>Market Settings</h1>
             <div style={{display: 'flex', alignItems: 'flex-end'}}>
             <IconButton onClick={editPage}>
             <Edit  />
@@ -163,6 +307,7 @@ const handleChange = name => event => {
             <h1 style={{fontSize: '1rem', fontWeight: 'normal'}}>Edit</h1>
             </div>
         </div>
+        <div>
         <form className={classes.root}>
             <TextField
             required
@@ -281,13 +426,11 @@ const handleChange = name => event => {
           </div>
         </form>
         </div>
-        </main>
+        </div>
          :
-         <main className={classes.layout}>
-        
         <div className={classes.container}>
         <div className={classes.marketsetting}>
-            <h1>Market Settings</h1>
+            <h1 style={{color: 'black'}}>Market Settings</h1>
             <div style={{display: 'flex', alignItems: 'flex-end'}}>
             <IconButton>
             <Edit onClick={editPage} />
@@ -299,50 +442,49 @@ const handleChange = name => event => {
         <div>
           <Typography style={{marginTop: '20px'}}>
           <span style={{float: 'left', width: '165px'}}>Market Name</span>
-                 <Typography><span style={{opacity: '.5'}}>{data.market_name}</span></Typography>
+                 <Typography><span style={{opacity: '.5', marginLeft: '50px'}}>{data.market_name}</span></Typography>
           </Typography>
           <Divider/>
           <Typography style={{marginTop: '20px'}}>
           <span style={{float: 'left', width: '165px'}}>First Name</span>
-                 <Typography><span style={{opacity: '.5'}}>{data.contact_first_name}</span></Typography>
+                 <Typography><span style={{opacity: '.5', marginLeft: '50px'}}>{data.contact_first_name}</span></Typography>
           </Typography>
           <Divider/>
-          <Typography style={{ display:'flex', justifyContent:'flex-start', alignItems:'base-line', marginTop: '20px'}}>
+          <Typography style={{marginTop: '20px'}}>
                  <span style={{float: 'left', width: '165px'}}>Last Name</span>
-                 <Typography><span style={{opacity: '.5'}}>{data.contact_last_name}</span></Typography>
+                 <Typography><span style={{opacity: '.5', marginLeft: '50px'}}>{data.contact_last_name}</span></Typography>
           </Typography>
           <Divider/>
           <Typography style={{marginTop: '20px'}}>
           <span style={{float: 'left', width: '165px'}}>Address</span>
-                 <Typography><span style={{opacity: '.5'}}>{data.address}</span></Typography>
+                 <Typography><span style={{opacity: '.5', marginLeft: '50px'}}>{data.address}</span></Typography>
           </Typography>
           <Divider/>
           <Typography style={{marginTop: '20px'}}>
           <span style={{float: 'left', width: '165px'}}>City</span>
-                 <Typography><span style={{opacity: '.5'}}>{data.city}</span></Typography>
+                 <Typography><span style={{opacity: '.5', marginLeft: '50px'}}>{data.city}</span></Typography>
           </Typography>
           <Divider/>
           <Typography style={{marginTop: '20px'}}> 
           <span style={{float: 'left', width: '165px'}}>State</span>
-                 <Typography><span style={{opacity: '.5'}}>{data.state}</span></Typography>
+                 <Typography><span style={{opacity: '.5', marginLeft: '50px'}}>{data.state}</span></Typography>
           </Typography>
           <Divider/>
           <Typography style={{marginTop: '20px'}}>
           <span style={{float: 'left', width: '165px'}}>Zip Code</span>
-                 <Typography><span style={{opacity: '.5'}}>{data.zipcode}</span></Typography>
+                 <Typography><span style={{opacity: '.5', marginLeft: '50px'}}>{data.zipcode}</span></Typography>
           </Typography>
           <Divider/>
           <Typography style={{marginTop: '20px'}}>
           <span style={{float: 'left', width: '165px'}}>Phone Number</span>
-                 <Typography><span style={{opacity: '.5'}}>{data.phone_number}</span></Typography>
+                 <Typography><span style={{opacity: '.5', marginLeft: '50px'}}>{data.phone_number}</span></Typography>
           </Typography>
           <Divider/>
           </div>
         </form>
         </div>
-        </main>
-    
     }
+    </Container>
     </React.Fragment>
   );
 };
