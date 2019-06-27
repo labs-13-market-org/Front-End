@@ -5,7 +5,7 @@ import Navbar from '../navbar/Navbar';
 import Searchbar from "../navbar/Searchbar";
 import { AuthContext } from "../authContext/authState";
 import { Container, Grid, Paper, makeStyles, Button } from "@material-ui/core";
-
+import Footer from '../footer/footer.js'
 // import VendorForm from '../vendor/VendorForm';
 import axios from "../../axios-instance";
 import logo from "../../images/logo.png";
@@ -183,6 +183,7 @@ const Homepage2 = props => {
               <img src={logo} alt=''/>
               </div>
             </div>
+            <Footer />
           </div>
           
           
