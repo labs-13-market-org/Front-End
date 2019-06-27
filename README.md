@@ -49,8 +49,8 @@ A online platform for merchants to rent stalls from markets to sell produce at p
 
 -    Signup as a market user or vendor user
 -    As a market user, advertise/display your market stalls to sell (upload image)
--    As vendor user, search for suitable stalls to purchase (orders/carts)
--    A vendor user can also display a list of products they sell, show product info. (ex. product name, descriptiand, price) and display and upload pictures of their products.
+-    As vendor user can search for suitable stalls to purchase (orders/carts)
+-    A vendor user can also display a list of products they sell, show, edit and delete their product info. (ex. product name, description, price) and upload, display and edit pictures of their products.
 -    Market users can signup with stripe through our platform to receive payment directly from vendors (stripe connect)
 
 
