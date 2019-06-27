@@ -4,7 +4,7 @@
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
-# 1️⃣ Title of project goes here
+# 1️⃣ Market Organizer App
 
 1️⃣ You can find the deployed project at [https://nostalgic-wing-420c23.netlify.com/](https://nostalgic-wing-420c23.netlify.com/).
 
@@ -12,11 +12,11 @@
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
+|                                       [**Francis Chen**](https://github.com/fncischen)                                        |                                       [**Sem Limi**](https://github.com/Sem8)                                        |                                       [**Latifah President**](https://github.com/latifahpresident)                                        |                                       [**Patrick Schwindt**](https://github.com/pschwin)                                        |                                       [**Toua Xiong**](https://github.com/txiong000)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                      [<img src="https://avatars2.githubusercontent.com/u/5484192?s=460&v=4" width = "200" />](https://github.com/fncischen)                       |                      [<img src="https://avatars2.githubusercontent.com/u/7892799?s=460&v=4" width = "200" />](https://github.com/Sem8)                       |                      [<img src="https://avatars2.githubusercontent.com/u/38023390?s=460&v=4" width = "200" />](https://github.com/latifahpresident)                       |                      [<img src="/market-org/src/components/about/patrick.jpg" width = "200" />](https://github.com/pschwin)                       |                      [<img src="/market-org/src/components/about/toua.jpg" width = "200" />](https://github.com/txiong000)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/fncischen)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Sem8)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/latifahpresident)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/pschwin)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/txiong000)             |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/francischen2/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/sem-limi-85316427/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/latifah-president/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/patrick-schwindt-059089a3/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/toua-xiong-14674b141/) |
 
 <br>
 <br>
@@ -58,12 +58,13 @@ A online platform for merchants to rent stalls from markets to sell produce at p
 ### Front end built using:
 
 #### _Front end framework goes here_
-React
+React & React hooks with Context
 
 - Single Page Application, doesn't load new pages from server, allowing for quick load times.
 - Reusable Components (very easy to scale app) 
 - Popular amongst develepors, allowing for library upkeep.
 - Can transition to learning React native easier
+- React Hooks with Context was used for global state management
 
 Material UI
 - Scales between mobile and desktop view out of the box.
@@ -75,7 +76,7 @@ Firebase
 - For user authentication
 - Easy Oauth implementation
 - Track logged user on web application
-
+- Image Upload and image storage capability
 
 
 #### Front end deployed to `https://www.netlify.com/`
@@ -108,11 +109,11 @@ Stripe Connect
 
 Marketplaces and platforms use Stripe Connect to accept money and pay out to third parties. Connect provides a complete set of building blocks to support virtually any business model, including on-demand businesses, e‑commerce, crowdfunding, and travel and events.
 
-## 3️⃣ Misc API here
+## 3️⃣ Firebase Storage
 
-🚫Replace text below with a description of the API
+Firebase storage was used for image upload feature
 
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+Cloud Storage for Firebase lets developers upload and share user generated content, such as images, allowing the app to contain colorful media content. The data is stored in a Google Cloud Storage bucket, an exabyte scale object storage solution with high availability and global redundancy. Cloud Storage lets users securely upload these files directly from mobile devices and web browsers.
 
 ## 3️⃣ Misc API here
 
