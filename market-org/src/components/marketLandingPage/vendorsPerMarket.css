@@ -75,6 +75,8 @@
     max-width: 200px;
     max-height: 200px;
     border-radius: 10px;
+    border: 2px solid #38212F;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .5);
     
 }
 .market-vendorpage-left h2, h3, p{

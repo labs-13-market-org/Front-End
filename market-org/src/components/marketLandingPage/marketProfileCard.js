@@ -10,7 +10,7 @@ const firebase_id = null;
 
 const MarketProfileCard = props => {
   return (
-    <div className="market-card-wrapper">
+    <div className="market-card-wrapped">
       <div className="market-left">
         {props.profile.image ? (
           <img alt="Market profile picture" src={props.profile.image} />
