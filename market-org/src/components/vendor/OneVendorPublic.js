@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter, Route, Switch } from "react-router-dom";
-import './OneVendorPublic.css'
+import "./OneVendorPublic.css";
 import ProductByVendorCard from "../product/ProductByVendorCard";
+import vendorProfileIcon from "../../images/stallicon.png";
 
 import {
   withStyles,
@@ -27,7 +28,7 @@ const styles = theme => ({
   },
   appBar: {
     //   marginLeft: drawerWidth,
-    backgroundColor: '#38212E',
+    backgroundColor: "#38212E",
     zIndex: theme.zIndex.drawer + 1
   },
 
@@ -72,46 +73,31 @@ const OneVendorPublic = props => {
   }, []);
   return (
     <>
-      {/* <Container
-        maxWidth="lg"
-        key={aPublicVendor.firebase_id}
-        style={{ marginTop: "50px" }}
-      >
-        <Card className={classes.card}>
-          <CardContent>
-            <h1>Testing</h1>
-            <Typography component="p">
-              Company: {aPublicVendor.company_name}
-            </Typography>
-            <Typography component="p">
-              Full Name: {aPublicVendor.contact_fullname}
-            </Typography>
-            <Typography component="p">
-              Address: {aPublicVendor.address}
-            </Typography>
-            <Typography component="p">City: {aPublicVendor.city}</Typography>
-            <Typography component="p">State: {aPublicVendor.state}</Typography>
-            <Typography component="p">
-              Zip Code: {aPublicVendor.zip_code}
-            </Typography>
-            <Typography component="p">
-              Phone: {aPublicVendor.phone_number}
-            </Typography>
-            <Typography component="p">
-              Company website: {aPublicVendor.company_url}
-            </Typography>
-            
-          </CardContent>
-          <CardContent />
-        </Card>
-      </Container> */}
-      <div className="product-wrapper">
-        <div className='product-left'>  
+      <div className="vendor-profile-wrapper">
+        <div className="vendor-profile-header">
+          <h2>Vendor Profile</h2>
         </div>
-        <div className='product-right'>
-      <ProductByVendorCard {...props} />
+        <div className="vendor-profile-icon">
+          <img src={vendorProfileIcon} alt="logo" />
+        </div>
+        
+        <div className="product-wrapper">
+          <div className="product-left">
+          <p>Company: {aPublicVendor.company_name}</p>
+          <p>Full Name: {aPublicVendor.contact_fullname}</p>
+          <p>Address: {aPublicVendor.address}</p>
+          <p>City: {aPublicVendor.city}</p>
+          <p>State: {aPublicVendor.state}</p>
+          <p>Zip Code: {aPublicVendor.zip_code}</p>
+          <p>Phone: {aPublicVendor.phone_number}</p>
+          <p>Company website: {aPublicVendor.company_url}</p>
+          </div>
+          
+          <div className="product-right">
+            <ProductByVendorCard {...props} />
+          </div>
+        </div>
       </div>
-    </div>
     </>
   );
 };
