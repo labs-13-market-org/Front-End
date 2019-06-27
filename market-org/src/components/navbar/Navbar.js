@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 
   appBar: { 
     backgroundColor: '#38212E',
-    ['@media (max-width:800px)']: { // eslint-disable-line no-useless-computed-key
+    ['@media (max-width:800px)']: { 
       height: '70px'
     },
     // ['@media (max-width: 660px)']: {

@@ -77,12 +77,17 @@
   flex-direction: column;
   align-self: space-between;
   justify-content: space-between;
+  width: 50%;
   /* border: 1px solid white; */
 }
 
 .nav-link {
   color: white;
   text-decoration: none;
+}
+
+.selected {
+  border-bottom: 1.5px solid lightgreen;
 }
 /* @media only screen and (max-width: 660px) {
   .mobile-nav {

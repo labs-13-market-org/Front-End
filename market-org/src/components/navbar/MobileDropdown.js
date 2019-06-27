@@ -9,6 +9,8 @@ import IconButton from "@material-ui/core/IconButton";
 import { withStyles } from '@material-ui/styles';
 import MenuBars from '@material-ui/icons/Menu';
 import Profile from '@material-ui/icons/AccountCircle';
+import Expand from '@material-ui/icons/ExpandMore';
+import Clear from '@material-ui/icons/Clear';
 import { AuthContext } from "../authContext/authState";
 import axios from "../../axios-instance";
 import Slide from '@material-ui/core/Slide';
@@ -55,6 +57,16 @@ const useStyles = makeStyles(theme => ({
   closed: {
     display: 'none'
   },
+
+  closeButton: {
+    position: 'absolute',
+    right: '5px'
+  },
+
+  expand: {
+    // position: 'absolute',
+    // right: '20px',
+  },
   menuItem: {
     color: 'white',
     textDecoration: 'none'
@@ -98,16 +110,17 @@ const MobileDropdown = (props) => {
  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [stripe_acc_id, setStripeAccId] = useState(null)
-  const [OpenNav, setOpenNav] = useState(false)
+  const [openNav, setOpenNav] = useState(false)
   const { currentUser } = useContext(AuthContext);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+      setOpenNav(true)
+    // setAnchorEl(event.currentTarget);
     console.log('clicked')
   }
 
   const handleClose = ()  => {
-    setAnchorEl(null);
+    setOpenNav(false)
   }
   
   const routeToProfile = () => {
@@ -154,33 +167,111 @@ const MobileDropdown = (props) => {
                <Typography variant="h6"  className={classes.title}>
                    <IconButton
                       onClick={handleClick}
-                      aria-controls="profile" 
+                      aria-controls="open menu" 
                       color="inherit"
-                      aria-label="profile"
+                      aria-label="open menu"
                       className={classes.link}
                     >
                       <MenuBars className={classes.icon} />
                     </IconButton>
-
-                    {/* <IconButton
-                        onClick={handleClick}
-                        color="inherit"
-                        aria-label='profile'
-                    >
-                        <Expand />
-                     </IconButton>  */}
-           
                        {/* <Slide direction="down" in={handleClick} mountOnEnter unmountOnExit> */}
-                        <div className='mobile-nav'>
+                        <div className={openNav ? 'mobile-nav' : classes.closed}>
+                            <span style={{borderBottom: '1.5px solid lightgreen', margin: ' 1.5rem 1rem' }}>Market Organizer</span>
+                            <IconButton 
+                            onClick={handleClose}
+                            aria-controls="profile" 
+                            color="inherit"
+                            aria-label="profile"
+                            className={classes.closeButton}
+                            >
+                                <Clear/>
+                            </IconButton>
+                            
                             <div className='links'>
-                            <NavLink className='nav-link'>Home</NavLink>
-                            <NavLink className='nav-link'>View Our Markets</NavLink>
-                            <NavLink className='nav-link'>View Our Vendors</NavLink>
-                            <NavLink className='nav-link'>Become A Market</NavLink>
-                            <NavLink className='nav-link'>Become A Vendor</NavLink>
-                            <NavLink className='nav-link'>Login</NavLink>
-                            <NavLink className='nav-link'>Contact</NavLink>
-                            <NavLink className='nav-link'>About</NavLink>
+                            <NavLink className='nav-link'  activeClassName='selected' exact to='/'>Home  
+                                <IconButton 
+                                    onClick={handleClose}
+                                    aria-controls="expand" 
+                                    color="inherit"
+                                    aria-label="expand"
+                                    className={classes.expand}
+                                >
+                                    <Expand/>
+                                </IconButton>
+                            </NavLink>
+                            <NavLink className='nav-link' activeClassName='selected' exact to='/markets'>
+                                View Our Markets 
+                                    <IconButton 
+                                        onClick={handleClose}
+                                        aria-controls="expand" 
+                                        color="inherit"
+                                        aria-label="expand"
+                                        className={classes.expand}
+                                    >
+                                        <Expand/>
+                                </IconButton>
+                            </NavLink>
+                            <NavLink className='nav-link' activeClassName='selected' exact to='/allVendors'>
+                                View Our Vendors
+                                <IconButton 
+                                        onClick={handleClose}
+                                        aria-controls="expand" 
+                                        color="inherit"
+                                        aria-label="expand"
+                                        className={classes.expand}
+                                    >
+                                        <Expand/>
+                                </IconButton>
+                            </NavLink>
+                            <NavLink className='nav-link' activeClassName='selected' exact to='/signup'>
+                                Register
+                                <IconButton 
+                                    onClick={handleClose}
+                                    aria-controls="expand" 
+                                    color="inherit"
+                                    aria-label="expand"
+                                    className={classes.expand}
+                                >
+                                    <Expand/>
+                                </IconButton>
+                            </NavLink>
+                            {/* <NavLink className='nav-link' activeClassName='selected' exact to='/signup'>Become A Vendor</NavLink> */}
+                            <NavLink className='nav-link' activeClassName='selected' exact to='/signin'>
+                                Login
+                                <IconButton 
+                                        onClick={handleClose}
+                                        aria-controls="expand" 
+                                        color="inherit"
+                                        aria-label="expand"
+                                        className={classes.expand}
+                                    >
+                                        <Expand/>
+                                </IconButton>
+                            </NavLink>
+                            <NavLink className='nav-link' activeClassName='selected' exact to='/contact'>
+                                Contact
+                                <IconButton 
+                                        onClick={handleClose}
+                                        aria-controls="expand" 
+                                        color="inherit"
+                                        aria-label="expand"
+                                        className={classes.expand}
+                                    >
+                                        <Expand/>
+                                </IconButton>
+                            </NavLink>
+                            <NavLink className='nav-link' activeClassName='selected' exact to='/about'>
+                                About
+                                <IconButton 
+                                        onClick={handleClose}
+                                        aria-controls="expand" 
+                                        color="inherit"
+                                        aria-label="expand"
+                                        className={classes.expand}
+                                    >
+                                        <Expand/>
+                                </IconButton>
+                            </NavLink>
                             </div>
                     {/* <StyledMenu
                         id="profile"
