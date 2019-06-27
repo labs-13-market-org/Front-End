@@ -58,8 +58,7 @@ An online platform for vendors to rent stalls from markets to sell produce and o
 
 ### Front end built using:
 
-#### _Front end framework goes here_
-React & React hooks with Context
+#### _React & React hooks with Context_
 
 - Single Page Application, doesn't load new pages from server, allowing for quick load times.
 - Reusable Components (very easy to scale app) 
@@ -67,13 +66,15 @@ React & React hooks with Context
 - Can transition to learning React native easier
 - React Hooks with Context was used for global state management
 
-Material UI
+#### _Material UI_
+
 - Scales between mobile and desktop view out of the box.
 - Developed base on Google's material design
 - Extensive documents, great layout examples on their website
 - Work well with React
 
-Firebase
+#### _Firebase_
+
 - For user authentication
 - Easy Oauth implementation
 - Track logged user on web application
