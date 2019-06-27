@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem',
     // margin: "10px",
     cursor: 'pointer',
-    ['@media (max-width:900px)']: { // eslint-disable-line no-useless-computed-key
+    ['@media (max-width:750px)']: { 
         display: 'none',
       }
     
