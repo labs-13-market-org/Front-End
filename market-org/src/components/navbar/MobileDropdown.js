@@ -20,10 +20,14 @@ import './navbar.css'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1, 
+    display: 'none',
 //     position: 'absolute',
 //    left: '0',
 //    marginTop: '2rem',
-// border: '1px solid red'
+border: '1px solid red',
+['@media (max-width: 660px)']: {
+    display: 'block',
+   }
   },
  
   title: {
@@ -72,7 +76,13 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     textDecoration: 'none'
   },
- 
+  shoppingCart: {
+    position: 'absolute',
+    right: '10px',
+    color: 'white',
+    fontSize: '1.2rem',
+    cursor: 'pointer',
+  }
 }));
 
 const StyledMenu = withStyles({
@@ -183,11 +193,11 @@ const MobileDropdown = (props) => {
                     </IconButton>
                     <IconButton
                         edge="end"
-                        className={classes.icons}
+                        className={user_type === 'vendor' ? classes.shoppingCart : classes.closed}
                         color="inherit"
                         aria-label="Shopping cart"
                     >
-              <ShoppingCart onClick={toCart} className={classes.shoppingCart}/>
+              <ShoppingCart onClick={toCart} />
             </IconButton>
                        {/* <Slide direction="down" in={handleClick} mountOnEnter unmountOnExit> */}
                         <div className={openNav ? 'mobile-nav' : classes.closed}>

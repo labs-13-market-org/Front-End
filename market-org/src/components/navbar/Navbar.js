@@ -139,7 +139,13 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     width: "100%"
   },
- 
+  mobileNav: {
+    display: 'none',
+    ['@media (max-width:660px)']: {
+     display: 'block',
+     border: '1px solid red'
+    }
+  }
 }));
 
 const StyledMenu = withStyles({
@@ -273,7 +279,7 @@ console.log('is nav opened', openNav)
       <IconButton >
 
       {/* <IconButton className={openNav ? classes.closed : classes.menubar} onClick={openNavBar}> */}
-        <MenuDropdown setOpenNav={openNav} onClick={openNavBar}/>
+        <MenuDropdown className={classes.mobileNav}/>
       </IconButton>
       {/* <AppBar position="static" className= {openNav ? classes.OpenAppBar :  classes.appBar} > */}
         {/* <Slide direction="down" in={openNav} mountOnEnter unmountOnExit> */}
