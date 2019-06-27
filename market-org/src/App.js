@@ -33,7 +33,7 @@ import VendorsPerMarket from "./components/marketLandingPage/VendorsPerMarket";
 
 import { ContextProvider } from './components/context/state';
 import "./App.css";
-import EditMarket from './components/createmarket/EditMarket';
+import EditMarket from './components/createmarket/EditMarket2';
 import NoMatchingRoutes from './components/nomatchingroutes/NoMatchingRoutes';
 
 
