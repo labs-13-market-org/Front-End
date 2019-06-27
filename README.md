@@ -81,7 +81,8 @@ An online platform for vendors to rent stalls from markets to sell produce and o
 - Image Upload and image storage capability
 
 
-#### Front end deployed to `https://www.netlify.com/`
+#### Front end deployed to `Netlify`
+[![Netlify Status]](https://nostalgic-wing-420c23.netlify.com/)
 
 #### [Back end](https://github.com/labs-13-market-org/Backend) built using:
 
