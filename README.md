@@ -39,9 +39,9 @@
 
 1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
 
-Small markets (flea markets, farmers markets, etc.) can display how many stalls they have available and of what size. They can also list the current merchants and link to the vendor's profile so customers can see their products. Merchants can rent available stalls on the application and have a display for their store. Merchants can upload and update their inventory or services to display on their profile.
+Small markets (flea markets, farmers markets, etc.) can display how many stalls they have available and of what size. They can also list the current vendors and link to the vendor's profile so customers can see their products. Vendors can rent available stalls on the application and have a display for their store. Vendors can upload and update their product inventory or services to display on their profile.
 
-A online platform for merchants to rent stalls from markets to sell produce at public farmers markets.
+An online platform for vendors to rent stalls from markets to sell produce and other goods at public markets.
 
 
 
