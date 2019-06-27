@@ -26,13 +26,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1, 
     display: 'none',
-//     position: 'absolute',
-//    left: '0',
-//    marginTop: '2rem',
-border: '1px solid red',
+// border: '1px solid red',
 ['@media (max-width: 660px)']: {
     display: 'block',
-    // justify: 'space-around'
    }
   },
  
@@ -44,25 +40,11 @@ border: '1px solid red',
     // border: '1px solid green',
   },
 
-//   appBar: { 
-//     backgroundColor: '#38212E',
-//   },
-
   link: {
     color: 'white',
     fontSize: '1.2rem',
-    //   position: 'absolute',
-    // left: '0',
-    
-    // marginTop: '2rem',
-    // border: '1px solid red',
-    // margin: "10px",
     cursor: 'pointer',
-    textDecoration: 'none',
-    // '&:hover': {
-    //   borderBottom: '1px solid #30cc32'
-    // }
-    
+    textDecoration: 'none',  
   },
 
 
@@ -75,10 +57,6 @@ border: '1px solid red',
     right: '5px'
   },
 
-  expand: {
-    // position: 'absolute',
-    // right: '20px',
-  },
   menuItem: {
     color: 'white',
     textDecoration: 'none'
@@ -89,7 +67,6 @@ border: '1px solid red',
     color: 'white',
     fontSize: '1.2rem',
     cursor: 'pointer',
-    // marginLeft: '10rem',
     // border: '1px solid red',
   },
   profile: {
@@ -98,7 +75,6 @@ border: '1px solid red',
     cursor: 'pointer',
     position: 'absolute',
     right: '75px',
-    // marginLeft: '9rem',
     // border: '1px solid red',
   },
   home: {
@@ -107,7 +83,6 @@ border: '1px solid red',
     cursor: 'pointer',
     position: 'absolute',
     right: '110px',
-    // marginLeft: '9rem',
     // border: '1px solid red',
   }
 }));
@@ -121,7 +96,6 @@ const StyledMenu = withStyles({
     ['@media (max-width: 660px)']: {
      width: '40%',
     //   border: '2px solid red',
-    //  backgroundColor: 'green'
     }
   },
 
@@ -210,14 +184,17 @@ const MobileDropdown = (props) => {
 
   const toAllMarkets = () => {
     props.history.push('/markets')
+    setOpenNav(false)
   }
 
   const toAllVendors = () => {
-    props.history.push("/allVendors");
-  };
+    props.history.push("/allVendors")
+    setOpenNav(false)
+  }
 
   const register = () => {
-    props.history.push("/signup");
+    props.history.push("/signup")
+    setOpenNav(false)
   };
 
   const login = () => {
@@ -335,7 +312,7 @@ const MobileDropdown = (props) => {
                                 </IconButton>
                             </NavLink>
                             {/* <NavLink className='nav-link' activeClassName='selected' exact to='/signup'>Become A Vendor</NavLink> */}
-                            <NavLink className='nav-link' activeClassName='selected' exact to={currentUser ? '/' : '/signin'} onClick={SignIn}>
+                            <NavLink className='nav-link' activeClassName='selected' exact to='/signin' onClick={SignIn}>
                             {currentUser ? 'Logout' : 'Login'}
                                 <IconButton 
                                         onClick={handleClose}

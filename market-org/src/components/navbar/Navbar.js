@@ -29,11 +29,6 @@ const useStyles = makeStyles(theme => ({
   
   root: {
     flexGrow: 1, 
-    // position: 'absolute',
-    // width: '100%',
-    // border: '1px solid red',
-  
-    
   },
  
   title: {
