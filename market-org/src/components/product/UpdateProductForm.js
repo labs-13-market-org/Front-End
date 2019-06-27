@@ -18,14 +18,6 @@ import {
 import axios from "../../axios-instance";
 
 const styles = theme => ({
-  // form: {
-  //   width: "80%",
-  //   height: "850px",
-  //   margin: "0 auto",
-  //   marginTop: "-240px",
-  //   display: "flex",
-  //   flexDirection: 'column'
-  // },
   textField: {
     width: "330px"
   },
@@ -126,9 +118,7 @@ const UpdateProductForm = props => {
         headers: { Authorization: token }
       })
       .then(res => {
-        console.log("product res put", res);
-
-        // setEditedProduct(res.data)
+        console.log("product res put", res);     
         setProduct(res.data);
       })
       .catch(err => {
@@ -166,7 +156,6 @@ const UpdateProductForm = props => {
             onChange={e => setTitle(e.target.value)}
             value={title}
             margin="normal"
-            // variant="outlined"
             InputProps={{
               classes: {
                 input: classes.input
@@ -191,7 +180,6 @@ const UpdateProductForm = props => {
             onChange={e => setDescription(e.target.value)}
             value={description}
             margin="normal"
-            // variant="outlined"
             InputProps={{
               classes: {
                 input: classes.input
@@ -216,7 +204,6 @@ const UpdateProductForm = props => {
             onChange={e => setPrice(e.target.value)}
             value={price}
             margin="normal"
-            // variant="outlined"
             InputProps={{
               classes: {
                 input: classes.input

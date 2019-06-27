@@ -215,15 +215,15 @@ const ProductByVendor = props => {
                       >
                         <EditIcon className={classes.icon} />
                         <Typography
-                    variant="body2"
-                    style={{
-                      cursor: "pointer",
-                      fontSize: "11px",
-                      textAlign: "center"
-                    }}
-                  >
-                  EDIT INFO
-                  </Typography>
+                          variant="body2"
+                          style={{
+                            cursor: "pointer",
+                            fontSize: "11px",
+                            textAlign: "center"
+                          }}
+                        >
+                          EDIT INFO
+                        </Typography>
                       </Link>
                       <Link
                         to={`/oneVendorPrivate/productsByVendor/${
@@ -232,15 +232,15 @@ const ProductByVendor = props => {
                       >
                         <InsertPhoto className={classes.icon} />
                         <Typography
-                    variant="body2"
-                    style={{
-                      cursor: "pointer",
-                      fontSize: "11px",
-                      textAlign: "center"
-                    }}
-                  >
-                    CHANGE PICTURE
-                  </Typography>
+                          variant="body2"
+                          style={{
+                            cursor: "pointer",
+                            fontSize: "11px",
+                            textAlign: "center"
+                          }}
+                        >
+                          CHANGE PICTURE
+                        </Typography>
                       </Link>
                     </CardActions>
                   </Card>
@@ -255,7 +255,7 @@ const ProductByVendor = props => {
                         />
                       )}
                     />
-                                        <Route
+                    <Route
                       path="/oneVendorPrivate/productsByVendor/:id/updateProductImage"
                       render={props => (
                         <UpdateProductImage

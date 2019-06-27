@@ -66,18 +66,18 @@ const UpdateProductImage = props => {
 
   const photoInp = React.createRef();
 
-
     // Update Image only
     const updateImage = (e, id, image) => {
       e.preventDefault();
   
       const token = localStorage.getItem("token");
-      const firebaseId = localStorage.getItem("firebaseId");   
+      const firebaseId = localStorage.getItem("firebaseId"); 
+      // console.log('file', file)  
   
       const storageRef = storage.ref(
         `images/updated-product-images@${new Date().toISOString()}`
       );
-      let uploadImage = storageRef.put(image);
+      let uploadImage = storageRef.put(file);
       return uploadImage.then(() => {
         return uploadImage.snapshot.ref.getDownloadURL().then(downloadURL => {
           console.log('update downloadUrl', downloadURL);
@@ -153,8 +153,7 @@ const UpdateProductImage = props => {
             <Typography>{file ? file.name : ""}</Typography>
             <Button
             type="submit"
-            variant="contained"
-            // onClick={e => updateProduct(e, id, editProduct)}
+            variant="contained"            
             onClick={e => updateImage(e, id, setProduct)}
             className={classes.submit}
           >
