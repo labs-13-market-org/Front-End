@@ -326,11 +326,11 @@ console.log('is nav opened', openNav)
           <VendorMenu signup={register} toAllVendors={toAllVendors} toMyStalls={() => toMyStalls(user_type)}/>
 
           <Typography ariant="h6"  className={openNav ? classes.closed : classes.title}>
-              <Link className={classes.link}   underline='none'>About</Link>
+              <Link className={classes.link}   underline='none' exact to='/about'>About</Link>
           </Typography>
 
           <Typography ariant="h6"  className={openNav ? classes.closed : classes.title} >
-            <Link className={classes.link}  underline='none'>Contact Us</Link>
+            <Link className={classes.link}  underline='none' exact to='/contact'>Contact Us</Link>
           </Typography>
 
           <Typography ariant="h6"  className={currentUser ? classes.closed : classes.title} >

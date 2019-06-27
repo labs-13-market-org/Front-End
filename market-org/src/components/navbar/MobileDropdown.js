@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { withStyles } from '@material-ui/styles';
 import MenuBars from '@material-ui/icons/Menu';
 import Profile from '@material-ui/icons/AccountCircle';
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import Expand from '@material-ui/icons/ExpandMore';
 import Clear from '@material-ui/icons/Clear';
 import { AuthContext } from "../authContext/authState";
@@ -43,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     // left: '0',
     
     // marginTop: '2rem',
-    border: '1px solid red',
+    // border: '1px solid red',
     // margin: "10px",
     cursor: 'pointer',
     textDecoration: 'none',
@@ -158,7 +159,13 @@ const MobileDropdown = (props) => {
     }
   }
 
+  const toCart = () => {
+    let firebase_id = localStorage.getItem('firebaseId')
+      props.history.push(`/cart/${firebase_id}`)
+  }
+
   const classes = useStyles();
+  const user_type = localStorage.getItem('userTypes')
   console.log(props, 'props from mobile nav')
 
   return (
@@ -174,6 +181,14 @@ const MobileDropdown = (props) => {
                     >
                       <MenuBars className={classes.icon} />
                     </IconButton>
+                    <IconButton
+                        edge="end"
+                        className={classes.icons}
+                        color="inherit"
+                        aria-label="Shopping cart"
+                    >
+              <ShoppingCart onClick={toCart} className={classes.shoppingCart}/>
+            </IconButton>
                        {/* <Slide direction="down" in={handleClick} mountOnEnter unmountOnExit> */}
                         <div className={openNav ? 'mobile-nav' : classes.closed}>
                             <span style={{borderBottom: '1.5px solid lightgreen', margin: ' 1.5rem 1rem' }}>Market Organizer</span>
