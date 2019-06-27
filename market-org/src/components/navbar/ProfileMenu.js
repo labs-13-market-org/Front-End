@@ -56,7 +56,7 @@ const StyledMenu = withStyles({
     width: '15%',
     ['@media (max-width: 660px)']: {
      width: '40%',
-     marginLeft: '6.5rem',
+     marginLeft: '.5rem',
      height: '200px',
     //   border: '2px solid red',
     //  backgroundColor: 'green'

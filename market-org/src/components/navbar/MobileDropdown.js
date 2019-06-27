@@ -69,13 +69,13 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     // border: '1px solid red',
   },
-  profile: {
-    color: 'white',
-    fontSize: '1.2rem',
-    cursor: 'pointer',
-    position: 'absolute',
-    right: '75px',
-    // border: '1px solid red',
+  profileLink: {
+    // color: 'white',
+    // fontSize: '1.2rem',
+    // cursor: 'pointer',
+    // position: 'absolute',
+    // right: '75px',
+    border: '1px solid red',
   },
   home: {
     color: 'white',
@@ -241,7 +241,7 @@ const MobileDropdown = (props) => {
                     >
               <Profile onClick={routeToProfile} />
             </IconButton> */}
-            <ProfileMenu className='profile-link'/>
+            <ProfileMenu className={classes.profileLink}/>
                     <IconButton
                         edge="end"
                         className={user_type === 'vendor' ? classes.shoppingCart : classes.closed}
