@@ -10,18 +10,13 @@ import {
   Typography,
   TextField,
   Button,
-  Paper
+  Paper,
+  Input
 } from "@material-ui/core";
 
 import axios from "../../axios-instance";
 
 const styles = theme => ({
-  // form: {
-  //   width: "110%",
-  //   height: "850px",
-  //   margin: "0 auto",
-  //   marginTop: "-240px"
-  // },
   textField: {
     width: "330px"
   },
@@ -62,15 +57,13 @@ const UpdateVendorForm = props => {
   const [companyUrl, setCompanyUrl] = useState(
     props.aPrivateVendor.company_url
   );
-
-  // const [editVendor, setEditedVendor] = useState(props.aPrivateVendor);
+  
   const [vendorProfile, setVendorProfile] = useContext(VendorContext);
 
   const updateVendor = (e, id, updatedVendor) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
-    // const firebase_id = localStorage.getItem("firebaseId");
+    const token = localStorage.getItem("token");    
 
     updatedVendor = {
       firebase_id: firebase_id,
@@ -91,7 +84,6 @@ const UpdateVendorForm = props => {
       })
       .then(res => {
         console.log("product res put", res);
-        // setEditedVendor(res.data)
         setVendorProfile(res.data);
       })
       .catch(err => {
@@ -100,6 +92,8 @@ const UpdateVendorForm = props => {
     // props.history.push("/productForm");
     props.history.replace(`/oneVendorPrivate/${firebase_id}`);
   };
+
+
 
   return (
     <>

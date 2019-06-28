@@ -11,21 +11,13 @@ import {
   Typography,
   TextField,
   Button,
-  FormControl,
+  Input,
   Paper
 } from "@material-ui/core";
 
 import axios from "../../axios-instance";
 
 const styles = theme => ({
-  // form: {
-  //   width: "80%",
-  //   height: "850px",
-  //   margin: "0 auto",
-  //   marginTop: "-240px",
-  //   display: "flex",
-  //   flexDirection: 'column'
-  // },
   textField: {
     width: "330px"
   },
@@ -64,8 +56,13 @@ const UpdateProductForm = props => {
   const [title, setTitle] = useState(props.eachProduct.title);
   const [description, setDescription] = useState(props.eachProduct.description);
   const [price, setPrice] = useState(props.eachProduct.price);
-  const [image, setImage] = useState(props.eachProduct.image);
+  // const [image, setImage] = useState(props.eachProduct.image);
   // const [file, setFile] = useState(props.eachProduct.file);
+
+   const [image, setImage] = useState('');
+  const [file, setFile] = useState(props.eachProduct.file);
+
+  const photoInp = React.createRef();
 
   // const [editProduct, setEditedProduct] = useState(props.eachProduct);
 
@@ -76,24 +73,37 @@ const UpdateProductForm = props => {
 
     const token = localStorage.getItem("token");
     const firebaseId = localStorage.getItem("firebaseId");
-    // let currentProductName = "product-image-" + Date.now();
-    // let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
 
-    // uploadImage.on(
-    //   "state_changed",
-    //   snapshot => {},
-    //   error => {
-    //     alert(error);
-    //   },
-    //   () => {
-    //     storage
-    //       .ref("images")
-    //       .child(currentProductName)
-    //       .getDownloadURL()
-    //       .then(url => {
-    //         console.log(url);
-    //         setImage(url);
+    // const storageRef = storage.ref(
+    //   `images/updated-product-images@${new Date().toISOString()}`
+    // );
+    // let uploadImage = storageRef.put(updatedProduct);
+    // return uploadImage.then(() => {
+    //   return uploadImage.snapshot.ref.getDownloadURL().then(downloadURL => {
+    //     const updatedProduct = {
+    //       title: title,
+    //       description: description,
+    //       price: price,
+    //       image: downloadURL
+    //     };
 
+    //     axios
+    //       .put(`products/${id}`, updatedProduct, {
+    //         "Content-Type": "application/json",
+    //         headers: { Authorization: token }
+    //       })
+    //       .then(res => {
+    //         console.log("product res put", res);
+    //         setProduct(res.data);
+    //         props.history.push(`/oneVendorPrivate/${firebaseId}`);    
+    //       })
+    //       .catch(err => {
+    //         console.log(err);
+    //       });                
+    //   });      
+    // });
+
+    // Original Update product that works before image upload
     updatedProduct = {
       // vendors_id: vendorId,
       title: title,
@@ -108,24 +118,14 @@ const UpdateProductForm = props => {
         headers: { Authorization: token }
       })
       .then(res => {
-        console.log("product res put", res);
-
-        // setEditedProduct(res.data)
+        console.log("product res put", res);     
         setProduct(res.data);
       })
       .catch(err => {
         console.log(err);
       });
-    // });
-    // }
-    // );
-    // props.history.push("/productsByVendor");
     props.history.push(`/oneVendorPrivate/${firebaseId}`);
-  };
-
-  // const fileHandler = e => {
-  //   setFile(e.target.files[0]);
-  // };
+  }
 
   return (
     <>
@@ -156,9 +156,8 @@ const UpdateProductForm = props => {
             onChange={e => setTitle(e.target.value)}
             value={title}
             margin="normal"
-            // variant="outlined"
             InputProps={{
-              classes: {          
+              classes: {
                 input: classes.input
               }
             }}
@@ -181,9 +180,8 @@ const UpdateProductForm = props => {
             onChange={e => setDescription(e.target.value)}
             value={description}
             margin="normal"
-            // variant="outlined"
             InputProps={{
-              classes: {            
+              classes: {
                 input: classes.input
               }
             }}
@@ -206,9 +204,8 @@ const UpdateProductForm = props => {
             onChange={e => setPrice(e.target.value)}
             value={price}
             margin="normal"
-            // variant="outlined"
             InputProps={{
-              classes: {         
+              classes: {
                 input: classes.input
               }
             }}
@@ -217,30 +214,8 @@ const UpdateProductForm = props => {
                 color: "#026440"
               }
             }}
-          />
-          {/* <TextField
-          id="upload-button"
-          accept="image/*"
-          label="Upload Image"
-          name="image"
-          type="file"
-          className={classes.textField}
-          onChange={e => fileHandler(e)}
-          value={image}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {              
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            shrink: true,
-            style: {
-              color: "#026440"
-            }
-          }}
-        /> */}
+          />            
+
           <Button
             type="submit"
             variant="contained"

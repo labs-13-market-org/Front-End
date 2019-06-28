@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, NavLink, Link, Switch } from "react-router-dom";
 import StallsList from "../stalls/stallsList";
-import MarketLandingPage from "../markets/marketProfile";
 import "./marketLandingPage.css";
 
 import fruitstand from "../../images/fruit-stand.jpg";

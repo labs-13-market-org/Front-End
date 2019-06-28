@@ -26,7 +26,6 @@ import UpdateProductForm from "./components/product/UpdateProductForm";
 import ProductByVendor from './components/product/ProductByVendor';
 import OneVendorPublic from './components/vendor/OneVendorPublic';
 import OneVendorPrivate from './components/vendor/OneVendorPrivate';
-import MarketProfilePage from './components/markets/marketProfile';
 import VendorCart from './components/cart/cart';
 import CartTest from "./components/cart/cart-test.js";
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
@@ -64,7 +63,6 @@ function App() {
           <Route path="/productsByVendor/:id/updateProductForm" component={UpdateProductForm} />
           <Route exact path="/markets" component={MarketLandingPage} />
           <Route path="/vendorsByMarket/:firebase_id" component={VendorsPerMarket} />
-          <Route path="/markets/marketProfile/" component={MarketProfilePage} />
           <Route path="/landing-page" component={LandingPage}/>
           <Route exact path="/stalls/" component={StallsList}/>  
           <Route path="/allVendors" component={VendorLandingPage} />
