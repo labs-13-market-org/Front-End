@@ -66,6 +66,9 @@ An online platform for vendors to rent stalls from markets to sell produce and o
 - Can transition to learning React native easier
 - React Hooks with Context was used for global state management
 
+#### _axios_
+ - Making HTTP requests to our custom Stripe API
+
 #### _Material UI_
 
 - Scales between mobile and desktop view out of the box.
@@ -82,7 +85,7 @@ An online platform for vendors to rent stalls from markets to sell produce and o
 
 
 #### Front end deployed to `Netlify`
-[![Netlify Status]](https://nostalgic-wing-420c23.netlify.com/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://nostalgic-wing-420c23.netlify.com/)
 
 #### [Back end](https://github.com/labs-13-market-org/Backend) built using:
 
