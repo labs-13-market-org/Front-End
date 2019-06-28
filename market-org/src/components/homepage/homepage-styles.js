@@ -170,7 +170,97 @@ import {
         border: '1px solid purple',
         padding: '2rem',
         // height: '400px'
-      }
+      },
+      card: {
+        border: "0",
+        marginBottom: "30px",
+        marginTop: "30px",
+        borderRadius: "6px",
+        // color: "rgba(" + hexToRgb(blackColor) + ", 0.87)",
+        background: whiteColor,
+        width: "90%",
+        // boxShadow:
+        //   "0 2px 2px 0 rgba(" +
+        //   hexToRgb(blackColor) +
+        //   ", 0.14), 0 3px 1px -2px rgba(" +
+        //   hexToRgb(blackColor) +
+        //   ", 0.2), 0 1px 5px 0 rgba(" +
+        //   hexToRgb(blackColor) +
+        //   ", 0.12)",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        minWidth: 345,
+        wordWrap: "break-word",
+        fontSize: ".875rem",
+        // some jss/css to make the cards look a bit better on Internet Explorer
+        "@media all and (-ms-high-contrast: none), (-ms-high-contrast: active)": {
+          display: "inline-block !important"
+        },
+        border: '1px solid orange'
+      },
+
+      cardBodyBackground: {
+        position: "absolute",
+        top: '0',
+        left: '0',
+        right: '0',
+        bottom: '0',
+        zIndex: "12",
+        minHeight: "280px",
+        paddingTop: "40px",
+        paddingBottom: "40px",
+        maxWidth: "440px",
+        margin: "0 auto",
+        // margin: "1.75rem 0 0.875rem !important",
+        // minHeight: "unset",
+        color: grayColor[16],
+        fontSize: '1rem',
+      },
+      // card: {
+      //   maxWidth: 345,
+      //   // height: '150px',
+      // },
+      media: {
+      
+        paddingTop: "56.25%" // 16:9
+      },
+      overlay: {
+        position: 'absolute',
+  
+        width: '100%',
+        height: '100%',
+        top: '0',
+        left: '0',
+        right: '0',
+        bottom: '0',
+        // backgroundColor: 'rgba(0,0,0,0.5)',
+        zIndex: '2',
+
+        // backgroundColor: '#5787c19d',
+        // position: 'relative',
+        // top: 0,
+        // left: 0,
+        // width: '100%',
+        // height: '100%',
+        //  zIndex: '2000',
+        //  border: '2px solid purple',
+          // position: 'absolute',
+          // top: '20px',
+          // left: '20px',
+          // color: 'black',
+          backgroundColor: '#4e4b4b80'
+       },
+       gridContainer: {
+                display: 'grid',
+  justifyContent: 'center',
+  alignItems: 'center',
+    gridTemplateColumns: 'repeat(2, 90px)',
+    gridTemplateRows: 'repeat(32 100px)', 
+    gridColumnGap: '15px',
+    gridRowGap: '10px',
+    justifyContent: 'center'
+       }
   };
   
   export default homePageStyle;

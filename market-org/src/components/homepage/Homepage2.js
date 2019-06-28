@@ -32,6 +32,12 @@ import Parallax from '../global-styles/parallex.js';
 import { defaultBoxShadow, blackColor } from "../global-styles/global";
 import classNames from "classnames";
 import { title } from "../global-styles/global";
+import HeaderLinks from '../navbar/HeaderLinks'
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
 
 
 
@@ -50,6 +56,34 @@ const style = {
     border: '1px solid green'
     /* flexBasis: "auto" */
   },
+  gridContainer: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    border: '1px solid red',
+    // gridGap: theme.spacing(3),
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%' // 16:9
+ },
+//  card: {
+//     position: 'relative',
+//  },
+//  overlay: {
+//   backgroundColor: '#5787c19d',
+//   position: 'absolute',
+//   top: 0,
+//   left: 0,
+//   width: '100%',
+//   height: '100%',
+//    zIndex: 2,
+//    border: '2px solid purple'
+//     // position: 'absolute',
+//     // top: '20px',
+//     // left: '20px',
+//     // color: 'black',
+//     // backgroundColor: '#72726ea9'
+//  }
   // section: {
   //   padding: "70px 0",
   //   textAlign: "center",
@@ -74,6 +108,11 @@ const Homepage2 =  (props) => {
   const { currentUser } = useContext(AuthContext);
   const [stripe_acc_id, setStripeAccId] = useState(null)
   const firebase_id = localStorage.getItem('firebaseId')
+  const [markets1, setMarkets1] = useState([])
+  const [markets2, setMarkets2] = useState([])
+  const [markets3, setMarkets3] = useState([])
+  const [markets4, setMarkets4] = useState([])
+  const [markets, setMarkets] = useState([])
 
  useEffect(() => {
 
@@ -92,7 +131,20 @@ const Homepage2 =  (props) => {
         console.log(err)
       })
     
-    
+      axios
+      .get("/markets/")
+      .then(res => {
+        console.log(res.data, 'markets');
+        setMarkets(res.data);
+        setMarkets1(res.data[0])
+        setMarkets2(res.data[4])
+        // setMarkets3(res.data[2])
+        // setMarkets4(res.data[3])
+        // setIsLoading(false);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
   }, [props]);
 
   console.log("curr", currentUser);
@@ -101,19 +153,22 @@ const Homepage2 =  (props) => {
     props.history.push(`/vendor`);
   };
   const { classes, ...rest } = props
+  console.log('first market 1, ', markets1.id)
   return (
    
     <React.Fragment>
       <div>
-        <Navbar color="transparent"
+        <Navbar/>
+        {/* <Navbar color="transparent"
           brand="Market Organizer"
+
           // links={<HeaderLinks dropdownHoverColor="info" />}
           fixed
           changeColorOnScroll={{
             height: 300,
             color: "info"
           }}
-          {...rest}/>
+          {...rest}/> */}
       <Parallax image={require('../../images/homeBG.jpg')} filter="dark">
           <div className={classes.container}>
             <Grid container className={classes.grid}>
@@ -135,7 +190,7 @@ const Homepage2 =  (props) => {
                   rel="noopener noreferrer"
                 >
                   <i className="fas fa-play" />
-                  Watch video
+                  Take A Look
                 </Button>
               </Grid>
             </Grid>
@@ -252,6 +307,65 @@ const Homepage2 =  (props) => {
               </Grid>
               </Grid>
             </div>
+            <br />
+            <div className={style.gridContainer} spacing={3} style={{border: '2px solid purple', display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)'}}>
+
+          <h2 className={classes.headerTitle}>Featured Markets</h2>
+          <Grid  className={style.gridContainer}>
+          <Grid item xs={12} sm={4} md={4} >
+              <Card className={classes.card} >
+                 
+                  <div className={classes.overlay}>
+
+                  </div>
+                  <div style={{ backgroundImage: `url(${markets2.image})`, height: '380px',  backgroundRepeat: 'no-repeat', backgroundPosition: 'center '  }}>
+                    
+                    </div>
+                  
+        <Typography className={classes.cardBodyBackground}  variant="body2" color="textSecondary" component="p">
+        <div className={classes.descriptionWrapper} style={{marginTop: '2rem'}}>
+                    
+                    <h4 className={classes.iconTitle}>{markets2.market_name}</h4>
+                    
+                    <h5 className={classes.iconDescription}>{markets2.address} {markets2.city} {markets2.state}</h5>
+                    
+                  </div>
+        </Typography>
+     
+              </Card>
+
+              </Grid>
+          </Grid>
+
+          <Grid className={style.grid}>
+          <Grid item xs={12} sm={4} md={4} >
+              <Card className={classes.card} >
+                 
+                  <div className={classes.overlay}>
+
+                  </div>
+                  <div style={{ backgroundImage: `url(${markets2.image})`, height: '380px',  backgroundRepeat: 'no-repeat', backgroundPosition: 'center '  }}>
+                    
+                    </div>
+                  
+        <Typography className={classes.cardBodyBackground}  variant="body2" color="textSecondary" component="p">
+        <div className={classes.descriptionWrapper} style={{marginTop: '2rem'}}>
+                    
+                    <h4 className={classes.iconTitle}>{markets2.market_name}</h4>
+                    
+                    <h5 className={classes.iconDescription}>{markets2.address} {markets2.city} {markets2.state}</h5>
+                    
+                  </div>
+        </Typography>
+     
+              </Card>
+
+              </Grid>
+          </Grid>
+</div>
+         
+          {/* </Grid> */}
           {/* <div className="info-header-section">
                  
                  <div className='info'>
