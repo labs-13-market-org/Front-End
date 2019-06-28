@@ -6,7 +6,7 @@
 
 # 1️⃣ Market Organizer App
 
-1️⃣ You can find the deployed project at [https://nostalgic-wing-420c23.netlify.com/](https://nostalgic-wing-420c23.netlify.com/).
+1️⃣ You can find the deployed project at [![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://nostalgic-wing-420c23.netlify.com/)
 
 ## 4️⃣ Contributors
 
