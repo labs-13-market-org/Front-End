@@ -45,7 +45,7 @@ function App() {
         <div className='app-wrapper'>
         <CssBaseline />
         <ContextProvider>
-        <Navbar className='nav-bar' />
+        {/* <Navbar className='nav-bar' /> */}
         <Switch>
           <Route exact exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
