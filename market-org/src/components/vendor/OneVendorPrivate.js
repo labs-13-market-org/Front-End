@@ -4,6 +4,7 @@ import { Link, withRouter, Route, Switch } from "react-router-dom";
 import { VendorContext } from "../context/vendor";
 
 import UpdateVendorForm from "./UpdateVendorForm";
+import UpdateVendorImage from "./UpdateVendorImage";
 import ProductByVendor from "../product/ProductByVendor";
 
 import {
@@ -25,6 +26,7 @@ import {
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutlined";
+import InsertPhoto from "@material-ui/icons/InsertPhoto";
 
 import axios from "../../axios-instance";
 
@@ -229,6 +231,20 @@ const OneVendorPrivate = props => {
                     EDIT PROFILE
                   </Typography>
                 </Link>
+
+                <Link to={`/oneVendorPrivate/${firebase_id}/editImage`}>
+                <InsertPhoto className={classes.icon} />
+                  <Typography
+                    variant="body2"
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "11px",
+                      textAlign: "center"
+                    }}
+                  >                    
+                    CHANGE PHOTO
+                  </Typography>
+                </Link>
                 {/* </Grid>
                 <Grid item style={{ padding: 5, margin: 8 }}> */}
                 <DeleteIcon
@@ -256,6 +272,13 @@ const OneVendorPrivate = props => {
           path="/oneVendorPrivate/:firebase_id/editForm"
           render={props => (
             <UpdateVendorForm {...props} aPrivateVendor={aPrivateVendor} />
+          )}
+        />
+
+        <Route
+          path="/oneVendorPrivate/:firebase_id/editImage"
+          render={props => (
+            <UpdateVendorImage {...props} aPrivateVendor={aPrivateVendor} />
           )}
         />
       </Switch>

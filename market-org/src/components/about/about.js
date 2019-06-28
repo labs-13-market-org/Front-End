@@ -157,7 +157,7 @@ return (
             </BioText> */}
             
             <SocialMedia>
-            <a href="https://www.linkedin.com/in/toua-xiong-14674b141/"><img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img></a>
+            <a href="https://www.linkedin.com/in/toua-xiong-97bb45185/"><img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50"></img></a>
             <a href="https://github.com/txiong000"><img src="https://github.com/favicon.ico" width="50"></img></a>
             </SocialMedia>
             </Card>

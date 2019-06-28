@@ -269,7 +269,7 @@ function ButtonAppBar(props) {
   const user_type = localStorage.getItem('userTypes')
   const isOpen = Boolean(anchorEl);
 // console.log(vendorProfile, 'vendor profile')
-console.log('is nav opened', openNav)
+// console.log('is nav opened', openNav)
   return (
     
     <div className= {classes.root}>

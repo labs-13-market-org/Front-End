@@ -90,9 +90,9 @@ const ProductForm = props => {
           .child(currentProductName)
           .getDownloadURL()
           .then(url => {
-            console.log(url);
+            // console.log(url);
             // setImage(url);
-            console.log(image)
+            // console.log(image)
             const productObj = {
               vendors_id: vendorId,
               title: title,
@@ -174,7 +174,7 @@ const ProductForm = props => {
         </Link>
       </Card> */}
 
-      <Typography component="p">Product form:</Typography>
+      {/* <Typography component="p">Product form:</Typography> */}
 
       <div className="vendor-form-wrapper">
         <div className="vendor-form-left" />
@@ -213,7 +213,7 @@ const ProductForm = props => {
               margin="normal"
             />
 
-            <h4>Upload Image</h4>
+            <Typography style={{ margin: '10px'}}>Upload Product Picture</Typography>
             <Input
               className="input-field"
               id="upload-button"
@@ -224,12 +224,18 @@ const ProductForm = props => {
               value={image}
               margin="normal"
               ref={photoInp}
-              style={{ display: "none" }}
+              style={{ display: "none", color: 'white' }}
             />
             <label
               htmlFor="upload-button"
               style={{
-                cursor: "pointer"
+                cursor: "pointer",
+                fontSize: 16,               
+                background: 'rgba(180, 45, 90)',
+                color: 'white',
+                padding: '5px',
+                borderRadius: '5px',
+                margin: '10px' 
               }}
             >
               Choose file 
