@@ -75,22 +75,23 @@ const StallsList = (props) => {
     return(
       
       <div className="rent-page-wrapper">
-        <div className="rent-page-header">
-          <h2>Rent Stalls</h2>
-        </div>
-        <div className="rent-icon">
-          <img src={rentIcon} alt="logo" />
-        </div>
-          
-        {/* <div className='stall-wrapper'>
-          <div className='rent-market-info'>
-            <h3>Selected Market:</h3>
+      <div className="rent-page-header">
+        <h2>Rent Stalls</h2>
+      </div>
+      <div className="rent-icon">
+      <img src={rentIcon} alt="logo" />
+      </div>
+          <div className='stall-wrapper'>
+  
+            
+            <div className='rent-market-info'>
+            <h2>Selected Market:</h2>
             <h4>{market.market_name}</h4>
             <h4>{market.address}</h4>
             <h4>{market.city}</h4>
             <h4>{market.state}</h4>
-            <h4>{market.phone_number}</h4>
-          </div>
+            <h3>{market.phone_number}</h3>
+            </div>
             
           <div className='stalls'>
             <h2>Available Stalls:</h2>

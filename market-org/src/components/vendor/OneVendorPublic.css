@@ -1,5 +1,57 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+
+.vendor-profile-wrapper{
+    display: flex;
+    flex-wrap:wrap;
+    font-family: 'Montserrat';
+    background-color: #E9EBEE;
+    padding-bottom: 50px;
+    padding-right: 20%;
+    padding-left: 20%;
+    
+}
+
+
+.vendor-profile-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../images/market4.jpg');
+    background-position: center center;
+    box-shadow:inset 0 0 0 2000px rgba(105, 7, 40, 0.3);
+    background-size: cover; 
+    min-height:250px;
+    width: 100%;
+    color: white;
+    font-size: 30px;
+    margin-bottom:50px;
+    text-shadow: 2px 2px #000000;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .5);
+    text-align: center;
+    
+  
+}
+.vendor-profile-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#38212E;
+    width: 175px;
+    height: 175px;
+    border-radius: 150px;
+    margin-top: -190px;
+    margin-left: 30px;
+    margin-bottom: 50px;
+    border: 2px solid white;
+}
+.vendor-profile-icon img{
+    width: 66%;
+    height: 66%;
+    
+}
+
+
 .product-wrapper{
     display: flex;
     flex-wrap: wrap;
@@ -7,21 +59,30 @@
 }
 
 .product-left{
-    background-image: url('../../images/market2.jpg');
-    background-position: center center;
-    box-shadow:inset 0 0 0 2000px rgba(105, 7, 40, 0.3);
-    background-size: cover; 
-    width:60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 28%;
+    background-color: white;
+    color: rgba(180, 45, 90);
+    margin:10px;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    padding: 20px;
     
 
 }
 
 .product-right{
-    background-color: white;
-    width:40%;
-    display:flex;
+    width: 67%;
+    margin:10px;
+    display: flex;
     flex-wrap: wrap;
-    padding:20px;
+    background-color: white;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    padding: 20px;
 }
 
 
@@ -30,12 +91,47 @@
 
 
 
-@media (max-width: 1000px){
+@media (max-width: 1500px){
+    .vendor-profile-wrapper{
+        padding: 0%;
+    }
+  
+}
+@media (max-width: 800px){
+    
+   
+    .vendor-profile-icon {
+        display: flex;
+        justify-content: center;
+        width: 60%;
+        height: 100%;
+        margin: 0px;
+        padding: 5px;
+        margin-top: -100px;
+        margin-bottom: 50px;
+        margin-left: 20%;
+        margin-right: 20%;
+        
+    }
+    .vendor-profile-icon img{
+        height: 90px;
+        width: 90px;
+    }
+}
+@media (max-width: 1100px){
     .product-left{
-        display:none;
+        width: 100%;
+        justify-content: left;
     }
+    .product-left p{
+        width: 45%;
+    }
+    
     .product-right{
-        width:100%;
+        width: 100%;
     }
+    
+    
+  
 }
 
