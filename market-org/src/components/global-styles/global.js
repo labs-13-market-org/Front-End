@@ -144,6 +144,8 @@ const hexToRgb = input => {
   const dribbbleColor = "#ea4c89";
   const redditColor = "#ff4500";
   const instagramColor = "#125688";
+  const grayBackgroundColor = "#E9EBEE";
+  const purpleBackgroundColor = "#38212E";
   
   const transition = {
     transition: "all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)"
@@ -492,6 +494,8 @@ const hexToRgb = input => {
     mrAuto,
     btnLink,
     coloredShadow,
-    hexToRgb
+    hexToRgb,
+    grayBackgroundColor,
+    purpleBackgroundColor
   };
   

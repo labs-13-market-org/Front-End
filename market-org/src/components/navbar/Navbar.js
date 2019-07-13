@@ -4,42 +4,27 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Expand from '@material-ui/icons/ExpandMore';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
-import Clear from '@material-ui/icons/Clear';
 import MenuBars from '@material-ui/icons/Menu';
 import Link from '@material-ui/core/Link';
 import { auth } from "../../firebase";
-import { Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import VendorMenu from './MenuButton';
 import ProfileMenu from './ProfileMenu';
-import MenuDropdown from './MobileDropdown';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
-import SignUp from '../register/SignUp';
-import './navbar.css'
-import Slide from '@material-ui/core/Slide';
-import Button from '@material-ui/core/Button';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
 import {whiteColor, container} from '../global-styles/global';
-
+import logo from '../../images/logo-white.png'
 
 
 const useStyles = makeStyles(theme => ({
-  
-  // root: {
-  //   flexGrow: 1,
-     
-  // },
-
-
   appBar: { 
     background: 'transparent',
     // display: "flex",
@@ -49,10 +34,6 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "20px",
     color: whiteColor,
     width: "100%",
-    // transition: "all 150ms ease 0s",
-    // alignItems: "center",
-    // flexFlow: "row nowrap",
-    // justifyContent: "flex-start",
     position: "absolute",
     boxShadow: 'none',
   },
@@ -64,11 +45,18 @@ const useStyles = makeStyles(theme => ({
     // border: '1px solid red',
   },
 
+  logo: {
+    border: '1px solid red',
+    width: '5%',
+  },
+
   list: {
-    // maxWidth: 360,
     width: '100%',
     // border: '1px solid purple',
     display: 'flex',
+  },
+  listItem: {
+    textDecorationColor: '#38212E',
   },
 
   caret: {
@@ -83,52 +71,19 @@ const useStyles = makeStyles(theme => ({
   },
 
   dropdownIcon: {
-    border: '1px solid red', 
+    // border: '1px solid red', 
     display: 'flex', 
     justifyContent: 'center', 
     textAlign: 'center',  
     alignItems: 'center'
   },
-  link: {
-    color: 'white',
-    fontSize: '1.2rem',
-    margin: "10px",
-    cursor: 'pointer',
-    textDecoration: 'none',
-    '&:hover': {
-      borderBottom: '1px solid #30cc32'
-    }
-    
-  },
-  icon: {
-    // ['@media (max-width:800px)']: { 
-    //   display: 'none',
-    // }
+  dropDown: {
+    border: '1px solid green',
+    backgroundColor: '#b42d5ae8'
   },
 
-  clearIcon: {
-    // display: 'none',
-    ['@media (max-width:660px)']: {
-      position: 'absolute',
-      left: '20px',
-      color: 'white',
-    }
-   
-  },
-  closed: {
-    display: 'none'
-  },
-  menuItem: {
+  navIcon: {
     color: 'white',
-    textDecoration: 'none',
-    width: "100%"
-  },
-  mobileNav: {
-    display: 'none',
-    ['@media (max-width:900px)']: {
-     display: 'block',
-     border: '1px solid red'
-    }
   }
 }));
 
@@ -139,14 +94,35 @@ const StyledMenu = withStyles({
     backgroundColor: '#b42d5ae8',
     height: '170px',
     width: '10%',
-   ['@media (max-width: 900px)']: {
-     display: 'none'
-   }
+    color: 'white'
   },
 
-  close: {
-    display: 'none'
-  }
+})(props => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+    
+  />
+));
+
+const StyledMarketMenu = withStyles({
+  
+  paper: {
+    marginTop: '3rem',
+    backgroundColor: '#b42d5ae8',
+    height: 'auto',
+    width: 'auto',
+    color: 'white'
+  },
+
 })(props => (
   <Menu
     elevation={0}
@@ -165,7 +141,7 @@ const StyledMenu = withStyles({
 
 function ButtonAppBar(props) {
   const [vendorProfile, setVendorProfile] = useContext(VendorContext);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [openReg, setOpenReg] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openNav, setOpenNav] = React.useState(false);
@@ -173,10 +149,15 @@ function ButtonAppBar(props) {
   const firebaseId = localStorage.getItem('firebaseId');
 
   const handleClick = (event) => {
-    setOpenNav(!openNav)
-    // setAnchorEl(event.currentTarget);
+    // setOpenNav(!open)
+    console.log('clicked')
+    setAnchorEl(event.currentTarget);
   }
-
+  const handleMarketClick = (event) => {
+    // setOpenNav(!open)
+    console.log('clicked')
+    setAnchorEl(event.currentTarget);
+  }
   const openNavBar = () => {
     setOpenNav(true)
     console.log('clicked')
@@ -199,6 +180,10 @@ function ButtonAppBar(props) {
 
   const toHome = () => {
     props.history.push('/')
+  }
+
+  const toAbout = () => {
+    props.history.push('/about')
   }
 
   const routetoCreate = () => {
@@ -258,42 +243,54 @@ function ButtonAppBar(props) {
   const classes = useStyles();
   const user_type = localStorage.getItem('userTypes')
   const isOpen = Boolean(anchorEl);
-// console.log(vendorProfile, 'vendor profile')
-console.log('is nav opened', openNav)
+console.log('props', props)
   return (
-    
-    <div >
+    <div>
      
-      <AppBar className= {classes.appBar} >
-      <Toolbar className={classes.container}>
-       <List component="nav" className={classes.list}>
-       <ListItem button component={Link} to='/'>
-        <ListItemText primary='Home' />
-      </ListItem>
-      <ListItem button component={Link} to='/' >
-        <div className={classes.dropdownIcon}>
-        <ListItemText primary='Markets' />
-        <span className={classes.caret}></span>
-        </div>
-        
-        {/* {open ? <ExpandLess /> : <ExpandMore />} */}
-      </ListItem>
-      <ListItem button component={Link} to='/vendors'>
-        <ListItemText primary='Vendors' />
-      </ListItem>
-      <ListItem button component={Link} to='/about'>
-        <ListItemText primary='About' />
-      </ListItem>
-      <ListItem button component={Link} exact to='/contact'>
-        <ListItemText primary='Contact Us' />
-      </ListItem>
-      <ListItem button component={Link} onClick={currentUser ? logout : login}>
-        <ListItemText primary={currentUser ? 'Logout' : 'Login'} />
-      </ListItem>
-       </List>
+      <AppBar className= {classes.appBar}>
+        <Toolbar className={classes.container}>
+          <List component="nav" className={classes.list}>
          
-       
-      </Toolbar>
+            <ListItem button component={Link} onClick={toHome}>
+              <ListItemText primary='Home' />
+            </ListItem>
+
+            <ListItem button onClick={handleMarketClick} >
+              <div className={classes.dropdownIcon} aria-controls="market-menu" aria-haspopup="true" >
+                <ListItemText primary='Markets' />
+                <Expand/>
+              </div>
+            </ListItem>
+            <StyledMarketMenu
+              id="market-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              
+             >
+              <MenuItem onClick={register} >Register A Market</MenuItem>
+              <MenuItem onClick={toAllMarkets}>View Our Markets</MenuItem>
+              <MenuItem onClick={handleClose}>More Info</MenuItem>
+            </StyledMarketMenu>
+            <VendorMenu />
+            <ListItem component={Link} onClick={toAbout} key='About' button >
+              <ListItemText primary='About' />
+            </ListItem>
+            <ListItem button component={Link} exact to='/contact'>
+              <ListItemText primary='Contact Us' />
+            </ListItem>
+            <ListItem button component={Link} onClick={currentUser ? logout : login}>
+              <ListItemText primary={currentUser ? 'Logout' : 'Login'} />
+            </ListItem>
+            <ListItem button onClick={toCart}>
+              <ListItemIcon className={classes.navIcon}>
+                <ShoppingCart />
+              </ListItemIcon>
+            </ListItem>
+            <ProfileMenu/>
+          </List>
+        </Toolbar>
       </AppBar>
     </div>
   );

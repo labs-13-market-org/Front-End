@@ -1,3 +1,4 @@
+import React from 'react'
 import classNames from "classnames";
 // nodejs library to set properties for components
 
@@ -45,40 +46,6 @@ function RegularButton(props) {
   );
 }
 
-RegularButton.propTypes = {
-  classes: PropTypes.object.isRequired,
-  color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "danger",
-    "rose",
-    "white",
-    "twitter",
-    "facebook",
-    "google",
-    "linkedin",
-    "pinterest",
-    "youtube",
-    "tumblr",
-    "github",
-    "behance",
-    "dribbble",
-    "reddit",
-    "instagram",
-    "transparent"
-  ]),
-  size: PropTypes.oneOf(["sm", "lg"]),
-  simple: PropTypes.bool,
-  round: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  disabled: PropTypes.bool,
-  block: PropTypes.bool,
-  link: PropTypes.bool,
-  justIcon: PropTypes.bool,
-  fileButton: PropTypes.bool
-};
+
 
 export default withStyles(buttonStyle)(RegularButton);

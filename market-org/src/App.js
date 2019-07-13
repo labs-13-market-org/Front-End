@@ -4,7 +4,7 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withRouter } from 'react-router'
 import Navbar from './components/navbar/Navbar';
-
+import Footer from './components/footer/footer';
 import About from './components/about/about';
 import SignIn from './components/login/SignIn';
 import SignUp from './components/register/SignUp';
@@ -45,7 +45,7 @@ function App() {
         <div className='app-wrapper'>
         <CssBaseline />
         <ContextProvider>
-        <Navbar className='nav-bar' />
+        <Navbar  />
         <Switch>
           <Route exact exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
@@ -74,6 +74,7 @@ function App() {
           <Route component={NoMatchingRoutes} />
         </Switch>
         </ContextProvider>
+        <Footer/>
         </div>
       </React.Fragment>
   )
