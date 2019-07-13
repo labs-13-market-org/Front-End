@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import "./Homepage.css";
 import { AuthContext } from "../authContext/authState";
 import { Grid, } from "@material-ui/core";
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import axios from "../../axios-instance";
 import market1 from '../../images/market1.jpg';
 import market2 from '../../images/market2.jpg';
@@ -85,7 +85,6 @@ const Homepage2 =  (props) => {
         setMarkets3(res.data[2])
         setMarkets4(res.data[3])
         setMarkets5(res.data[4])
-        // setIsLoading(false);
       })
       .catch(err => {
         console.log(err.message);
@@ -131,8 +130,8 @@ const Homepage2 =  (props) => {
         <div className={classNames(classes.main, classes.mainRaised)} >
           <div className={classes.container} style={{paddingBottom: '2rem'}}>
             <Grid className={classes.section}>
-                <Grid className={classes.sectionContent} xs={12} sm={8} md={8} justify='center' >
-                    <h2 className={classes.headerTitle}>What is Market Organizer?</h2>
+                <Grid className={classes.sectionContent} xs={12} sm={8} md={8} justify='center'  >
+                    <h2 className={classes.headerTitle} style={{textAlign: 'center'}}>What is Market Organizer?</h2>
                     <h5 className={classes.description}>
                       This is the paragraph where you can write more details about your
                       product. Keep you user engaged by providing meaningful
@@ -203,6 +202,7 @@ const Homepage2 =  (props) => {
             <br />
             <div >
               <h2 className={classes.headerTitle}>Featured Markets</h2>
+               {/*TODO: CLEAN THIS UP SO CODE IS DRY */}
               <Grid  container spacing={3} className={classes.feauturedMarket} >
                   <Card className={classes.card} >
                       <div className={classes.overlay}></div>
@@ -265,6 +265,7 @@ const Homepage2 =  (props) => {
               </Grid>
 
               <Grid className={classes.feauturedMarketBottom}>
+                 {/*TODO: CHANGE THE IMAGES SO THAT THEY MATCH THE INFORMATION*/}
                 <Card className={classes.card} style={{width: '80%', height: '280px'}}>
                       <div className={classes.overlay}></div>
                       <div style={{ 
@@ -324,8 +325,10 @@ const Homepage2 =  (props) => {
                   <h3 className={classes.headerTitle}>A Bridge Between Customers and Their Products</h3>
                   <p className={classes.iconDescription} style={{color: purpleBackgroundColor}}>No more searching endlessly for the right market to sell your products. <br/>Let us take care of it!</p>
                   <br/>
-                  <Custombutton onClick={register} >
-                    Register Today 
+                  <Custombutton>
+                  <Link to="/signup" style={{color: 'white', textDecoration: 'none'}}>
+                    Register Today
+                  </Link>
                   </Custombutton>
                 </Grid>
             </Grid>
@@ -335,10 +338,12 @@ const Homepage2 =  (props) => {
               <Grid item xs={6} style={{padding: '0',}}>
                     <Grid item  className={classes.section} style={{color: grayBackgroundColor, marginLeft: '1rem', marginRight: '1rem'}}>
                       <h3 className={classes.headerTitle} style={{color: grayBackgroundColor,}}>Diverse selection of goods & services waiting for your customers</h3>
-                      <p className={classes.iconDescription} style={{color: grayBackgroundColor, }}>From  produce, fresh seafood, poltury, vegetables, boutique handcrafted goods, our markets have it all!</p>
+                      <p className={classes.iconDescription} style={{color: grayBackgroundColor, }}>From  produce, fresh seafood, poltury, vegetables, boutique handcrafted <br/>goods, our markets have it all!</p>
                       <br/>
-                      <Custombutton onClick={register}>
-                        Register Today 
+                      <Custombutton >
+                      <Link to="/signup" style={{color: 'white', textDecoration: 'none'}}>
+                          Register Today
+                      </Link>
                       </Custombutton>
                     </Grid>
                 </Grid>
@@ -363,5 +368,3 @@ const Homepage2 =  (props) => {
 };
 
 export default withRouter(withStyles(homePageStyle)(Homepage2));
-
-// export default Homepage2;

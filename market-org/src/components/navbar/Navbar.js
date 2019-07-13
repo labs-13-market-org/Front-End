@@ -84,7 +84,11 @@ const useStyles = makeStyles(theme => ({
 
   navIcon: {
     color: 'white',
-  }
+  },
+  
+  close: {
+    display: 'none'
+  },
 }));
 
 const StyledMenu = withStyles({
@@ -284,11 +288,12 @@ console.log('props', props)
               <ListItemText primary={currentUser ? 'Logout' : 'Login'} />
             </ListItem>
             <ListItem button onClick={toCart}>
-              <ListItemIcon className={classes.navIcon}>
+              <ListItemIcon className={user_type === 'vendor' ? classes.navIcon : classes.close}>
                 <ShoppingCart />
               </ListItemIcon>
             </ListItem>
-            <ProfileMenu/>
+            {currentUser ? <ProfileMenu /> : null}
+            
           </List>
         </Toolbar>
       </AppBar>

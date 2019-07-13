@@ -106,57 +106,28 @@ const UserProfile = (props) => {
   const classes = useStyles();
 
   return (
-    <div  >
-      {/* <Typography variant="h6" className={classes.title} />
-               <Typography variant="h6"  className={classes.title}>
-                 
-                    <IconButton
-                      onClick={handleClick}
-                      aria-controls="profile" 
-                      color="inherit"
-                      aria-label="profile"
-                    >
-                      <Profile />
-                    </IconButton> 
-
-                    <IconButton
-                        onClick={handleClick}
-                        color="inherit"
-                        aria-label='profile'
-                    >
-                        <Expand />
-                     </IconButton>  */}
-            <ListItem button onClick={handleClick} >
-            {/* <ListItemIcon className={classes.navIcon}>
-                <Profile />
-              </ListItemIcon> */}
-               <ListItemIcon className={classes.dropdownIcon} aria-controls="profile-menu" aria-haspopup="true">
-                <Profile />
-              </ListItemIcon>
-              {/* <div className={classes.dropdownIcon} aria-controls="profile-menu" aria-haspopup="true" >
-                {/* <ListItemText primary='Profile' /> */}
-                <Expand/>
-              {/* </div>  */}
-            </ListItem>
-     
-               
-                    <StyledMenu
-                        id="profile"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem className={classes.menuItem} onClick={routeToProfile}>View Profile</MenuItem>
-                        <MenuItem className={classes.menuItem} onClick={props.handleRegOpen}>{props.user === 'vendor' ? 'My Orders' : 'My Stalls'}</MenuItem>
-                        {
-                          props.user === 'market' ? <MenuItem className={classes.menuItem} onClick={stripeDashboardLink}>Stripe Dashboard</MenuItem> : null
-                        }
-                        <MenuItem className={classes.menuItem} onClick={accountSettingRoute}>Account Settings</MenuItem>
-                        <MenuItem className={classes.menuItem} onClick={props.logout}>Logout</MenuItem>
-                    </StyledMenu>
-             
-              {/* </Typography> */}
+    <div>
+      <ListItem button onClick={handleClick} >
+          <ListItemIcon className={classes.dropdownIcon} aria-controls="profile-menu" aria-haspopup="true">
+          <Profile />
+        </ListItemIcon>
+          <Expand/>
+      </ListItem>
+        <StyledMenu
+            id="profile"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+        >
+          <MenuItem className={classes.menuItem} onClick={routeToProfile}>View Profile</MenuItem>
+          <MenuItem className={classes.menuItem} onClick={props.handleRegOpen}>{props.user === 'vendor' ? 'My Orders' : 'My Stalls'}</MenuItem>
+          {
+            props.user === 'market' ? <MenuItem className={classes.menuItem} onClick={stripeDashboardLink}>Stripe Dashboard</MenuItem> : null
+          }
+          <MenuItem className={classes.menuItem} onClick={accountSettingRoute}>Account Settings</MenuItem>
+          <MenuItem className={classes.menuItem} onClick={props.logout}>Logout</MenuItem>
+        </StyledMenu>
     </div>
   )
 }

@@ -22,7 +22,6 @@ import MyMarketStalls from "./components/myStalls/marketStalls";
 import VendorLandingPage from "./components/vendor/VendorLandingPage";
 import ProductForm from "./components/product/ProductForm";
 import UpdateProductForm from "./components/product/UpdateProductForm";
-// import ProductByVendorCard from './components/product/ProductByVendorCard';
 import ProductByVendor from './components/product/ProductByVendor';
 import OneVendorPublic from './components/vendor/OneVendorPublic';
 import OneVendorPrivate from './components/vendor/OneVendorPrivate';
