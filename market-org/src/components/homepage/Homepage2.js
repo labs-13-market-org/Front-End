@@ -16,6 +16,7 @@ import flowerIcon from '../../images/flowerIcon.png'
 import vegetables from '../../images/vegetables.png'
 import team from '../../images/team.png'
 import queryString from 'query-string';
+// STYLES
 import homePageStyle from './homepage-styles.js'
 import withStyles from "@material-ui/core/styles/withStyles";
 import Parallax from '../global-styles/parallex.js';
@@ -79,7 +80,7 @@ const Homepage2 =  (props) => {
       axios
       .get("/markets/")
       .then(res => {
-        console.log("array 4", res.data[4])
+        console.log("array 4", res.data)
         setMarkets1(res.data[0])
         setMarkets2(res.data[1])
         setMarkets3(res.data[2])
@@ -111,12 +112,12 @@ const Homepage2 =  (props) => {
             <Grid container className={classes.grid}>
               <Grid className={classes.griditem}>
                 <h1 className={classes.title}>Welcome To Market Organizer</h1>
-                <h4 >
-                  
-                  Every landing page needs a small description after the big
+                <h4 className={classes.iconDescription} style={{textTransform: 'uppercase'}}>
+                  Streamlining farm to market so you don't have to.
+                  {/* Every landing page needs a small description after the big
                   bold title, that's why we added this text here. Add here all
                   the information that can make you or your product create the
-                  first impression.
+                  first impression. */}
                 </h4>
                 <br />
                 {/* TODO: ADD SMOOTH SCROLL TO BUTTON*/}
@@ -127,17 +128,14 @@ const Homepage2 =  (props) => {
             </Grid>
           </div>
         </Parallax> 
-        <div className={classNames(classes.main, classes.mainRaised)} >
+        <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.container} style={{paddingBottom: '2rem'}}>
             <Grid className={classes.section}>
                 <Grid className={classes.sectionContent} xs={12} sm={8} md={8} justify='center'  >
                     <h2 className={classes.headerTitle} style={{textAlign: 'center'}}>What is Market Organizer?</h2>
                     <h5 className={classes.description}>
-                      This is the paragraph where you can write more details about your
-                      product. Keep you user engaged by providing meaningful
-                      information. Remember that by this time, the user is curious,
-                      otherwise he wouldn't scroll to get here. Add a button if you want
-                      the user to see more.
+                    Market Organizer is a platform that was built to connect markets
+                    with their vendors. Markets can be created and, then vendors can rent stalls.
                     </h5>
               </Grid>
             </Grid>

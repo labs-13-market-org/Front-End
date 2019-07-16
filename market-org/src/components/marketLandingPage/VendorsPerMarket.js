@@ -117,7 +117,7 @@ const VendorsPerMarket = props => {
         {/* //Grid Left */}
           <Grid item xs={4}>
             
-            <Paper className={classes.paper}>
+            <Paper >
               <h2>{perMarket.market_name}</h2>
               {perMarket.image 
                 ? <img
@@ -142,7 +142,7 @@ const VendorsPerMarket = props => {
               <p>Phone number: {perMarket.phone_number}</p>
             </Paper>
             
-            <Paper className={classes.paper}>
+            <Paper >
             {usertype === "market" ? null : (
               <Link
                 to={{

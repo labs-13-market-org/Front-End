@@ -60,6 +60,8 @@ const UserProfile = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [stripe_acc_id, setStripeAccId] = useState(null)
   const { currentUser } = useContext(AuthContext);
+  const usertype = localStorage.getItem("userTypes")
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   }
@@ -69,7 +71,7 @@ const UserProfile = (props) => {
   }
   
   const routeToProfile = () => {
-    const usertype = localStorage.getItem("userTypes")
+    
     console.log("userType", usertype)
     if(usertype === "market") {
       props.history.push(`/vendorsByMarket/${currentUser.uid}`)
@@ -103,6 +105,16 @@ const UserProfile = (props) => {
     }
   }
 
+  const toMyStalls = (user_type) => {
+    if (user_type == "vendor") {
+      props.history.push('/vendorStall')
+    }
+    else if (user_type == "market") {
+      props.history.push('/marketStall')
+    }
+    
+  }
+
   const classes = useStyles();
 
   return (
@@ -121,10 +133,8 @@ const UserProfile = (props) => {
             onClose={handleClose}
         >
           <MenuItem className={classes.menuItem} onClick={routeToProfile}>View Profile</MenuItem>
-          <MenuItem className={classes.menuItem} onClick={props.handleRegOpen}>{props.user === 'vendor' ? 'My Orders' : 'My Stalls'}</MenuItem>
-          {
-            props.user === 'market' ? <MenuItem className={classes.menuItem} onClick={stripeDashboardLink}>Stripe Dashboard</MenuItem> : null
-          }
+          <MenuItem className={classes.menuItem} onClick={toMyStalls}>{usertype === 'vendor' ? 'My Stalls' : 'View Orders'}</MenuItem>
+          { props.user === 'market' ? <MenuItem className={classes.menuItem} onClick={stripeDashboardLink}>Stripe Dashboard</MenuItem> : null}
           <MenuItem className={classes.menuItem} onClick={accountSettingRoute}>Account Settings</MenuItem>
           <MenuItem className={classes.menuItem} onClick={props.logout}>Logout</MenuItem>
         </StyledMenu>

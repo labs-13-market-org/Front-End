@@ -247,7 +247,7 @@ function ButtonAppBar(props) {
   const classes = useStyles();
   const user_type = localStorage.getItem('userTypes')
   const isOpen = Boolean(anchorEl);
-console.log('props', props)
+
   return (
     <div>
      
@@ -277,12 +277,16 @@ console.log('props', props)
               <MenuItem onClick={toAllMarkets}>View Our Markets</MenuItem>
               <MenuItem onClick={handleClose}>More Info</MenuItem>
             </StyledMarketMenu>
+            {/*VENDOR DROPDOWN*/}
             <VendorMenu />
             <ListItem component={Link} onClick={toAbout} key='About' button >
               <ListItemText primary='About' />
             </ListItem>
             <ListItem button component={Link} exact to='/contact'>
               <ListItemText primary='Contact Us' />
+            </ListItem>
+            <ListItem className={currentUser ? classes.close : null} button component={Link} onClick={register}>
+              <ListItemText primary='Sign Up' />
             </ListItem>
             <ListItem button component={Link} onClick={currentUser ? logout : login}>
               <ListItemText primary={currentUser ? 'Logout' : 'Login'} />
@@ -292,8 +296,8 @@ console.log('props', props)
                 <ShoppingCart />
               </ListItemIcon>
             </ListItem>
+            {/*PROFILE DROPDOWN */}
             {currentUser ? <ProfileMenu /> : null}
-            
           </List>
         </Toolbar>
       </AppBar>
