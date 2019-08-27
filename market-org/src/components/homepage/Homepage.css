@@ -10,6 +10,11 @@
     font-family: 'Montserrat';
     
 }
+
+.checker {
+    color: #585858;
+    background: radial-gradient(ellipse at center, #bb5778e8 0,#b42d5ae8 100%);
+}
 .footer-logo{
     display: none;
 }

@@ -1,71 +1,44 @@
 import React, { useContext, useState } from 'react';
 import { withRouter } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
-import { Link } from 'react-router-dom'
-import ProfileMenu from './ProfileMenu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
 import { withStyles } from '@material-ui/styles';
 import Expand from '@material-ui/icons/ExpandMore';
 import Profile from '@material-ui/icons/AccountCircle';
 import { AuthContext } from "../authContext/authState";
 import axios from "../../axios-instance";
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1, 
-  },
- 
-  title: {
-    flexGrow: 1,
-  },
-
-  appBar: { 
-    backgroundColor: '#38212E',
+ dropdownIcon: {
+    // border: '1px solid red', 
+    display: 'flex', 
+    justifyContent: 'center', 
+    textAlign: 'center',  
+    alignItems: 'center',
+     color: 'white',
   },
 
-  link: {
-    color: 'white',
-    fontSize: '1.2rem',
-    margin: "10px",
-    cursor: 'pointer',
-    textDecoration: 'none',
-    '&:hover': {
-      borderBottom: '1px solid #30cc32'
-    }
-    
-  },
-  closed: {
-    display: 'none'
-  },
   menuItem: {
     color: 'white',
     textDecoration: 'none'
   },
- 
 }));
 
+
+
 const StyledMenu = withStyles({
+  
   paper: {
-    marginTop: '3.5rem',
-    marginLeft: '1.2rem',
+    marginTop: '3rem',
     backgroundColor: '#b42d5ae8',
-    height: '190px',
-    width: '15%',
-    ['@media (max-width: 660px)']: {
-     width: '40%',
-     marginLeft: '.5rem',
-     height: '200px',
-    //   border: '2px solid red',
-    //  backgroundColor: 'green'
-    }
+    height: 'auto',
+    width: 'auto',
+    color: 'white'
   },
 
-  close: {
-    display: 'none'
-  }
 })(props => (
   <Menu
     elevation={0}
@@ -82,11 +55,13 @@ const StyledMenu = withStyles({
   />
 ));
 
-const VendorMenu = (props) => {
+const UserProfile = (props) => {
  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [stripe_acc_id, setStripeAccId] = useState(null)
   const { currentUser } = useContext(AuthContext);
+  const usertype = localStorage.getItem("userTypes")
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   }
@@ -96,7 +71,7 @@ const VendorMenu = (props) => {
   }
   
   const routeToProfile = () => {
-    const usertype = localStorage.getItem("userTypes")
+    
     console.log("userType", usertype)
     if(usertype === "market") {
       props.history.push(`/vendorsByMarket/${currentUser.uid}`)
@@ -130,50 +105,41 @@ const VendorMenu = (props) => {
     }
   }
 
+  const toMyStalls = (user_type) => {
+    if (user_type == "vendor") {
+      props.history.push('/vendorStall')
+    }
+    else if (user_type == "market") {
+      props.history.push('/marketStall')
+    }
+    
+  }
+
   const classes = useStyles();
 
   return (
-    <div className={classes.root} >
-      <Typography variant="h6" className={classes.title} />
-               <Typography variant="h6"  className={classes.title}>
-                 
-                    <IconButton
-                      onClick={handleClick}
-                      aria-controls="profile" 
-                      color="inherit"
-                      aria-label="profile"
-                    >
-                      <Profile />
-                    </IconButton> 
-
-                    <IconButton
-                        onClick={handleClick}
-                        color="inherit"
-                        aria-label='profile'
-                    >
-                        <Expand />
-                     </IconButton> 
-           
-               
-                    <StyledMenu
-                        id="profile"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem className={classes.menuItem} onClick={routeToProfile}>View Profile</MenuItem>
-                        <MenuItem className={classes.menuItem} onClick={props.handleRegOpen}>{props.user === 'vendor' ? 'My Orders' : 'My Stalls'}</MenuItem>
-                        {
-                          props.user === 'market' ? <MenuItem className={classes.menuItem} onClick={stripeDashboardLink}>Stripe Dashboard</MenuItem> : null
-                        }
-                        <MenuItem className={classes.menuItem} onClick={accountSettingRoute}>Account Settings</MenuItem>
-                        <MenuItem className={classes.menuItem} onClick={props.logout}>Logout</MenuItem>
-                    </StyledMenu>
-             
-              </Typography>
+    <div>
+      <ListItem button onClick={handleClick} >
+          <ListItemIcon className={classes.dropdownIcon} aria-controls="profile-menu" aria-haspopup="true">
+          <Profile />
+        </ListItemIcon>
+          <Expand/>
+      </ListItem>
+        <StyledMenu
+            id="profile"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+        >
+          <MenuItem className={classes.menuItem} onClick={routeToProfile}>View Profile</MenuItem>
+          <MenuItem className={classes.menuItem} onClick={toMyStalls}>{usertype === 'vendor' ? 'My Stalls' : 'View Orders'}</MenuItem>
+          { props.user === 'market' ? <MenuItem className={classes.menuItem} onClick={stripeDashboardLink}>Stripe Dashboard</MenuItem> : null}
+          <MenuItem className={classes.menuItem} onClick={accountSettingRoute}>Account Settings</MenuItem>
+          <MenuItem className={classes.menuItem} onClick={props.logout}>Logout</MenuItem>
+        </StyledMenu>
     </div>
   )
 }
 
-export default withRouter(VendorMenu);
+export default withRouter(UserProfile);

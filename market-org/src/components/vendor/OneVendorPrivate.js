@@ -5,7 +5,12 @@ import { VendorContext } from "../context/vendor";
 
 import UpdateVendorForm from "./UpdateVendorForm";
 import ProductByVendor from "../product/ProductByVendor";
-
+//STYLES 
+import vendorProfileStyles from'./vendorprofile-styles' 
+import Parallax from '../global-styles/parallex.js';
+import classNames from "classnames";
+import { grayBackgroundColor, purpleBackgroundColor } from "../global-styles/global";
+// /oneVendorPrivate/sVsnCVo5rZM0kGFuanRqzh0EWUr1 bostonvendor@mail.com
 import {
   withStyles,
   Typography,
@@ -123,8 +128,21 @@ const OneVendorPrivate = props => {
   };
 
   return (
-    <>
-      <Container
+    <div>
+        <Parallax image={require('../../images/homeBG2.jpg')}  small>
+          {/* <div className={classes.container}>
+            <Grid container className={classes.grid}>
+            </Grid>
+          </div> */}
+        </Parallax> 
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <div className={classes.container} style={{paddingBottom: '2rem'}}>
+            <div className={classes.container} style={{paddingBottom: '2rem'}}>
+                {/*ADD CONTENT HERE */}
+            </div>
+          </div>
+        </div>
+      {/* <Container
         maxWidth="lg"
         key={aPrivateVendor.firebase_id}
         style={{ marginTop: "50px" }}
@@ -229,8 +247,6 @@ const OneVendorPrivate = props => {
                     EDIT PROFILE
                   </Typography>
                 </Link>
-                {/* </Grid>
-                <Grid item style={{ padding: 5, margin: 8 }}> */}
                 <DeleteIcon
                   className={classes.icon}
                   onClick={e => deleteVendor(e, firebase_id)}
@@ -249,7 +265,7 @@ const OneVendorPrivate = props => {
             </Grid>
           </Grid>
         </Paper>
-      </Container>
+      </Container> */}
 
       <Switch>
         <Route
@@ -260,8 +276,8 @@ const OneVendorPrivate = props => {
         />
       </Switch>
       <ProductByVendor {...props} />
-    </>
+    </div>
   );
 };
 
-export default withRouter(withStyles(styles)(OneVendorPrivate));
+export default withRouter(withStyles(vendorProfileStyles)(OneVendorPrivate));

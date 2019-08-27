@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "../../axios-instance";
 import Stall from "./stall.js";
+
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
@@ -68,9 +71,9 @@ const StallsList = (props) => {
     const classes = useStyles();
 
     console.log("Getting stalls ", stalls);
+    
     return(
       
-
       <div className="rent-page-wrapper">
       <div className="rent-page-header">
         <h2>Rent Stalls</h2>
@@ -90,28 +93,49 @@ const StallsList = (props) => {
             <h3>{market.phone_number}</h3>
             </div>
             
-            <div className='stalls'>
+          <div className='stalls'>
             <h2>Available Stalls:</h2>
             {Object.keys(stalls).map((stall, index) => (
-                
-                
-                <div className={stalls[stall].available  == true ? "stall" : "closed"} key ={index}>
-                    {console.log(stalls[stall].id, 'stall id')}
-
-                        <h3>Size:</h3>
-                        <p> Length: {stalls[stall].size.length} ft. Width: {stalls[stall].size.width} ft.</p>
-                        <h3>Price:</h3>
-                        <p>${stalls[stall].price}</p>
-                        
-                    
-                      <Button variant="contained" className='rent-add-button' onClick={() => addToCart(stalls[stall].id, stalls[stall].market_id)}>Add To Cart</Button> 
-
-                </div>
+              <div className={stalls[stall].available  == true ? "stall" : "closed"} key ={index}>
+                {console.log(stalls[stall].id, 'stall id')}
+                <h3>Size:</h3>
+                <p> Length: {stalls[stall].size.length} ft. Width: {stalls[stall].size.width} ft.</p>
+                <h3>Price:</h3>
+                <p>${stalls[stall].price}</p>
+                <Button variant="contained" className='rent-add-button' onClick={() => addToCart(stalls[stall].id, stalls[stall].market_id)}>Add To Cart</Button>
+              </div>
             ))}
-            </div>
-            </div>
+          </div>
+        </div> */}
+
+        <Grid container spacing={3}>
+          <Grid item  >
+            <Paper className={classes.paper}>
+              <h3>Selected Market:</h3>
+              <h4>{market.market_name}</h4>
+              <h4>{market.address}</h4>
+              <h4>{market.city}</h4>
+              <h4>{market.state}</h4>
+              <h4>{market.phone_number}</h4>
+            </Paper>
+          </Grid>
+          <Grid item  >
+            <Paper className={classes.paper}>
+            <h2>Available Stalls:</h2>
+              {Object.keys(stalls).map((stall, index) => (
+                <div className={stalls[stall].available  == true ? "stall" : "closed"} key ={index}>
+                  {console.log(stalls[stall].id, 'stall id')}
+                  <h3>Size:</h3>
+                  <p> Length: {stalls[stall].size.length} ft. Width: {stalls[stall].size.width} ft.</p>
+                  <h3>Price:</h3>
+                  <p>${stalls[stall].price}</p>
+                  <Button variant="contained" className='rent-add-button' onClick={() => addToCart(stalls[stall].id, stalls[stall].market_id)}>Add To Cart</Button>
+                </div>
+              ))}
+            </Paper>
+          </Grid>
+        </Grid>
       </div>
-        
     )
 
     
